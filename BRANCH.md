@@ -6,6 +6,7 @@ only when you can cut the ride short.
 
 ## Worked on
 
+- Begode: Motor temp shows the motor sensor, not the board. Board temperature is now Controller temp.
 - Begode Master is rider-tested: no more preliminary banner (the Master Pro keeps it).
 - Begode: an Auto off tile counts down to the wheel's auto power-off (m:ss).
 - Fixed a crash on every launch for riders with a backup folder set (a start-up race).
@@ -48,6 +49,7 @@ only when you can cut the ride short.
 - Stays connected all ride? Lights and horn work?
 
 **Begode**
+- Wheel with a motor sensor (Xmax, Falcon Pro / +): Motor temp matches the Begode app? Without one, Motor temp shows --?
 - Auto off tile (Settings, Dashboard layout): matches the wheel, and jumps back up when the wheel moves?
 - Current (A) stays live all ride instead of dropping to 0 A? Master v3 especially.
 - Beep volume by speed on: quiet beeps when stopped, loud once riding?
