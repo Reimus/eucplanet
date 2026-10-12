@@ -685,7 +685,9 @@ fun ShareScannerDialog(
 @Composable
 fun RouteQrDialog(
     link: String,
-    /** Where the route goes, "Start → Telegrafbukta → Back home", or its name. */
+    /** The short form for the window, "Start → … → Back home". */
+    headline: String,
+    /** Where the route goes, every stop, for the shared picture; or its name. */
     title: String,
     /** Its length in the rider's units. */
     distance: String,
@@ -711,7 +713,7 @@ fun RouteQrDialog(
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        title,
+                        headline,
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.appColors.textPrimary,
                         maxLines = 2,
@@ -743,7 +745,10 @@ fun RouteQrDialog(
                     icon = Icons.Default.QrCode,
                     description = stringResource(R.string.route_qr_share_image),
                     onClick = {
-                        runCatching { RouteQrCard.share(context, link, title, distance, cardFooter, subject) }
+                        runCatching {
+                            RouteQrCard.share(context, link, context.getString(R.string.route_share_text, link),
+                                title, distance, cardFooter, subject)
+                        }
                     }
                 )
                 ShareLinkAction(

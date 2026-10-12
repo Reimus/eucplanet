@@ -62,7 +62,10 @@ object RouteQrCard {
     }
 
     /** Write the card to the shared cache and open the share sheet with it and the link. */
-    fun share(context: Context, link: String, title: String, distance: String, footer: String, chooserTitle: String) {
+    fun share(
+        context: Context, link: String, text: String,
+        title: String, distance: String, footer: String, chooserTitle: String,
+    ) {
         val dir = File(context.cacheDir, "shared").apply { mkdirs() }
         val file = File(dir, "route_qr.png")
         file.outputStream().use { render(link, title, distance, footer).compress(Bitmap.CompressFormat.PNG, 100, it) }
@@ -71,7 +74,7 @@ object RouteQrCard {
             type = "image/png"
             putExtra(Intent.EXTRA_STREAM, uri)
             // Apps that drop the picture still pass the route on.
-            putExtra(Intent.EXTRA_TEXT, link)
+            putExtra(Intent.EXTRA_TEXT, text)
             clipData = ClipData.newRawUri(null, uri)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
