@@ -157,6 +157,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
+import com.eried.eucplanet.nav.isFixedTrack
 import sh.calvin.reorderable.ReorderableColumn
 import com.eried.eucplanet.ui.settings.eucstats.flagEmoji
 import com.eried.eucplanet.ui.theme.themedFieldColors
@@ -1914,8 +1915,7 @@ fun RouteBuilderScreen(
                     // Says which route it is, the way a rider would: where it
                     // goes, through what, and how far, in their own units.
                     val r = route
-                    val trackOnly = r != null && r.travelMode == com.eried.eucplanet.data.model.TravelMode.STRAIGHT &&
-                        r.geometry.size > waypoints.size
+                    val trackOnly = r.isFixedTrack(waypoints)
                     val names = waypoints.map { it.name.trim() }.filter { it.isNotEmpty() }
                     val title = when {
                         !trackOnly && waypoints.size == 1 && names.size == 1 -> names[0]
@@ -1923,18 +1923,21 @@ fun RouteBuilderScreen(
                             ?: stringResource(R.string.share_menu_route)
                         else -> names.joinToString(" → ")
                     }
-                    val meters = r?.totalDistanceM?.takeIf { it > 0 }
+                    // Each leg along the drawn path when it runs through every stop
+                    // (it may start at the rider, which is not a leg).
+                    val legsM = if (trackOnly) emptyList() else com.eried.eucplanet.nav.RouteLegs.metres(
+                        waypoints.map { it.point() },
+                        r?.takeIf { it.waypoints.size >= waypoints.size }?.geometry.orEmpty(),
+                    )
+                    // The friend's route is the stops: the ride to the first one is not part of it.
+                    val meters = if (legsM.isNotEmpty()) legsM.sum() else r?.totalDistanceM?.takeIf { it > 0 }
                         ?: com.eried.eucplanet.nav.GeoMath.polylineLengthM(waypoints.map { it.point() })
                     RouteQrDialog(
                         link = routeQrLink!!,
                         stopNames = if (trackOnly) emptyList() else waypoints.map { w ->
                             w.name.trim().ifEmpty { String.format(java.util.Locale.US, "%.5f, %.5f", w.lat, w.lng) }
                         },
-                        // Measured along the path the rider will take, when it is drawn.
-                        legs = if (trackOnly) emptyList() else com.eried.eucplanet.nav.RouteLegs.metres(
-                            waypoints.map { it.point() },
-                            r?.takeIf { it.waypoints.size == waypoints.size }?.geometry.orEmpty(),
-                        ).map { com.eried.eucplanet.nav.NavFormat.distance(context, it, imperial) },
+                        legs = legsM.map { com.eried.eucplanet.nav.NavFormat.distance(context, it, imperial) },
                         cardTitle = title,
                         // A single stop has no length of its own: the friend rides from wherever they are.
                         distance = if (!trackOnly && waypoints.size < 2) pluralStringResource(R.plurals.route_stop_count, 1, 1)
@@ -2241,7 +2244,7 @@ private fun BottomPanel(
     home: com.eried.eucplanet.data.model.Waypoint?,
     work: com.eried.eucplanet.data.model.Waypoint?,
     routeDistanceM: Double?,
-    /** Each stop's leg by list index; only filled on a long tour. */
+    /** Each stop's distance by list index; empty while dragging or for one stop. */
     stopLegs: Map<Int, RouteBuilderViewModel.StopLeg>,
     routing: Boolean,
     imperial: Boolean,
@@ -2723,8 +2726,8 @@ private fun BottomPanel(
                                                 overflow = TextOverflow.Ellipsis,
                                                 modifier = Modifier.weight(1f)
                                             )
-                                            // On a long tour: how far from the stop
-                                            // before, and how far into the tour.
+                                            // How far from the stop before (the first
+                                            // from the rider), and how far into the tour.
                                             stopLegs[index]?.let { leg ->
                                                 Spacer(Modifier.width(8.dp))
                                                 Column(horizontalAlignment = Alignment.End) {
@@ -2734,12 +2737,14 @@ private fun BottomPanel(
                                                         color = MaterialTheme.appColors.textPrimary,
                                                         maxLines = 1
                                                     )
-                                                    Text(
-                                                        NavFormat.distance(context, leg.soFarM, imperial),
-                                                        style = MaterialTheme.typography.labelSmall,
-                                                        color = MaterialTheme.appColors.textSecondary,
-                                                        maxLines = 1
-                                                    )
+                                                    leg.soFarM?.let { soFar ->
+                                                        Text(
+                                                            NavFormat.distance(context, soFar, imperial),
+                                                            style = MaterialTheme.typography.labelSmall,
+                                                            color = MaterialTheme.appColors.textSecondary,
+                                                            maxLines = 1
+                                                        )
+                                                    }
                                                 }
                                             }
                                         }
