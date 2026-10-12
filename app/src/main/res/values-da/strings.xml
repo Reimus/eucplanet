@@ -2790,9 +2790,11 @@
     <string name="share_menu_route_none">Tilføj mindst to stop først.</string>
     <string name="scan_code_unknown">Ikke en gruppetur- eller rutekode.</string>
     <string name="route_qr_hint">Scan med EUC Planet eller telefonens kamera.</string>
-    <string name="route_qr_send">Send link</string>
     <string name="route_qr_too_long">Ruten er for lang til en QR-kode. Gem den som GPX i stedet.</string>
     <string name="route_open_title">Åbn delt rute</string>
     <string name="route_open_confirm">Erstat den aktuelle rute med den delte rute?</string>
     <string name="route_opened">Rute åbnet</string>
+    <string name="route_qr_share_image">Del QR</string>
+    <string name="route_share_text">Kør denne rute med EUC Planet: %1$s</string>
+    <string name="route_share_subject">En rute at køre</string>
 </resources>

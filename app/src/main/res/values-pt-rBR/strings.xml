@@ -2777,9 +2777,11 @@
     <string name="share_menu_route_none">Adicione pelo menos duas paradas primeiro.</string>
     <string name="scan_code_unknown">Não é um código de passeio em grupo nem de rota.</string>
     <string name="route_qr_hint">Leia com o EUC Planet ou a câmera do celular.</string>
-    <string name="route_qr_send">Enviar link</string>
     <string name="route_qr_too_long">Esta rota é longa demais para um código QR. Salve-a como GPX.</string>
     <string name="route_open_title">Abrir rota compartilhada</string>
     <string name="route_open_confirm">Substituir a rota atual pela rota compartilhada?</string>
     <string name="route_opened">Rota aberta</string>
+    <string name="route_qr_share_image">Compartilhar QR</string>
+    <string name="route_share_text">Faça esta rota com o EUC Planet: %1$s</string>
+    <string name="route_share_subject">Uma rota para rodar</string>
 </resources>

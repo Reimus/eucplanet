@@ -2777,9 +2777,11 @@
     <string name="share_menu_route_none">Voeg eerst minstens twee stops toe.</string>
     <string name="scan_code_unknown">Geen code van een groepsrit of route.</string>
     <string name="route_qr_hint">Scan met EUC Planet of de telefooncamera.</string>
-    <string name="route_qr_send">Link versturen</string>
     <string name="route_qr_too_long">Deze route is te lang voor een QR-code. Sla hem op als GPX.</string>
     <string name="route_open_title">Gedeelde route openen</string>
     <string name="route_open_confirm">De huidige route vervangen door de gedeelde route?</string>
     <string name="route_opened">Route geopend</string>
+    <string name="route_qr_share_image">QR delen</string>
+    <string name="route_share_text">Rij deze route met EUC Planet: %1$s</string>
+    <string name="route_share_subject">Een route om te rijden</string>
 </resources>

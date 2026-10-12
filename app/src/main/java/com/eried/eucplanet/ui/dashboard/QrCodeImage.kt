@@ -82,6 +82,10 @@ fun QrCodeImage(content: String, sizeDp: Int) {
     QrCodeImage(content = content, sizePx = sizePx, modifier = Modifier.size(sizeDp.dp))
 }
 
+/** The bare code as a bitmap, for drawing into something else (a shared image). */
+fun qrBitmap(content: String, size: Int, ecc: ErrorCorrectionLevel = ErrorCorrectionLevel.Q): Bitmap =
+    encodeQr(content, size, ecc)
+
 private fun encodeQr(content: String, size: Int, ecc: ErrorCorrectionLevel): Bitmap {
     val side = size.coerceAtLeast(64)
     // Q-level (~25% recoverable) is a good balance for short URLs scanned

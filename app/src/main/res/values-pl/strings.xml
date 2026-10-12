@@ -2775,9 +2775,11 @@
     <string name="share_menu_route_none">Najpierw dodaj co najmniej dwa przystanki.</string>
     <string name="scan_code_unknown">To nie jest kod jazdy grupowej ani trasy.</string>
     <string name="route_qr_hint">Zeskanuj w EUC Planet lub aparatem telefonu.</string>
-    <string name="route_qr_send">Wyślij link</string>
     <string name="route_qr_too_long">Ta trasa jest za długa na kod QR. Zapisz ją jako GPX.</string>
     <string name="route_open_title">Otwórz udostępnioną trasę</string>
     <string name="route_open_confirm">Zastąpić bieżącą trasę udostępnioną?</string>
     <string name="route_opened">Trasa otwarta</string>
+    <string name="route_qr_share_image">Udostępnij QR</string>
+    <string name="route_share_text">Przejedź tę trasę z EUC Planet: %1$s</string>
+    <string name="route_share_subject">Trasa do przejechania</string>
 </resources>

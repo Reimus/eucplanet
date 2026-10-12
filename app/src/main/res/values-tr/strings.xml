@@ -2772,9 +2772,11 @@
     <string name="share_menu_route_none">Önce en az iki durak ekle.</string>
     <string name="scan_code_unknown">Grup sürüşü veya rota kodu değil.</string>
     <string name="route_qr_hint">EUC Planet veya telefon kamerasıyla tara.</string>
-    <string name="route_qr_send">Bağlantı gönder</string>
     <string name="route_qr_too_long">Bu rota QR kod için çok uzun. GPX olarak kaydet.</string>
     <string name="route_open_title">Paylaşılan rotayı aç</string>
     <string name="route_open_confirm">Mevcut rota paylaşılan rotayla değiştirilsin mi?</string>
     <string name="route_opened">Rota açıldı</string>
+    <string name="route_qr_share_image">QR paylaş</string>
+    <string name="route_share_text">Bu rotayı EUC Planet ile sür: %1$s</string>
+    <string name="route_share_subject">Sürülecek bir rota</string>
 </resources>

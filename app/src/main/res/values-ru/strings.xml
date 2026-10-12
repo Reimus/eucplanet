@@ -2775,9 +2775,11 @@
     <string name="share_menu_route_none">Сначала добавьте хотя бы две точки.</string>
     <string name="scan_code_unknown">Это не код групповой поездки и не маршрут.</string>
     <string name="route_qr_hint">Сканируйте в EUC Planet или камерой телефона.</string>
-    <string name="route_qr_send">Отправить ссылку</string>
     <string name="route_qr_too_long">Маршрут слишком длинный для QR-кода. Сохраните его как GPX.</string>
     <string name="route_open_title">Открыть общий маршрут</string>
     <string name="route_open_confirm">Заменить текущий маршрут общим?</string>
     <string name="route_opened">Маршрут открыт</string>
+    <string name="route_qr_share_image">Поделиться QR</string>
+    <string name="route_share_text">Проедь этот маршрут с EUC Planet: %1$s</string>
+    <string name="route_share_subject">Маршрут для поездки</string>
 </resources>

@@ -2779,9 +2779,11 @@
     <string name="share_menu_route_none">Ajoutez d\'abord au moins deux étapes.</string>
     <string name="scan_code_unknown">Ce n\'est pas un code de sortie en groupe ni d\'itinéraire.</string>
     <string name="route_qr_hint">À scanner avec EUC Planet ou l\'appareil photo du téléphone.</string>
-    <string name="route_qr_send">Envoyer le lien</string>
     <string name="route_qr_too_long">Cet itinéraire est trop long pour un QR code. Enregistrez-le en GPX.</string>
     <string name="route_open_title">Ouvrir l\'itinéraire partagé</string>
     <string name="route_open_confirm">Remplacer l\'itinéraire actuel par l\'itinéraire partagé ?</string>
     <string name="route_opened">Itinéraire ouvert</string>
+    <string name="route_qr_share_image">Partager le QR</string>
+    <string name="route_share_text">Roule cet itinéraire avec EUC Planet : %1$s</string>
+    <string name="route_share_subject">Un itinéraire à rouler</string>
 </resources>

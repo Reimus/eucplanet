@@ -2642,9 +2642,11 @@
     <string name="share_menu_route_none">请先添加至少两个停靠点。</string>
     <string name="scan_code_unknown">不是团骑或路线代码。</string>
     <string name="route_qr_hint">用 EUC Planet 或手机相机扫描。</string>
-    <string name="route_qr_send">发送链接</string>
     <string name="route_qr_too_long">这条路线太长,无法做成二维码。请另存为 GPX。</string>
     <string name="route_open_title">打开分享的路线</string>
     <string name="route_open_confirm">要用分享的路线替换当前路线吗?</string>
     <string name="route_opened">已打开路线</string>
+    <string name="route_qr_share_image">分享二维码</string>
+    <string name="route_share_text">用 EUC Planet 骑这条路线: %1$s</string>
+    <string name="route_share_subject">一条骑行路线</string>
 </resources>

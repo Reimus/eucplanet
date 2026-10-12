@@ -2578,9 +2578,11 @@
     <string name="share_menu_route_none">Előbb adj hozzá legalább két megállót.</string>
     <string name="scan_code_unknown">Nem csoportos út vagy útvonal kódja.</string>
     <string name="route_qr_hint">Olvasd be az EUC Planettel vagy a telefon kamerájával.</string>
-    <string name="route_qr_send">Link küldése</string>
     <string name="route_qr_too_long">Ez az útvonal túl hosszú egy QR-kódhoz. Mentsd GPX-ként.</string>
     <string name="route_open_title">Megosztott útvonal megnyitása</string>
     <string name="route_open_confirm">Lecseréled a jelenlegi útvonalat a megosztottra?</string>
     <string name="route_opened">Útvonal megnyitva</string>
+    <string name="route_qr_share_image">QR megosztása</string>
+    <string name="route_share_text">Járd be ezt az útvonalat az EUC Planettel: %1$s</string>
+    <string name="route_share_subject">Egy bejárandó útvonal</string>
 </resources>

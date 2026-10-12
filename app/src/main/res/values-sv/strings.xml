@@ -2775,9 +2775,11 @@
     <string name="share_menu_route_none">Lägg först till minst två stopp.</string>
     <string name="scan_code_unknown">Inte en grupptur- eller ruttkod.</string>
     <string name="route_qr_hint">Skanna med EUC Planet eller telefonens kamera.</string>
-    <string name="route_qr_send">Skicka länk</string>
     <string name="route_qr_too_long">Rutten är för lång för en QR-kod. Spara den som GPX i stället.</string>
     <string name="route_open_title">Öppna delad rutt</string>
     <string name="route_open_confirm">Ersätta den aktuella rutten med den delade?</string>
     <string name="route_opened">Rutt öppnad</string>
+    <string name="route_qr_share_image">Dela QR</string>
+    <string name="route_share_text">Kör den här rutten med EUC Planet: %1$s</string>
+    <string name="route_share_subject">En rutt att köra</string>
 </resources>

@@ -1926,6 +1926,7 @@ fun RouteBuilderScreen(
                         link = routeQrLink!!,
                         title = title,
                         distance = com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
+                        onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },
                         onDismiss = { routeQrLink = null },
                     )
                 }

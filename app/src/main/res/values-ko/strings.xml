@@ -2774,9 +2774,11 @@
     <string name="share_menu_route_none">먼저 경유지를 2개 이상 추가하세요.</string>
     <string name="scan_code_unknown">그룹 라이딩이나 경로 코드가 아닙니다.</string>
     <string name="route_qr_hint">EUC Planet이나 휴대폰 카메라로 스캔하세요.</string>
-    <string name="route_qr_send">링크 보내기</string>
     <string name="route_qr_too_long">QR 코드로 만들기에는 경로가 너무 깁니다. GPX로 저장하세요.</string>
     <string name="route_open_title">공유 경로 열기</string>
     <string name="route_open_confirm">현재 경로를 공유된 경로로 바꿀까요?</string>
     <string name="route_opened">경로를 열었습니다</string>
+    <string name="route_qr_share_image">QR 공유</string>
+    <string name="route_share_text">EUC Planet으로 이 경로를 달려 보세요: %1$s</string>
+    <string name="route_share_subject">달릴 경로</string>
 </resources>

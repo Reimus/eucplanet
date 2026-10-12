@@ -2776,9 +2776,11 @@
     <string name="share_menu_route_none">先に経由地を2つ以上追加してください。</string>
     <string name="scan_code_unknown">グループライドやルートのコードではありません。</string>
     <string name="route_qr_hint">EUC Planet またはカメラでスキャン。</string>
-    <string name="route_qr_send">リンクを送信</string>
     <string name="route_qr_too_long">このルートは QR コードには長すぎます。GPX として保存してください。</string>
     <string name="route_open_title">共有ルートを開く</string>
     <string name="route_open_confirm">現在のルートを共有ルートに置き換えますか?</string>
     <string name="route_opened">ルートを開きました</string>
+    <string name="route_qr_share_image">QR を共有</string>
+    <string name="route_share_text">EUC Planet でこのルートを走ろう: %1$s</string>
+    <string name="route_share_subject">走るルート</string>
 </resources>

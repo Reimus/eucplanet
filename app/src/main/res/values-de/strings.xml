@@ -2795,9 +2795,11 @@
     <string name="share_menu_route_none">Zuerst mindestens zwei Stopps hinzufügen.</string>
     <string name="scan_code_unknown">Kein Gruppenfahrt- oder Routencode.</string>
     <string name="route_qr_hint">Mit EUC Planet oder der Handykamera scannen.</string>
-    <string name="route_qr_send">Link senden</string>
     <string name="route_qr_too_long">Die Route ist zu lang für einen QR-Code. Speichere sie stattdessen als GPX.</string>
     <string name="route_open_title">Geteilte Route öffnen</string>
     <string name="route_open_confirm">Aktuelle Route durch die geteilte Route ersetzen?</string>
     <string name="route_opened">Route geöffnet</string>
+    <string name="route_qr_share_image">QR teilen</string>
+    <string name="route_share_text">Fahr diese Route mit EUC Planet: %1$s</string>
+    <string name="route_share_subject">Eine Route zum Fahren</string>
 </resources>
