@@ -1917,18 +1917,12 @@ fun RouteBuilderScreen(
                     val title = when {
                         trackOnly || names.size < 2 -> r?.name?.takeIf { it.isNotBlank() }
                             ?: stringResource(R.string.share_menu_route)
-                        names.size <= 4 -> names.joinToString(" → ")
-                        else -> listOf(names.first(), names[1], "…", names.last()).joinToString(" → ")
+                        else -> names.joinToString(" → ")
                     }
                     val meters = r?.totalDistanceM?.takeIf { it > 0 }
                         ?: com.eried.eucplanet.nav.GeoMath.polylineLengthM(waypoints.map { it.point() })
-                    // Beside four icons only the ends fit; the shared picture has
-                    // the width for every stop.
-                    val headline = if (!trackOnly && names.size > 2)
-                        listOf(names.first(), "…", names.last()).joinToString(" → ") else title
                     RouteQrDialog(
                         link = routeQrLink!!,
-                        headline = headline,
                         title = title,
                         distance = com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
                         onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },

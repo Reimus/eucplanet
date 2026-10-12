@@ -678,16 +678,14 @@ fun ShareScannerDialog(
  * The planned route as a QR code, for a friend to scan, or as a link to send.
  * The whole route is inside the code, so nothing is uploaded anywhere.
  *
- * Laid out like the group ride's view of its link: what it is on the left,
- * the things a rider does with it as tinted icons at the side, and the code
- * under them with no caption.
+ * The things a rider does with it as tinted icons, the way the group ride
+ * shows its link, then what the route is (every stop, and how far), then the
+ * code with no caption.
  */
 @Composable
 fun RouteQrDialog(
     link: String,
-    /** The short form for the window, "Start → … → Back home". */
-    headline: String,
-    /** Where the route goes, every stop, for the shared picture; or its name. */
+    /** Where the route goes, every stop, "Start → Telegrafbukta → Back home"; or its name. */
     title: String,
     /** Its length in the rider's units. */
     distance: String,
@@ -710,22 +708,13 @@ fun RouteQrDialog(
         properties = DialogProperties(usePlatformDefaultWidth = false),
     ) {
         ShareDialogCard(title = stringResource(R.string.share_menu_route), scrollable = true) {
-            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text(
-                        headline,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.appColors.textPrimary,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                    Text(
-                        distance,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.appColors.textSecondary,
-                        maxLines = 1,
-                    )
-                }
+            // The actions get a row of their own: a route of any length never
+            // fit beside them, so it reads in full underneath instead.
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
                 ShareLinkAction(
                     icon = Icons.Default.Share,
                     description = stringResource(R.string.action_share),
@@ -764,6 +753,18 @@ fun RouteQrDialog(
                     onClick = { openShareLink(context, link, tabColors) }
                 )
             }
+            Spacer(Modifier.height(10.dp))
+            Text(
+                title,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.appColors.textPrimary,
+            )
+            Text(
+                distance,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.appColors.textSecondary,
+                maxLines = 1,
+            )
             Spacer(Modifier.height(14.dp))
             BoxWithConstraints(
                 Modifier
