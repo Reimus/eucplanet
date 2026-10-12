@@ -40,6 +40,21 @@ class RouteLegsTest {
         assertEquals(GeoMath.distanceM(b, c), legs[1], 5.0)
     }
 
+    private fun straight(vararg pts: GeoPoint) = com.eried.eucplanet.data.model.NavRoute(
+        name = "", waypoints = emptyList(), travelMode = com.eried.eucplanet.data.model.TravelMode.STRAIGHT,
+        geometry = pts.toList(), maneuvers = emptyList(), totalDistanceM = 0.0)
+
+    private fun wp(p: GeoPoint) = com.eried.eucplanet.data.model.Waypoint(p.lat, p.lng)
+
+    @Test fun `a straight route of stops is not a track, even from the rider`() {
+        val rider = GeoPoint(59.99, 10.0)
+        val stops = listOf(wp(a), wp(b), wp(c))
+        assertEquals(false, straight(a, b, c).isFixedTrack(stops))
+        assertEquals(false, straight(rider, a, b, c).isFixedTrack(stops))
+        assertEquals(false, straight(rider, a).isFixedTrack(stops))
+        assertEquals(true, straight(*line(a, b).toTypedArray()).isFixedTrack(listOf(wp(a), wp(b))))
+    }
+
     @Test fun `without a path the legs are straight lines`() {
         val legs = RouteLegs.metres(listOf(a, b, c), emptyList())
         assertEquals(listOf(GeoMath.distanceM(a, b), GeoMath.distanceM(b, c)), legs)

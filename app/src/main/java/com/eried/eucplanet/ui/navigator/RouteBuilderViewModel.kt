@@ -30,6 +30,7 @@ import com.eried.eucplanet.nav.PointOfInterest
 import com.eried.eucplanet.nav.RouteAvoidances
 import com.eried.eucplanet.nav.RouteFileName
 import com.eried.eucplanet.nav.RouteLegs
+import com.eried.eucplanet.nav.isFixedTrack
 import com.eried.eucplanet.nav.RoutingService
 import com.eried.eucplanet.share.Identity
 import com.eried.eucplanet.share.IdentityMode
@@ -360,34 +361,6 @@ class RouteBuilderViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.Eagerly,
                 com.eried.eucplanet.data.model.AdvancedSettings())
 
-    /** One stop's leg in the builder list: from the stop before, and from the first. */
-    data class StopLeg(val legM: Double, val soFarM: Double)
-
-    /**
-     * Each stop's leg, by its index in the list, for a tour longer than the
-     * Advanced max start distance; on a shorter one the list stays as names
-     * only. Passed stops and the first stop to go have none. Measured along
-     * the drawn path in Full path, in straight lines otherwise (the solved
-     * path then covers only the first leg).
-     */
-    val stopLegs: StateFlow<Map<Int, StopLeg>> =
-        combine(_route, _waypoints, _solveFullPath, tourDistanceM, advanced) { route, wps, full, tour, adv ->
-            if (tour == null || tour <= adv.navMaxStartDistanceKm * 1000.0) return@combine emptyMap()
-            val ahead = wps.withIndex().filter { !it.value.passed }
-            val path = if (full && route != null) route.geometry else emptyList()
-            // The router's own distance runs a little longer than the drawn
-            // line measures, so the legs are scaled to add up to the header.
-            val drawn = GeoMath.polylineLengthM(path)
-            val scale = if (path.size >= 2 && drawn > 0 && route != null && route.totalDistanceM > 0)
-                route.totalDistanceM / drawn else 1.0
-            val legs = RouteLegs.metres(ahead.map { it.value.point() }, path).map { it * scale }
-            var soFar = 0.0
-            legs.withIndex().associate { (i, m) ->
-                soFar += m
-                ahead[i + 1].index to StopLeg(m, soFar)
-            }
-        }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
-
     private var routeJob: Job? = null
     private var searchJob: Job? = null
     private var enrichJob: Job? = null
@@ -425,6 +398,46 @@ class RouteBuilderViewModel @Inject constructor(
      *  out from under the rider's finger and feel like the app is
      *  fighting them. A trailing recompute fires once the drag ends. */
     private val _userDragging = MutableStateFlow(false)
+
+    /**
+     * One stop's distance in the builder list: from the stop before (or, on
+     * the first stop, from the rider), and how far into the tour, which the
+     * first stop shown leaves out.
+     */
+    data class StopLeg(val legM: Double, val soFarM: Double?)
+
+    /** Hides the distances while the list is being dragged or the route redrawn. */
+    private val legsBusy = combine(_userDragging, _routing) { dragging, routing -> dragging || routing }
+
+    /**
+     * Each stop's distance, by its index in the list, whenever there are at
+     * least two stops. Passed stops have none. Measured along the drawn path
+     * in Full path, in straight lines otherwise (the solved path then covers
+     * only the first leg). The tour may start at the rider: that stretch is
+     * the first stop's distance, so the last running total is the header's.
+     */
+    val stopLegs: StateFlow<Map<Int, StopLeg>> =
+        combine(_route, _waypoints, _solveFullPath, tourDistanceM, legsBusy) { route, wps, full, tour, busy ->
+            if (busy || wps.size < 2) return@combine emptyMap()
+            val ahead = wps.withIndex().filter { !it.value.passed }
+            if (ahead.isEmpty()) return@combine emptyMap()
+            val path = if (full && route != null && !route.isFixedTrack(wps)) route.geometry else emptyList()
+            // The router's own distance runs a little longer than the drawn
+            // line measures, so the legs are scaled to add up to the header.
+            val drawn = GeoMath.polylineLengthM(path)
+            val scale = if (path.size >= 2 && drawn > 0 && route != null && route.totalDistanceM > 0)
+                route.totalDistanceM / drawn else 1.0
+            val legs = RouteLegs.metres(ahead.map { it.value.point() }, path).map { it * scale }
+            val approach = ((tour ?: 0.0) - legs.sum()).takeIf { it >= 1.0 }
+            val out = LinkedHashMap<Int, StopLeg>()
+            var soFar = approach ?: 0.0
+            approach?.let { out[ahead[0].index] = StopLeg(it, null) }
+            legs.forEachIndexed { i, m ->
+                soFar += m
+                out[ahead[i + 1].index] = StopLeg(m, if (out.isEmpty()) null else soFar)
+            }
+            out
+        }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
     private var recomputeQueuedDuringDrag = false
 
     init {
@@ -1506,8 +1519,7 @@ class RouteBuilderViewModel @Inject constructor(
     fun shareRouteLink(): String? {
         val stops = _waypoints.value
         val route = _route.value
-        val trackOnly = route != null && route.travelMode == TravelMode.STRAIGHT &&
-            route.geometry.size > stops.size
+        val trackOnly = route.isFixedTrack(stops)
         val shared = com.eried.eucplanet.nav.SharedRoute(
             name = routeName,
             mode = _travelMode.value,

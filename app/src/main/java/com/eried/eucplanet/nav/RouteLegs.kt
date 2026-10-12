@@ -38,3 +38,15 @@ object RouteLegs {
         return along.zipWithNext { a, b -> (b - a).coerceAtLeast(0.0) }
     }
 }
+
+/**
+ * True when the route is a fixed line (a loaded track) rather than a line
+ * through its stops: its line has points that are not stops. The first
+ * point may be the rider's position, so a straight route drawn through the
+ * stops (all of them, or only the next one) is still a route of stops.
+ */
+fun com.eried.eucplanet.data.model.NavRoute?.isFixedTrack(stops: List<com.eried.eucplanet.data.model.Waypoint>): Boolean {
+    if (this == null || travelMode != com.eried.eucplanet.data.model.TravelMode.STRAIGHT) return false
+    val points = stops.mapTo(HashSet()) { it.point() }
+    return geometry.drop(1).any { it !in points }
+}
