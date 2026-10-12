@@ -2791,4 +2791,22 @@
     <string name="dropbox_checking">Dropbox wird geprüft…</string>
     <string name="sync_first_settings">Dropbox hat bereits Einstellungen von einem anderen Telefon. Diese verwenden oder die dieses Telefons behalten?</string>
     <string name="recording_delete_trip_body_keeps_backup">Diese Fahrt von diesem Telefon löschen? Die Sicherung behält eine Kopie, Alle sync. holt sie zurück.</string>
+    <string name="share_menu_scan">QR scannen</string>
+    <string name="share_menu_scan_desc">Einer Gruppenfahrt beitreten oder eine Route öffnen.</string>
+    <string name="share_menu_route">Route teilen</string>
+    <string name="share_menu_route_desc">Als QR-Code oder Link. Kein Konto nötig.</string>
+    <string name="share_menu_route_none">Zuerst mindestens zwei Stopps hinzufügen.</string>
+    <string name="scan_code_unknown">Kein Gruppenfahrt- oder Routencode.</string>
+    <string name="route_qr_hint">Mit EUC Planet oder der Handykamera scannen.</string>
+    <string name="route_qr_too_long">Die Route ist zu lang für einen QR-Code. Speichere sie stattdessen als GPX.</string>
+    <string name="route_open_title">Geteilte Route öffnen</string>
+    <string name="route_open_confirm">Aktuelle Route durch die geteilte Route ersetzen?</string>
+    <string name="route_opened">Route geöffnet</string>
+    <string name="route_qr_share_image">QR teilen</string>
+    <string name="route_share_text">Fahr diese Route mit EUC Planet: %1$s</string>
+    <string name="route_share_subject">Eine Route zum Fahren</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d Stopp</item>
+        <item quantity="other">%d Stopps</item>
+    </plurals>
 </resources>

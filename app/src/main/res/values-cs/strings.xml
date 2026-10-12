@@ -2574,4 +2574,24 @@
     <string name="dropbox_checking">Kontroluji Dropbox…</string>
     <string name="sync_first_settings">Dropbox už má nastavení z jiného telefonu. Použít je, nebo ponechat nastavení tohoto telefonu?</string>
     <string name="recording_delete_trip_body_keeps_backup">Smazat tuto jízdu z tohoto telefonu? Záloha si ponechá kopii, takže Synchronizovat vše ji vrátí.</string>
+    <string name="share_menu_scan">Skenovat QR</string>
+    <string name="share_menu_scan_desc">Připojit se ke skupinové jízdě nebo otevřít trasu.</string>
+    <string name="share_menu_route">Sdílet trasu</string>
+    <string name="share_menu_route_desc">Jako QR kód nebo odkaz. Bez účtu.</string>
+    <string name="share_menu_route_none">Nejprve přidejte alespoň dvě zastávky.</string>
+    <string name="scan_code_unknown">Není to kód skupinové jízdy ani trasy.</string>
+    <string name="route_qr_hint">Naskenujte v EUC Planet nebo fotoaparátem telefonu.</string>
+    <string name="route_qr_too_long">Trasa je na QR kód příliš dlouhá. Uložte ji jako GPX.</string>
+    <string name="route_open_title">Otevřít sdílenou trasu</string>
+    <string name="route_open_confirm">Nahradit aktuální trasu sdílenou trasou?</string>
+    <string name="route_opened">Trasa otevřena</string>
+    <string name="route_qr_share_image">Sdílet QR</string>
+    <string name="route_share_text">Projeď tuto trasu s EUC Planet: %1$s</string>
+    <string name="route_share_subject">Trasa k projetí</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d zastávka</item>
+        <item quantity="few">%d zastávky</item>
+        <item quantity="many">%d zastávky</item>
+        <item quantity="other">%d zastávek</item>
+    </plurals>
 </resources>

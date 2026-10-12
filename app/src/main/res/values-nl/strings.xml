@@ -2773,4 +2773,22 @@
     <string name="dropbox_checking">Dropbox controleren…</string>
     <string name="sync_first_settings">Dropbox heeft al instellingen van een andere telefoon. Die gebruiken, of die van deze telefoon houden?</string>
     <string name="recording_delete_trip_body_keeps_backup">Deze rit van deze telefoon verwijderen? De back-up houdt een kopie, dus Alles synchr. haalt hem terug.</string>
+    <string name="share_menu_scan">QR scannen</string>
+    <string name="share_menu_scan_desc">Doe mee met een groepsrit of open een route.</string>
+    <string name="share_menu_route">Route delen</string>
+    <string name="share_menu_route_desc">Als QR-code of link. Geen account nodig.</string>
+    <string name="share_menu_route_none">Voeg eerst minstens twee stops toe.</string>
+    <string name="scan_code_unknown">Geen code van een groepsrit of route.</string>
+    <string name="route_qr_hint">Scan met EUC Planet of de telefooncamera.</string>
+    <string name="route_qr_too_long">Deze route is te lang voor een QR-code. Sla hem op als GPX.</string>
+    <string name="route_open_title">Gedeelde route openen</string>
+    <string name="route_open_confirm">De huidige route vervangen door de gedeelde route?</string>
+    <string name="route_opened">Route geopend</string>
+    <string name="route_qr_share_image">QR delen</string>
+    <string name="route_share_text">Rij deze route met EUC Planet: %1$s</string>
+    <string name="route_share_subject">Een route om te rijden</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
 </resources>

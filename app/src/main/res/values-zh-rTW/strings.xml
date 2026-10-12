@@ -2770,4 +2770,21 @@
     <string name="dropbox_checking">正在檢查 Dropbox…</string>
     <string name="sync_first_settings">Dropbox 已有另一支手機的設定。要使用那些設定,還是保留這支手機的設定?</string>
     <string name="recording_delete_trip_body_keeps_backup">要從這支手機刪除這趟騎乘嗎?備份會保留一份副本,所以全部同步會把它帶回來。</string>
+    <string name="share_menu_scan">掃描 QR</string>
+    <string name="share_menu_scan_desc">加入團騎或開啟路線。</string>
+    <string name="share_menu_route">分享路線</string>
+    <string name="share_menu_route_desc">以 QR 碼或連結分享,無需帳號。</string>
+    <string name="share_menu_route_none">請先新增至少兩個停靠點。</string>
+    <string name="scan_code_unknown">不是團騎或路線代碼。</string>
+    <string name="route_qr_hint">用 EUC Planet 或手機相機掃描。</string>
+    <string name="route_qr_too_long">這條路線太長,無法做成 QR 碼。請另存為 GPX。</string>
+    <string name="route_open_title">開啟分享的路線</string>
+    <string name="route_open_confirm">要以分享的路線取代目前的路線嗎?</string>
+    <string name="route_opened">已開啟路線</string>
+    <string name="route_qr_share_image">分享 QR</string>
+    <string name="route_share_text">用 EUC Planet 騎這條路線: %1$s</string>
+    <string name="route_share_subject">一條騎乘路線</string>
+    <plurals name="route_stop_count">
+        <item quantity="other">%d 個停靠點</item>
+    </plurals>
 </resources>

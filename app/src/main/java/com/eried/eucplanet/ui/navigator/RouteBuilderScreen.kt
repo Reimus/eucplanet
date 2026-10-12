@@ -199,6 +199,7 @@ fun RouteBuilderScreen(
     val travelMode by viewModel.travelMode.collectAsState()
     val solveFullPath by viewModel.solveFullPath.collectAsState()
     val tourDistanceM by viewModel.tourDistanceM.collectAsState()
+    val stopLegs by viewModel.stopLegs.collectAsState()
     val searchResults by viewModel.searchResults.collectAsState()
     val searching by viewModel.searching.collectAsState()
     val routing by viewModel.routing.collectAsState()
@@ -295,6 +296,9 @@ fun RouteBuilderScreen(
     // The camera, and the ride it read. The link is held rather than joined on
     // sight: the rider still has to say how they want to appear.
     var shareScannerOpen by remember { mutableStateOf(false) }
+    // The planned route as a QR code; set by the Share menu's "Share route".
+    var routeQrLink by remember { mutableStateOf<String?>(null) }
+    val pendingRoute by viewModel.pendingRoute.collectAsState()
     var scannedLink by remember { mutableStateOf<ShareLink?>(null) }
     // The identity form for a ride the rider is starting themselves.
     var shareStartOpen by remember { mutableStateOf(false) }
@@ -1504,6 +1508,7 @@ fun RouteBuilderScreen(
                     home = homePlace,
                     work = workPlace,
                     routeDistanceM = tourDistanceM,
+                    stopLegs = stopLegs,
                     routing = routing,
                     imperial = imperial,
                     onRemove = viewModel::removeWaypoint,
@@ -1800,6 +1805,26 @@ fun RouteBuilderScreen(
                 )
             }
 
+            // A shared route (scanned or opened from a link) over an unsaved
+            // multi-stop route: the same question a loaded GPX asks.
+            if (pendingRoute != null) {
+                androidx.compose.material3.AlertDialog(
+                    onDismissRequest = { viewModel.dismissPendingRoute() },
+                    title = { Text(stringResource(R.string.route_open_title)) },
+                    text = { Text(stringResource(R.string.route_open_confirm)) },
+                    confirmButton = {
+                        TextButton(onClick = { viewModel.confirmPendingRoute() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.nav_menu_load_short))
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { viewModel.dismissPendingRoute() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.action_cancel))
+                        }
+                    }
+                )
+            }
+
             // Confirm before replacing an unsaved multi-stop route with the
             // GPX the rider just picked. We already have the URI in hand ,
             // confirming "Replace?" only makes sense AFTER a file is chosen,
@@ -1892,10 +1917,49 @@ fun RouteBuilderScreen(
                 shareScannerOpen -> ShareScannerDialog(
                     onLink = { link ->
                         shareScannerOpen = false
-                        scannedLink = link
+                        // The scanner is open during a group ride too (for
+                        // routes); a second group is still a leave away.
+                        if (joinedGroup != null) {
+                            scope.launch { snackbarHost.showSnackbar(context.getString(R.string.share_leave_first)) }
+                        } else scannedLink = link
+                    },
+                    onRoute = { r ->
+                        shareScannerOpen = false
+                        viewModel.openSharedRoute(r)
                     },
                     onDismiss = { shareScannerOpen = false }
                 )
+
+                routeQrLink != null -> {
+                    // Says which route it is, the way a rider would: where it
+                    // goes, through what, and how far, in their own units.
+                    val r = route
+                    val trackOnly = r != null && r.travelMode == com.eried.eucplanet.data.model.TravelMode.STRAIGHT &&
+                        r.geometry.size > waypoints.size
+                    val names = waypoints.map { it.name.trim() }.filter { it.isNotEmpty() }
+                    val title = when {
+                        trackOnly || names.size < 2 -> r?.name?.takeIf { it.isNotBlank() }
+                            ?: stringResource(R.string.share_menu_route)
+                        else -> names.joinToString(" → ")
+                    }
+                    val meters = r?.totalDistanceM?.takeIf { it > 0 }
+                        ?: com.eried.eucplanet.nav.GeoMath.polylineLengthM(waypoints.map { it.point() })
+                    RouteQrDialog(
+                        link = routeQrLink!!,
+                        stopNames = if (trackOnly) emptyList() else waypoints.map { w ->
+                            w.name.trim().ifEmpty { String.format(java.util.Locale.US, "%.5f, %.5f", w.lat, w.lng) }
+                        },
+                        // Measured along the path the rider will take, when it is drawn.
+                        legs = if (trackOnly) emptyList() else com.eried.eucplanet.nav.RouteLegs.metres(
+                            waypoints.map { it.point() },
+                            r?.takeIf { it.waypoints.size == waypoints.size }?.geometry.orEmpty(),
+                        ).map { com.eried.eucplanet.nav.NavFormat.distance(context, it, imperial) },
+                        cardTitle = title,
+                        distance = com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
+                        onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },
+                        onDismiss = { routeQrLink = null },
+                    )
+                }
 
                 // Only until the room answers: once the rider is in, the
                 // group view below owns the window. Without the guard this
@@ -2009,6 +2073,13 @@ fun RouteBuilderScreen(
                     inGroup = joinedGroup != null,
                     onDismiss = { shareMenuOpen = false },
                     onScan = { shareScannerOpen = true },
+                    canShareRoute = waypoints.size >= 2,
+                    onShareRoute = {
+                        routeQrLink = viewModel.shareRouteLink()
+                        if (routeQrLink == null) scope.launch {
+                            snackbarHost.showSnackbar(context.getString(R.string.route_qr_too_long))
+                        }
+                    },
                     onStartGroup = { shareStartOpen = true },
                     onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },
                 )
@@ -2187,6 +2258,8 @@ private fun BottomPanel(
     home: com.eried.eucplanet.data.model.Waypoint?,
     work: com.eried.eucplanet.data.model.Waypoint?,
     routeDistanceM: Double?,
+    /** Each stop's leg by list index; only filled on a long tour. */
+    stopLegs: Map<Int, RouteBuilderViewModel.StopLeg>,
     routing: Boolean,
     imperial: Boolean,
     onRemove: (Int) -> Unit,
@@ -2659,6 +2732,25 @@ private fun BottomPanel(
                                                 overflow = TextOverflow.Ellipsis,
                                                 modifier = Modifier.weight(1f)
                                             )
+                                            // On a long tour: how far from the stop
+                                            // before, and how far into the tour.
+                                            stopLegs[index]?.let { leg ->
+                                                Spacer(Modifier.width(8.dp))
+                                                Column(horizontalAlignment = Alignment.End) {
+                                                    Text(
+                                                        NavFormat.distance(context, leg.legM, imperial),
+                                                        style = MaterialTheme.typography.bodySmall,
+                                                        color = MaterialTheme.appColors.textPrimary,
+                                                        maxLines = 1
+                                                    )
+                                                    Text(
+                                                        NavFormat.distance(context, leg.soFarM, imperial),
+                                                        style = MaterialTheme.typography.labelSmall,
+                                                        color = MaterialTheme.appColors.textSecondary,
+                                                        maxLines = 1
+                                                    )
+                                                }
+                                            }
                                         }
                                         // Quick-access remove. Locked while nav is running;
                                         // locked when the whole route is allPassed (rider

@@ -2789,4 +2789,23 @@
     <string name="dropbox_checking">Revisando Dropbox…</string>
     <string name="sync_first_settings">Dropbox ya tiene ajustes de otro teléfono. ¿Usarlos o mantener los de este teléfono?</string>
     <string name="recording_delete_trip_body_keeps_backup">¿Borrar este viaje de este teléfono? El respaldo guarda una copia, así que Sincr. todo lo trae de vuelta.</string>
+    <string name="share_menu_scan">Escanear QR</string>
+    <string name="share_menu_scan_desc">Únete a un paseo grupal o abre una ruta.</string>
+    <string name="share_menu_route">Compartir ruta</string>
+    <string name="share_menu_route_desc">Como código QR o enlace. Sin cuenta.</string>
+    <string name="share_menu_route_none">Agrega al menos dos paradas primero.</string>
+    <string name="scan_code_unknown">No es un código de paseo grupal ni de ruta.</string>
+    <string name="route_qr_hint">Escanea con EUC Planet o la cámara del teléfono.</string>
+    <string name="route_qr_too_long">Esta ruta es demasiado larga para un código QR. Guárdala como GPX.</string>
+    <string name="route_open_title">Abrir ruta compartida</string>
+    <string name="route_open_confirm">¿Reemplazar la ruta actual por la ruta compartida?</string>
+    <string name="route_opened">Ruta abierta</string>
+    <string name="route_qr_share_image">Compartir QR</string>
+    <string name="route_share_text">Recorre esta ruta con EUC Planet: %1$s</string>
+    <string name="route_share_subject">Una ruta para recorrer</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d parada</item>
+        <item quantity="many">%d paradas</item>
+        <item quantity="other">%d paradas</item>
+    </plurals>
 </resources>

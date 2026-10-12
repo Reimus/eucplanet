@@ -2659,4 +2659,22 @@
     <string name="dropbox_checking">Sjekker Dropbox…</string>
     <string name="sync_first_settings">Dropbox har allerede innstillinger fra en annen telefon. Bruke dem, eller beholde denne telefonens?</string>
     <string name="recording_delete_trip_body_keeps_backup">Slette denne turen fra telefonen? Sikkerhetskopien beholder en kopi, så Synk alle henter den tilbake.</string>
+    <string name="share_menu_scan">Skann QR</string>
+    <string name="share_menu_scan_desc">Bli med på en gruppetur eller åpne en rute.</string>
+    <string name="share_menu_route">Del rute</string>
+    <string name="share_menu_route_desc">Som QR-kode eller lenke. Ingen konto.</string>
+    <string name="share_menu_route_none">Legg til minst to stopp først.</string>
+    <string name="scan_code_unknown">Ikke en gruppetur- eller rutekode.</string>
+    <string name="route_qr_hint">Skann med EUC Planet eller telefonkameraet.</string>
+    <string name="route_qr_too_long">Ruten er for lang for en QR-kode. Lagre den som GPX i stedet.</string>
+    <string name="route_open_title">Åpne delt rute</string>
+    <string name="route_open_confirm">Erstatte gjeldende rute med den delte ruten?</string>
+    <string name="route_opened">Rute åpnet</string>
+    <string name="route_qr_share_image">Del QR</string>
+    <string name="route_share_text">Kjør denne ruten med EUC Planet: %1$s</string>
+    <string name="route_share_subject">En rute å kjøre</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d stopp</item>
+        <item quantity="other">%d stopp</item>
+    </plurals>
 </resources>

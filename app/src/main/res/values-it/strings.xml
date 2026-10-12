@@ -2676,4 +2676,23 @@
     <string name="dropbox_checking">Controllo di Dropbox…</string>
     <string name="sync_first_settings">Dropbox ha già le impostazioni di un altro telefono. Usarle o tenere quelle di questo telefono?</string>
     <string name="recording_delete_trip_body_keeps_backup">Eliminare questo giro da questo telefono? Il backup ne conserva una copia, quindi Sincr. tutto lo riporta.</string>
+    <string name="share_menu_scan">Scansiona QR</string>
+    <string name="share_menu_scan_desc">Unisciti a un giro di gruppo o apri un percorso.</string>
+    <string name="share_menu_route">Condividi percorso</string>
+    <string name="share_menu_route_desc">Come codice QR o link. Nessun account.</string>
+    <string name="share_menu_route_none">Aggiungi prima almeno due tappe.</string>
+    <string name="scan_code_unknown">Non è un codice di giro di gruppo né di percorso.</string>
+    <string name="route_qr_hint">Scansiona con EUC Planet o con la fotocamera.</string>
+    <string name="route_qr_too_long">Il percorso è troppo lungo per un codice QR. Salvalo come GPX.</string>
+    <string name="route_open_title">Apri percorso condiviso</string>
+    <string name="route_open_confirm">Sostituire il percorso attuale con quello condiviso?</string>
+    <string name="route_opened">Percorso aperto</string>
+    <string name="route_qr_share_image">Condividi QR</string>
+    <string name="route_share_text">Percorri questo itinerario con EUC Planet: %1$s</string>
+    <string name="route_share_subject">Un percorso da fare</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d tappa</item>
+        <item quantity="many">%d tappe</item>
+        <item quantity="other">%d tappe</item>
+    </plurals>
 </resources>
