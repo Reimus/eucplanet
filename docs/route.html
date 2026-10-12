@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EUC Planet route</title>
+<meta name="description" content="A route shared from EUC Planet. Open it in the app, or download it as GPX.">
+<meta name="theme-color" content="#070a16">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Same pinned MapLibre build and integrity hashes as share.html. -->
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"
+      integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V"
+      crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Design language shared with share.html: dark glass, one blue accent. */
+  :root {
+    --ink: #eef1fb; --mut: #9aa6c8; --acc: #2ea8ff; --line: #33457a; --bg: #070a16; --bad: #ff5b6e;
+    --glass: rgba(13, 17, 32, .86);
+    --shadow: 0 12px 34px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(130, 170, 255, .14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; height: 100dvh; }
+  body {
+    font: 14px/1.45 "Chakra Petch", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; overflow: hidden;
+  }
+  #map { position: fixed; inset: 0; }
+  .maplibregl-ctrl-attrib { background: none !important; box-shadow: none !important; font-size: 9.5px; opacity: .6; }
+  .maplibregl-ctrl-attrib a { color: #7a86ad; }
+  #card {
+    position: fixed; left: 50%; transform: translateX(-50%);
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: min(440px, calc(100% - 32px)); max-height: 46vh; overflow: auto;
+    background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: 14px 16px;
+  }
+  h1 { font-size: 17px; font-weight: 700; }
+  .sub { color: var(--mut); font-size: 12.5px; margin-top: 2px; }
+  ol { margin: 10px 0 2px 20px; color: var(--ink); font-size: 13px; }
+  ol li { padding: 1px 0; }
+  ol li::marker { color: var(--acc); font-weight: 700; }
+  .row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .btn {
+    flex: 1 1 auto; text-align: center; text-decoration: none; cursor: pointer;
+    font: 600 14px "Chakra Petch", sans-serif; padding: 10px 14px; border-radius: 10px;
+    border: 1px solid var(--acc); color: var(--acc); background: transparent;
+  }
+  .btn.primary { background: var(--acc); color: #04101d; }
+  .hide { display: none !important; }
+  .err { color: var(--bad); }
+  .pin {
+    width: 24px; height: 24px; border-radius: 50%; background: var(--acc); color: #04101d;
+    font: 700 12px "Chakra Petch", sans-serif; display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="card">
+  <h1 id="title">EUC Planet route</h1>
+  <div class="sub" id="sub">Reading the route...</div>
+  <ol id="stops"></ol>
+  <div class="row">
+    <a id="openApp" class="btn primary hide" rel="noopener">Open in EUC Planet</a>
+    <a id="getApp" class="btn hide" rel="noopener" href="https://play.google.com/store/apps/details?id=com.eried.eucplanet">Get EUC Planet</a>
+    <button id="gpx" class="btn hide" type="button">Download GPX</button>
+  </div>
+</div>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"
+        integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj"
+        crossorigin="anonymous"></script>
+<script>
+"use strict";
+// The route travels in the fragment (#1.<data>), so it never reaches a server.
+// Format, mirrored from the app's RouteLinks: compact JSON, raw-deflated and
+// base64url'd. Stops ("p") and an optional track ("t") are Google polylines at
+// 1e-5 degrees; "s" holds each stop's [name, radius].
+function b64u(s) {
+  s = s.replace(/-/g, "+").replace(/_/g, "/");
+  while (s.length % 4) s += "=";
+  var bin = atob(s), out = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+async function inflate(bytes) {
+  var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+  return await new Response(stream).text();
+}
+function polyline(s) {
+  var out = [], i = 0, lat = 0, lng = 0;
+  function next() {
+    var result = 0, shift = 0, b;
+    do { b = s.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    return (result & 1) ? ~(result >> 1) : (result >> 1);
+  }
+  while (i < s.length) { lat += next(); lng += next(); out.push([lat / 1e5, lng / 1e5]); }
+  return out;
+}
+async function parseRoute(hash) {
+  var payload = hash.replace(/^#/, "");
+  if (payload.slice(0, 2) !== "1.") return null;
+  var json = JSON.parse(await inflate(b64u(payload.slice(2))));
+  var pts = polyline(json.p || ""), extras = json.s || [];
+  var stops = pts.map(function (p, i) {
+    var e = extras[i] || [];
+    return { lat: p[0], lng: p[1], name: e[0] || "", radius: e.length > 1 ? e[1] : null };
+  });
+  var track = json.t ? polyline(json.t) : [];
+  if (stops.length < 2 && track.length < 2) return null;
+  return { name: json.n || "", stops: stops, track: track };
+}
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function gpx(route) {
+  var x = '<?xml version="1.0" encoding="UTF-8"?>\n<gpx version="1.1" creator="EUC Planet" xmlns="http://www.topografix.com/GPX/1/1">\n';
+  x += "<metadata><name>" + esc(route.name || "EUC Planet route") + "</name></metadata>\n";
+  if (route.stops.length) {
+    x += "<rte><name>" + esc(route.name || "EUC Planet route") + "</name>\n";
+    route.stops.forEach(function (s) {
+      x += '<rtept lat="' + s.lat.toFixed(5) + '" lon="' + s.lng.toFixed(5) + '">' +
+        (s.name ? "<name>" + esc(s.name) + "</name>" : "") + "</rtept>\n";
+    });
+    x += "</rte>\n";
+  }
+  if (route.track.length) {
+    x += "<trk><trkseg>\n";
+    route.track.forEach(function (p) { x += '<trkpt lat="' + p[0].toFixed(5) + '" lon="' + p[1].toFixed(5) + '"></trkpt>\n'; });
+    x += "</trkseg></trk>\n";
+  }
+  return x + "</gpx>\n";
+}
+function fileName(route) {
+  var base = (route.name || "route").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+  return (base || "route") + ".gpx";
+}
+function show(route) {
+  var stops = route.stops;
+  document.getElementById("title").textContent = route.name || "EUC Planet route";
+  document.getElementById("sub").textContent = stops.length >= 2
+    ? "Stops: " + stops.length + ". EUC Planet works out the way between them."
+    : "A track. Open it in EUC Planet to follow it.";
+  var ol = document.getElementById("stops");
+  stops.forEach(function (s, i) {
+    var li = document.createElement("li");
+    li.textContent = s.name || (s.lat.toFixed(5) + ", " + s.lng.toFixed(5));
+    ol.appendChild(li);
+  });
+
+  var android = /Android/i.test(navigator.userAgent);
+  if (android) {
+    // Chrome resolves intent: URLs on the device: the route goes to the app
+    // in the intent path, and without the app it falls back to the Play page.
+    var a = document.getElementById("openApp");
+    a.href = "intent://eucplanet.ried.no/route/" + location.hash.replace(/^#/, "") +
+      "#Intent;scheme=https;package=com.eried.eucplanet;S.browser_fallback_url=" +
+      encodeURIComponent("https://play.google.com/store/apps/details?id=com.eried.eucplanet") + ";end";
+    a.classList.remove("hide");
+  } else {
+    document.getElementById("getApp").classList.remove("hide");
+  }
+  var g = document.getElementById("gpx");
+  g.classList.remove("hide");
+  g.addEventListener("click", function () {
+    var blob = new Blob([gpx(route)], { type: "application/gpx+xml" });
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName(route);
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(function () { URL.revokeObjectURL(link.href); }, 2000);
+  });
+
+  var map = new maplibregl.Map({
+    container: "map",
+    style: { version: 8,
+      sources: { base: { type: "raster", tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"], tileSize: 256,
+        attribution: "&copy; OpenStreetMap contributors", maxzoom: 19 } },
+      layers: [{ id: "base", type: "raster", source: "base" }] },
+    center: [stops.length ? stops[0].lng : route.track[0][1], stops.length ? stops[0].lat : route.track[0][0]],
+    zoom: 12
+  });
+  map.on("load", function () {
+    // The page has no router: stops are joined straight and dashed, a track drawn solid.
+    var line = route.track.length >= 2 ? route.track : stops.map(function (s) { return [s.lat, s.lng]; });
+    map.addSource("route", { type: "geojson", data: { type: "Feature",
+      geometry: { type: "LineString", coordinates: line.map(function (p) { return [p[1], p[0]]; }) } } });
+    map.addLayer({ id: "route", type: "line", source: "route",
+      paint: { "line-color": "#2ea8ff", "line-width": 4, "line-opacity": .9,
+        "line-dasharray": route.track.length >= 2 ? [1, 0] : [2, 1.5] } });
+    stops.forEach(function (s, i) {
+      var el = document.createElement("div");
+      el.className = "pin"; el.textContent = String(i + 1); el.title = s.name || "";
+      new maplibregl.Marker({ element: el }).setLngLat([s.lng, s.lat]).addTo(map);
+    });
+    var b = new maplibregl.LngLatBounds();
+    line.forEach(function (p) { b.extend([p[1], p[0]]); });
+    var cardH = document.getElementById("card").offsetHeight;
+    map.fitBounds(b, { padding: { top: 40, left: 40, right: 40, bottom: cardH + 40 }, maxZoom: 16, duration: 0 });
+  });
+}
+(async function () {
+  var route = null;
+  try { route = await parseRoute(location.hash || ""); } catch (e) { route = null; }
+  if (!route) {
+    document.getElementById("title").textContent = "No route here";
+    var sub = document.getElementById("sub");
+    sub.textContent = "This route link is incomplete. The route lives in the part after the #, so a link loses it when it is retyped or trimmed.";
+    sub.classList.add("err");
+    document.getElementById("getApp").classList.remove("hide");
+    return;
+  }
+  show(route);
+})();
+</script>
+</body>
+</html>

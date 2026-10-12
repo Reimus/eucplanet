@@ -2772,4 +2772,17 @@
     <string name="dropbox_checking">Vérification de Dropbox…</string>
     <string name="sync_first_settings">Dropbox contient déjà les réglages d\'un autre téléphone. Les utiliser, ou garder ceux de ce téléphone ?</string>
     <string name="recording_delete_trip_body_keeps_backup">Supprimer ce trajet de ce téléphone ? La sauvegarde en garde une copie, donc Tout sync le ramène.</string>
+    <string name="share_menu_scan">Scanner un QR</string>
+    <string name="share_menu_scan_desc">Rejoindre une sortie en groupe ou ouvrir un itinéraire.</string>
+    <string name="share_menu_route">Partager l\'itinéraire</string>
+    <string name="share_menu_route_desc">En QR code ou en lien. Sans compte.</string>
+    <string name="share_menu_route_none">Ajoutez d\'abord au moins deux étapes.</string>
+    <string name="scan_code_unknown">Ce n\'est pas un code de sortie en groupe ni d\'itinéraire.</string>
+    <string name="route_qr_hint_stops">Étapes : %1$d. À scanner avec EUC Planet ou l\'appareil photo du téléphone.</string>
+    <string name="route_qr_hint_track">À scanner avec EUC Planet ou l\'appareil photo du téléphone.</string>
+    <string name="route_qr_send">Envoyer le lien</string>
+    <string name="route_qr_too_long">Cet itinéraire est trop long pour un QR code. Enregistrez-le en GPX.</string>
+    <string name="route_open_title">Ouvrir l\'itinéraire partagé</string>
+    <string name="route_open_confirm">Remplacer l\'itinéraire actuel par l\'itinéraire partagé ?</string>
+    <string name="route_opened">Itinéraire ouvert</string>
 </resources>

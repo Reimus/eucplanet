@@ -2765,4 +2765,17 @@
     <string name="dropbox_checking">Dropbox kontrol ediliyor…</string>
     <string name="sync_first_settings">Dropbox\'ta başka bir telefondan ayarlar zaten var. Onları mı kullanalım, bu telefonun ayarlarını mı tutalım?</string>
     <string name="recording_delete_trip_body_keeps_backup">Bu sürüş bu telefondan silinsin mi? Yedek bir kopya tutar, bu yüzden Tümünü eşitle onu geri getirir.</string>
+    <string name="share_menu_scan">QR tara</string>
+    <string name="share_menu_scan_desc">Grup sürüşüne katıl veya bir rota aç.</string>
+    <string name="share_menu_route">Rotayı paylaş</string>
+    <string name="share_menu_route_desc">QR kod veya bağlantı olarak. Hesap gerekmez.</string>
+    <string name="share_menu_route_none">Önce en az iki durak ekle.</string>
+    <string name="scan_code_unknown">Grup sürüşü veya rota kodu değil.</string>
+    <string name="route_qr_hint_stops">Duraklar: %1$d. EUC Planet veya telefon kamerasıyla tara.</string>
+    <string name="route_qr_hint_track">EUC Planet veya telefon kamerasıyla tara.</string>
+    <string name="route_qr_send">Bağlantı gönder</string>
+    <string name="route_qr_too_long">Bu rota QR kod için çok uzun. GPX olarak kaydet.</string>
+    <string name="route_open_title">Paylaşılan rotayı aç</string>
+    <string name="route_open_confirm">Mevcut rota paylaşılan rotayla değiştirilsin mi?</string>
+    <string name="route_opened">Rota açıldı</string>
 </resources>

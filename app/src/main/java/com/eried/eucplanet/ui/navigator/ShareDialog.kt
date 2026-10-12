@@ -46,6 +46,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.QrCode
 import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.AlertDialog
@@ -522,8 +523,12 @@ fun ShareMenuDialog(
      *  is then a leave away, so those two rows say so instead of acting. */
     inGroup: Boolean = false,
     onDismiss: () -> Unit,
-    /** Open the camera: the rider is joining a friend's ride. */
+    /** Open the camera: a friend's ride to join, or a route to open. */
     onScan: () -> Unit,
+    /** The planned route can be shared (it has at least two stops, or a track). */
+    canShareRoute: Boolean = false,
+    /** Show the planned route as a QR code. */
+    onShareRoute: () -> Unit = {},
     /** Open the identity form: the rider is starting one. */
     onStartGroup: () -> Unit,
     onNotify: (String) -> Unit,
@@ -540,12 +545,20 @@ fun ShareMenuDialog(
         shape = RoundedCornerShape(12.dp),
         text = {
             Column {
+                // One camera for every code: a group ride to join, or a route
+                // to open. Open even in a group: a route is still welcome, and
+                // a group code says "leave first" once it is scanned.
                 ToolRow(
                     Icons.Default.QrCodeScanner,
-                    stringResource(R.string.share_menu_join),
-                    if (inGroup) leaveFirst else stringResource(R.string.share_menu_join_desc),
-                    enabled = !inGroup,
+                    stringResource(R.string.share_menu_scan),
+                    stringResource(R.string.share_menu_scan_desc),
                 ) { onDismiss(); onScan() }
+                ToolRow(
+                    Icons.Default.QrCode,
+                    stringResource(R.string.share_menu_route),
+                    stringResource(if (canShareRoute) R.string.share_menu_route_desc else R.string.share_menu_route_none),
+                    enabled = canShareRoute,
+                ) { onDismiss(); onShareRoute() }
                 ToolRow(
                     Icons.Default.Share,
                     stringResource(R.string.share_menu_live),
@@ -601,9 +614,20 @@ fun ShareMenuDialog(
  * friend's screen and nothing else, so it is the whole window: a live square
  * and one way out.
  */
+/** What the one scanner can find. */
+sealed class ScannedCode {
+    data class Join(val link: ShareLink) : ScannedCode()
+    data class Route(val route: com.eried.eucplanet.nav.SharedRoute) : ScannedCode()
+}
+
+internal fun parseScannedCode(raw: String): ScannedCode? =
+    com.eried.eucplanet.nav.RouteLinks.parse(raw.trim())?.let { ScannedCode.Route(it) }
+        ?: parseShareText(raw)?.let { ScannedCode.Join(it) }
+
 @Composable
 fun ShareScannerDialog(
     onLink: (ShareLink) -> Unit,
+    onRoute: (com.eried.eucplanet.nav.SharedRoute) -> Unit,
     onDismiss: () -> Unit,
 ) {
     Dialog(
@@ -614,12 +638,24 @@ fun ShareScannerDialog(
         )
     ) {
         ShareDialogCard(
-            title = stringResource(R.string.share_menu_join),
+            title = stringResource(R.string.share_menu_scan),
             // The camera square is as tall as the dialog is wide, so in
             // landscape the body has to be able to scroll to reach Cancel.
             scrollable = true,
         ) {
-            ShareQrScannerArea(onLink = onLink, modifier = Modifier.fillMaxWidth())
+            val crewPass = stringResource(R.string.share_scan_is_crewpass)
+            QrScannerArea(
+                parse = { parseScannedCode(it) },
+                onFound = { code ->
+                    when (code) {
+                        is ScannedCode.Join -> onLink(code.link)
+                        is ScannedCode.Route -> onRoute(code.route)
+                    }
+                },
+                invalidText = stringResource(R.string.scan_code_unknown),
+                modifier = Modifier.fillMaxWidth(),
+                misfit = { if (com.eried.eucplanet.crews.PairLink.parse(it) != null) crewPass else null },
+            )
             Spacer(Modifier.height(16.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -633,6 +669,74 @@ fun ShareScannerDialog(
                         contentColor = MaterialTheme.appColors.textButton
                     )
                 ) { Text(stringResource(R.string.action_cancel)) }
+            }
+        }
+    }
+}
+
+/**
+ * The planned route as a QR code, for a friend to scan, or as a link to send.
+ * The whole route is inside the code, so nothing is uploaded anywhere.
+ */
+@Composable
+fun RouteQrDialog(
+    link: String,
+    stops: Int,
+    onDismiss: () -> Unit,
+) {
+    val context = LocalContext.current
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false),
+    ) {
+        ShareDialogCard(title = stringResource(R.string.share_menu_route), scrollable = true) {
+            BoxWithConstraints(Modifier.fillMaxWidth()) {
+                val density = LocalDensity.current
+                val qrPx = remember(maxWidth, density) {
+                    with(density) { maxWidth.roundToPx() }.coerceAtMost(QR_MAX_PX)
+                }
+                QrCodeImage(
+                    content = link,
+                    sizePx = qrPx,
+                    modifier = Modifier.fillMaxWidth().aspectRatio(1f),
+                    ecc = com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.M,
+                )
+            }
+            Spacer(Modifier.height(12.dp))
+            Text(
+                if (stops >= 2) stringResource(R.string.route_qr_hint_stops, stops)
+                else stringResource(R.string.route_qr_hint_track),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.appColors.textSecondary,
+            )
+            Spacer(Modifier.height(12.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                TextButton(
+                    onClick = onDismiss,
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.appColors.textButton)
+                ) { Text(stringResource(R.string.action_close)) }
+                Spacer(Modifier.width(8.dp))
+                Button(
+                    onClick = {
+                        val subject = context.getString(R.string.share_menu_route)
+                        val send = Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_TEXT, link)
+                            putExtra(Intent.EXTRA_SUBJECT, subject)
+                        }
+                        runCatching { context.startActivity(Intent.createChooser(send, subject)) }
+                    },
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.appColors.primary,
+                        contentColor = MaterialTheme.appColors.onPrimary,
+                    )
+                ) { Text(stringResource(R.string.route_qr_send)) }
             }
         }
     }

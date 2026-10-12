@@ -2770,4 +2770,17 @@
     <string name="dropbox_checking">Verificando o Dropbox…</string>
     <string name="sync_first_settings">O Dropbox já tem configurações de outro telefone. Usar essas ou manter as deste telefone?</string>
     <string name="recording_delete_trip_body_keeps_backup">Excluir esta viagem deste telefone? O backup guarda uma cópia, então Sincronizar tudo a traz de volta.</string>
+    <string name="share_menu_scan">Ler QR</string>
+    <string name="share_menu_scan_desc">Entre em um passeio em grupo ou abra uma rota.</string>
+    <string name="share_menu_route">Compartilhar rota</string>
+    <string name="share_menu_route_desc">Como código QR ou link. Sem conta.</string>
+    <string name="share_menu_route_none">Adicione pelo menos duas paradas primeiro.</string>
+    <string name="scan_code_unknown">Não é um código de passeio em grupo nem de rota.</string>
+    <string name="route_qr_hint_stops">Paradas: %1$d. Leia com o EUC Planet ou a câmera do celular.</string>
+    <string name="route_qr_hint_track">Leia com o EUC Planet ou a câmera do celular.</string>
+    <string name="route_qr_send">Enviar link</string>
+    <string name="route_qr_too_long">Esta rota é longa demais para um código QR. Salve-a como GPX.</string>
+    <string name="route_open_title">Abrir rota compartilhada</string>
+    <string name="route_open_confirm">Substituir a rota atual pela rota compartilhada?</string>
+    <string name="route_opened">Rota aberta</string>
 </resources>

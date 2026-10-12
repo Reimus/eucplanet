@@ -2768,4 +2768,17 @@
     <string name="dropbox_checking">Sprawdzanie Dropboksa…</string>
     <string name="sync_first_settings">Dropbox ma już ustawienia z innego telefonu. Użyć ich, czy zachować ustawienia tego telefonu?</string>
     <string name="recording_delete_trip_body_keeps_backup">Usunąć tę jazdę z tego telefonu? Kopia zapasowa zachowa jej kopię, więc Synchronizuj wszystko ją przywróci.</string>
+    <string name="share_menu_scan">Skanuj QR</string>
+    <string name="share_menu_scan_desc">Dołącz do jazdy grupowej lub otwórz trasę.</string>
+    <string name="share_menu_route">Udostępnij trasę</string>
+    <string name="share_menu_route_desc">Jako kod QR lub link. Bez konta.</string>
+    <string name="share_menu_route_none">Najpierw dodaj co najmniej dwa przystanki.</string>
+    <string name="scan_code_unknown">To nie jest kod jazdy grupowej ani trasy.</string>
+    <string name="route_qr_hint_stops">Przystanki: %1$d. Zeskanuj w EUC Planet lub aparatem telefonu.</string>
+    <string name="route_qr_hint_track">Zeskanuj w EUC Planet lub aparatem telefonu.</string>
+    <string name="route_qr_send">Wyślij link</string>
+    <string name="route_qr_too_long">Ta trasa jest za długa na kod QR. Zapisz ją jako GPX.</string>
+    <string name="route_open_title">Otwórz udostępnioną trasę</string>
+    <string name="route_open_confirm">Zastąpić bieżącą trasę udostępnioną?</string>
+    <string name="route_opened">Trasa otwarta</string>
 </resources>

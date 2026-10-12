@@ -295,6 +295,9 @@ fun RouteBuilderScreen(
     // The camera, and the ride it read. The link is held rather than joined on
     // sight: the rider still has to say how they want to appear.
     var shareScannerOpen by remember { mutableStateOf(false) }
+    // The planned route as a QR code; set by the Share menu's "Share route".
+    var routeQrLink by remember { mutableStateOf<String?>(null) }
+    val pendingRoute by viewModel.pendingRoute.collectAsState()
     var scannedLink by remember { mutableStateOf<ShareLink?>(null) }
     // The identity form for a ride the rider is starting themselves.
     var shareStartOpen by remember { mutableStateOf(false) }
@@ -1779,6 +1782,26 @@ fun RouteBuilderScreen(
                 )
             }
 
+            // A shared route (scanned or opened from a link) over an unsaved
+            // multi-stop route: the same question a loaded GPX asks.
+            if (pendingRoute != null) {
+                androidx.compose.material3.AlertDialog(
+                    onDismissRequest = { viewModel.dismissPendingRoute() },
+                    title = { Text(stringResource(R.string.route_open_title)) },
+                    text = { Text(stringResource(R.string.route_open_confirm)) },
+                    confirmButton = {
+                        TextButton(onClick = { viewModel.confirmPendingRoute() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.nav_menu_load_short))
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { viewModel.dismissPendingRoute() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.action_cancel))
+                        }
+                    }
+                )
+            }
+
             // Confirm before replacing an unsaved multi-stop route with the
             // GPX the rider just picked. We already have the URI in hand ,
             // confirming "Replace?" only makes sense AFTER a file is chosen,
@@ -1871,9 +1894,24 @@ fun RouteBuilderScreen(
                 shareScannerOpen -> ShareScannerDialog(
                     onLink = { link ->
                         shareScannerOpen = false
-                        scannedLink = link
+                        // The scanner is open during a group ride too (for
+                        // routes); a second group is still a leave away.
+                        if (joinedGroup != null) {
+                            scope.launch { snackbarHost.showSnackbar(context.getString(R.string.share_leave_first)) }
+                        } else scannedLink = link
+                    },
+                    onRoute = { r ->
+                        shareScannerOpen = false
+                        viewModel.openSharedRoute(r)
                     },
                     onDismiss = { shareScannerOpen = false }
+                )
+
+                routeQrLink != null -> RouteQrDialog(
+                    link = routeQrLink!!,
+                    stops = route?.let { r -> if (r.travelMode == com.eried.eucplanet.data.model.TravelMode.STRAIGHT &&
+                        r.geometry.size > waypoints.size) 0 else waypoints.size } ?: waypoints.size,
+                    onDismiss = { routeQrLink = null },
                 )
 
                 // Only until the room answers: once the rider is in, the
@@ -1988,6 +2026,13 @@ fun RouteBuilderScreen(
                     inGroup = joinedGroup != null,
                     onDismiss = { shareMenuOpen = false },
                     onScan = { shareScannerOpen = true },
+                    canShareRoute = waypoints.size >= 2,
+                    onShareRoute = {
+                        routeQrLink = viewModel.shareRouteLink()
+                        if (routeQrLink == null) scope.launch {
+                            snackbarHost.showSnackbar(context.getString(R.string.route_qr_too_long))
+                        }
+                    },
                     onStartGroup = { shareStartOpen = true },
                     onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },
                 )

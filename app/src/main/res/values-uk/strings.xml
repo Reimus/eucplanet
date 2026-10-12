@@ -2765,4 +2765,17 @@
     <string name="dropbox_checking">Перевірка Dropbox…</string>
     <string name="sync_first_settings">У Dropbox уже є налаштування з іншого телефона. Використати їх чи залишити налаштування цього телефона?</string>
     <string name="recording_delete_trip_body_keeps_backup">Видалити цю поїздку з цього телефона? У резервній копії залишиться копія, і «Синхр. усе» поверне її.</string>
+    <string name="share_menu_scan">Сканувати QR</string>
+    <string name="share_menu_scan_desc">Приєднатися до групової поїздки або відкрити маршрут.</string>
+    <string name="share_menu_route">Поділитися маршрутом</string>
+    <string name="share_menu_route_desc">QR-кодом або посиланням. Без облікового запису.</string>
+    <string name="share_menu_route_none">Спершу додайте щонайменше дві точки.</string>
+    <string name="scan_code_unknown">Це не код групової поїздки чи маршруту.</string>
+    <string name="route_qr_hint_stops">Точки: %1$d. Скануйте в EUC Planet або камерою телефона.</string>
+    <string name="route_qr_hint_track">Скануйте в EUC Planet або камерою телефона.</string>
+    <string name="route_qr_send">Надіслати посилання</string>
+    <string name="route_qr_too_long">Маршрут задовгий для QR-коду. Збережіть його як GPX.</string>
+    <string name="route_open_title">Відкрити спільний маршрут</string>
+    <string name="route_open_confirm">Замінити поточний маршрут спільним?</string>
+    <string name="route_opened">Маршрут відкрито</string>
 </resources>

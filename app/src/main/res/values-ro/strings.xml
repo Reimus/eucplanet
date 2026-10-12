@@ -2571,4 +2571,17 @@
     <string name="dropbox_checking">Se verifică Dropbox…</string>
     <string name="sync_first_settings">Dropbox are deja setări de pe alt telefon. Le folosiți sau păstrați setările acestui telefon?</string>
     <string name="recording_delete_trip_body_keeps_backup">Ștergeți această cursă de pe acest telefon? Copia de rezervă păstrează o copie, deci Sincronizează tot o aduce înapoi.</string>
+    <string name="share_menu_scan">Scanează QR</string>
+    <string name="share_menu_scan_desc">Alătură-te unei ture în grup sau deschide un traseu.</string>
+    <string name="share_menu_route">Partajează traseul</string>
+    <string name="share_menu_route_desc">Ca cod QR sau link. Fără cont.</string>
+    <string name="share_menu_route_none">Adaugă mai întâi cel puțin două opriri.</string>
+    <string name="scan_code_unknown">Nu este un cod de tură în grup sau de traseu.</string>
+    <string name="route_qr_hint_stops">Opriri: %1$d. Scanează cu EUC Planet sau cu camera telefonului.</string>
+    <string name="route_qr_hint_track">Scanează cu EUC Planet sau cu camera telefonului.</string>
+    <string name="route_qr_send">Trimite linkul</string>
+    <string name="route_qr_too_long">Traseul e prea lung pentru un cod QR. Salvează-l ca GPX.</string>
+    <string name="route_open_title">Deschide traseul partajat</string>
+    <string name="route_open_confirm">Înlocuiești traseul curent cu traseul partajat?</string>
+    <string name="route_opened">Traseu deschis</string>
 </resources>

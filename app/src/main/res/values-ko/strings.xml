@@ -2767,4 +2767,17 @@
     <string name="dropbox_checking">Dropbox 확인 중…</string>
     <string name="sync_first_settings">Dropbox에 다른 휴대폰의 설정이 이미 있습니다. 그 설정을 사용할까요, 이 휴대폰의 설정을 유지할까요?</string>
     <string name="recording_delete_trip_body_keeps_backup">이 휴대폰에서 이 주행을 삭제할까요? 백업에 사본이 남아 있어 전체 동기화를 누르면 다시 돌아옵니다.</string>
+    <string name="share_menu_scan">QR 스캔</string>
+    <string name="share_menu_scan_desc">그룹 라이딩에 참가하거나 경로를 엽니다.</string>
+    <string name="share_menu_route">경로 공유</string>
+    <string name="share_menu_route_desc">QR 코드나 링크로. 계정 불필요.</string>
+    <string name="share_menu_route_none">먼저 경유지를 2개 이상 추가하세요.</string>
+    <string name="scan_code_unknown">그룹 라이딩이나 경로 코드가 아닙니다.</string>
+    <string name="route_qr_hint_stops">경유지: %1$d. EUC Planet이나 휴대폰 카메라로 스캔하세요.</string>
+    <string name="route_qr_hint_track">EUC Planet이나 휴대폰 카메라로 스캔하세요.</string>
+    <string name="route_qr_send">링크 보내기</string>
+    <string name="route_qr_too_long">QR 코드로 만들기에는 경로가 너무 깁니다. GPX로 저장하세요.</string>
+    <string name="route_open_title">공유 경로 열기</string>
+    <string name="route_open_confirm">현재 경로를 공유된 경로로 바꿀까요?</string>
+    <string name="route_opened">경로를 열었습니다</string>
 </resources>

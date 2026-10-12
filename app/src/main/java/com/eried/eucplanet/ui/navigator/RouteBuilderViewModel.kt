@@ -721,6 +721,7 @@ class RouteBuilderViewModel @Inject constructor(
             _messages.tryEmit(R.string.nav_cant_add_while_running)
             return
         }
+        req.route?.let { openSharedRoute(it); return }
         if (_waypoints.value.isEmpty()) {
             // Empty route: act immediately. Coordinates drop a pin; address
             // strings fill the search field so the rider sees what was sent
@@ -1372,6 +1373,74 @@ class RouteBuilderViewModel @Inject constructor(
                 _messages.tryEmit(R.string.nav_load_failed)
             }
         }
+    }
+
+    /**
+     * A route from a QR code or a link. Opened like a loaded GPX: straight in
+     * when there is nothing to lose, otherwise after "replace the current
+     * route?". It keeps the rider's own travel mode, as a GPX does.
+     */
+    fun openSharedRoute(route: com.eried.eucplanet.nav.SharedRoute) {
+        if (navigationEngine.isActive) {
+            _messages.tryEmit(R.string.nav_cant_add_while_running)
+            return
+        }
+        if (_waypoints.value.size >= 2 && !_routeClean.value) _pendingRoute.value = route
+        else applySharedRoute(route)
+    }
+
+    private val _pendingRoute = MutableStateFlow<com.eried.eucplanet.nav.SharedRoute?>(null)
+    /** A shared route waiting on "replace the current route?". */
+    val pendingRoute: StateFlow<com.eried.eucplanet.nav.SharedRoute?> = _pendingRoute.asStateFlow()
+
+    fun confirmPendingRoute() {
+        val route = _pendingRoute.value ?: return
+        _pendingRoute.value = null
+        applySharedRoute(route)
+    }
+
+    fun dismissPendingRoute() { _pendingRoute.value = null }
+
+    private fun applySharedRoute(route: com.eried.eucplanet.nav.SharedRoute) {
+        routeName = route.name ?: context.getString(R.string.nav_default_route_name)
+        if (route.stops.size >= 2) {
+            _waypoints.value = route.stops.take(MAX_WAYPOINTS)
+            scheduleRecompute(fit = true)
+        } else {
+            // A track with no stops: navigate the line as it is, as a track-only GPX does.
+            _waypoints.value = listOf(route.track.first(), route.track.last()).map { Waypoint(it.lat, it.lng) }
+            _route.value = NavRoute(
+                name = routeName,
+                waypoints = _waypoints.value,
+                travelMode = TravelMode.STRAIGHT,
+                geometry = route.track,
+                maneuvers = emptyList(),
+                totalDistanceM = GeoMath.polylineLengthM(route.track)
+            )
+            bumpRender(fit = true)
+        }
+        _routeClean.value = true
+        _messages.tryEmit(R.string.route_opened)
+    }
+
+    /**
+     * The current route as a link, for a QR code or a message. A routed path
+     * is left out: the receiver's router redraws it from the stops. A fixed
+     * line (a track loaded from GPX) travels as the line itself, simplified to
+     * fit. Null when there is no route, or it cannot be made to fit.
+     */
+    fun shareRouteLink(): String? {
+        val stops = _waypoints.value
+        val route = _route.value
+        val trackOnly = route != null && route.travelMode == TravelMode.STRAIGHT &&
+            route.geometry.size > stops.size
+        val shared = com.eried.eucplanet.nav.SharedRoute(
+            name = routeName,
+            mode = _travelMode.value,
+            stops = if (trackOnly) emptyList() else stops.map { it.copy(passed = false) },
+            track = if (trackOnly) route!!.geometry else emptyList(),
+        )
+        return com.eried.eucplanet.nav.RouteLinks.format(shared)
     }
 
     /** Suggested save filename from the stop names, lowercased with "_" for
