@@ -123,6 +123,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -1938,6 +1939,7 @@ fun RouteBuilderScreen(
                         r.geometry.size > waypoints.size
                     val names = waypoints.map { it.name.trim() }.filter { it.isNotEmpty() }
                     val title = when {
+                        !trackOnly && waypoints.size == 1 && names.size == 1 -> names[0]
                         trackOnly || names.size < 2 -> r?.name?.takeIf { it.isNotBlank() }
                             ?: stringResource(R.string.share_menu_route)
                         else -> names.joinToString(" → ")
@@ -1955,7 +1957,9 @@ fun RouteBuilderScreen(
                             r?.takeIf { it.waypoints.size == waypoints.size }?.geometry.orEmpty(),
                         ).map { com.eried.eucplanet.nav.NavFormat.distance(context, it, imperial) },
                         cardTitle = title,
-                        distance = com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
+                        // A single stop has no length of its own: the friend rides from wherever they are.
+                        distance = if (!trackOnly && waypoints.size < 2) pluralStringResource(R.plurals.route_stop_count, 1, 1)
+                            else com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
                         onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },
                         onDismiss = { routeQrLink = null },
                     )
@@ -2073,7 +2077,7 @@ fun RouteBuilderScreen(
                     inGroup = joinedGroup != null,
                     onDismiss = { shareMenuOpen = false },
                     onScan = { shareScannerOpen = true },
-                    canShareRoute = waypoints.size >= 2,
+                    canShareRoute = waypoints.isNotEmpty(),
                     onShareRoute = {
                         routeQrLink = viewModel.shareRouteLink()
                         if (routeQrLink == null) scope.launch {

@@ -42,7 +42,7 @@ object RouteLinks {
 
     /** The link, or null when even the simplest form of the route does not fit. */
     fun format(route: SharedRoute): String? {
-        if (route.stops.size < 2 && route.track.size < 2) return null
+        if (route.stops.isEmpty() && route.track.size < 2) return null
         if (route.track.size < 2) return link(route, emptyList()).takeIf { it.length <= MAX_LINK }
         // A track shrinks until it fits: at map scale a few metres of tolerance are invisible.
         var tolerance = 2.0
@@ -100,7 +100,7 @@ object RouteLinks {
             )
         }
         val track = json.optString("t").takeIf { it.isNotEmpty() }?.let { decodePolyline(it) }.orEmpty()
-        if (stops.size < 2 && track.size < 2) return null
+        if (stops.isEmpty() && track.size < 2) return null
         return SharedRoute(json.optString("n").takeIf { it.isNotEmpty() }, mode, stops, track)
     }
 
