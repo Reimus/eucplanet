@@ -2775,8 +2775,7 @@
     <string name="share_menu_route_desc">QR コードまたはリンクで。アカウント不要。</string>
     <string name="share_menu_route_none">先に経由地を2つ以上追加してください。</string>
     <string name="scan_code_unknown">グループライドやルートのコードではありません。</string>
-    <string name="route_qr_hint_stops">経由地: %1$d。EUC Planet またはカメラでスキャン。</string>
-    <string name="route_qr_hint_track">EUC Planet またはカメラでスキャン。</string>
+    <string name="route_qr_hint">EUC Planet またはカメラでスキャン。</string>
     <string name="route_qr_send">リンクを送信</string>
     <string name="route_qr_too_long">このルートは QR コードには長すぎます。GPX として保存してください。</string>
     <string name="route_open_title">共有ルートを開く</string>

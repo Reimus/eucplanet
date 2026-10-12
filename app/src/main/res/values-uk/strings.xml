@@ -2771,8 +2771,7 @@
     <string name="share_menu_route_desc">QR-кодом або посиланням. Без облікового запису.</string>
     <string name="share_menu_route_none">Спершу додайте щонайменше дві точки.</string>
     <string name="scan_code_unknown">Це не код групової поїздки чи маршруту.</string>
-    <string name="route_qr_hint_stops">Точки: %1$d. Скануйте в EUC Planet або камерою телефона.</string>
-    <string name="route_qr_hint_track">Скануйте в EUC Planet або камерою телефона.</string>
+    <string name="route_qr_hint">Скануйте в EUC Planet або камерою телефона.</string>
     <string name="route_qr_send">Надіслати посилання</string>
     <string name="route_qr_too_long">Маршрут задовгий для QR-коду. Збережіть його як GPX.</string>
     <string name="route_open_title">Відкрити спільний маршрут</string>

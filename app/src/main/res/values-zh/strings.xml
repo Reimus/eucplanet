@@ -2641,8 +2641,7 @@
     <string name="share_menu_route_desc">以二维码或链接分享,无需账号。</string>
     <string name="share_menu_route_none">请先添加至少两个停靠点。</string>
     <string name="scan_code_unknown">不是团骑或路线代码。</string>
-    <string name="route_qr_hint_stops">停靠点: %1$d。用 EUC Planet 或手机相机扫描。</string>
-    <string name="route_qr_hint_track">用 EUC Planet 或手机相机扫描。</string>
+    <string name="route_qr_hint">用 EUC Planet 或手机相机扫描。</string>
     <string name="route_qr_send">发送链接</string>
     <string name="route_qr_too_long">这条路线太长,无法做成二维码。请另存为 GPX。</string>
     <string name="route_open_title">打开分享的路线</string>

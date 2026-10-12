@@ -2774,8 +2774,7 @@
     <string name="share_menu_route_desc">Jako kod QR lub link. Bez konta.</string>
     <string name="share_menu_route_none">Najpierw dodaj co najmniej dwa przystanki.</string>
     <string name="scan_code_unknown">To nie jest kod jazdy grupowej ani trasy.</string>
-    <string name="route_qr_hint_stops">Przystanki: %1$d. Zeskanuj w EUC Planet lub aparatem telefonu.</string>
-    <string name="route_qr_hint_track">Zeskanuj w EUC Planet lub aparatem telefonu.</string>
+    <string name="route_qr_hint">Zeskanuj w EUC Planet lub aparatem telefonu.</string>
     <string name="route_qr_send">Wyślij link</string>
     <string name="route_qr_too_long">Ta trasa jest za długa na kod QR. Zapisz ją jako GPX.</string>
     <string name="route_open_title">Otwórz udostępnioną trasę</string>

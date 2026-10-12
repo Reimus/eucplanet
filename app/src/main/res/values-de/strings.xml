@@ -2794,8 +2794,7 @@
     <string name="share_menu_route_desc">Als QR-Code oder Link. Kein Konto nötig.</string>
     <string name="share_menu_route_none">Zuerst mindestens zwei Stopps hinzufügen.</string>
     <string name="scan_code_unknown">Kein Gruppenfahrt- oder Routencode.</string>
-    <string name="route_qr_hint_stops">Stopps: %1$d. Mit EUC Planet oder der Handykamera scannen.</string>
-    <string name="route_qr_hint_track">Mit EUC Planet oder der Handykamera scannen.</string>
+    <string name="route_qr_hint">Mit EUC Planet oder der Handykamera scannen.</string>
     <string name="route_qr_send">Link senden</string>
     <string name="route_qr_too_long">Die Route ist zu lang für einen QR-Code. Speichere sie stattdessen als GPX.</string>
     <string name="route_open_title">Geteilte Route öffnen</string>

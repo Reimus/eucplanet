@@ -2771,8 +2771,7 @@
     <string name="share_menu_route_desc">Como código QR o enlace. Sin cuenta.</string>
     <string name="share_menu_route_none">Añade al menos dos paradas primero.</string>
     <string name="scan_code_unknown">No es un código de ruta en grupo ni de ruta.</string>
-    <string name="route_qr_hint_stops">Paradas: %1$d. Escanéalo con EUC Planet o la cámara del teléfono.</string>
-    <string name="route_qr_hint_track">Escanéalo con EUC Planet o la cámara del teléfono.</string>
+    <string name="route_qr_hint">Escanéalo con EUC Planet o la cámara del teléfono.</string>
     <string name="route_qr_send">Enviar enlace</string>
     <string name="route_qr_too_long">Esta ruta es demasiado larga para un código QR. Guárdala como GPX.</string>
     <string name="route_open_title">Abrir ruta compartida</string>

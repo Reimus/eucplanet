@@ -1907,12 +1907,28 @@ fun RouteBuilderScreen(
                     onDismiss = { shareScannerOpen = false }
                 )
 
-                routeQrLink != null -> RouteQrDialog(
-                    link = routeQrLink!!,
-                    stops = route?.let { r -> if (r.travelMode == com.eried.eucplanet.data.model.TravelMode.STRAIGHT &&
-                        r.geometry.size > waypoints.size) 0 else waypoints.size } ?: waypoints.size,
-                    onDismiss = { routeQrLink = null },
-                )
+                routeQrLink != null -> {
+                    // Says which route it is, the way a rider would: where it
+                    // goes, through what, and how far, in their own units.
+                    val r = route
+                    val trackOnly = r != null && r.travelMode == com.eried.eucplanet.data.model.TravelMode.STRAIGHT &&
+                        r.geometry.size > waypoints.size
+                    val names = waypoints.map { it.name.trim() }.filter { it.isNotEmpty() }
+                    val title = when {
+                        trackOnly || names.size < 2 -> r?.name?.takeIf { it.isNotBlank() }
+                            ?: stringResource(R.string.share_menu_route)
+                        names.size <= 4 -> names.joinToString(" → ")
+                        else -> listOf(names.first(), names[1], "…", names.last()).joinToString(" → ")
+                    }
+                    val meters = r?.totalDistanceM?.takeIf { it > 0 }
+                        ?: com.eried.eucplanet.nav.GeoMath.polylineLengthM(waypoints.map { it.point() })
+                    RouteQrDialog(
+                        link = routeQrLink!!,
+                        title = title,
+                        distance = com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
+                        onDismiss = { routeQrLink = null },
+                    )
+                }
 
                 // Only until the room answers: once the rider is in, the
                 // group view below owns the window. Without the guard this

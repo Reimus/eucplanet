@@ -681,7 +681,10 @@ fun ShareScannerDialog(
 @Composable
 fun RouteQrDialog(
     link: String,
-    stops: Int,
+    /** Where the route goes, "Start → Telegrafbukta → Back home", or its name. */
+    title: String,
+    /** Its length in the rider's units. */
+    distance: String,
     onDismiss: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -704,8 +707,21 @@ fun RouteQrDialog(
             }
             Spacer(Modifier.height(12.dp))
             Text(
-                if (stops >= 2) stringResource(R.string.route_qr_hint_stops, stops)
-                else stringResource(R.string.route_qr_hint_track),
+                title,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.appColors.textPrimary,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Text(
+                distance,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.appColors.textPrimary,
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                stringResource(R.string.route_qr_hint),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.appColors.textSecondary,
             )

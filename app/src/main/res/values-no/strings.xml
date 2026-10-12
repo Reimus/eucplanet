@@ -2662,8 +2662,7 @@
     <string name="share_menu_route_desc">Som QR-kode eller lenke. Ingen konto.</string>
     <string name="share_menu_route_none">Legg til minst to stopp først.</string>
     <string name="scan_code_unknown">Ikke en gruppetur- eller rutekode.</string>
-    <string name="route_qr_hint_stops">Stopp: %1$d. Skann med EUC Planet eller telefonkameraet.</string>
-    <string name="route_qr_hint_track">Skann med EUC Planet eller telefonkameraet.</string>
+    <string name="route_qr_hint">Skann med EUC Planet eller telefonkameraet.</string>
     <string name="route_qr_send">Send lenke</string>
     <string name="route_qr_too_long">Ruten er for lang for en QR-kode. Lagre den som GPX i stedet.</string>
     <string name="route_open_title">Åpne delt rute</string>

@@ -2577,8 +2577,7 @@
     <string name="share_menu_route_desc">QR-kódként vagy linkként. Fiók nélkül.</string>
     <string name="share_menu_route_none">Előbb adj hozzá legalább két megállót.</string>
     <string name="scan_code_unknown">Nem csoportos út vagy útvonal kódja.</string>
-    <string name="route_qr_hint_stops">Megállók: %1$d. Olvasd be az EUC Planettel vagy a telefon kamerájával.</string>
-    <string name="route_qr_hint_track">Olvasd be az EUC Planettel vagy a telefon kamerájával.</string>
+    <string name="route_qr_hint">Olvasd be az EUC Planettel vagy a telefon kamerájával.</string>
     <string name="route_qr_send">Link küldése</string>
     <string name="route_qr_too_long">Ez az útvonal túl hosszú egy QR-kódhoz. Mentsd GPX-ként.</string>
     <string name="route_open_title">Megosztott útvonal megnyitása</string>

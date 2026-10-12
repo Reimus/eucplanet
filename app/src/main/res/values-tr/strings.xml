@@ -2771,8 +2771,7 @@
     <string name="share_menu_route_desc">QR kod veya bağlantı olarak. Hesap gerekmez.</string>
     <string name="share_menu_route_none">Önce en az iki durak ekle.</string>
     <string name="scan_code_unknown">Grup sürüşü veya rota kodu değil.</string>
-    <string name="route_qr_hint_stops">Duraklar: %1$d. EUC Planet veya telefon kamerasıyla tara.</string>
-    <string name="route_qr_hint_track">EUC Planet veya telefon kamerasıyla tara.</string>
+    <string name="route_qr_hint">EUC Planet veya telefon kamerasıyla tara.</string>
     <string name="route_qr_send">Bağlantı gönder</string>
     <string name="route_qr_too_long">Bu rota QR kod için çok uzun. GPX olarak kaydet.</string>
     <string name="route_open_title">Paylaşılan rotayı aç</string>

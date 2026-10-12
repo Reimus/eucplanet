@@ -2577,8 +2577,7 @@
     <string name="share_menu_route_desc">Jako QR kód nebo odkaz. Bez účtu.</string>
     <string name="share_menu_route_none">Nejprve přidejte alespoň dvě zastávky.</string>
     <string name="scan_code_unknown">Není to kód skupinové jízdy ani trasy.</string>
-    <string name="route_qr_hint_stops">Zastávky: %1$d. Naskenujte v EUC Planet nebo fotoaparátem telefonu.</string>
-    <string name="route_qr_hint_track">Naskenujte v EUC Planet nebo fotoaparátem telefonu.</string>
+    <string name="route_qr_hint">Naskenujte v EUC Planet nebo fotoaparátem telefonu.</string>
     <string name="route_qr_send">Poslat odkaz</string>
     <string name="route_qr_too_long">Trasa je na QR kód příliš dlouhá. Uložte ji jako GPX.</string>
     <string name="route_open_title">Otevřít sdílenou trasu</string>

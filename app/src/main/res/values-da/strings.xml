@@ -2789,8 +2789,7 @@
     <string name="share_menu_route_desc">Som QR-kode eller link. Ingen konto.</string>
     <string name="share_menu_route_none">Tilføj mindst to stop først.</string>
     <string name="scan_code_unknown">Ikke en gruppetur- eller rutekode.</string>
-    <string name="route_qr_hint_stops">Stop: %1$d. Scan med EUC Planet eller telefonens kamera.</string>
-    <string name="route_qr_hint_track">Scan med EUC Planet eller telefonens kamera.</string>
+    <string name="route_qr_hint">Scan med EUC Planet eller telefonens kamera.</string>
     <string name="route_qr_send">Send link</string>
     <string name="route_qr_too_long">Ruten er for lang til en QR-kode. Gem den som GPX i stedet.</string>
     <string name="route_open_title">Åbn delt rute</string>

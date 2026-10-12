@@ -2577,8 +2577,7 @@
     <string name="share_menu_route_desc">Ca cod QR sau link. Fără cont.</string>
     <string name="share_menu_route_none">Adaugă mai întâi cel puțin două opriri.</string>
     <string name="scan_code_unknown">Nu este un cod de tură în grup sau de traseu.</string>
-    <string name="route_qr_hint_stops">Opriri: %1$d. Scanează cu EUC Planet sau cu camera telefonului.</string>
-    <string name="route_qr_hint_track">Scanează cu EUC Planet sau cu camera telefonului.</string>
+    <string name="route_qr_hint">Scanează cu EUC Planet sau cu camera telefonului.</string>
     <string name="route_qr_send">Trimite linkul</string>
     <string name="route_qr_too_long">Traseul e prea lung pentru un cod QR. Salvează-l ca GPX.</string>
     <string name="route_open_title">Deschide traseul partajat</string>
