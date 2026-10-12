@@ -65,10 +65,13 @@ internal class RouteQrUi(
 )
 
 @Composable
-private fun summary(ui: RouteQrUi): String =
-    if (ui.stopNames.size >= 2)
+private fun summary(ui: RouteQrUi): String = when {
+    ui.stopNames.size >= 2 ->
         pluralStringResource(R.plurals.route_stop_count, ui.stopNames.size, ui.stopNames.size) + " · " + ui.distance
-    else ui.distance
+    // One stop is a place to ride to: how far depends on where the friend starts.
+    ui.stopNames.size == 1 -> pluralStringResource(R.plurals.route_stop_count, 1, 1)
+    else -> ui.distance
+}
 
 @Composable
 private fun RouteQrCode(link: String, modifier: Modifier = Modifier) {
@@ -153,7 +156,7 @@ internal fun ColumnScope.RouteQrContent(ui: RouteQrUi) {
         Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(c.surfaceVariant).padding(12.dp)
     ) {
         Text(summary(ui), style = MaterialTheme.typography.titleMedium, color = c.textPrimary)
-        if (ui.stopNames.size >= 2) { Spacer(Modifier.height(8.dp)); StopTimeline(ui.stopNames, ui.legs) }
+        if (ui.stopNames.isNotEmpty()) { Spacer(Modifier.height(8.dp)); StopTimeline(ui.stopNames, ui.legs) }
     }
     Spacer(Modifier.height(14.dp))
     RouteQrCode(ui.link, Modifier.align(Alignment.CenterHorizontally))

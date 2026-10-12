@@ -33,6 +33,13 @@ class RouteLinksTest {
         assertNull(back.stops[2].radiusM)
     }
 
+    @Test fun `a single stop is a place to ride to`() {
+        val link = RouteLinks.format(SharedRoute("Cafe", TravelMode.CYCLING, stops(1)))!!
+        val back = RouteLinks.parse(link)!!
+        assertEquals(1, back.stops.size)
+        assertEquals("Stop 1", back.stops[0].name)
+    }
+
     @Test fun `the most stops a route can have fit in a scannable code`() {
         val link = RouteLinks.format(SharedRoute("A long name for a long day out on the wheel", TravelMode.CYCLING, stops(25)))
         assertNotNull(link)
@@ -65,7 +72,7 @@ class RouteLinksTest {
         assertNull(RouteLinks.parse("https://eucplanet.ried.no/route#9.AAAA"))
         assertNull(RouteLinks.parse("https://eucplanet.ried.no/route#1.not-base64-!!"))
         assertNull(RouteLinks.parse("https://example.com/route#1.AAAA"))
-        assertNull(RouteLinks.format(SharedRoute(null, TravelMode.CYCLING, stops(1))))
+        assertNull(RouteLinks.format(SharedRoute(null, TravelMode.CYCLING, stops(0))))
     }
 
     @Test fun `polyline matches the reference encoding`() {

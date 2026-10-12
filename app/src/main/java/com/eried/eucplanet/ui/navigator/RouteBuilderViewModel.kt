@@ -1414,7 +1414,7 @@ class RouteBuilderViewModel @Inject constructor(
             _messages.tryEmit(R.string.nav_cant_add_while_running)
             return
         }
-        if (_waypoints.value.size >= 2 && !_routeClean.value) _pendingRoute.value = route
+        if (_waypoints.value.isNotEmpty() && !_routeClean.value) _pendingRoute.value = route
         else applySharedRoute(route)
     }
 
@@ -1432,7 +1432,7 @@ class RouteBuilderViewModel @Inject constructor(
 
     private fun applySharedRoute(route: com.eried.eucplanet.nav.SharedRoute) {
         routeName = route.name ?: context.getString(R.string.nav_default_route_name)
-        if (route.stops.size >= 2) {
+        if (route.stops.isNotEmpty()) {
             _waypoints.value = route.stops.take(MAX_WAYPOINTS)
             scheduleRecompute(fit = true)
         } else {

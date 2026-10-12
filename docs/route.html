@@ -126,7 +126,7 @@ async function parseRoute(hash) {
     return { lat: p[0], lng: p[1], name: e[0] || "", radius: e.length > 1 ? e[1] : null };
   });
   var track = json.t ? polyline(json.t) : [];
-  if (stops.length < 2 && track.length < 2) return null;
+  if (!stops.length && track.length < 2) return null;
   return { name: json.n || "", mode: json.m || "c", stops: stops, track: track };
 }
 function haversine(a, b) {
@@ -197,7 +197,7 @@ function show(route) {
   function fill(legs, roads) {
     var total = legs.reduce(function (a, b) { return a + b; }, 0);
     var sum = document.getElementById("sum");
-    sum.textContent = stops.length + " stops · " + dist(total);
+    sum.textContent = stops.length === 1 ? "1 stop" : stops.length + " stops · " + dist(total);
     sum.classList.remove("hide");
     var ul = document.getElementById("stops");
     ul.textContent = "";
@@ -214,11 +214,13 @@ function show(route) {
       }
       ul.appendChild(li);
     });
-    document.getElementById("sub").textContent = roads
+    document.getElementById("sub").textContent = stops.length === 1
+      ? "A place to ride to. EUC Planet guides you there from where you are."
+      : roads
       ? "Measured along the roads. EUC Planet guides you turn by turn."
       : "Measured in a straight line. EUC Planet finds the roads between them.";
   }
-  if (stops.length >= 2) {
+  if (stops.length) {
     fill(straight.slice(1).map(function (p, i) { return haversine(straight[i], p); }), false);
   } else {
     document.getElementById("sub").textContent = "A " + dist(length(route.track)) + " track. Open it in EUC Planet to follow it.";
@@ -280,7 +282,10 @@ function show(route) {
     var b = new maplibregl.LngLatBounds();
     line.forEach(function (p) { b.extend([p[1], p[0]]); });
     var cardH = document.getElementById("card").offsetHeight;
-    map.fitBounds(b, { padding: { top: 40, left: 40, right: 40, bottom: cardH + 40 }, maxZoom: 16, duration: 0 });
+    var pad = { top: 40, left: 40, right: 40, bottom: cardH + 40 };
+    // A lone stop has no extent to fit: show its streets.
+    if (line.length < 2) map.jumpTo({ center: [line[0][1], line[0][0]], zoom: 15, padding: pad });
+    else map.fitBounds(b, { padding: pad, maxZoom: 16, duration: 0 });
   });
 }
 (async function () {
