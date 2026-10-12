@@ -2786,4 +2786,9 @@
     <string name="route_qr_share_image">Partager le QR</string>
     <string name="route_share_text">Roule cet itinéraire avec EUC Planet : %1$s</string>
     <string name="route_share_subject">Un itinéraire à rouler</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d étape</item>
+        <item quantity="many">%d étapes</item>
+        <item quantity="other">%d étapes</item>
+    </plurals>
 </resources>

@@ -2810,4 +2810,8 @@
     <string name="route_qr_share_image">Share QR</string>
     <string name="route_share_text">Ride this route with EUC Planet: %1$s</string>
     <string name="route_share_subject">A route to ride</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
 </resources>

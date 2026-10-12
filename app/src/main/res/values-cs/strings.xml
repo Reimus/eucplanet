@@ -2585,4 +2585,10 @@
     <string name="route_qr_share_image">Sdílet QR</string>
     <string name="route_share_text">Projeď tuto trasu s EUC Planet: %1$s</string>
     <string name="route_share_subject">Trasa k projetí</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d zastávka</item>
+        <item quantity="few">%d zastávky</item>
+        <item quantity="many">%d zastávky</item>
+        <item quantity="other">%d zastávek</item>
+    </plurals>
 </resources>

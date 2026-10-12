@@ -2781,4 +2781,7 @@
     <string name="route_qr_share_image">QR 공유</string>
     <string name="route_share_text">EUC Planet으로 이 경로를 달려 보세요: %1$s</string>
     <string name="route_share_subject">달릴 경로</string>
+    <plurals name="route_stop_count">
+        <item quantity="other">경유지 %d곳</item>
+    </plurals>
 </resources>

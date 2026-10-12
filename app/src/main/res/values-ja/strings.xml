@@ -2783,4 +2783,7 @@
     <string name="route_qr_share_image">QR を共有</string>
     <string name="route_share_text">EUC Planet でこのルートを走ろう: %1$s</string>
     <string name="route_share_subject">走るルート</string>
+    <plurals name="route_stop_count">
+        <item quantity="other">経由地 %d 件</item>
+    </plurals>
 </resources>

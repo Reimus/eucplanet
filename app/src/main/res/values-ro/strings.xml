@@ -2585,4 +2585,9 @@
     <string name="route_qr_share_image">Partajează QR</string>
     <string name="route_share_text">Parcurge acest traseu cu EUC Planet: %1$s</string>
     <string name="route_share_subject">Un traseu de parcurs</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d oprire</item>
+        <item quantity="few">%d opriri</item>
+        <item quantity="other">%d de opriri</item>
+    </plurals>
 </resources>

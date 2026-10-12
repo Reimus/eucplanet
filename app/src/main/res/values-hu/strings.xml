@@ -2585,4 +2585,8 @@
     <string name="route_qr_share_image">QR megosztása</string>
     <string name="route_share_text">Járd be ezt az útvonalat az EUC Planettel: %1$s</string>
     <string name="route_share_subject">Egy bejárandó útvonal</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d megálló</item>
+        <item quantity="other">%d megálló</item>
+    </plurals>
 </resources>

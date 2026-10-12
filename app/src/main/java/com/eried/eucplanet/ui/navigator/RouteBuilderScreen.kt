@@ -1923,7 +1923,15 @@ fun RouteBuilderScreen(
                         ?: com.eried.eucplanet.nav.GeoMath.polylineLengthM(waypoints.map { it.point() })
                     RouteQrDialog(
                         link = routeQrLink!!,
-                        title = title,
+                        stopNames = if (trackOnly) emptyList() else waypoints.map { w ->
+                            w.name.trim().ifEmpty { String.format(java.util.Locale.US, "%.5f, %.5f", w.lat, w.lng) }
+                        },
+                        // Measured along the path the rider will take, when it is drawn.
+                        legs = if (trackOnly) emptyList() else com.eried.eucplanet.nav.RouteLegs.metres(
+                            waypoints.map { it.point() },
+                            r?.takeIf { it.waypoints.size == waypoints.size }?.geometry.orEmpty(),
+                        ).map { com.eried.eucplanet.nav.NavFormat.distance(context, it, imperial) },
+                        cardTitle = title,
                         distance = com.eried.eucplanet.nav.NavFormat.distance(context, meters, imperial),
                         onNotify = { msg -> scope.launch { snackbarHost.showSnackbar(msg) } },
                         onDismiss = { routeQrLink = null },

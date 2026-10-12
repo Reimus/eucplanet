@@ -2585,4 +2585,8 @@
     <string name="route_qr_share_image">Jaa QR</string>
     <string name="route_share_text">Aja tämä reitti EUC Planetilla: %1$s</string>
     <string name="route_share_subject">Reitti ajettavaksi</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d pysähdys</item>
+        <item quantity="other">%d pysähdystä</item>
+    </plurals>
 </resources>

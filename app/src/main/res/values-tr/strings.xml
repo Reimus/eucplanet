@@ -2779,4 +2779,8 @@
     <string name="route_qr_share_image">QR paylaş</string>
     <string name="route_share_text">Bu rotayı EUC Planet ile sür: %1$s</string>
     <string name="route_share_subject">Sürülecek bir rota</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d durak</item>
+        <item quantity="other">%d durak</item>
+    </plurals>
 </resources>

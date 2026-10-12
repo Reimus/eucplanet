@@ -2782,4 +2782,10 @@
     <string name="route_qr_share_image">Udostępnij QR</string>
     <string name="route_share_text">Przejedź tę trasę z EUC Planet: %1$s</string>
     <string name="route_share_subject">Trasa do przejechania</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d przystanek</item>
+        <item quantity="few">%d przystanki</item>
+        <item quantity="many">%d przystanków</item>
+        <item quantity="other">%d przystanku</item>
+    </plurals>
 </resources>

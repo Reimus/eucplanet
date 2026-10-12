@@ -2782,4 +2782,10 @@
     <string name="route_qr_share_image">Поделиться QR</string>
     <string name="route_share_text">Проедь этот маршрут с EUC Planet: %1$s</string>
     <string name="route_share_subject">Маршрут для поездки</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d точка</item>
+        <item quantity="few">%d точки</item>
+        <item quantity="many">%d точек</item>
+        <item quantity="other">%d точки</item>
+    </plurals>
 </resources>

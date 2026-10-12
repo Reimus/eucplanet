@@ -2781,4 +2781,7 @@
     <string name="route_qr_share_image">分享 QR</string>
     <string name="route_share_text">用 EUC Planet 騎這條路線: %1$s</string>
     <string name="route_share_subject">一條騎乘路線</string>
+    <plurals name="route_stop_count">
+        <item quantity="other">%d 個停靠點</item>
+    </plurals>
 </resources>

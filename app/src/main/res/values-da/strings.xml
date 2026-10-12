@@ -2797,4 +2797,8 @@
     <string name="route_qr_share_image">Del QR</string>
     <string name="route_share_text">Kør denne rute med EUC Planet: %1$s</string>
     <string name="route_share_subject">En rute at køre</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stop</item>
+    </plurals>
 </resources>

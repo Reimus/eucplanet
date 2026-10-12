@@ -2802,4 +2802,8 @@
     <string name="route_qr_share_image">QR teilen</string>
     <string name="route_share_text">Fahr diese Route mit EUC Planet: %1$s</string>
     <string name="route_share_subject">Eine Route zum Fahren</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d Stopp</item>
+        <item quantity="other">%d Stopps</item>
+    </plurals>
 </resources>

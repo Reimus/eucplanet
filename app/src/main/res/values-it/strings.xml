@@ -2687,4 +2687,9 @@
     <string name="route_qr_share_image">Condividi QR</string>
     <string name="route_share_text">Percorri questo itinerario con EUC Planet: %1$s</string>
     <string name="route_share_subject">Un percorso da fare</string>
+    <plurals name="route_stop_count">
+        <item quantity="one">%d tappa</item>
+        <item quantity="many">%d tappe</item>
+        <item quantity="other">%d tappe</item>
+    </plurals>
 </resources>

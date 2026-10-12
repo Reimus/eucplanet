@@ -86,6 +86,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -677,17 +678,18 @@ fun ShareScannerDialog(
 /**
  * The planned route as a QR code, for a friend to scan, or as a link to send.
  * The whole route is inside the code, so nothing is uploaded anywhere.
- *
- * The things a rider does with it as tinted icons, the way the group ride
- * shows its link, then what the route is (every stop, and how far), then the
- * code with no caption.
+ * The layout is in RouteQrContent.kt; this wires what each action does.
  */
 @Composable
 fun RouteQrDialog(
     link: String,
-    /** Where the route goes, every stop, "Start → Telegrafbukta → Back home"; or its name. */
-    title: String,
-    /** Its length in the rider's units. */
+    /** Each stop's name in order (or its coordinates when it has none); empty for a track. */
+    stopNames: List<String>,
+    /** Each leg's length, one per stop after the first, in the rider's units. */
+    legs: List<String>,
+    /** One line for the shared picture: "Start → Telegrafbukta → Back home", or the route's name. */
+    cardTitle: String,
+    /** The route's length in the rider's units. */
     distance: String,
     onNotify: (String) -> Unit,
     onDismiss: () -> Unit,
@@ -703,94 +705,39 @@ fun RouteQrDialog(
             navigationBar = appColors.dialog.toArgb(),
         )
     }
+    val ui = RouteQrUi(
+        link = link,
+        stopNames = stopNames,
+        legs = legs,
+        distance = distance,
+        onShare = {
+            val send = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, context.getString(R.string.route_share_text, link))
+                putExtra(Intent.EXTRA_SUBJECT, subject)
+            }
+            runCatching { context.startActivity(Intent.createChooser(send, subject)) }
+        },
+        // The code as a picture, for a chat where it is scanned off a screen,
+        // or for paper. It carries the route's description, so it still says
+        // which route it is away from the app.
+        onShareImage = {
+            runCatching {
+                RouteQrCard.share(context, link, context.getString(R.string.route_share_text, link),
+                    cardTitle, distance, cardFooter, subject)
+            }
+        },
+        onCopy = { copyToClipboard(context, link, copiedMsg, onNotify) },
+        // The route page in the phone's browser, as a friend without the app sees it.
+        onOpen = { openShareLink(context, link, tabColors) },
+        onDismiss = onDismiss,
+    )
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false),
     ) {
         ShareDialogCard(title = stringResource(R.string.share_menu_route), scrollable = true) {
-            // The actions get a row of their own: a route of any length never
-            // fit beside them, so it reads in full underneath instead.
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                ShareLinkAction(
-                    icon = Icons.Default.Share,
-                    description = stringResource(R.string.action_share),
-                    onClick = {
-                        val send = Intent(Intent.ACTION_SEND).apply {
-                            type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, context.getString(R.string.route_share_text, link))
-                            putExtra(Intent.EXTRA_SUBJECT, subject)
-                        }
-                        runCatching { context.startActivity(Intent.createChooser(send, subject)) }
-                    }
-                )
-                // The code as a picture, for a chat where it is scanned off a
-                // screen, or for paper. It carries the route's description, so
-                // it still says which route it is away from the app.
-                ShareLinkAction(
-                    icon = Icons.Default.QrCode,
-                    description = stringResource(R.string.route_qr_share_image),
-                    onClick = {
-                        runCatching {
-                            RouteQrCard.share(context, link, context.getString(R.string.route_share_text, link),
-                                title, distance, cardFooter, subject)
-                        }
-                    }
-                )
-                ShareLinkAction(
-                    icon = Icons.Default.ContentCopy,
-                    description = stringResource(R.string.share_copy),
-                    onClick = { copyToClipboard(context, link, copiedMsg, onNotify) }
-                )
-                ShareLinkAction(
-                    icon = Icons.Default.OpenInBrowser,
-                    description = stringResource(R.string.share_open),
-                    // The route page in the phone's browser, so the rider sees it
-                    // the way a friend without the app will.
-                    onClick = { openShareLink(context, link, tabColors) }
-                )
-            }
-            Spacer(Modifier.height(10.dp))
-            Text(
-                title,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.appColors.textPrimary,
-            )
-            Text(
-                distance,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.appColors.textSecondary,
-                maxLines = 1,
-            )
-            Spacer(Modifier.height(14.dp))
-            BoxWithConstraints(
-                Modifier
-                    .widthIn(max = shareBlockMaxWidth())
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
-            ) {
-                val density = LocalDensity.current
-                val qrPx = remember(maxWidth, density) {
-                    with(density) { maxWidth.roundToPx() }.coerceAtMost(QR_MAX_PX)
-                }
-                QrCodeImage(
-                    content = link,
-                    sizePx = qrPx,
-                    modifier = Modifier.fillMaxWidth().aspectRatio(1f),
-                    ecc = com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.M,
-                )
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                TextButton(
-                    onClick = onDismiss,
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.appColors.textButton)
-                ) { Text(stringResource(R.string.action_close)) }
-            }
+            RouteQrContent(ui)
         }
     }
 }
