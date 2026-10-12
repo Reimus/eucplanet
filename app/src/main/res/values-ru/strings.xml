@@ -2772,7 +2772,7 @@
     <string name="share_menu_scan_desc">Присоединиться к групповой поездке или открыть маршрут.</string>
     <string name="share_menu_route">Поделиться маршрутом</string>
     <string name="share_menu_route_desc">QR-кодом или ссылкой. Без аккаунта.</string>
-    <string name="share_menu_route_none">Сначала добавьте хотя бы две точки.</string>
+    <string name="share_menu_route_none">Сначала добавьте точку.</string>
     <string name="scan_code_unknown">Это не код групповой поездки и не маршрут.</string>
     <string name="route_qr_hint">Сканируйте в EUC Planet или камерой телефона.</string>
     <string name="route_qr_too_long">Маршрут слишком длинный для QR-кода. Сохраните его как GPX.</string>

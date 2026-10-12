@@ -2769,7 +2769,7 @@
     <string name="share_menu_scan_desc">Приєднатися до групової поїздки або відкрити маршрут.</string>
     <string name="share_menu_route">Поділитися маршрутом</string>
     <string name="share_menu_route_desc">QR-кодом або посиланням. Без облікового запису.</string>
-    <string name="share_menu_route_none">Спершу додайте щонайменше дві точки.</string>
+    <string name="share_menu_route_none">Спершу додайте точку.</string>
     <string name="scan_code_unknown">Це не код групової поїздки чи маршруту.</string>
     <string name="route_qr_hint">Скануйте в EUC Planet або камерою телефона.</string>
     <string name="route_qr_too_long">Маршрут задовгий для QR-коду. Збережіть його як GPX.</string>

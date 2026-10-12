@@ -2639,7 +2639,7 @@
     <string name="share_menu_scan_desc">加入团骑或打开路线。</string>
     <string name="share_menu_route">分享路线</string>
     <string name="share_menu_route_desc">以二维码或链接分享,无需账号。</string>
-    <string name="share_menu_route_none">请先添加至少两个停靠点。</string>
+    <string name="share_menu_route_none">请先添加一个停靠点。</string>
     <string name="scan_code_unknown">不是团骑或路线代码。</string>
     <string name="route_qr_hint">用 EUC Planet 或手机相机扫描。</string>
     <string name="route_qr_too_long">这条路线太长,无法做成二维码。请另存为 GPX。</string>

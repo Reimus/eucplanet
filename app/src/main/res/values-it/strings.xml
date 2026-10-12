@@ -2677,7 +2677,7 @@
     <string name="share_menu_scan_desc">Unisciti a un giro di gruppo o apri un percorso.</string>
     <string name="share_menu_route">Condividi percorso</string>
     <string name="share_menu_route_desc">Come codice QR o link. Nessun account.</string>
-    <string name="share_menu_route_none">Aggiungi prima almeno due tappe.</string>
+    <string name="share_menu_route_none">Aggiungi prima una tappa.</string>
     <string name="scan_code_unknown">Non è un codice di giro di gruppo né di percorso.</string>
     <string name="route_qr_hint">Scansiona con EUC Planet o con la fotocamera.</string>
     <string name="route_qr_too_long">Il percorso è troppo lungo per un codice QR. Salvalo come GPX.</string>
