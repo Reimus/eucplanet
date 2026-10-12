@@ -1677,7 +1677,6 @@
     <string name="nav_menu_clear">Nova rota</string>
     <string name="nav_finished_title">Rota concluída</string>
     <string name="nav_finished_body">Começar uma nova rota? As paradas alcançadas são apagadas. Para manter esta rota, salve-a antes pelo menu.</string>
-    <string name="nav_finished_continue">Continuar</string>
     <string name="nav_clear_home">Esquecer Casa</string>
     <string name="nav_clear_work">Esquecer Trabalho</string>
     <string name="nav_menu_exit">Voltar ao painel</string>
@@ -1708,7 +1707,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satélite</string>
-    <string name="nav_layer_satellite_labels">Satélite + rótulos</string>
+    <string name="nav_layer_satellite_labels">Satélite híbrido</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

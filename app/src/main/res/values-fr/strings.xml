@@ -1736,7 +1736,6 @@
     <string name="nav_menu_clear">Nouvel itinéraire</string>
     <string name="nav_finished_title">Itinéraire terminé</string>
     <string name="nav_finished_body">Commencer un nouvel itinéraire ? Les arrêts atteints sont effacés. Pour garder cet itinéraire, enregistre-le d\'abord depuis le menu.</string>
-    <string name="nav_finished_continue">Continuer</string>
     <string name="nav_clear_home">Oublier le domicile</string>
     <string name="nav_clear_work">Oublier le travail</string>
     <string name="nav_menu_exit">Retour au tableau de bord</string>
@@ -1767,7 +1766,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satellite</string>
-    <string name="nav_layer_satellite_labels">Satellite + noms</string>
+    <string name="nav_layer_satellite_labels">Satellite hybride</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

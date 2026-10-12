@@ -1943,7 +1943,6 @@
     <string name="nav_menu_clear">Traseu nou</string>
     <string name="nav_finished_title">Traseu încheiat</string>
     <string name="nav_finished_body">Începi un traseu nou? Opririle atinse se șterg. Ca să păstrezi acest traseu, salvează-l mai întâi din meniu.</string>
-    <string name="nav_finished_continue">Continuă</string>
     <string name="nav_clear_home">Uită Acasă</string>
     <string name="nav_clear_work">Uită Serviciu</string>
     <string name="nav_menu_exit">Înapoi la tabloul de bord</string>
@@ -1999,7 +1998,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satelit</string>
-    <string name="nav_layer_satellite_labels">Satelit + etichete</string>
+    <string name="nav_layer_satellite_labels">Satelit hibrid</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

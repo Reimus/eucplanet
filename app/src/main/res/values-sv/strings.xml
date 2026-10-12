@@ -1673,7 +1673,6 @@
     <string name="nav_menu_clear">Ny rutt</string>
     <string name="nav_finished_title">Rutten är klar</string>
     <string name="nav_finished_body">Starta en ny rutt? De nådda stoppen raderas. Spara rutten från menyn först om du vill behålla den.</string>
-    <string name="nav_finished_continue">Fortsätt</string>
     <string name="nav_clear_home">Glöm Hem</string>
     <string name="nav_clear_work">Glöm Jobb</string>
     <string name="nav_menu_exit">Tillbaka till instrumentpanelen</string>
@@ -1704,7 +1703,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satellit</string>
-    <string name="nav_layer_satellite_labels">Satellit + namn</string>
+    <string name="nav_layer_satellite_labels">Satellit hybrid</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

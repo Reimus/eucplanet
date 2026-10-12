@@ -153,7 +153,8 @@ fun NavigationOverlay(
                 onMapScreen = mapDisabledLatched.value,
                 closeDisabled = closeDisabledLatched.value,
                 onMinimize = { viewModel.setMinimized(true) },
-                onClose = { showEndConfirm = true }
+                onClose = { showEndConfirm = true },
+                onEndNow = { viewModel.endNavigation() }
             )
         }
     }
@@ -185,6 +186,7 @@ private fun CenterPopup(
     onOpenMap: () -> Unit,
     onMinimize: () -> Unit,
     onClose: () -> Unit,
+    onEndNow: () -> Unit,
     onMapScreen: Boolean = false,
     closeDisabled: Boolean = false
 ) {
@@ -262,11 +264,12 @@ private fun CenterPopup(
                         modifier = Modifier.size(22.dp)
                     )
                 }
-                // On the final arrival there is nothing left to end: the
-                // trip is over and nav tears itself down on the dismiss
-                // timer. Minimize and a greyed-out X side by side read as
-                // two ways to close, one of them dead, so that frame gets a
-                // single working X that just dismisses the banner.
+                // On the final arrival the trip is over. Minimize and a
+                // greyed-out X side by side read as two ways to close, one
+                // of them dead, so that frame gets a single X that ends
+                // navigation at once. Hiding the banner alone left guidance
+                // running until the dismiss timer, and the nav button
+                // brought "You have arrived" back.
                 // Intermediate arrivals and the cues keep minimize + an X
                 // that asks to end navigation, since stops remain ahead.
                 // `closeDisabled` is the latched "final arrival" flag, so
@@ -281,7 +284,7 @@ private fun CenterPopup(
                     }
                 }
                 IconButton(
-                    onClick = if (finalArrival) onMinimize else onClose,
+                    onClick = if (finalArrival) onEndNow else onClose,
                     modifier = Modifier.size(36.dp)
                 ) {
                     Icon(

@@ -1943,7 +1943,6 @@
     <string name="nav_menu_clear">Új útvonal</string>
     <string name="nav_finished_title">Útvonal befejezve</string>
     <string name="nav_finished_body">Új útvonalat kezdesz? Az elért megállók törlődnek. Ha meg akarod tartani, előbb mentsd el a menüből.</string>
-    <string name="nav_finished_continue">Folytatás</string>
     <string name="nav_clear_home">Otthon elfelejtése</string>
     <string name="nav_clear_work">Munkahely elfelejtése</string>
     <string name="nav_menu_exit">Vissza a műszerfalra</string>
@@ -1999,7 +1998,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Műhold</string>
-    <string name="nav_layer_satellite_labels">Műhold + feliratok</string>
+    <string name="nav_layer_satellite_labels">Műhold hibrid</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

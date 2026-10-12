@@ -1690,7 +1690,6 @@
     <string name="nav_menu_clear">Nowa trasa</string>
     <string name="nav_finished_title">Trasa zakończona</string>
     <string name="nav_finished_body">Zacząć nową trasę? Osiągnięte przystanki zostaną usunięte. Aby zachować tę trasę, najpierw zapisz ją z menu.</string>
-    <string name="nav_finished_continue">Kontynuuj</string>
     <string name="nav_clear_home">Zapomnij dom</string>
     <string name="nav_clear_work">Zapomnij pracę</string>
     <string name="nav_menu_exit">Powrót do pulpitu</string>
@@ -1721,7 +1720,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satelita</string>
-    <string name="nav_layer_satellite_labels">Satelita + etykiety</string>
+    <string name="nav_layer_satellite_labels">Satelita hybrydowa</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

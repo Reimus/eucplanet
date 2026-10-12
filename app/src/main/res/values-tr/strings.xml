@@ -1674,7 +1674,6 @@
     <string name="nav_menu_clear">Yeni rota</string>
     <string name="nav_finished_title">Rota tamamlandı</string>
     <string name="nav_finished_body">Yeni bir rota başlatılsın mı? Ulaşılan duraklar silinir. Bu rotayı saklamak için önce menüden kaydedin.</string>
-    <string name="nav_finished_continue">Devam et</string>
     <string name="nav_clear_home">Evi unut</string>
     <string name="nav_clear_work">İşyerini unut</string>
     <string name="nav_menu_exit">Gösterge paneline dön</string>
@@ -1705,7 +1704,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Uydu</string>
-    <string name="nav_layer_satellite_labels">Uydu + etiketler</string>
+    <string name="nav_layer_satellite_labels">Uydu hibrit</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

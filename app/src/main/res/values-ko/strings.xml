@@ -1674,7 +1674,6 @@
     <string name="nav_menu_clear">새 경로</string>
     <string name="nav_finished_title">경로 완료</string>
     <string name="nav_finished_body">새 경로를 시작할까요? 도착한 정류장은 지워집니다. 이 경로를 남기려면 먼저 메뉴에서 저장하세요.</string>
-    <string name="nav_finished_continue">계속</string>
     <string name="nav_clear_home">집 삭제</string>
     <string name="nav_clear_work">직장 삭제</string>
     <string name="nav_menu_exit">대시보드로 돌아가기</string>
@@ -1705,7 +1704,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">위성</string>
-    <string name="nav_layer_satellite_labels">위성 + 라벨</string>
+    <string name="nav_layer_satellite_labels">위성 하이브리드</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

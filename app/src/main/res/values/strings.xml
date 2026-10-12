@@ -2191,7 +2191,6 @@
     <string name="nav_menu_clear">New route</string>
     <string name="nav_finished_title">Route finished</string>
     <string name="nav_finished_body">Start a new route? The reached stops are cleared. To keep this route, save it from the menu first.</string>
-    <string name="nav_finished_continue">Continue</string>
     <string name="nav_clear_home">Forget Home</string>
     <string name="nav_clear_work">Forget Work</string>
     <string name="nav_menu_exit">Back to dashboard</string>
@@ -2248,7 +2247,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satellite</string>
-    <string name="nav_layer_satellite_labels">Satellite + labels</string>
+    <string name="nav_layer_satellite_labels">Satellite hybrid</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

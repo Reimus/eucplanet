@@ -1674,7 +1674,6 @@
     <string name="nav_menu_clear">新しいルート</string>
     <string name="nav_finished_title">ルート完了</string>
     <string name="nav_finished_body">新しいルートを始めますか？到着済みの地点は消去されます。このルートを残すには、先にメニューから保存してください。</string>
-    <string name="nav_finished_continue">続ける</string>
     <string name="nav_clear_home">ホームを削除</string>
     <string name="nav_clear_work">職場を削除</string>
     <string name="nav_menu_exit">ダッシュボードに戻る</string>
@@ -1705,7 +1704,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">衛星写真</string>
-    <string name="nav_layer_satellite_labels">衛星写真＋ラベル</string>
+    <string name="nav_layer_satellite_labels">衛星写真（ハイブリッド）</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

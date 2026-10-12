@@ -1755,9 +1755,9 @@ fun RouteBuilderScreen(
                 )
             }
 
-            // A stop added to a finished route (every stop reached). Same
-            // shape as the shared-location question: New route clears the
-            // reached stops first, Continue adds after them. Back cancels.
+            // A stop added to a finished route (every stop reached): New
+            // route clears the reached stops and adds it; Cancel (or back)
+            // adds nothing. A finished route is not continued.
             val finishedPrompt by viewModel.finishedRoutePrompt.collectAsState()
             if (finishedPrompt) {
                 androidx.compose.material3.AlertDialog(
@@ -1770,8 +1770,8 @@ fun RouteBuilderScreen(
                         }
                     },
                     dismissButton = {
-                        TextButton(onClick = { viewModel.finishedContinueRoute() }, shape = RoundedCornerShape(12.dp)) {
-                            Text(stringResource(R.string.nav_finished_continue))
+                        TextButton(onClick = { viewModel.finishedCancel() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.action_cancel))
                         }
                     }
                 )

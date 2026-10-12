@@ -1674,7 +1674,6 @@
     <string name="nav_menu_clear">新路線</string>
     <string name="nav_finished_title">路線已完成</string>
     <string name="nav_finished_body">要開始新路線嗎？已抵達的站點會被清除。若要保留這條路線，請先從選單儲存。</string>
-    <string name="nav_finished_continue">繼續</string>
     <string name="nav_clear_home">清除起點</string>
     <string name="nav_clear_work">清除工作地點</string>
     <string name="nav_menu_exit">返回儀表板</string>
@@ -1705,7 +1704,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">衛星</string>
-    <string name="nav_layer_satellite_labels">衛星＋標籤</string>
+    <string name="nav_layer_satellite_labels">衛星混合</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

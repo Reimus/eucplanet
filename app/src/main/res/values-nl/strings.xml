@@ -1732,7 +1732,6 @@
     <string name="nav_menu_clear">Nieuwe route</string>
     <string name="nav_finished_title">Route voltooid</string>
     <string name="nav_finished_body">Een nieuwe route beginnen? De bereikte stops worden gewist. Wil je deze route bewaren, sla hem dan eerst op via het menu.</string>
-    <string name="nav_finished_continue">Doorgaan</string>
     <string name="nav_clear_home">Thuis vergeten</string>
     <string name="nav_clear_work">Werk vergeten</string>
     <string name="nav_menu_exit">Terug naar dashboard</string>
@@ -1763,7 +1762,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satelliet</string>
-    <string name="nav_layer_satellite_labels">Satelliet + namen</string>
+    <string name="nav_layer_satellite_labels">Satelliet hybride</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

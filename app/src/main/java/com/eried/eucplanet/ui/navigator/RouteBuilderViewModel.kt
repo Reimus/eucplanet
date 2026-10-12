@@ -893,9 +893,9 @@ class RouteBuilderViewModel @Inject constructor(
         .stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
     /**
-     * Adding to a finished route asks first, the way a shared location does:
-     * New route clears the reached stops, Continue adds after them. True when
-     * [action] was held for that answer.
+     * Adding to a finished route asks first: New route clears the reached
+     * stops and adds the stop, Cancel adds nothing. A finished route is not
+     * continued. True when [action] was held for that answer.
      */
     private fun holdIfFinished(action: () -> Unit): Boolean {
         if (!routeFinished()) return false
@@ -907,12 +907,6 @@ class RouteBuilderViewModel @Inject constructor(
         val action = _finishedAdd.value ?: return
         _finishedAdd.value = null
         clear()
-        action()
-    }
-
-    fun finishedContinueRoute() {
-        val action = _finishedAdd.value ?: return
-        _finishedAdd.value = null
         action()
     }
 
