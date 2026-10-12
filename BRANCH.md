@@ -9,6 +9,10 @@ only when you can cut the ride short.
 - Map: arriving at the last stop shows one X that ends navigation, instead of minimize next to a dead red X.
 - Map: adding a stop after the route is finished asks to start a New route (or Cancel). Reached stops can no longer be reordered around.
 - Map: new style Satellite hybrid (road and place names over the imagery), also in trip details.
+- Map: Share route sends your stops as a QR code, a link or a QR picture. Nothing is uploaded, the route is inside the code.
+- Map: Scan QR (in Share) opens a route or joins a group ride. A route asks before replacing yours.
+- Map: friends without the app open the link in a browser: the stops, the distances, Download GPX.
+- Map: the stop list shows each stop's distance from the one before and the running total.
 - Begode Master is rider-tested: no more preliminary banner (the Master Pro keeps it).
 - Begode: an Auto off tile counts down to the wheel's auto power-off (m:ss).
 - Fixed a crash on every launch for riders with a backup folder set (a start-up race).
@@ -43,6 +47,9 @@ only when you can cut the ride short.
 - Ride to the last stop: one X closes the arrival banner and ends navigation?
 - After arriving, add a stop: New route clears the old stops, Cancel adds nothing?
 - Satellite hybrid: road names readable over the imagery?
+- Share, Share route on a planned route: the stops and distances right? Scan it with a second phone: same route?
+- Send the link to someone without the app: does the page show the route and download a GPX?
+- Stop list: the last running total matches the total at the top? Numbers hide while you drag a stop?
 
 **Crews pairing**
 - Camera at the QR on the eucstats Crews panel: does the app open on the pass screen?
