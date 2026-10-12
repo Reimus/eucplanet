@@ -262,28 +262,31 @@ private fun CenterPopup(
                         modifier = Modifier.size(22.dp)
                     )
                 }
-                IconButton(onClick = onMinimize, modifier = Modifier.size(36.dp)) {
-                    Icon(
-                        Icons.Default.Remove, stringResource(R.string.nav_minimize),
-                        tint = ink, modifier = Modifier.size(22.dp)
-                    )
+                // On the final arrival there is nothing left to end: the
+                // trip is over and nav tears itself down on the dismiss
+                // timer. Minimize and a greyed-out X side by side read as
+                // two ways to close, one of them dead, so that frame gets a
+                // single working X that just dismisses the banner.
+                // Intermediate arrivals and the cues keep minimize + an X
+                // that asks to end navigation, since stops remain ahead.
+                // `closeDisabled` is the latched "final arrival" flag, so
+                // the buttons do not change during the fade-out.
+                val finalArrival = closeDisabled
+                if (!finalArrival) {
+                    IconButton(onClick = onMinimize, modifier = Modifier.size(36.dp)) {
+                        Icon(
+                            Icons.Default.Remove, stringResource(R.string.nav_minimize),
+                            tint = ink, modifier = Modifier.size(22.dp)
+                        )
+                    }
                 }
-                // Greyed out only on the final arrival, when there is
-                // no remaining non-passed stop and "end navigation"
-                // would have no effect (nav is already tearing itself
-                // down on the 9 s dismiss timer). Intermediate arrivals
-                // keep the X enabled so the rider can still abort with
-                // stops left ahead. `closeDisabled` is the latched
-                // version so the icon doesn't snap back during the
-                // popup's fade-out.
                 IconButton(
-                    onClick = onClose,
-                    enabled = !closeDisabled,
+                    onClick = if (finalArrival) onMinimize else onClose,
                     modifier = Modifier.size(36.dp)
                 ) {
                     Icon(
                         Icons.Default.Close, stringResource(R.string.nav_close),
-                        tint = if (closeDisabled) MaterialTheme.appColors.statusDanger.copy(alpha = 0.35f) else MaterialTheme.appColors.statusDanger,
+                        tint = MaterialTheme.appColors.statusDanger,
                         modifier = Modifier.size(22.dp)
                     )
                 }

@@ -1684,6 +1684,9 @@
     <string name="nav_menu_save">Gem rute (GPX)</string>
     <string name="nav_menu_load">Indlæs rute (GPX)</string>
     <string name="nav_menu_clear">Ny rute</string>
+    <string name="nav_finished_title">Ruten er færdig</string>
+    <string name="nav_finished_body">Start en ny rute? De nåede stop slettes. Gem ruten fra menuen først, hvis du vil beholde den.</string>
+    <string name="nav_finished_continue">Fortsæt</string>
     <string name="nav_clear_home">Glem Hjem</string>
     <string name="nav_clear_work">Glem Arbejde</string>
     <string name="nav_menu_exit">Tilbage til dashboard</string>
@@ -1714,6 +1717,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satellit</string>
+    <string name="nav_layer_satellite_labels">Satellit + navne</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

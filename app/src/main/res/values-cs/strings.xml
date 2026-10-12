@@ -1941,6 +1941,9 @@
     <string name="nav_menu_save">Uložit trasu (GPX)</string>
     <string name="nav_menu_load">Načíst trasu (GPX)</string>
     <string name="nav_menu_clear">Nová trasa</string>
+    <string name="nav_finished_title">Trasa dokončena</string>
+    <string name="nav_finished_body">Začít novou trasu? Dosažené zastávky se smažou. Chcete-li si tuto trasu ponechat, nejdřív ji uložte z nabídky.</string>
+    <string name="nav_finished_continue">Pokračovat</string>
     <string name="nav_clear_home">Zapomenout domov</string>
     <string name="nav_clear_work">Zapomenout práci</string>
     <string name="nav_menu_exit">Zpět na palubní desku</string>
@@ -1996,6 +1999,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satelitní</string>
+    <string name="nav_layer_satellite_labels">Satelitní + popisky</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

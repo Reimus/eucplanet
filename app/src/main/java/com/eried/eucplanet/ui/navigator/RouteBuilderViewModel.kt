@@ -116,6 +116,7 @@ class RouteBuilderViewModel @Inject constructor(
             MapLayer("LIGHT", com.eried.eucplanet.R.string.nav_layer_light),
             MapLayer("DARK", com.eried.eucplanet.R.string.nav_layer_dark),
             MapLayer("SATELLITE", com.eried.eucplanet.R.string.nav_layer_satellite),
+            MapLayer("SATELLITE_LABELS", com.eried.eucplanet.R.string.nav_layer_satellite_labels),
         )
 
         /**
@@ -874,7 +875,55 @@ class RouteBuilderViewModel @Inject constructor(
             NavStartGuard.originWithinStart(it, firstStopPt, advanced.value.navMaxStartDistanceKm)
         }
 
+    /**
+     * Reached stops form a leading block: arrival marks the first non-passed
+     * stop each time. Nothing new may land among them, or a fresh stop ends up
+     * ordered around a stop the rider has already been to.
+     */
+    private fun passedCount(list: List<Waypoint> = _waypoints.value): Int = passedPrefix(list)
+
+    /** Every stop reached: the route is finished. */
+    private fun routeFinished(): Boolean =
+        _waypoints.value.let { it.isNotEmpty() && it.all { w -> w.passed } }
+
+    /** A stop add held while the rider answers "Route finished: new or continue?". */
+    private val _finishedAdd = MutableStateFlow<(() -> Unit)?>(null)
+    val finishedRoutePrompt: StateFlow<Boolean> = _finishedAdd
+        .map { it != null }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
+    /**
+     * Adding to a finished route asks first, the way a shared location does:
+     * New route clears the reached stops, Continue adds after them. True when
+     * [action] was held for that answer.
+     */
+    private fun holdIfFinished(action: () -> Unit): Boolean {
+        if (!routeFinished()) return false
+        _finishedAdd.value = action
+        return true
+    }
+
+    fun finishedStartNewRoute() {
+        val action = _finishedAdd.value ?: return
+        _finishedAdd.value = null
+        clear()
+        action()
+    }
+
+    fun finishedContinueRoute() {
+        val action = _finishedAdd.value ?: return
+        _finishedAdd.value = null
+        action()
+    }
+
+    fun finishedCancel() { _finishedAdd.value = null }
+
     fun addWaypoint(lat: Double, lng: Double, name: String = "", fit: Boolean = false) {
+        if (holdIfFinished { addWaypointNow(lat, lng, name, fit) }) return
+        addWaypointNow(lat, lng, name, fit)
+    }
+
+    private fun addWaypointNow(lat: Double, lng: Double, name: String, fit: Boolean) {
         if (_waypoints.value.size >= MAX_WAYPOINTS) {
             _messages.tryEmit(R.string.nav_max_stops)
             return
@@ -907,6 +956,7 @@ class RouteBuilderViewModel @Inject constructor(
      */
     fun insertWaypointOnRoute(lat: Double, lng: Double, name: String = "") {
         if (navigationEngine.isActive) return
+        if (holdIfFinished { insertWaypointOnRoute(lat, lng, name) }) return
         val dests = _waypoints.value
         if (dests.size >= MAX_WAYPOINTS) {
             _messages.tryEmit(R.string.nav_max_stops)
@@ -935,7 +985,7 @@ class RouteBuilderViewModel @Inject constructor(
         // Segment bestSeg connects chain[bestSeg] and chain[bestSeg+1]; the new
         // stop sits just before chain[bestSeg+1]. Drop the origin offset to get
         // the destination-list index.
-        val insertIndex = (bestSeg + 1 - originOffset).coerceIn(0, dests.size)
+        val insertIndex = (bestSeg + 1 - originOffset).coerceIn(passedCount(dests), dests.size)
         // The two edges the detour introduces: left-neighbour -> new -> right-
         // neighbour. Preview just those in gold while the route re-solves.
         val left = if (insertIndex == 0) originIfNear(origin, GeoPoint(lat, lng)) else dests[insertIndex - 1].point()
@@ -953,6 +1003,9 @@ class RouteBuilderViewModel @Inject constructor(
     fun moveWaypoint(index: Int, lat: Double, lng: Double) {
         val list = _waypoints.value.toMutableList()
         if (index !in list.indices) return
+        // A reached stop is history; dragging it would re-route around a
+        // place the rider has already been.
+        if (list[index].passed) return
         // The moved pin's two edges (to its previous and next neighbours, or
         // the rider for index 0) are what change -- preview just those in gold.
         val origin = currentLocation.value?.let { GeoPoint(it.latitude, it.longitude) }
@@ -977,9 +1030,7 @@ class RouteBuilderViewModel @Inject constructor(
     }
 
     fun reorderWaypoints(from: Int, to: Int) {
-        val list = _waypoints.value.toMutableList()
-        if (from !in list.indices || to !in list.indices) return
-        list.add(to, list.removeAt(from))
+        val list = reorderKeepingPassed(_waypoints.value, from, to) ?: return
         _waypoints.value = list
         cacheDraft()
         scheduleRecompute(fit = false)
@@ -1502,6 +1553,7 @@ class RouteBuilderViewModel @Inject constructor(
 
     /** Drops a saved Home / Work preset onto the map as the next waypoint. */
     fun addPreset(w: Waypoint, kind: String) {
+        if (holdIfFinished { addPreset(w, kind) }) return
         addWaypoint(w.lat, w.lng, w.name, fit = true)
         _lastAddedPresetKind.value = kind
     }
@@ -1762,6 +1814,7 @@ class RouteBuilderViewModel @Inject constructor(
     fun addPoiAsStop(poi: PointOfInterest) {
         _selectedPoi.value = null
         if (navigationEngine.isActive) return
+        if (holdIfFinished { addPoiAsStop(poi) }) return
         val dests = _waypoints.value
         if (dests.size >= MAX_WAYPOINTS) {
             _messages.tryEmit(R.string.nav_max_stops)
@@ -1773,7 +1826,7 @@ class RouteBuilderViewModel @Inject constructor(
             return
         }
         val point = GeoPoint(poi.lat, poi.lng)
-        val insertIndex = cheapestInsertIndex(point)
+        val insertIndex = cheapestInsertIndex(point).coerceAtLeast(passedCount(dests))
         val origin = currentLocation.value?.let { GeoPoint(it.latitude, it.longitude) }
         val left = if (insertIndex == 0) originIfNear(origin, point) else dests[insertIndex - 1].point()
         val right = dests.getOrNull(insertIndex)?.point()
@@ -2020,4 +2073,19 @@ class RouteBuilderViewModel @Inject constructor(
         searchJob?.cancel()
         enrichJob?.cancel()
     }
+}
+
+/** How many stops at the head of [list] the rider has already reached. */
+internal fun passedPrefix(list: List<Waypoint>): Int =
+    list.indexOfFirst { !it.passed }.let { if (it < 0) list.size else it }
+
+/**
+ * [list] with the stop at [from] moved to [to], or null when the move is not
+ * allowed. Reached stops stay where they are, and nothing moves in among them.
+ */
+internal fun reorderKeepingPassed(list: List<Waypoint>, from: Int, to: Int): List<Waypoint>? {
+    if (from !in list.indices || to !in list.indices) return null
+    val locked = passedPrefix(list)
+    if (from < locked) return null
+    return list.toMutableList().apply { add(to.coerceAtLeast(locked), removeAt(from)) }
 }

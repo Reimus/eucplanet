@@ -884,6 +884,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satellitt</string>
+    <string name="nav_layer_satellite_labels">Satellitt + navn</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>
@@ -891,6 +892,9 @@
     <string name="nav_max_stops">Opptil ett bestemmelsessted og 24 stopp</string>
     <string name="nav_menu">Meny</string>
     <string name="nav_menu_clear">Ny rute</string>
+    <string name="nav_finished_title">Ruten er fullført</string>
+    <string name="nav_finished_body">Starte en ny rute? De nådde stoppene slettes. Lagre ruten fra menyen først hvis du vil beholde den.</string>
+    <string name="nav_finished_continue">Fortsett</string>
     <string name="nav_menu_exit">Tilbake til dashbordet</string>
     <string name="nav_menu_load">Last inn rute (GPX)</string>
     <string name="nav_menu_save">Lagre rute (GPX)</string>

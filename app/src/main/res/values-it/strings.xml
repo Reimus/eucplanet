@@ -903,6 +903,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satellite</string>
+    <string name="nav_layer_satellite_labels">Satellite + etichette</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>
@@ -910,6 +911,9 @@
     <string name="nav_max_stops">Fino a una destinazione e 24 fermate</string>
     <string name="nav_menu">Menu</string>
     <string name="nav_menu_clear">Nuovo percorso</string>
+    <string name="nav_finished_title">Percorso completato</string>
+    <string name="nav_finished_body">Iniziare un nuovo percorso? Le tappe raggiunte vengono cancellate. Per tenere questo percorso, salvalo prima dal menu.</string>
+    <string name="nav_finished_continue">Continua</string>
     <string name="nav_menu_exit">Torna alla dashboard</string>
     <string name="nav_menu_load">Carica percorso (GPX)</string>
     <string name="nav_menu_save">Salva percorso (GPX)</string>

@@ -6,6 +6,9 @@ only when you can cut the ride short.
 
 ## Worked on
 
+- Map: arriving at the last stop shows one working X instead of minimize next to a dead red X.
+- Map: adding a stop after the route is finished asks: New route or Continue. Reached stops can no longer be reordered around.
+- Map: new style Satellite + labels (road and place names over the imagery), also in trip details.
 - Begode Master is rider-tested: no more preliminary banner (the Master Pro keeps it).
 - Begode: an Auto off tile counts down to the wheel's auto power-off (m:ss).
 - Fixed a crash on every launch for riders with a backup folder set (a start-up race).
@@ -35,6 +38,11 @@ only when you can cut the ride short.
 - Fresh rides no longer show "not backed up to Dropbox" when they are.
 
 ## Please test
+
+**Map / navigation**
+- Ride to the last stop: one X closes the arrival banner?
+- After arriving, add a stop: New route clears the old stops, Continue adds after them?
+- Satellite + labels: road names readable over the imagery?
 
 **Crews pairing**
 - Camera at the QR on the eucstats Crews panel: does the app open on the pass screen?

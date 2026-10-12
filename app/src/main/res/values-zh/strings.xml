@@ -867,6 +867,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">卫星</string>
+    <string name="nav_layer_satellite_labels">卫星＋标签</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>
@@ -874,6 +875,9 @@
     <string name="nav_max_stops">最多一个目的地和 24 个途经点</string>
     <string name="nav_menu">菜单</string>
     <string name="nav_menu_clear">新路线</string>
+    <string name="nav_finished_title">路线已完成</string>
+    <string name="nav_finished_body">要开始新路线吗？已到达的站点会被清除。如需保留这条路线，请先从菜单保存。</string>
+    <string name="nav_finished_continue">继续</string>
     <string name="nav_menu_exit">返回主屏</string>
     <string name="nav_menu_load">加载路线 (GPX)</string>
     <string name="nav_menu_save">保存路线 (GPX)</string>

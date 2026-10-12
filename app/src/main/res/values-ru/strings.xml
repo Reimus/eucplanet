@@ -1675,6 +1675,9 @@
     <string name="nav_menu_save">Сохранить маршрут (GPX)</string>
     <string name="nav_menu_load">Загрузить маршрут (GPX)</string>
     <string name="nav_menu_clear">Новый маршрут</string>
+    <string name="nav_finished_title">Маршрут завершён</string>
+    <string name="nav_finished_body">Начать новый маршрут? Пройденные точки будут удалены. Чтобы сохранить этот маршрут, сначала сохраните его через меню.</string>
+    <string name="nav_finished_continue">Продолжить</string>
     <string name="nav_clear_home">Забыть дом</string>
     <string name="nav_clear_work">Забыть работу</string>
     <string name="nav_menu_exit">Назад к панели</string>
@@ -1705,6 +1708,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Спутник</string>
+    <string name="nav_layer_satellite_labels">Спутник + подписи</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>

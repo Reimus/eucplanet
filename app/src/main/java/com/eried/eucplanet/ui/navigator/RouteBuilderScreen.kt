@@ -1755,6 +1755,27 @@ fun RouteBuilderScreen(
                 )
             }
 
+            // A stop added to a finished route (every stop reached). Same
+            // shape as the shared-location question: New route clears the
+            // reached stops first, Continue adds after them. Back cancels.
+            val finishedPrompt by viewModel.finishedRoutePrompt.collectAsState()
+            if (finishedPrompt) {
+                androidx.compose.material3.AlertDialog(
+                    onDismissRequest = { viewModel.finishedCancel() },
+                    title = { Text(stringResource(R.string.nav_finished_title)) },
+                    text = { Text(stringResource(R.string.nav_finished_body)) },
+                    confirmButton = {
+                        TextButton(onClick = { viewModel.finishedStartNewRoute() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.nav_menu_clear))
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { viewModel.finishedContinueRoute() }, shape = RoundedCornerShape(12.dp)) {
+                            Text(stringResource(R.string.nav_finished_continue))
+                        }
+                    }
+                )
+            }
             // A Share-to-app intent landed on a route that already has
             // stops. Ask before stomping on the rider's current route -
             // "New route" wipes stops then drops the shared point, "Add
@@ -2539,19 +2560,15 @@ private fun BottomPanel(
                                 if (sz.height > stableMinH) stableMinH = sz.height
                             }
                     ) {
-                        ReorderableColumn(
-                            list = waypoints,
-                            onSettle = if (navRunning) { _, _ -> } else { from, to ->
-                                onListReorderEnd()
-                                onReorder(from, to)
-                            },
-                            onMove = {
-                                onListReorderStart()
-                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        ) { index, waypoint, _ ->
-                            key("${waypoint.lat},${waypoint.lng},${waypoint.name},$index") {
+                        // Reached stops are drawn above the drag list as plain rows,
+                        // and only the stops still ahead go into it. The library
+                        // moves rows visually by itself, so with the reached ones
+                        // inside it a pending stop could be dropped among them;
+                        // outside it, that cannot happen. Indices are shifted
+                        // back to the full list for every callback.
+                        val reachedCount = passedPrefix(waypoints)
+                        val stopRow: @Composable (Int, com.eried.eucplanet.data.model.Waypoint, Boolean, Modifier) -> Unit =
+                            { index, waypoint, draggable, handleModifier ->
                                 Box {
                                     var rowMenu by remember { mutableStateOf(false) }
                                     Row(
@@ -2566,19 +2583,15 @@ private fun BottomPanel(
                                         //   * disabled when only one stop is left
                                         //   * disabled when the whole route is done (allPassed
                                         //     -- the rider is expected to hit 'New route')
-                                        // A passed stop sitting alongside still-pending stops
-                                        // CAN be dragged / removed -- the rider might want to
-                                        // re-add it or reshuffle the remaining list.
-                                        val canReorder =
-                                            waypoints.size > 1 && !navRunning && !allPassed
+                                        //   * disabled on a reached stop: it is history, and
+                                        //     nothing may be ordered around it (it can still be
+                                        //     removed from its row menu / bin)
+                                        val canReorder = draggable
                                         Icon(
                                             Icons.Default.DragHandle,
                                             contentDescription = stringResource(R.string.nav_drag_stop),
                                             modifier = Modifier
-                                                .then(
-                                                    if (canReorder) Modifier.draggableHandle()
-                                                    else Modifier
-                                                )
+                                                .then(handleModifier)
                                                 .size(22.dp),
                                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                                                 .copy(alpha = if (canReorder) 1f else 0.3f)
@@ -2719,6 +2732,31 @@ private fun BottomPanel(
                                         }
                                     }
                                 }
+                            }
+                        waypoints.take(reachedCount).forEachIndexed { index, waypoint ->
+                            key("${waypoint.lat},${waypoint.lng},${waypoint.name},$index") {
+                                stopRow(index, waypoint, false, Modifier)
+                            }
+                        }
+                        val canReorderAny = waypoints.size > 1 && !navRunning && !allPassed
+                        ReorderableColumn(
+                            list = waypoints.drop(reachedCount),
+                            onSettle = if (navRunning) { _, _ -> } else { from, to ->
+                                onListReorderEnd()
+                                onReorder(from + reachedCount, to + reachedCount)
+                            },
+                            onMove = {
+                                onListReorderStart()
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) { i, waypoint, _ ->
+                            val index = i + reachedCount
+                            key("${waypoint.lat},${waypoint.lng},${waypoint.name},$index") {
+                                stopRow(
+                                    index, waypoint, canReorderAny,
+                                    if (canReorderAny) Modifier.draggableHandle() else Modifier
+                                )
                             }
                         }
                     }

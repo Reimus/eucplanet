@@ -1675,6 +1675,9 @@
     <string name="nav_menu_save">Guardar ruta (GPX)</string>
     <string name="nav_menu_load">Cargar ruta (GPX)</string>
     <string name="nav_menu_clear">Nueva ruta</string>
+    <string name="nav_finished_title">Ruta terminada</string>
+    <string name="nav_finished_body">¿Empezar una ruta nueva? Se borran las paradas alcanzadas. Para conservar esta ruta, guárdala antes desde el menú.</string>
+    <string name="nav_finished_continue">Continuar</string>
     <string name="nav_clear_home">Olvidar Casa</string>
     <string name="nav_clear_work">Olvidar Trabajo</string>
     <string name="nav_menu_exit">Volver al panel</string>
@@ -1705,6 +1708,7 @@
     <string name="nav_layer_dark">Esri Dark</string>
     <string name="nav_layer_light">Esri Light</string>
     <string name="nav_layer_satellite">Satélite</string>
+    <string name="nav_layer_satellite_labels">Satélite + etiquetas</string>
     <string name="nav_layer_osm">Standard (OSM)</string>
     <string name="nav_layer_cyclosm">CyclOSM</string>
     <string name="nav_layer_topo">OpenTopoMap</string>
