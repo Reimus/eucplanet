@@ -2790,7 +2790,7 @@
     <string name="share_menu_scan_desc">Deltag i en gruppetur, eller åbn en rute.</string>
     <string name="share_menu_route">Del rute</string>
     <string name="share_menu_route_desc">Som QR-kode eller link. Ingen konto.</string>
-    <string name="share_menu_route_none">Tilføj mindst to stop først.</string>
+    <string name="share_menu_route_none">Tilføj et stop først.</string>
     <string name="scan_code_unknown">Ikke en gruppetur- eller rutekode.</string>
     <string name="route_qr_hint">Scan med EUC Planet eller telefonens kamera.</string>
     <string name="route_qr_too_long">Ruten er for lang til en QR-kode. Gem den som GPX i stedet.</string>

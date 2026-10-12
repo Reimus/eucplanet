@@ -2578,7 +2578,7 @@
     <string name="share_menu_scan_desc">Liity ryhmäajoon tai avaa reitti.</string>
     <string name="share_menu_route">Jaa reitti</string>
     <string name="share_menu_route_desc">QR-koodina tai linkkinä. Tiliä ei tarvita.</string>
-    <string name="share_menu_route_none">Lisää ensin vähintään kaksi pysähdystä.</string>
+    <string name="share_menu_route_none">Lisää ensin pysähdys.</string>
     <string name="scan_code_unknown">Ei ryhmäajon tai reitin koodi.</string>
     <string name="route_qr_hint">Skannaa EUC Planetilla tai puhelimen kameralla.</string>
     <string name="route_qr_too_long">Reitti on liian pitkä QR-koodiksi. Tallenna se GPX:nä.</string>

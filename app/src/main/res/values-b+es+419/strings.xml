@@ -2793,7 +2793,7 @@
     <string name="share_menu_scan_desc">Únete a un paseo grupal o abre una ruta.</string>
     <string name="share_menu_route">Compartir ruta</string>
     <string name="share_menu_route_desc">Como código QR o enlace. Sin cuenta.</string>
-    <string name="share_menu_route_none">Agrega al menos dos paradas primero.</string>
+    <string name="share_menu_route_none">Agrega una parada primero.</string>
     <string name="scan_code_unknown">No es un código de paseo grupal ni de ruta.</string>
     <string name="route_qr_hint">Escanea con EUC Planet o la cámara del teléfono.</string>
     <string name="route_qr_too_long">Esta ruta es demasiado larga para un código QR. Guárdala como GPX.</string>

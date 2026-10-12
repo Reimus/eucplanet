@@ -2774,7 +2774,7 @@
     <string name="share_menu_scan_desc">加入團騎或開啟路線。</string>
     <string name="share_menu_route">分享路線</string>
     <string name="share_menu_route_desc">以 QR 碼或連結分享,無需帳號。</string>
-    <string name="share_menu_route_none">請先新增至少兩個停靠點。</string>
+    <string name="share_menu_route_none">請先新增一個停靠點。</string>
     <string name="scan_code_unknown">不是團騎或路線代碼。</string>
     <string name="route_qr_hint">用 EUC Planet 或手機相機掃描。</string>
     <string name="route_qr_too_long">這條路線太長,無法做成 QR 碼。請另存為 GPX。</string>

@@ -2775,7 +2775,7 @@
     <string name="share_menu_scan_desc">Gå med i en grupptur eller öppna en rutt.</string>
     <string name="share_menu_route">Dela rutt</string>
     <string name="share_menu_route_desc">Som QR-kod eller länk. Inget konto.</string>
-    <string name="share_menu_route_none">Lägg först till minst två stopp.</string>
+    <string name="share_menu_route_none">Lägg först till ett stopp.</string>
     <string name="scan_code_unknown">Inte en grupptur- eller ruttkod.</string>
     <string name="route_qr_hint">Skanna med EUC Planet eller telefonens kamera.</string>
     <string name="route_qr_too_long">Rutten är för lång för en QR-kod. Spara den som GPX i stället.</string>

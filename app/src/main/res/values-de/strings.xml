@@ -2795,7 +2795,7 @@
     <string name="share_menu_scan_desc">Einer Gruppenfahrt beitreten oder eine Route öffnen.</string>
     <string name="share_menu_route">Route teilen</string>
     <string name="share_menu_route_desc">Als QR-Code oder Link. Kein Konto nötig.</string>
-    <string name="share_menu_route_none">Zuerst mindestens zwei Stopps hinzufügen.</string>
+    <string name="share_menu_route_none">Zuerst einen Stopp hinzufügen.</string>
     <string name="scan_code_unknown">Kein Gruppenfahrt- oder Routencode.</string>
     <string name="route_qr_hint">Mit EUC Planet oder der Handykamera scannen.</string>
     <string name="route_qr_too_long">Die Route ist zu lang für einen QR-Code. Speichere sie stattdessen als GPX.</string>

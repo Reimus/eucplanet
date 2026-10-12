@@ -2803,7 +2803,7 @@
     <string name="share_menu_scan_desc">Join a group ride or open a route.</string>
     <string name="share_menu_route">Share route</string>
     <string name="share_menu_route_desc">As a QR code or a link. No account needed.</string>
-    <string name="share_menu_route_none">Add at least two stops first.</string>
+    <string name="share_menu_route_none">Add a stop first.</string>
     <string name="scan_code_unknown">Not a group ride or route code.</string>
     <string name="route_qr_hint">Scan with EUC Planet or the phone camera.</string>
     <string name="route_qr_too_long">This route is too long for a QR code. Save it as GPX instead.</string>

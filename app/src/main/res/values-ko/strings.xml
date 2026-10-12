@@ -2774,7 +2774,7 @@
     <string name="share_menu_scan_desc">그룹 라이딩에 참가하거나 경로를 엽니다.</string>
     <string name="share_menu_route">경로 공유</string>
     <string name="share_menu_route_desc">QR 코드나 링크로. 계정 불필요.</string>
-    <string name="share_menu_route_none">먼저 경유지를 2개 이상 추가하세요.</string>
+    <string name="share_menu_route_none">먼저 경유지를 추가하세요.</string>
     <string name="scan_code_unknown">그룹 라이딩이나 경로 코드가 아닙니다.</string>
     <string name="route_qr_hint">EUC Planet이나 휴대폰 카메라로 스캔하세요.</string>
     <string name="route_qr_too_long">QR 코드로 만들기에는 경로가 너무 깁니다. GPX로 저장하세요.</string>

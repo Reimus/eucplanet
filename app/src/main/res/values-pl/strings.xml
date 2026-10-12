@@ -2775,7 +2775,7 @@
     <string name="share_menu_scan_desc">Dołącz do jazdy grupowej lub otwórz trasę.</string>
     <string name="share_menu_route">Udostępnij trasę</string>
     <string name="share_menu_route_desc">Jako kod QR lub link. Bez konta.</string>
-    <string name="share_menu_route_none">Najpierw dodaj co najmniej dwa przystanki.</string>
+    <string name="share_menu_route_none">Najpierw dodaj przystanek.</string>
     <string name="scan_code_unknown">To nie jest kod jazdy grupowej ani trasy.</string>
     <string name="route_qr_hint">Zeskanuj w EUC Planet lub aparatem telefonu.</string>
     <string name="route_qr_too_long">Ta trasa jest za długa na kod QR. Zapisz ją jako GPX.</string>
