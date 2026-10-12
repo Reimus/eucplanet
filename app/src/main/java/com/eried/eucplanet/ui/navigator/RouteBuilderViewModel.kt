@@ -29,6 +29,7 @@ import com.eried.eucplanet.nav.PoiService
 import com.eried.eucplanet.nav.PointOfInterest
 import com.eried.eucplanet.nav.RouteAvoidances
 import com.eried.eucplanet.nav.RouteFileName
+import com.eried.eucplanet.nav.RouteLegs
 import com.eried.eucplanet.nav.RoutingService
 import com.eried.eucplanet.share.Identity
 import com.eried.eucplanet.share.IdentityMode
@@ -357,6 +358,34 @@ class RouteBuilderViewModel @Inject constructor(
             .map { it.advanced }
             .stateIn(viewModelScope, SharingStarted.Eagerly,
                 com.eried.eucplanet.data.model.AdvancedSettings())
+
+    /** One stop's leg in the builder list: from the stop before, and from the first. */
+    data class StopLeg(val legM: Double, val soFarM: Double)
+
+    /**
+     * Each stop's leg, by its index in the list, for a tour longer than the
+     * Advanced max start distance; on a shorter one the list stays as names
+     * only. Passed stops and the first stop to go have none. Measured along
+     * the drawn path in Full path, in straight lines otherwise (the solved
+     * path then covers only the first leg).
+     */
+    val stopLegs: StateFlow<Map<Int, StopLeg>> =
+        combine(_route, _waypoints, _solveFullPath, tourDistanceM, advanced) { route, wps, full, tour, adv ->
+            if (tour == null || tour <= adv.navMaxStartDistanceKm * 1000.0) return@combine emptyMap()
+            val ahead = wps.withIndex().filter { !it.value.passed }
+            val path = if (full && route != null) route.geometry else emptyList()
+            // The router's own distance runs a little longer than the drawn
+            // line measures, so the legs are scaled to add up to the header.
+            val drawn = GeoMath.polylineLengthM(path)
+            val scale = if (path.size >= 2 && drawn > 0 && route != null && route.totalDistanceM > 0)
+                route.totalDistanceM / drawn else 1.0
+            val legs = RouteLegs.metres(ahead.map { it.value.point() }, path).map { it * scale }
+            var soFar = 0.0
+            legs.withIndex().associate { (i, m) ->
+                soFar += m
+                ahead[i + 1].index to StopLeg(m, soFar)
+            }
+        }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
 
     private var routeJob: Job? = null
     private var searchJob: Job? = null

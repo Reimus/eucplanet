@@ -199,6 +199,7 @@ fun RouteBuilderScreen(
     val travelMode by viewModel.travelMode.collectAsState()
     val solveFullPath by viewModel.solveFullPath.collectAsState()
     val tourDistanceM by viewModel.tourDistanceM.collectAsState()
+    val stopLegs by viewModel.stopLegs.collectAsState()
     val searchResults by viewModel.searchResults.collectAsState()
     val searching by viewModel.searching.collectAsState()
     val routing by viewModel.routing.collectAsState()
@@ -1507,6 +1508,7 @@ fun RouteBuilderScreen(
                     home = homePlace,
                     work = workPlace,
                     routeDistanceM = tourDistanceM,
+                    stopLegs = stopLegs,
                     routing = routing,
                     imperial = imperial,
                     onRemove = viewModel::removeWaypoint,
@@ -2235,6 +2237,8 @@ private fun BottomPanel(
     home: com.eried.eucplanet.data.model.Waypoint?,
     work: com.eried.eucplanet.data.model.Waypoint?,
     routeDistanceM: Double?,
+    /** Each stop's leg by list index; only filled on a long tour. */
+    stopLegs: Map<Int, RouteBuilderViewModel.StopLeg>,
     routing: Boolean,
     imperial: Boolean,
     onRemove: (Int) -> Unit,
@@ -2715,6 +2719,25 @@ private fun BottomPanel(
                                                 overflow = TextOverflow.Ellipsis,
                                                 modifier = Modifier.weight(1f)
                                             )
+                                            // On a long tour: how far from the stop
+                                            // before, and how far into the tour.
+                                            stopLegs[index]?.let { leg ->
+                                                Spacer(Modifier.width(8.dp))
+                                                Column(horizontalAlignment = Alignment.End) {
+                                                    Text(
+                                                        NavFormat.distance(context, leg.legM, imperial),
+                                                        style = MaterialTheme.typography.bodySmall,
+                                                        color = MaterialTheme.appColors.textPrimary,
+                                                        maxLines = 1
+                                                    )
+                                                    Text(
+                                                        NavFormat.distance(context, leg.soFarM, imperial),
+                                                        style = MaterialTheme.typography.labelSmall,
+                                                        color = MaterialTheme.appColors.textSecondary,
+                                                        maxLines = 1
+                                                    )
+                                                }
+                                            }
                                         }
                                         // Quick-access remove. Locked while nav is running;
                                         // locked when the whole route is allPassed (rider

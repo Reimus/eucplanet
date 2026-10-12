@@ -32,6 +32,14 @@ class RouteLegsTest {
         assertEquals(legs[0], legs[1], 5.0)
     }
 
+    @Test fun `a path that starts at the rider does not count the ride to the first stop`() {
+        val rider = GeoPoint(59.99, 10.0)
+        val path = line(rider, a, b, c)
+        val legs = RouteLegs.metres(listOf(a, b, c), path)
+        assertEquals(GeoMath.distanceM(a, b), legs[0], 5.0)
+        assertEquals(GeoMath.distanceM(b, c), legs[1], 5.0)
+    }
+
     @Test fun `without a path the legs are straight lines`() {
         val legs = RouteLegs.metres(listOf(a, b, c), emptyList())
         assertEquals(listOf(GeoMath.distanceM(a, b), GeoMath.distanceM(b, c)), legs)
