@@ -40,9 +40,23 @@
   }
   h1 { font-size: 17px; font-weight: 700; }
   .sub { color: var(--mut); font-size: 12.5px; margin-top: 2px; }
-  ol { margin: 10px 0 2px 20px; color: var(--ink); font-size: 13px; }
-  ol li { padding: 1px 0; }
-  ol li::marker { color: var(--acc); font-weight: 700; }
+  .sum { font-size: 15px; font-weight: 600; margin-top: 2px; }
+  /* The stops as a line, as the app's route window draws them: filled dots at
+     the ends, hollow between, each with the leg that reaches it. */
+  #stops { list-style: none; margin: 10px 0 2px; font-size: 13.5px; }
+  #stops li { position: relative; display: flex; gap: 8px; padding: 0 0 7px 26px; }
+  #stops li::before {
+    content: ""; position: absolute; left: 4px; top: 4px; width: 12px; height: 12px;
+    border-radius: 50%; border: 2px solid var(--acc); background: var(--glass); box-sizing: border-box;
+  }
+  #stops li:first-child::before, #stops li:last-child::before { background: var(--acc); }
+  #stops li::after {
+    content: ""; position: absolute; left: 9px; top: 16px; bottom: -4px; width: 2px;
+    background: var(--acc); opacity: .5;
+  }
+  #stops li:last-child::after { display: none; }
+  #stops .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #stops .leg { color: var(--mut); white-space: nowrap; font-variant-numeric: tabular-nums; }
   .row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
   .btn {
     flex: 1 1 auto; text-align: center; text-decoration: none; cursor: pointer;
@@ -63,8 +77,9 @@
 <div id="map"></div>
 <div id="card">
   <h1 id="title">EUC Planet route</h1>
+  <div class="sum hide" id="sum"></div>
+  <ul id="stops"></ul>
   <div class="sub" id="sub">Reading the route...</div>
-  <ol id="stops"></ol>
   <div class="row">
     <a id="openApp" class="btn primary hide" rel="noopener">Open in EUC Planet</a>
     <a id="getApp" class="btn hide" rel="noopener" href="https://play.google.com/store/apps/details?id=com.eried.eucplanet">Get EUC Planet</a>
@@ -112,7 +127,7 @@ async function parseRoute(hash) {
   });
   var track = json.t ? polyline(json.t) : [];
   if (stops.length < 2 && track.length < 2) return null;
-  return { name: json.n || "", stops: stops, track: track };
+  return { name: json.n || "", mode: json.m || "c", stops: stops, track: track };
 }
 function haversine(a, b) {
   var R = 6371000, toRad = Math.PI / 180;
@@ -148,24 +163,66 @@ function fileName(route) {
   var base = (route.name || "route").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
   return (base || "route") + ".gpx";
 }
+// The same key-less router the app uses by default, with the engine for the
+// route's mode, so the legs match what the rider saw. A straight-line route,
+// or no answer, keeps the straight lines.
+async function roads(route) {
+  var engine = { c: "routed-bike", w: "routed-foot", d: "routed-car" }[route.mode];
+  if (!engine || route.stops.length > 100) return null;
+  var coords = route.stops.map(function (s) { return s.lng.toFixed(5) + "," + s.lat.toFixed(5); }).join(";");
+  try {
+    var ctl = new AbortController();
+    setTimeout(function () { ctl.abort(); }, 15000);
+    var res = await fetch("https://routing.openstreetmap.de/" + engine + "/route/v1/driving/" + coords +
+      "?overview=full&geometries=geojson", { signal: ctl.signal });
+    var j = await res.json();
+    var r = j.routes && j.routes[0];
+    if (j.code !== "Ok" || !r || r.legs.length !== route.stops.length - 1) return null;
+    return { legs: r.legs.map(function (l) { return l.distance; }), coords: r.geometry.coordinates };
+  } catch (e) { return null; }
+}
 function show(route) {
   var stops = route.stops;
   document.getElementById("title").textContent = route.name || "EUC Planet route";
-  var line = route.track.length >= 2 ? route.track : stops.map(function (s) { return [s.lat, s.lng]; });
-  var meters = 0;
-  for (var i = 1; i < line.length; i++) meters += haversine(line[i - 1], line[i]);
+  var straight = stops.map(function (s) { return [s.lat, s.lng]; });
   // No rider setting here: miles where the browser says US or UK, else km.
   var miles = /^en-(US|GB)$/i.test(navigator.language || "");
-  var dist = miles ? (meters / 1609.344).toFixed(1) + " mi" : (meters / 1000).toFixed(1) + " km";
-  document.getElementById("sub").textContent = stops.length >= 2
-    ? stops.length + " stops, about " + dist + " in a straight line. EUC Planet finds the roads between them."
-    : "A " + dist + " track. Open it in EUC Planet to follow it.";
-  var ol = document.getElementById("stops");
-  stops.forEach(function (s, i) {
-    var li = document.createElement("li");
-    li.textContent = s.name || (s.lat.toFixed(5) + ", " + s.lng.toFixed(5));
-    ol.appendChild(li);
-  });
+  function dist(m) { return miles ? (m / 1609.344).toFixed(1) + " mi" : (m / 1000).toFixed(1) + " km"; }
+  function length(line) {
+    var m = 0;
+    for (var i = 1; i < line.length; i++) m += haversine(line[i - 1], line[i]);
+    return m;
+  }
+  // The card: how many stops and how far, then each stop with its leg.
+  function fill(legs, roads) {
+    var total = legs.reduce(function (a, b) { return a + b; }, 0);
+    var sum = document.getElementById("sum");
+    sum.textContent = stops.length + " stops · " + dist(total);
+    sum.classList.remove("hide");
+    var ul = document.getElementById("stops");
+    ul.textContent = "";
+    stops.forEach(function (s, i) {
+      var li = document.createElement("li");
+      var n = document.createElement("span");
+      n.className = "name";
+      n.textContent = s.name || (s.lat.toFixed(5) + ", " + s.lng.toFixed(5));
+      li.appendChild(n);
+      if (i > 0) {
+        var l = document.createElement("span");
+        l.className = "leg"; l.textContent = dist(legs[i - 1]);
+        li.appendChild(l);
+      }
+      ul.appendChild(li);
+    });
+    document.getElementById("sub").textContent = roads
+      ? "Measured along the roads. EUC Planet guides you turn by turn."
+      : "Measured in a straight line. EUC Planet finds the roads between them.";
+  }
+  if (stops.length >= 2) {
+    fill(straight.slice(1).map(function (p, i) { return haversine(straight[i], p); }), false);
+  } else {
+    document.getElementById("sub").textContent = "A " + dist(length(route.track)) + " track. Open it in EUC Planet to follow it.";
+  }
 
   var android = /Android/i.test(navigator.userAgent);
   if (android) {
@@ -199,14 +256,22 @@ function show(route) {
     center: [stops.length ? stops[0].lng : route.track[0][1], stops.length ? stops[0].lat : route.track[0][0]],
     zoom: 12
   });
+  var line = route.track.length >= 2 ? route.track : straight;
   map.on("load", function () {
-    // The page has no router: stops are joined straight and dashed, a track drawn solid.
-    var line = route.track.length >= 2 ? route.track : stops.map(function (s) { return [s.lat, s.lng]; });
+    // A track is drawn solid. Stops start joined straight and dashed, then
+    // follow the roads once the router answers.
     map.addSource("route", { type: "geojson", data: { type: "Feature",
       geometry: { type: "LineString", coordinates: line.map(function (p) { return [p[1], p[0]]; }) } } });
     map.addLayer({ id: "route", type: "line", source: "route",
       paint: { "line-color": "#2ea8ff", "line-width": 4, "line-opacity": .9,
         "line-dasharray": route.track.length >= 2 ? [1, 0] : [2, 1.5] } });
+    if (route.track.length < 2 && stops.length >= 2) roads(route).then(function (r) {
+      if (!r) return;
+      fill(r.legs, true);
+      map.getSource("route").setData({ type: "Feature",
+        geometry: { type: "LineString", coordinates: r.coords } });
+      map.setPaintProperty("route", "line-dasharray", [1, 0]);
+    });
     stops.forEach(function (s, i) {
       var el = document.createElement("div");
       el.className = "pin"; el.textContent = String(i + 1); el.title = s.name || "";
