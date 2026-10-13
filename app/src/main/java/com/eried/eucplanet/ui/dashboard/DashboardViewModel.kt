@@ -1149,10 +1149,16 @@ class DashboardViewModel @Inject constructor(
     /** Asking out loud what can be said puts the list on screen. */
     val showVocabulary = voiceCommands.showVocabulary
 
+    /**
+     * The snackbar saying it is listening shows unless the voice command
+     * tile is on screen, lit (see [showingListeningCue]).
+     */
     fun onVoiceListen() {
-        // The tile lights up, so it does not also need a snackbar saying so.
-        voiceCommands.listen(notify = false)
+        voiceCommands.listen()
     }
+
+    /** The voice command tile is on screen and lights up while listening. */
+    fun showingListeningCue(): () -> Unit = voiceCommands.showingListeningCue()
 
     /**
      * Swap which of the two voice tiles owns this dashboard slot.

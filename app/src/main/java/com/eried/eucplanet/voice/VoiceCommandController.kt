@@ -164,6 +164,19 @@ class VoiceCommandController @Inject constructor(
     /** The last finished ride, read before a match so `read` need not suspend. */
     private var lastTripSnapshot: com.eried.eucplanet.data.model.TripRecord? = null
 
+    /**
+     * How many screens are showing a listening cue of their own (the lit
+     * voice command tile). While any is, the snackbar would be a second cue
+     * for the same thing, so it is left out whatever started the listening.
+     */
+    private val ownCues = java.util.concurrent.atomic.AtomicInteger(0)
+
+    /** A screen showing its own listening cue calls this; call the result when it goes. */
+    fun showingListeningCue(): () -> Unit {
+        ownCues.incrementAndGet()
+        return { ownCues.decrementAndGet() }
+    }
+
     /** True when the rider has granted the microphone. */
     fun hasMicPermission(): Boolean =
         ContextCompat.checkSelfPermission(context, android.Manifest.permission.RECORD_AUDIO) ==
@@ -178,8 +191,8 @@ class VoiceCommandController @Inject constructor(
      *   because most surfaces that start this - a Flic, a volume key, the
      *   watch, the HUD - show the rider nothing at all, and a microphone that
      *   opened silently is indistinguishable from a button that did nothing.
-     *   The dashboard tile passes false: it lights up, and two cues for one
-     *   press is noise.
+     *   Left out anyway while a screen shows its own cue (see
+     *   [showingListeningCue]): two cues for one press is noise.
      */
     fun listen(listener: VoiceListener? = null, notify: Boolean = true) {
         // Pressing again means "forget that, listen to this". It used to mean
@@ -239,7 +252,7 @@ class VoiceCommandController @Inject constructor(
             // Whatever the app was saying, it stops now. Otherwise the
             // recogniser spends the window listening to our own voice.
             voiceService.stopSpeaking()
-            if (notify) appNotifier.post(context.getString(R.string.voice_listening))
+            if (notify && ownCues.get() == 0) appNotifier.post(context.getString(R.string.voice_listening))
 
             // Open the microphone before cueing the rider. The cue used to
             // come first, so a rider who answered it promptly spoke into a

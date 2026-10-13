@@ -2430,7 +2430,15 @@ fun DashboardScreen(
                             // and one icon. Whichever owns the slot, both are
                             // one hold away, so the switch only decides what a
                             // tap does and what the eyes-free surfaces bind.
-                            "VOICE_LISTEN" -> ActionTile(
+                            "VOICE_LISTEN" -> {
+                                // While this tile is in front of the rider it
+                                // lights up when listening, from any button,
+                                // so the "Listening" snackbar stays out.
+                                androidx.lifecycle.compose.LifecycleResumeEffect(Unit) {
+                                    val done = viewModel.showingListeningCue()
+                                    onPauseOrDispose { done() }
+                                }
+                                ActionTile(
                                 modifier = Modifier.weight(1f),
                                 icon = Icons.Default.Mic,
                                 label = stringResource(R.string.action_chip_voice_listen),
@@ -2490,6 +2498,7 @@ fun DashboardScreen(
                                     )
                                 }
                             )
+                            }
                             "VOICE_ANNOUNCE" -> ActionTile(
                                 modifier = Modifier.weight(1f),
                                 icon = Icons.Default.RecordVoiceOver,
