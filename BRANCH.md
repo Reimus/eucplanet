@@ -42,6 +42,7 @@ only when you can cut the ride short.
 - Fresh rides no longer show "not backed up to Dropbox" when they are.
 - Settings search finds buttons and every row, like "Crew", "Scan" or "Pair", and lands on the match.
 - Voice: the "Listening" message shows only when nothing on screen lights up, not twice.
+- Charging: a third alert, Notify me at 60% (your level, 5 to 99), for a wheel going into storage.
 
 ## Please test
 
@@ -85,6 +86,7 @@ only when you can cut the ride short.
 **Any wheel**
 - Settings search: "scan" lands on a Start scan button, "crew" on Crew pass (or says why it is not there)?
 - Voice report tile, hold, Ask: says Listening? Voice command tile on screen: no message, only the tile lights?
+- Charging monitor menu, Notify me at: set a level above your charge, plug in. One notification when it gets there?
 - With a backup folder set, the app opens and stays open on every launch.
 - Stats length 30 sec or 1 min: tile stats and the detail screen cover only that much?
 - Headset button set to Announce: one press reads the voice report?
