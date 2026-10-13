@@ -2674,12 +2674,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Meddela vid 80 %</string>
     <string name="charging_notify_full" formatted="false">Meddela vid 100 %</string>
+    <string name="charging_notify_at">Meddela vid</string>
+    <string name="charging_notify_custom">Meddela vid %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 till 60 % passar ett hjul som ska stå i veckor.</string>
     <string name="charge_alert_channel_name">Laddningsaviseringar</string>
-    <string name="charge_alert_channel_description" formatted="false">När batteriet passerar 80 % eller är färdigladdat.</string>
+    <string name="charge_alert_channel_description" formatted="false">När batteriet når en nivå du valt eller är färdigladdat.</string>
     <string name="charge_alert_80_title" formatted="false">Batteri på 80 %</string>
     <string name="charge_alert_80_text">Räcker till de flesta turer, och är oftast skönsammare mot batteriet.</string>
     <string name="charge_alert_full_title">Laddningen klar</string>
     <string name="charge_alert_full_text">Fulladdat, koppla ur när du kan. Vissa hjul balanserar cellerna nu.</string>
+    <string name="charge_alert_custom_title">Batteri på %1$d %%</string>
+    <string name="charge_alert_custom_text">Nivån du valde är nådd. Koppla ur när du kan.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Hjulöversikt</string>
     <string name="widget_act_1_label">Hjulknapp 1</string>

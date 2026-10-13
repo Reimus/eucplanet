@@ -2562,12 +2562,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Varsle ved 80 %</string>
     <string name="charging_notify_full" formatted="false">Varsle ved 100 %</string>
+    <string name="charging_notify_at">Varsle ved</string>
+    <string name="charging_notify_custom">Varsle ved %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 til 60 % passer for et hjul som skal stå i uker.</string>
     <string name="charge_alert_channel_name">Ladevarsler</string>
-    <string name="charge_alert_channel_description" formatted="false">Når batteriet passerer 80 % eller er ferdig ladet.</string>
+    <string name="charge_alert_channel_description" formatted="false">Når batteriet når et nivå du har valgt, eller er ferdig ladet.</string>
     <string name="charge_alert_80_title" formatted="false">Batteri på 80 %</string>
     <string name="charge_alert_80_text">Nok til de fleste turer, og som regel skånsommere for batteriet.</string>
     <string name="charge_alert_full_title">Ladingen er ferdig</string>
     <string name="charge_alert_full_text">Fulladet, koble fra når du kan. Noen hjul balanserer cellene nå.</string>
+    <string name="charge_alert_custom_title">Batteri på %1$d %%</string>
+    <string name="charge_alert_custom_text">Nådd nivået du valgte. Koble fra når du kan.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Hjul-dashbord</string>
     <string name="widget_act_1_label">Hjulknapp 1</string>

@@ -174,6 +174,16 @@ fun ChargingMonitorScreen(
                 },
                 actions = {
                     var menuOpen by remember { mutableStateOf(false) }
+                    var levelDialog by remember { mutableStateOf(false) }
+                    if (levelDialog) {
+                        ChargeLevelDialog(
+                            initial = state.notifyCustomPct,
+                            on = state.notifyCustom,
+                            onSave = { viewModel.setNotifyCustomPct(it); levelDialog = false },
+                            onOff = { viewModel.setNotifyCustom(false); levelDialog = false },
+                            onDismiss = { levelDialog = false },
+                        )
+                    }
                     IconButton(onClick = { menuOpen = true }) {
                         Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.charging_options))
                     }
@@ -209,6 +219,19 @@ fun ChargingMonitorScreen(
                             },
                             trailingIcon = {
                                 if (state.notifyFull) Icon(Icons.Filled.Check, contentDescription = null)
+                            },
+                        )
+                        // The rider's own level, 60 for a wheel that will sit a
+                        // while. Reads like the two above; the number is set in a
+                        // small dialog, which also turns it on or off.
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.charging_notify_custom, state.notifyCustomPct)) },
+                            onClick = {
+                                menuOpen = false
+                                levelDialog = true
+                            },
+                            trailingIcon = {
+                                if (state.notifyCustom) Icon(Icons.Filled.Check, contentDescription = null)
                             },
                         )
                         HorizontalDivider()

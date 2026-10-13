@@ -2671,12 +2671,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">%80’de bildir</string>
     <string name="charging_notify_full" formatted="false">%100’de bildir</string>
+    <string name="charging_notify_at">Bildirim seviyesi</string>
+    <string name="charging_notify_custom">Bildir: %%%1$d</string>
+    <string name="charging_notify_custom_hint" formatted="false">Haftalarca duracak bir teker için %40 ile %60 arası uygundur.</string>
     <string name="charge_alert_channel_name">Şarj uyarıları</string>
-    <string name="charge_alert_channel_description" formatted="false">Batarya %80’i geçtiğinde veya şarj bittiğinde.</string>
+    <string name="charge_alert_channel_description" formatted="false">Batarya seçtiğin seviyeye ulaştığında veya şarj bittiğinde.</string>
     <string name="charge_alert_80_title" formatted="false">Batarya %80</string>
     <string name="charge_alert_80_text">Çoğu sürüş için yeterli ve genelde bataryaya daha iyi gelir.</string>
     <string name="charge_alert_full_title">Şarj tamamlandı</string>
     <string name="charge_alert_full_text">Tam dolu, müsait olduğunda çıkar. Bazı tekerlekler şimdi hücreleri dengeliyor.</string>
+    <string name="charge_alert_custom_title">Batarya %%%1$d</string>
+    <string name="charge_alert_custom_text">Seçtiğin seviyeye ulaşıldı. Fırsat bulunca şarjdan çıkar.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Teker paneli</string>
     <string name="widget_act_1_label">Teker düğmesi 1</string>

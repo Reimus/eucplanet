@@ -2674,12 +2674,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Powiadom przy 80 %</string>
     <string name="charging_notify_full" formatted="false">Powiadom przy 100 %</string>
+    <string name="charging_notify_at">Powiadom przy</string>
+    <string name="charging_notify_custom">Powiadom przy %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 do 60 % pasuje do koła, które postoi tygodniami.</string>
     <string name="charge_alert_channel_name">Alerty ładowania</string>
-    <string name="charge_alert_channel_description" formatted="false">Gdy akumulator przekroczy 80 % albo skończy się ładować.</string>
+    <string name="charge_alert_channel_description" formatted="false">Gdy akumulator osiągnie wybrany poziom albo skończy się ładować.</string>
     <string name="charge_alert_80_title" formatted="false">Akumulator na 80 %</string>
     <string name="charge_alert_80_text">Wystarczy na większość tras i zwykle lepiej służy baterii.</string>
     <string name="charge_alert_full_title">Ładowanie zakończone</string>
     <string name="charge_alert_full_text">Naładowane, odłącz, gdy będziesz mógł. Niektóre koła teraz balansują ogniwa.</string>
+    <string name="charge_alert_custom_title">Akumulator na %1$d %%</string>
+    <string name="charge_alert_custom_text">Osiągnięto ustawiony poziom. Odłącz, kiedy możesz.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Pulpit koła</string>
     <string name="widget_act_1_label">Przycisk koła 1</string>

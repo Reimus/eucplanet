@@ -2477,12 +2477,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Ilmoita 80 %:ssa</string>
     <string name="charging_notify_full" formatted="false">Ilmoita 100 %:ssa</string>
+    <string name="charging_notify_at">Ilmoitusraja</string>
+    <string name="charging_notify_custom">Ilmoita %1$d %%:ssa</string>
+    <string name="charging_notify_custom_hint" formatted="false">40–60 % sopii pyörälle, joka seisoo viikkoja.</string>
     <string name="charge_alert_channel_name">Latausilmoitukset</string>
-    <string name="charge_alert_channel_description" formatted="false">Kun akku ohittaa 80 % tai lataus valmistuu.</string>
+    <string name="charge_alert_channel_description" formatted="false">Kun akku saavuttaa valitsemasi tason tai lataus valmistuu.</string>
     <string name="charge_alert_80_title" formatted="false">Akku 80 %:ssa</string>
     <string name="charge_alert_80_text">Riittää useimpiin matkoihin, ja on yleensä akulle parempi.</string>
     <string name="charge_alert_full_title">Lataus valmis</string>
     <string name="charge_alert_full_text">Täyteen ladattu, irrota kun voit. Osa pyöristä tasaa kennoja juuri nyt.</string>
+    <string name="charge_alert_custom_title">Akku %1$d %%:ssa</string>
+    <string name="charge_alert_custom_text">Asettamasi taso saavutettu. Irrota laturi, kun ehdit.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Pyörän kojelauta</string>
     <string name="widget_act_1_label">Pyörän painike 1</string>

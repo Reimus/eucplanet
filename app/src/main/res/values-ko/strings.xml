@@ -2673,12 +2673,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">80 %에서 알림</string>
     <string name="charging_notify_full" formatted="false">100 %에서 알림</string>
+    <string name="charging_notify_at">알림 수준</string>
+    <string name="charging_notify_custom">%1$d %%에서 알림</string>
+    <string name="charging_notify_custom_hint" formatted="false">몇 주 동안 세워 둘 휠에는 40~60 %가 알맞습니다.</string>
     <string name="charge_alert_channel_name">충전 알림</string>
-    <string name="charge_alert_channel_description" formatted="false">배터리가 80 %를 넘거나 충전이 끝났을 때.</string>
+    <string name="charge_alert_channel_description" formatted="false">배터리가 선택한 수준에 도달하거나 충전이 끝났을 때.</string>
     <string name="charge_alert_80_title" formatted="false">배터리 80 %</string>
     <string name="charge_alert_80_text">대부분의 주행에 충분하고, 보통 배터리에도 더 좋습니다.</string>
     <string name="charge_alert_full_title">충전 완료</string>
     <string name="charge_alert_full_text">완전 충전되었습니다. 가능할 때 뽑으세요. 일부 휠은 지금 셀 밸런싱을 합니다.</string>
+    <string name="charge_alert_custom_title">배터리 %1$d %%</string>
+    <string name="charge_alert_custom_text">설정한 수준에 도달했습니다. 가능할 때 충전기를 분리하세요.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">휠 대시보드</string>
     <string name="widget_act_1_label">휠 버튼 1</string>

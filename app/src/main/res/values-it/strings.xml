@@ -2579,12 +2579,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Avvisami all’80 %</string>
     <string name="charging_notify_full" formatted="false">Avvisami al 100 %</string>
+    <string name="charging_notify_at">Avvisami al</string>
+    <string name="charging_notify_custom">Avvisami al %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">Dal 40 al 60 % va bene per una ruota che resterà ferma per settimane.</string>
     <string name="charge_alert_channel_name">Avvisi di carica</string>
-    <string name="charge_alert_channel_description" formatted="false">Quando la batteria supera l’80 % o finisce di caricare.</string>
+    <string name="charge_alert_channel_description" formatted="false">Quando la batteria raggiunge un livello scelto o finisce di caricare.</string>
     <string name="charge_alert_80_title" formatted="false">Batteria all’80 %</string>
     <string name="charge_alert_80_text">Basta per la maggior parte dei viaggi, e di solito è meglio per la batteria.</string>
     <string name="charge_alert_full_title">Carica completata</string>
     <string name="charge_alert_full_text">Carica completa, stacca quando puoi. Alcune ruote ora bilanciano le celle.</string>
+    <string name="charge_alert_custom_title">Batteria al %1$d %%</string>
+    <string name="charge_alert_custom_text">Raggiunto il livello scelto. Stacca quando puoi.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Cruscotto ruota</string>
     <string name="widget_act_1_label">Tasto ruota 1</string>

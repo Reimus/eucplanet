@@ -2689,12 +2689,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Giv besked ved 80 %</string>
     <string name="charging_notify_full" formatted="false">Giv besked ved 100 %</string>
+    <string name="charging_notify_at">Giv besked ved</string>
+    <string name="charging_notify_custom">Giv besked ved %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 til 60 % passer til et hjul, der skal stå i uger.</string>
     <string name="charge_alert_channel_name">Opladningsbeskeder</string>
-    <string name="charge_alert_channel_description" formatted="false">Når batteriet passerer 80 % eller er færdigt.</string>
+    <string name="charge_alert_channel_description" formatted="false">Når batteriet når et niveau, du har valgt, eller er færdigt.</string>
     <string name="charge_alert_80_title" formatted="false">Batteri på 80 %</string>
     <string name="charge_alert_80_text">Nok til de fleste ture, og som regel mere skånsomt for batteriet.</string>
     <string name="charge_alert_full_title">Opladning færdig</string>
     <string name="charge_alert_full_text">Fuldt opladt, tag den ud når du kan. Nogle hjul balancerer cellerne nu.</string>
+    <string name="charge_alert_custom_title">Batteri på %1$d %%</string>
+    <string name="charge_alert_custom_text">Nået det niveau, du valgte. Tag stikket ud, når du kan.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Hjul-dashboard</string>
     <string name="widget_act_1_label">Hjulknap 1</string>

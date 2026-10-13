@@ -2477,12 +2477,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Szólj 80 %-nál</string>
     <string name="charging_notify_full" formatted="false">Szólj 100 %-nál</string>
+    <string name="charging_notify_at">Értesítési szint</string>
+    <string name="charging_notify_custom">Szólj %1$d %%-nál</string>
+    <string name="charging_notify_custom_hint" formatted="false">40–60 % való egy hetekig álló kerékhez.</string>
     <string name="charge_alert_channel_name">Töltési értesítések</string>
-    <string name="charge_alert_channel_description" formatted="false">Amikor az akku túllépi a 80 %-ot, vagy befejezte a töltést.</string>
+    <string name="charge_alert_channel_description" formatted="false">Amikor az akku eléri a választott szintet, vagy befejezte a töltést.</string>
     <string name="charge_alert_80_title" formatted="false">Akku 80 %-on</string>
     <string name="charge_alert_80_text">A legtöbb menethez elég, és általában kíméletesebb az akkunak.</string>
     <string name="charge_alert_full_title">Töltés kész</string>
     <string name="charge_alert_full_text">Teljesen feltöltődött, húzd ki, amikor tudod. Néhány kerék most kiegyenlíti a cellákat.</string>
+    <string name="charge_alert_custom_title">Akku %1$d %%-on</string>
+    <string name="charge_alert_custom_text">Elérte a beállított szintet. Húzd ki, amikor tudod.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Kerék műszerfal</string>
     <string name="widget_act_1_label">Kerék gomb 1</string>

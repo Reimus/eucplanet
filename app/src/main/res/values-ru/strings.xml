@@ -2674,12 +2674,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Сообщить на 80 %</string>
     <string name="charging_notify_full" formatted="false">Сообщить на 100 %</string>
+    <string name="charging_notify_at">Сообщить на</string>
+    <string name="charging_notify_custom">Сообщить на %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40–60 % подходит, если колесо будет стоять неделями.</string>
     <string name="charge_alert_channel_name">Оповещения о зарядке</string>
-    <string name="charge_alert_channel_description" formatted="false">Когда батарея проходит 80 % или заряд завершён.</string>
+    <string name="charge_alert_channel_description" formatted="false">Когда батарея достигает выбранного уровня или заряд завершён.</string>
     <string name="charge_alert_80_title" formatted="false">Батарея на 80 %</string>
     <string name="charge_alert_80_text">Хватит на большинство поездок, и обычно это бережнее для батареи.</string>
     <string name="charge_alert_full_title">Зарядка завершена</string>
     <string name="charge_alert_full_text">Заряд полный, отключите, когда сможете. Некоторые колёса сейчас балансируют ячейки.</string>
+    <string name="charge_alert_custom_title">Батарея на %1$d %%</string>
+    <string name="charge_alert_custom_text">Достигнут выбранный уровень. Отключите зарядку, когда сможете.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Панель колеса</string>
     <string name="widget_act_1_label">Кнопка колеса 1</string>

@@ -2692,12 +2692,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Avisarme al 80 %</string>
     <string name="charging_notify_full" formatted="false">Avisarme al 100 %</string>
+    <string name="charging_notify_at">Avisarme al</string>
+    <string name="charging_notify_custom">Avisarme al %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">Del 40 al 60 % va bien si la rueda va a estar semanas guardada.</string>
     <string name="charge_alert_channel_name">Avisos de carga</string>
-    <string name="charge_alert_channel_description" formatted="false">Cuando la batería pasa del 80 % o termina de cargar.</string>
+    <string name="charge_alert_channel_description" formatted="false">Cuando la batería llega a un nivel que elegiste o termina de cargar.</string>
     <string name="charge_alert_80_title" formatted="false">Batería al 80 %</string>
     <string name="charge_alert_80_text">Suficiente para la mayoría de los viajes, y suele cuidar más la batería.</string>
     <string name="charge_alert_full_title">Carga completa</string>
     <string name="charge_alert_full_text">Carga completa, desenchúfalo cuando puedas. Algunas ruedas balancean las celdas ahora.</string>
+    <string name="charge_alert_custom_title">Batería al %1$d %%</string>
+    <string name="charge_alert_custom_text">Llegó al nivel que elegiste. Desconecta cuando puedas.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Panel de la rueda</string>
     <string name="widget_act_1_label">Botón de rueda 1</string>

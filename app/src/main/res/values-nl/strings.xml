@@ -2676,12 +2676,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Waarschuw me bij 80 %</string>
     <string name="charging_notify_full" formatted="false">Waarschuw me bij 100 %</string>
+    <string name="charging_notify_at">Waarschuw me bij</string>
+    <string name="charging_notify_custom">Waarschuw me bij %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 tot 60 % past bij een wiel dat weken blijft staan.</string>
     <string name="charge_alert_channel_name">Laadmeldingen</string>
-    <string name="charge_alert_channel_description" formatted="false">Wanneer het pakket boven 80 % komt of klaar is met laden.</string>
+    <string name="charge_alert_channel_description" formatted="false">Wanneer het pakket een gekozen niveau bereikt of klaar is met laden.</string>
     <string name="charge_alert_80_title" formatted="false">Accu op 80 %</string>
     <string name="charge_alert_80_text">Genoeg voor de meeste ritten, en meestal beter voor de accu.</string>
     <string name="charge_alert_full_title">Opladen klaar</string>
     <string name="charge_alert_full_text">Volledig geladen, haal hem eraf wanneer het kan. Sommige wheels balanceren nu de cellen.</string>
+    <string name="charge_alert_custom_title">Accu op %1$d %%</string>
+    <string name="charge_alert_custom_text">Het gekozen niveau is bereikt. Haal de stekker eruit als het uitkomt.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Wieldashboard</string>
     <string name="widget_act_1_label">Wielknop 1</string>

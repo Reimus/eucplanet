@@ -985,7 +985,8 @@ class WheelService : LifecycleService() {
     private var chargeAlertState = ChargeAlertPolicy.State()
 
     /**
-     * Tell the rider when the pack passes 80% or finishes, if they asked.
+     * Tell the rider when the pack passes 80%, their own level, or
+     * finishes, if they asked.
      *
      * Runs on every telemetry frame, which is why the deciding is in
      * [ChargeAlertPolicy] and only the posting is here.
@@ -997,6 +998,7 @@ class WheelService : LifecycleService() {
             data.batteryPercent,
             want80 = settings.chargingNotify80,
             wantFull = settings.chargingNotifyFull,
+            customMark = if (settings.chargingNotifyCustom) settings.chargingNotifyCustomPct else 0,
         )
         chargeAlertState = step.state
         when (step.alert) {
@@ -1006,11 +1008,18 @@ class WheelService : LifecycleService() {
             ChargeAlertPolicy.Alert.FULL -> postChargeAlert(
                 R.string.charge_alert_full_title, R.string.charge_alert_full_text,
             )
+            ChargeAlertPolicy.Alert.CUSTOM -> postChargeAlert(
+                getString(R.string.charge_alert_custom_title, settings.chargingNotifyCustomPct),
+                getString(R.string.charge_alert_custom_text),
+            )
             ChargeAlertPolicy.Alert.NONE -> Unit
         }
     }
 
-    private fun postChargeAlert(titleRes: Int, textRes: Int) {
+    private fun postChargeAlert(titleRes: Int, textRes: Int) =
+        postChargeAlert(getString(titleRes), getString(textRes))
+
+    private fun postChargeAlert(title: String, text: String) {
         if (shuttingDown) return
         if (!hasPermission(Manifest.permission.POST_NOTIFICATIONS)) return
         val open = PendingIntent.getActivity(
@@ -1020,7 +1029,7 @@ class WheelService : LifecycleService() {
                 .putExtra(EXTRA_OPEN_CHARGING, true),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        val n = ChargeAlertNotification.build(this, titleRes, textRes, open)
+        val n = ChargeAlertNotification.build(this, title, text, open)
         runCatching {
             getSystemService(NotificationManager::class.java)
                 .notify(ChargeAlertNotification.NOTIFICATION_ID, n)

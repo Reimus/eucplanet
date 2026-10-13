@@ -2613,12 +2613,17 @@
     <string name="charging_estimate_to_full" formatted="false">Always estimate to 100%</string>
     <string name="charging_notify_80" formatted="false">Notify me at 80%</string>
     <string name="charging_notify_full" formatted="false">Notify me at 100%</string>
+    <string name="charging_notify_at">Notify me at</string>
+    <string name="charging_notify_custom">Notify me at %1$d%%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 to 60% suits a wheel that will sit for weeks.</string>
     <string name="charge_alert_channel_name">Charge alerts</string>
-    <string name="charge_alert_channel_description" formatted="false">When the battery passes 80% or finishes charging.</string>
+    <string name="charge_alert_channel_description" formatted="false">When the battery reaches a level you picked, or finishes charging.</string>
     <string name="charge_alert_80_title" formatted="false">Battery at 80%</string>
     <string name="charge_alert_80_text">Charged enough for most rides, and usually kinder to the battery.</string>
     <string name="charge_alert_full_title">Charge complete</string>
     <string name="charge_alert_full_text">Fully charged, unplug when you can. Some wheels balance the cells now.</string>
+    <string name="charge_alert_custom_title">Battery at %1$d%%</string>
+    <string name="charge_alert_custom_text">Reached the level you set. Unplug when you can.</string>
     <string name="charging_options">Options</string>
     <string name="charging_tab_power">Power</string>
     <string name="charging_tab_cells">Cells</string>

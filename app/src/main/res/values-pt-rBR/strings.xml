@@ -2676,12 +2676,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">Avisar aos 80 %</string>
     <string name="charging_notify_full" formatted="false">Avisar aos 100 %</string>
+    <string name="charging_notify_at">Avisar aos</string>
+    <string name="charging_notify_custom">Avisar aos %1$d %%</string>
+    <string name="charging_notify_custom_hint" formatted="false">40 a 60 % combina com uma roda que vai ficar parada por semanas.</string>
     <string name="charge_alert_channel_name">Avisos de carga</string>
-    <string name="charge_alert_channel_description" formatted="false">Quando a bateria passa de 80 % ou termina de carregar.</string>
+    <string name="charge_alert_channel_description" formatted="false">Quando a bateria chega a um nível escolhido ou termina de carregar.</string>
     <string name="charge_alert_80_title" formatted="false">Bateria em 80 %</string>
     <string name="charge_alert_80_text">Suficiente para a maioria das viagens, e costuma poupar a bateria.</string>
     <string name="charge_alert_full_title">Carga concluída</string>
     <string name="charge_alert_full_text">Carga completa, tire da tomada quando puder. Algumas rodas equilibram as células agora.</string>
+    <string name="charge_alert_custom_title">Bateria em %1$d %%</string>
+    <string name="charge_alert_custom_text">Chegou ao nível que você escolheu. Desconecte quando puder.</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">Painel da roda</string>
     <string name="widget_act_1_label">Botão da roda 1</string>

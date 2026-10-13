@@ -887,6 +887,10 @@ data class AppSettings(
      *  Advanced settings, like [chargingEstimateToFull] beside them. */
     val chargingNotify80: Boolean = false,
     val chargingNotifyFull: Boolean = false,
+    /** A third alert at a level the rider types in, 60 for a wheel that
+     *  will sit for a while. The level is kept while the alert is off. */
+    val chargingNotifyCustom: Boolean = false,
+    val chargingNotifyCustomPct: Int = 60,
     /** Auto-open the Battery monitor when the wheel starts charging. */
     val chargingAutoOpen: Boolean = true,
     /** Show the Battery monitor access icon (spark) in the dashboard top bar. */

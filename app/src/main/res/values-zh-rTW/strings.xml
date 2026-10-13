@@ -2673,12 +2673,17 @@
     <!-- Charge alerts -->
     <string name="charging_notify_80" formatted="false">到 80 % 時通知我</string>
     <string name="charging_notify_full" formatted="false">到 100 % 時通知我</string>
+    <string name="charging_notify_at">通知電量</string>
+    <string name="charging_notify_custom">到 %1$d %% 時通知我</string>
+    <string name="charging_notify_custom_hint" formatted="false">輪子要放幾週時，40–60 % 比較合適。</string>
     <string name="charge_alert_channel_name">充電提醒</string>
-    <string name="charge_alert_channel_description" formatted="false">電量超過 80 % 或充電完成時。</string>
+    <string name="charge_alert_channel_description" formatted="false">電量達到你選的水準或充電完成時。</string>
     <string name="charge_alert_80_title" formatted="false">電量 80 %</string>
     <string name="charge_alert_80_text">大多數行程都夠用，通常也更愛護電池。</string>
     <string name="charge_alert_full_title">充電完成</string>
     <string name="charge_alert_full_text">已充滿，方便時拔掉。部分輪子現在正在均衡電芯。</string>
+    <string name="charge_alert_custom_title">電量 %1$d %%</string>
+    <string name="charge_alert_custom_text">已達到你設定的電量。方便時請拔掉充電器。</string>
     <!-- Widget names for the picker -->
     <string name="widget_euc_label">獨輪車面板</string>
     <string name="widget_act_1_label">獨輪車按鈕 1</string>
