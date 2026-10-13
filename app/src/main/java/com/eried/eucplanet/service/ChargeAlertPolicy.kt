@@ -25,9 +25,18 @@ object ChargeAlertPolicy {
      *  setting nobody moves. */
     const val THRESHOLD_PCT = 80
 
-    /** The rider's own level: where it starts, and what it may be. */
+    /** The rider's own level: where it starts, and what it may be. Never 80,
+     *  which has its own alert, so one level cannot ping twice. */
     const val CUSTOM_DEFAULT_PCT = 60
-    val CUSTOM_RANGE = 5..99
+    val CUSTOM_RANGE = 5..95
+
+    fun isValidCustom(pct: Int): Boolean = pct in CUSTOM_RANGE && pct != THRESHOLD_PCT
+
+    /** What a stored level becomes: a synced file cannot ask for 80 or 300. */
+    fun sanitizeCustom(pct: Int): Int {
+        val p = pct.coerceIn(CUSTOM_RANGE)
+        return if (p == THRESHOLD_PCT) CUSTOM_DEFAULT_PCT else p
+    }
 
     enum class Alert { NONE, AT_80, FULL, CUSTOM }
 

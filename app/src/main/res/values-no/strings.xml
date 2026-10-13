@@ -2566,6 +2566,8 @@
     <string name="charging_notify_at">Varsle ved</string>
     <string name="charging_notify_custom">Varsle ved %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">40 til 60 % passer for et hjul som skal stå i uker.</string>
+    <string name="charging_notify_at_ask">Varsle ved…</string>
+    <string name="charging_notify_custom_range" formatted="false">5 til 95 %, ikke 80: den har sitt eget varsel.</string>
     <string name="charge_alert_channel_name">Ladevarsler</string>
     <string name="charge_alert_channel_description" formatted="false">Når batteriet når et nivå du har valgt, eller er ferdig ladet.</string>
     <string name="charge_alert_80_title" formatted="false">Batteri på 80 %</string>

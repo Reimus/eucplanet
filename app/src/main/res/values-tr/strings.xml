@@ -2675,6 +2675,8 @@
     <string name="charging_notify_at">Bildirim seviyesi</string>
     <string name="charging_notify_custom">Bildir: %%%1$d</string>
     <string name="charging_notify_custom_hint" formatted="false">Haftalarca duracak bir teker için %40 ile %60 arası uygundur.</string>
+    <string name="charging_notify_at_ask">Bildirim seviyesi…</string>
+    <string name="charging_notify_custom_range" formatted="false">%5 ile %95 arası, %80 hariç: onun kendi bildirimi var.</string>
     <string name="charge_alert_channel_name">Şarj uyarıları</string>
     <string name="charge_alert_channel_description" formatted="false">Batarya seçtiğin seviyeye ulaştığında veya şarj bittiğinde.</string>
     <string name="charge_alert_80_title" formatted="false">Batarya %80</string>

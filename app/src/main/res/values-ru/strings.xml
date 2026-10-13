@@ -2678,6 +2678,8 @@
     <string name="charging_notify_at">Сообщить на</string>
     <string name="charging_notify_custom">Сообщить на %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">40–60 % подходит, если колесо будет стоять неделями.</string>
+    <string name="charging_notify_at_ask">Сообщить на…</string>
+    <string name="charging_notify_custom_range" formatted="false">От 5 до 95 %, кроме 80: для него есть своё уведомление.</string>
     <string name="charge_alert_channel_name">Оповещения о зарядке</string>
     <string name="charge_alert_channel_description" formatted="false">Когда батарея достигает выбранного уровня или заряд завершён.</string>
     <string name="charge_alert_80_title" formatted="false">Батарея на 80 %</string>

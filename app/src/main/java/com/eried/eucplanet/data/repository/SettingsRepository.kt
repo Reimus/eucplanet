@@ -93,9 +93,9 @@ class SettingsRepository @Inject constructor(
 internal fun AppSettings.sanitized(): AppSettings = copy(
     voiceVolumePercent = voiceVolumePercent.coerceIn(10, 100),
     autoRecordStopIdleSeconds = autoRecordStopIdleSeconds.coerceAtLeast(30),
-    // What the menu lets a rider type: a synced file cannot ask for 300%.
-    chargingNotifyCustomPct = chargingNotifyCustomPct
-        .coerceIn(com.eried.eucplanet.service.ChargeAlertPolicy.CUSTOM_RANGE),
+    // What the dialog lets a rider save: a synced file cannot ask for 300%, or 80.
+    chargingNotifyCustomPct = com.eried.eucplanet.service.ChargeAlertPolicy
+        .sanitizeCustom(chargingNotifyCustomPct),
     // Weather comfort thresholds from a synced or hand-edited file: keep
     // the window one of the offered four, the bands ordered and sane.
     weather = weather.copy(

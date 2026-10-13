@@ -2693,6 +2693,8 @@
     <string name="charging_notify_at">Giv besked ved</string>
     <string name="charging_notify_custom">Giv besked ved %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">40 til 60 % passer til et hjul, der skal stå i uger.</string>
+    <string name="charging_notify_at_ask">Giv besked ved…</string>
+    <string name="charging_notify_custom_range" formatted="false">5 til 95 %, ikke 80: den har sin egen besked.</string>
     <string name="charge_alert_channel_name">Opladningsbeskeder</string>
     <string name="charge_alert_channel_description" formatted="false">Når batteriet når et niveau, du har valgt, eller er færdigt.</string>
     <string name="charge_alert_80_title" formatted="false">Batteri på 80 %</string>

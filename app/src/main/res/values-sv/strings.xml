@@ -2678,6 +2678,8 @@
     <string name="charging_notify_at">Meddela vid</string>
     <string name="charging_notify_custom">Meddela vid %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">40 till 60 % passar ett hjul som ska stå i veckor.</string>
+    <string name="charging_notify_at_ask">Meddela vid…</string>
+    <string name="charging_notify_custom_range" formatted="false">5 till 95 %, inte 80: den har en egen avisering.</string>
     <string name="charge_alert_channel_name">Laddningsaviseringar</string>
     <string name="charge_alert_channel_description" formatted="false">När batteriet når en nivå du valt eller är färdigladdat.</string>
     <string name="charge_alert_80_title" formatted="false">Batteri på 80 %</string>

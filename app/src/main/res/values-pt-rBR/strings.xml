@@ -2680,6 +2680,8 @@
     <string name="charging_notify_at">Avisar aos</string>
     <string name="charging_notify_custom">Avisar aos %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">40 a 60 % combina com uma roda que vai ficar parada por semanas.</string>
+    <string name="charging_notify_at_ask">Avisar aos…</string>
+    <string name="charging_notify_custom_range" formatted="false">De 5 a 95 %, menos 80: ele já tem seu próprio aviso.</string>
     <string name="charge_alert_channel_name">Avisos de carga</string>
     <string name="charge_alert_channel_description" formatted="false">Quando a bateria chega a um nível escolhido ou termina de carregar.</string>
     <string name="charge_alert_80_title" formatted="false">Bateria em 80 %</string>

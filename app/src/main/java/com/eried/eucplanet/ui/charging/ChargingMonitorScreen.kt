@@ -178,9 +178,7 @@ fun ChargingMonitorScreen(
                     if (levelDialog) {
                         ChargeLevelDialog(
                             initial = state.notifyCustomPct,
-                            on = state.notifyCustom,
                             onSave = { viewModel.setNotifyCustomPct(it); levelDialog = false },
-                            onOff = { viewModel.setNotifyCustom(false); levelDialog = false },
                             onDismiss = { levelDialog = false },
                         )
                     }
@@ -222,13 +220,21 @@ fun ChargingMonitorScreen(
                             },
                         )
                         // The rider's own level, 60 for a wheel that will sit a
-                        // while. Reads like the two above; the number is set in a
-                        // small dialog, which also turns it on or off.
+                        // while. Off it reads "Notify me at..." and the tap asks
+                        // for the number; on it reads like the two above, with
+                        // the level and a tick, and a tap turns it off.
                         DropdownMenuItem(
-                            text = { Text(stringResource(R.string.charging_notify_custom, state.notifyCustomPct)) },
+                            text = {
+                                Text(
+                                    if (state.notifyCustom)
+                                        stringResource(R.string.charging_notify_custom, state.notifyCustomPct)
+                                    else stringResource(R.string.charging_notify_at_ask)
+                                )
+                            },
                             onClick = {
                                 menuOpen = false
-                                levelDialog = true
+                                if (state.notifyCustom) viewModel.setNotifyCustom(false)
+                                else levelDialog = true
                             },
                             trailingIcon = {
                                 if (state.notifyCustom) Icon(Icons.Filled.Check, contentDescription = null)

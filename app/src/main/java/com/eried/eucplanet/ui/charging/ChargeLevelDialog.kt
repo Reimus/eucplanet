@@ -2,7 +2,6 @@ package com.eried.eucplanet.ui.charging
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -25,21 +24,22 @@ import com.eried.eucplanet.ui.settings.NumberUpDown
 import com.eried.eucplanet.ui.theme.appColors
 
 /**
- * The rider's own charge alert: the level, and whether it is on.
+ * Asks for the level of the rider's own charge alert. Save turns it on;
+ * turning it off is a second tap on the ticked menu row, not a button here.
  *
- * Save turns it on at the number shown, Off turns it off and keeps the
- * number for next time. Not dismissed by a tap outside, so a stray touch
- * does not drop a number half typed.
+ * The field takes any number so a wrong one can be seen as wrong: Save stays
+ * disabled until it is 5 to 95 and not 80, which has its own alert. Not
+ * dismissed by a tap outside, so a stray touch does not drop a number half
+ * typed.
  */
 @Composable
 fun ChargeLevelDialog(
     initial: Int,
-    on: Boolean,
     onSave: (Int) -> Unit,
-    onOff: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     var level by remember { mutableIntStateOf(initial) }
+    val valid = ChargeAlertPolicy.isValidCustom(level)
     AlertDialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(dismissOnClickOutside = false),
@@ -50,32 +50,36 @@ fun ChargeLevelDialog(
                 NumberUpDown(
                     value = level,
                     onValueChange = { level = it },
-                    range = ChargeAlertPolicy.CUSTOM_RANGE,
+                    // Wider than the valid range on purpose, an empty field
+                    // reads as 0 and anything longer as 100: all leave Save
+                    // disabled instead of quietly keeping the last good number.
+                    range = 0..100,
+                    parse = { it.toIntOrNull()?.coerceAtMost(100) ?: 0 },
                     suffix = "%",
                     modifier = Modifier.fillMaxWidth(),
                 )
                 Text(
-                    stringResource(R.string.charging_notify_custom_hint),
+                    stringResource(
+                        if (valid) R.string.charging_notify_custom_hint
+                        else R.string.charging_notify_custom_range
+                    ),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.appColors.textSecondary,
                 )
             }
         },
         confirmButton = {
-            Button(onClick = { onSave(level) }, shape = RoundedCornerShape(12.dp)) {
+            Button(
+                onClick = { onSave(level) },
+                enabled = valid,
+                shape = RoundedCornerShape(12.dp),
+            ) {
                 Text(stringResource(R.string.action_save))
             }
         },
         dismissButton = {
-            Row {
-                if (on) {
-                    TextButton(onClick = onOff, shape = RoundedCornerShape(12.dp)) {
-                        Text(stringResource(R.string.state_off))
-                    }
-                }
-                TextButton(onClick = onDismiss, shape = RoundedCornerShape(12.dp)) {
-                    Text(stringResource(R.string.action_cancel))
-                }
+            TextButton(onClick = onDismiss, shape = RoundedCornerShape(12.dp)) {
+                Text(stringResource(R.string.action_cancel))
             }
         },
     )

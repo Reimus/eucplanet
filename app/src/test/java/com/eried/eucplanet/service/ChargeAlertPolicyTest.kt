@@ -170,4 +170,16 @@ class ChargeAlertPolicyTest {
         listOf(45, 52).forEach { feed(ChargeStatus.Charging, it) }
         assertEquals(List(2) { ChargeAlertPolicy.Alert.CUSTOM }, fired)
     }
+
+    @Test fun `the rider's level is 5 to 95 and never 80`() {
+        assertTrue(p.isValidCustom(5) && p.isValidCustom(60) && p.isValidCustom(95))
+        assertTrue(!p.isValidCustom(4) && !p.isValidCustom(80) && !p.isValidCustom(96) && !p.isValidCustom(0))
+    }
+
+    @Test fun `a stored level that the dialog would refuse is put right`() {
+        assertEquals(95, p.sanitizeCustom(300))
+        assertEquals(5, p.sanitizeCustom(0))
+        assertEquals(ChargeAlertPolicy.CUSTOM_DEFAULT_PCT, p.sanitizeCustom(80))
+        assertEquals(45, p.sanitizeCustom(45))
+    }
 }

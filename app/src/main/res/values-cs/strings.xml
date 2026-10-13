@@ -2481,6 +2481,8 @@
     <string name="charging_notify_at">Upozornit na</string>
     <string name="charging_notify_custom">Upozornit na %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">40 až 60 % se hodí, když kolo bude týdny stát.</string>
+    <string name="charging_notify_at_ask">Upozornit na…</string>
+    <string name="charging_notify_custom_range" formatted="false">5 až 95 %, ne 80: to má vlastní upozornění.</string>
     <string name="charge_alert_channel_name">Upozornění na nabíjení</string>
     <string name="charge_alert_channel_description" formatted="false">Když baterie dosáhne zvolené úrovně nebo dokončí nabíjení.</string>
     <string name="charge_alert_80_title" formatted="false">Baterie na 80 %</string>

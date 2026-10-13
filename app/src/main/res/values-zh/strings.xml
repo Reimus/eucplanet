@@ -2545,6 +2545,8 @@
     <string name="charging_notify_at">通知电量</string>
     <string name="charging_notify_custom">到 %1$d %% 时通知我</string>
     <string name="charging_notify_custom_hint" formatted="false">车轮要放几周时，40–60 % 比较合适。</string>
+    <string name="charging_notify_at_ask">通知电量…</string>
+    <string name="charging_notify_custom_range" formatted="false">请选 5–95 %，80 % 除外：它有单独的提醒。</string>
     <string name="charge_alert_channel_name">充电提醒</string>
     <string name="charge_alert_channel_description" formatted="false">电量达到你选的水平或充电完成时。</string>
     <string name="charge_alert_80_title" formatted="false">电量 80 %</string>

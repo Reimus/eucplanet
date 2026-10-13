@@ -2481,6 +2481,8 @@
     <string name="charging_notify_at">Ilmoitusraja</string>
     <string name="charging_notify_custom">Ilmoita %1$d %%:ssa</string>
     <string name="charging_notify_custom_hint" formatted="false">40–60 % sopii pyörälle, joka seisoo viikkoja.</string>
+    <string name="charging_notify_at_ask">Ilmoita tasolla…</string>
+    <string name="charging_notify_custom_range" formatted="false">5–95 %, ei 80: sillä on oma ilmoituksensa.</string>
     <string name="charge_alert_channel_name">Latausilmoitukset</string>
     <string name="charge_alert_channel_description" formatted="false">Kun akku saavuttaa valitsemasi tason tai lataus valmistuu.</string>
     <string name="charge_alert_80_title" formatted="false">Akku 80 %:ssa</string>

@@ -2696,6 +2696,8 @@
     <string name="charging_notify_at">Avisarme al</string>
     <string name="charging_notify_custom">Avisarme al %1$d %%</string>
     <string name="charging_notify_custom_hint" formatted="false">Del 40 al 60 % va bien si la rueda va a estar semanas guardada.</string>
+    <string name="charging_notify_at_ask">Avisarme al…</string>
+    <string name="charging_notify_custom_range" formatted="false">Entre 5 y 95 %, no 80: ya tiene su propio aviso.</string>
     <string name="charge_alert_channel_name">Avisos de carga</string>
     <string name="charge_alert_channel_description" formatted="false">Cuando la batería llega a un nivel que elegiste o termina de cargar.</string>
     <string name="charge_alert_80_title" formatted="false">Batería al 80 %</string>

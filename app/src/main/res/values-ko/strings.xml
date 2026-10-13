@@ -2677,6 +2677,8 @@
     <string name="charging_notify_at">알림 수준</string>
     <string name="charging_notify_custom">%1$d %%에서 알림</string>
     <string name="charging_notify_custom_hint" formatted="false">몇 주 동안 세워 둘 휠에는 40~60 %가 알맞습니다.</string>
+    <string name="charging_notify_at_ask">알림 수준…</string>
+    <string name="charging_notify_custom_range" formatted="false">5~95 %, 80 %는 제외: 별도 알림이 있습니다.</string>
     <string name="charge_alert_channel_name">충전 알림</string>
     <string name="charge_alert_channel_description" formatted="false">배터리가 선택한 수준에 도달하거나 충전이 끝났을 때.</string>
     <string name="charge_alert_80_title" formatted="false">배터리 80 %</string>

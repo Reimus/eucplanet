@@ -2617,6 +2617,8 @@
     <string name="charging_notify_at">Notify me at</string>
     <string name="charging_notify_custom">Notify me at %1$d%%</string>
     <string name="charging_notify_custom_hint" formatted="false">40 to 60% suits a wheel that will sit for weeks.</string>
+    <string name="charging_notify_at_ask">Notify me at…</string>
+    <string name="charging_notify_custom_range" formatted="false">5 to 95%, not 80: it has its own alert.</string>
     <string name="charge_alert_channel_name">Charge alerts</string>
     <string name="charge_alert_channel_description" formatted="false">When the battery reaches a level you picked, or finishes charging.</string>
     <string name="charge_alert_80_title" formatted="false">Battery at 80%</string>
