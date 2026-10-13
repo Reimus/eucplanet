@@ -2736,6 +2736,7 @@
     <string name="voice_stat_peak">Пик</string>
     <string name="crews_title">Кланы</string>
     <string name="crews_pass_action">Пропуск клана</string>
+    <string name="crews_pass_search_hint">Пропуск клана появится, когда вы присоединитесь к онлайн-таблицам лидеров.</string>
     <string name="crews_scan_hint">Открой eucstats в браузере, нажми Crews и наведи это на код, который появится.</string>
     <string name="crews_scan_invalid">Это не код клановского пропуска.</string>
     <string name="crews_scan_is_share">Это код трансляции местоположения. Сканируй его из «Поделиться» на карте.</string>

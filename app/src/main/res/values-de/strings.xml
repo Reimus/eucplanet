@@ -2756,6 +2756,7 @@
     <string name="voice_stat_peak">Spitze</string>
     <string name="crews_title">Crews</string>
     <string name="crews_pass_action">Crew-Pass</string>
+    <string name="crews_pass_search_hint">Der Crew-Pass erscheint, sobald du den Online-Bestenlisten beitrittst.</string>
     <string name="crews_scan_hint">Öffne eucstats im Browser, tippe auf Crews und halte das hier auf den Code.</string>
     <string name="crews_scan_invalid">Das ist kein Crew-Pass-Code.</string>
     <string name="crews_scan_is_share">Das ist ein Live-Standort-Code. Scann ihn über Teilen auf der Karte.</string>

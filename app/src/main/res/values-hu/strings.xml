@@ -2539,6 +2539,7 @@
     <string name="voice_stat_peak">Csúcs</string>
     <string name="crews_title">Crewk</string>
     <string name="crews_pass_action">Crew-belépő</string>
+    <string name="crews_pass_search_hint">A Crew-belépő az online ranglistákhoz csatlakozás után jelenik meg.</string>
     <string name="crews_scan_hint">Nyisd meg az eucstatsot böngészőben, nyomd meg a Crews gombot, és irányítsd ezt a megjelenő kódra.</string>
     <string name="crews_scan_invalid">Ez nem crew pass kód.</string>
     <string name="crews_scan_is_share">Ez egy élő helyzet kód. Olvasd be a térkép Megosztás részéből.</string>

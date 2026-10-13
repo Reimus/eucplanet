@@ -2624,6 +2624,7 @@
     <string name="voice_stat_peak">Topp</string>
     <string name="crews_title">Crews</string>
     <string name="crews_pass_action">Crew-nøkkel</string>
+    <string name="crews_pass_search_hint">Crew-nøkkel vises når du blir med på ledertavlene på nett.</string>
     <string name="crews_scan_hint">Åpne eucstats i en nettleser, trykk Crews, og hold denne mot koden som dukker opp.</string>
     <string name="crews_scan_invalid">Det er ikke en crew pass-kode.</string>
     <string name="crews_scan_is_share">Det er en live-posisjon-kode. Skann den fra Del på kartet.</string>

@@ -40,6 +40,8 @@ only when you can cut the ride short.
 - Archived (or split) on one phone, a trip stays archived on the others instead of coming back.
 - Backup folder: no more endless "Checking backup folder", and the "trip (1).csv" copies it left are cleaned up.
 - Fresh rides no longer show "not backed up to Dropbox" when they are.
+- Settings search finds buttons and every row, like "Crew", "Scan" or "Pair", and lands on the match.
+- Voice: the "Listening" message shows only when nothing on screen lights up, not twice.
 
 ## Please test
 
@@ -81,6 +83,8 @@ only when you can cut the ride short.
 - Had "trip (1).csv" files or a backup check that never ended? Both should be gone after a ride.
 
 **Any wheel**
+- Settings search: "scan" lands on a Start scan button, "crew" on Crew pass (or says why it is not there)?
+- Voice report tile, hold, Ask: says Listening? Voice command tile on screen: no message, only the tile lights?
 - With a backup folder set, the app opens and stays open on every launch.
 - Stats length 30 sec or 1 min: tile stats and the detail screen cover only that much?
 - Headset button set to Announce: one press reads the voice report?

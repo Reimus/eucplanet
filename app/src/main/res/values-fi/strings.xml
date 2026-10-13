@@ -2539,6 +2539,7 @@
     <string name="voice_stat_peak">Huippu</string>
     <string name="crews_title">Crewit</string>
     <string name="crews_pass_action">Crew-passi</string>
+    <string name="crews_pass_search_hint">Crew-passi näkyy, kun liityt verkkotulostauluihin.</string>
     <string name="crews_scan_hint">Avaa eucstats selaimessa, paina Crews ja suuntaa tämä koodiin.</string>
     <string name="crews_scan_invalid">Tuo ei ole crew pass -koodi.</string>
     <string name="crews_scan_is_share">Tämä on live-sijainnin koodi. Skannaa se kartan Jaa-kohdasta.</string>

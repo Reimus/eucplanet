@@ -2738,6 +2738,7 @@
     <string name="voice_stat_peak">Pico</string>
     <string name="crews_title">Turmas</string>
     <string name="crews_pass_action">Passe da turma</string>
+    <string name="crews_pass_search_hint">O passe da turma aparece quando você entra nos rankings online.</string>
     <string name="crews_scan_hint">Abre o eucstats no navegador, toca em Crews e aponta isto pro código que aparecer.</string>
     <string name="crews_scan_invalid">Isso não é um código de passe de turma.</string>
     <string name="crews_scan_is_share">Esse é um código de localização ao vivo. Escaneia pelo Compartilhar no mapa.</string>

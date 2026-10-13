@@ -2539,6 +2539,7 @@
     <string name="voice_stat_peak">Vârf</string>
     <string name="crews_title">Crews</string>
     <string name="crews_pass_action">Acces crew</string>
+    <string name="crews_pass_search_hint">Acces crew apare după ce te alături clasamentelor online.</string>
     <string name="crews_scan_hint">Deschide eucstats în browser, apasă pe Crews și îndreaptă asta spre codul care apare.</string>
     <string name="crews_scan_invalid">Ăsta nu e un cod de crew pass.</string>
     <string name="crews_scan_is_share">Ăsta e un cod de locație live. Scanează-l din Partajare pe hartă.</string>

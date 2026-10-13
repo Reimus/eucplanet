@@ -2764,6 +2764,7 @@
          up with everything else; hardcoded strings are strings that never get translated. -->
     <string name="crews_title">Crews</string>
     <string name="crews_pass_action">Crew pass</string>
+    <string name="crews_pass_search_hint">Crew pass shows once you join the online leaderboards.</string>
     <string name="crews_scan_hint">Open eucstats in a browser, hit Crews, and point this at the code it shows.</string>
     <string name="crews_scan_invalid">That\'s not a crew pass code.</string>
     <string name="crews_scan_is_share">That is a live-location code. Scan it from Share on the map.</string>

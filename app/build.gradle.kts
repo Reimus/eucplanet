@@ -443,3 +443,8 @@ tasks.withType<Test>().configureEach {
         }
     ).withPathSensitivity(PathSensitivity.RELATIVE).withPropertyName("translationFiles")
 }
+
+// The settings search reads its words from the settings code, not a hand list.
+apply(from = "settings-search-index.gradle.kts")
+android.sourceSets.getByName("main").java.srcDir(layout.buildDirectory.dir("generated/settingsSearch"))
+tasks.named("preBuild") { dependsOn("generateSettingsSearchIndex") }

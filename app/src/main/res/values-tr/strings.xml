@@ -2733,6 +2733,7 @@
     <string name="voice_stat_peak">Tepe</string>
     <string name="crews_title">Ekipler</string>
     <string name="crews_pass_action">Ekip geçişi</string>
+    <string name="crews_pass_search_hint">Ekip geçişi, çevrimiçi lider tablolarına katıldığında görünür.</string>
     <string name="crews_scan_hint">eucstats\'i tarayıcıda aç, Crews\'a bas ve bunu çıkan koda tut.</string>
     <string name="crews_scan_invalid">Bu bir ekip pası kodu değil.</string>
     <string name="crews_scan_is_share">O, canlı konum kodu. Haritadaki Paylaş’tan okut.</string>
