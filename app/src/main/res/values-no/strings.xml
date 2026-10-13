@@ -276,7 +276,7 @@
     <string name="voice_audio_focus_off">Ikke gjør noe</string>
     <string name="col_periodic">Jevnlig</string>
     <string name="col_trigger">Hendelse</string>
-    <string name="voice_trigger_reset_after">Nullstill målinger etter knapperapporten</string>
+    <string name="voice_trigger_reset_after">Nullstill målinger etter utløst rapport</string>
     <string name="report_speed">Fart</string>
     <string name="report_battery">Batteri</string>
     <string name="report_temp">Temp</string>

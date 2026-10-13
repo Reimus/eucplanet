@@ -870,7 +870,7 @@
 
     <string name="col_periodic">Періодично</string>
     <string name="col_trigger">За тригером</string>
-    <string name="voice_trigger_reset_after">Скидати показники після звіту за кнопкою</string>
+    <string name="voice_trigger_reset_after">Скидати показники після звіту на запит</string>
     <string name="report_speed">Швидкість</string>
     <string name="report_battery">Заряд</string>
     <string name="report_temp">Темп</string>

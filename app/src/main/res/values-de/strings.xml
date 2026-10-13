@@ -866,7 +866,7 @@
 
     <string name="col_periodic">Regelmäßig</string>
     <string name="col_trigger">Ereignis</string>
-    <string name="voice_trigger_reset_after">Messwerte nach der Tastenansage zurücksetzen</string>
+    <string name="voice_trigger_reset_after">Messwerte nach ausgelöster Ansage zurücksetzen</string>
     <string name="report_speed">Geschwindigkeit</string>
     <string name="report_battery">Akku</string>
     <string name="report_temp">Temp</string>

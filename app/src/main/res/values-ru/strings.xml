@@ -870,7 +870,7 @@
 
     <string name="col_periodic">Регулярно</string>
     <string name="col_trigger">По кнопке</string>
-    <string name="voice_trigger_reset_after">Сбрасывать показатели после отчёта по кнопке</string>
+    <string name="voice_trigger_reset_after">Сбрасывать показатели после отчёта по запросу</string>
     <string name="report_speed">Скорость</string>
     <string name="report_battery">Заряд</string>
     <string name="report_temp">Темп</string>

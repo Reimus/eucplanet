@@ -1066,7 +1066,7 @@
     <string name="engine_preset_sampled_quad_atv">Quad ATV</string>
     <string name="col_periodic">Periodic</string>
     <string name="col_trigger">Declanșator</string>
-    <string name="voice_trigger_reset_after">Resetează valorile după raportul de la buton</string>
+    <string name="voice_trigger_reset_after">Resetează valorile după raportul declanșat</string>
     <string name="report_speed">Viteză</string>
     <string name="report_battery">Baterie</string>
     <string name="report_temp">Temp</string>

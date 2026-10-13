@@ -1066,7 +1066,7 @@
     <string name="engine_preset_sampled_quad_atv">Mönkijä ATV</string>
     <string name="col_periodic">Säännöllinen</string>
     <string name="col_trigger">Laukaisin</string>
-    <string name="voice_trigger_reset_after">Nollaa mittarit napin raportin jälkeen</string>
+    <string name="voice_trigger_reset_after">Nollaa mittarit käynnistetyn raportin jälkeen</string>
     <string name="report_speed">Nopeus</string>
     <string name="report_battery">Akku</string>
     <string name="report_temp">Lämpö</string>

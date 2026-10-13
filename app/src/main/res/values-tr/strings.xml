@@ -866,7 +866,7 @@
 
     <string name="col_periodic">Periyodik</string>
     <string name="col_trigger">Tetikleyici</string>
-    <string name="voice_trigger_reset_after">Düğme raporundan sonra ölçümleri sıfırla</string>
+    <string name="voice_trigger_reset_after">Tetiklenen rapordan sonra ölçümleri sıfırla</string>
     <string name="report_speed">Hız</string>
     <string name="report_battery">Akü</string>
     <string name="report_temp">Sıcaklık</string>

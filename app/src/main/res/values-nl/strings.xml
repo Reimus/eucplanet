@@ -870,7 +870,7 @@
 
     <string name="col_periodic">Periodiek</string>
     <string name="col_trigger">Trigger</string>
-    <string name="voice_trigger_reset_after">Meetwaarden resetten na het knopbericht</string>
+    <string name="voice_trigger_reset_after">Meetwaarden resetten na geactiveerd bericht</string>
     <string name="report_speed">Snelheid</string>
     <string name="report_battery">Accu</string>
     <string name="report_temp">Temp</string>

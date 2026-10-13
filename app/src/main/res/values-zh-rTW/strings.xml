@@ -866,7 +866,7 @@
 
     <string name="col_periodic">定期</string>
     <string name="col_trigger">觸發</string>
-    <string name="voice_trigger_reset_after">按鍵播報後重設數據</string>
+    <string name="voice_trigger_reset_after">觸發播報後重設數據</string>
     <string name="report_speed">速度</string>
     <string name="report_battery">電池</string>
     <string name="report_temp">溫度</string>
