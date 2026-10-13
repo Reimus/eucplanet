@@ -7434,6 +7434,12 @@ private fun VoiceTab(
             onPlay = { viewModel.previewVoiceReport(periodic = false) },
         )
         }   // end Customize AdvancedCollapsable
+        // Outside the collapsible so a rider finds it without opening the
+        // lists. Play above never resets: a preview is not a press.
+        SwitchSetting(
+            stringResource(R.string.voice_trigger_reset_after),
+            settings.voiceReports.triggerResetAfter,
+        ) { viewModel.updateTriggerResetAfter(it) }
 
         // --- Acceleration splits (RaceBox-style) ---
         Box(

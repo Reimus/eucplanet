@@ -870,6 +870,7 @@
 
     <string name="col_periodic">Periódico</string>
     <string name="col_trigger">Gatilho</string>
+    <string name="voice_trigger_reset_after">Zerar métricas após o relatório do botão</string>
     <string name="report_speed">Velocidade</string>
     <string name="report_battery">Bateria</string>
     <string name="report_temp">Temp</string>

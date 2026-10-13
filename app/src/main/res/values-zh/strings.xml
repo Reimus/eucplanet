@@ -279,6 +279,7 @@
     <string name="voice_audio_focus_off">不处理</string>
     <string name="col_periodic">定时</string>
     <string name="col_trigger">触发</string>
+    <string name="voice_trigger_reset_after">按键播报后重置数据</string>
     <string name="report_speed">速度</string>
     <string name="report_battery">电量</string>
     <string name="report_temp">温度</string>

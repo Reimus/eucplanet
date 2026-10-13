@@ -1162,6 +1162,7 @@
 
     <string name="col_periodic">Periodic</string>
     <string name="col_trigger">Trigger</string>
+    <string name="voice_trigger_reset_after">Reset metrics after the button report</string>
     <string name="report_speed">Speed</string>
     <string name="report_battery">Battery</string>
     <string name="report_temp">Temp</string>

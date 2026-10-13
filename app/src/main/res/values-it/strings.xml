@@ -357,6 +357,7 @@
     <string name="voice_output_channel_alarm">Allarme</string>
     <string name="col_periodic">Periodico</string>
     <string name="col_trigger">Trigger</string>
+    <string name="voice_trigger_reset_after">Azzera le metriche dopo il report a pulsante</string>
     <string name="report_speed">Velocità</string>
     <string name="report_battery">Batteria</string>
     <string name="report_temp">Temp</string>

@@ -870,6 +870,7 @@
 
     <string name="col_periodic">Periódico</string>
     <string name="col_trigger">Evento</string>
+    <string name="voice_trigger_reset_after">Reiniciar métricas tras el informe por botón</string>
     <string name="report_speed">Velocidad</string>
     <string name="report_battery">Batería</string>
     <string name="report_temp">Temp</string>

@@ -866,6 +866,7 @@
 
     <string name="col_periodic">주기적</string>
     <string name="col_trigger">트리거</string>
+    <string name="voice_trigger_reset_after">버튼 안내 후 측정값 초기화</string>
     <string name="report_speed">속도</string>
     <string name="report_battery">배터리</string>
     <string name="report_temp">온도</string>

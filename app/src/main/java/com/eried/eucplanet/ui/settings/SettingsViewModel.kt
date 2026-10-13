@@ -823,6 +823,7 @@ class SettingsViewModel @Inject constructor(
     // Voice report: recording
     fun updateVoiceReportRecording(v: Boolean) = update { copy(voiceReports = voiceReports.copy(periodicRecording = v)) }
     fun updateTriggerReportRecording(v: Boolean) = update { copy(voiceReports = voiceReports.copy(triggerRecording = v)) }
+    fun updateTriggerResetAfter(v: Boolean) = update { copy(voiceReports = voiceReports.copy(triggerResetAfter = v)) }
 
     fun testSpeak(text: String) {
         viewModelScope.launch {

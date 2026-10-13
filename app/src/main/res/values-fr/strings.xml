@@ -870,6 +870,7 @@
 
     <string name="col_periodic">Périodique</string>
     <string name="col_trigger">Déclenché</string>
+    <string name="voice_trigger_reset_after">Réinitialiser les mesures après l\'annonce sur bouton</string>
     <string name="report_speed">Vitesse</string>
     <string name="report_battery">Batterie</string>
     <string name="report_temp">Temp</string>

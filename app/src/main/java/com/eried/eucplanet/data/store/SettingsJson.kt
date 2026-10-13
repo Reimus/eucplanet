@@ -284,6 +284,7 @@ object SettingsJson {
         put("triggerReportConsumption", s.voiceReports.triggerConsumption)
         put("periodicReportPills", s.voiceReports.periodicPills)
         put("triggerReportPills", s.voiceReports.triggerPills)
+        put("triggerReportResetAfter", s.voiceReports.triggerResetAfter)
         put("voiceReportCurrent", s.voiceReports.periodicCurrent)
         put("voiceReportPower", s.voiceReports.periodicPower)
         put("triggerReportCurrent", s.voiceReports.triggerCurrent)
@@ -527,6 +528,7 @@ object SettingsJson {
             triggerConsumption = j.optBoolean("triggerReportConsumption", base.voiceReports.triggerConsumption),
             periodicPills = j.optString("periodicReportPills", base.voiceReports.periodicPills),
             triggerPills = j.optString("triggerReportPills", base.voiceReports.triggerPills),
+            triggerResetAfter = j.optBoolean("triggerReportResetAfter", base.voiceReports.triggerResetAfter),
             periodicBattery = j.optBoolean("voiceReportBattery", base.voiceReports.periodicBattery),
             periodicTemp = j.optBoolean("voiceReportTemp", base.voiceReports.periodicTemp),
             periodicPwm = j.optBoolean("voiceReportPwm", base.voiceReports.periodicPwm),

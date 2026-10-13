@@ -1066,6 +1066,7 @@
     <string name="engine_preset_sampled_quad_atv">Čtyřkolka ATV</string>
     <string name="col_periodic">Pravidelně</string>
     <string name="col_trigger">Spouštěč</string>
+    <string name="voice_trigger_reset_after">Po hlášení na tlačítko vynulovat metriky</string>
     <string name="report_speed">Rychlost</string>
     <string name="report_battery">Baterie</string>
     <string name="report_temp">Teplota</string>

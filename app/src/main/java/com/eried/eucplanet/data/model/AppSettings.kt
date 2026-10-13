@@ -1455,6 +1455,9 @@ data class VoiceReportSettings(
      */
     val periodicPills: String = "",
     val triggerPills: String = "",
+    /** Reset metrics once the trigger report has been read out, for a rider
+     *  who checks a stretch with one press and starts the next from zero. */
+    val triggerResetAfter: Boolean = false,
 )
 
 /**

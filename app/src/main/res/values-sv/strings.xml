@@ -866,6 +866,7 @@
 
     <string name="col_periodic">Löpande</string>
     <string name="col_trigger">Utlöst</string>
+    <string name="voice_trigger_reset_after">Nollställ mätvärden efter knapprapporten</string>
     <string name="report_speed">Hastighet</string>
     <string name="report_battery">Batteri</string>
     <string name="report_temp">Temp</string>

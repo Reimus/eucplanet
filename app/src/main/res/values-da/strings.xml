@@ -870,6 +870,7 @@
 
     <string name="col_periodic">Løbende</string>
     <string name="col_trigger">Udløst</string>
+    <string name="voice_trigger_reset_after">Nulstil målinger efter knaprapporten</string>
     <string name="report_speed">Hastighed</string>
     <string name="report_battery">Batteri</string>
     <string name="report_temp">Temp</string>
