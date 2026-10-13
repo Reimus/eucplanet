@@ -298,7 +298,7 @@
     <string name="action_chip_light">Světlo</string>
     <string name="action_chip_voice">Hlas</string>
     <string name="action_chip_voice_listen">Poslouchat</string>
-    <string name="menu_voice_ask">Poslouchat hlasový příkaz</string>
+    <string name="menu_voice_ask">Začít poslouchat</string>
     <string name="menu_voice_stop">Přestat poslouchat</string>
     <string name="menu_voice_speak_report">Přehrát hlasové hlášení</string>
     <string name="voice_split_term">Poslední split</string>

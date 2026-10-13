@@ -335,7 +335,7 @@
     <string name="action_chip_light">Phare</string>
     <string name="action_chip_voice">Voix</string>
     <string name="action_chip_voice_listen">Écouter</string>
-    <string name="menu_voice_ask">Écouter une commande vocale</string>
+    <string name="menu_voice_ask">Démarrer l\'écoute</string>
     <string name="menu_voice_stop">Arrêter l\'écoute</string>
     <string name="menu_voice_speak_report">Lire une annonce vocale</string>
     <string name="voice_split_term">Dernier relevé</string>

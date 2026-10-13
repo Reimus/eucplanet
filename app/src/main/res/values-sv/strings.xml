@@ -335,7 +335,7 @@
     <string name="action_chip_light">Ljus</string>
     <string name="action_chip_voice">Röst</string>
     <string name="action_chip_voice_listen">Lyssna</string>
-    <string name="menu_voice_ask">Lyssna efter röstkommando</string>
+    <string name="menu_voice_ask">Börja lyssna</string>
     <string name="menu_voice_stop">Sluta lyssna</string>
     <string name="menu_voice_speak_report">Spela upp röstmeddelande</string>
     <string name="voice_split_term">Senaste split</string>

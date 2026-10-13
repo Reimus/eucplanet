@@ -2445,17 +2445,22 @@ fun DashboardScreen(
                                     // offers. No icons: nothing else in these
                                     // menus has them, and two glyphs in a list
                                     // of plain rows reads as decoration.
-                                    // Ask always opens a fresh window; while a
-                                    // session runs, stopping it is its own row.
-                                    if (voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle) {
-                                        DropdownMenuItem(
-                                            text = { Text(stringResource(R.string.menu_voice_stop)) },
-                                            onClick = { dismiss(); viewModel.onVoiceStop() }
-                                        )
-                                    }
+                                    // A pair that does not move: Start always
+                                    // opens a fresh window, Stop is there but
+                                    // greyed out until a session runs. The tap
+                                    // freezes it, so the row does not change
+                                    // under the menu while it fades out.
+                                    val live = voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle
+                                    var frozen by remember { mutableStateOf<Boolean?>(null) }
+                                    val canStop = frozen ?: live
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_ask)) },
-                                        onClick = { dismiss(); viewModel.onVoiceAsk() }
+                                        onClick = { frozen = canStop; dismiss(); viewModel.onVoiceAsk() }
+                                    )
+                                    DropdownMenuItem(
+                                        text = { Text(stringResource(R.string.menu_voice_stop)) },
+                                        onClick = { frozen = canStop; dismiss(); viewModel.onVoiceStop() },
+                                        enabled = canStop,
                                     )
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_speak_report)) },
@@ -2512,17 +2517,22 @@ fun DashboardScreen(
                                     // offers. No icons: nothing else in these
                                     // menus has them, and two glyphs in a list
                                     // of plain rows reads as decoration.
-                                    // Ask always opens a fresh window; while a
-                                    // session runs, stopping it is its own row.
-                                    if (voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle) {
-                                        DropdownMenuItem(
-                                            text = { Text(stringResource(R.string.menu_voice_stop)) },
-                                            onClick = { dismiss(); viewModel.onVoiceStop() }
-                                        )
-                                    }
+                                    // A pair that does not move: Start always
+                                    // opens a fresh window, Stop is there but
+                                    // greyed out until a session runs. The tap
+                                    // freezes it, so the row does not change
+                                    // under the menu while it fades out.
+                                    val live = voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle
+                                    var frozen by remember { mutableStateOf<Boolean?>(null) }
+                                    val canStop = frozen ?: live
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_ask)) },
-                                        onClick = { dismiss(); viewModel.onVoiceAsk() }
+                                        onClick = { frozen = canStop; dismiss(); viewModel.onVoiceAsk() }
+                                    )
+                                    DropdownMenuItem(
+                                        text = { Text(stringResource(R.string.menu_voice_stop)) },
+                                        onClick = { frozen = canStop; dismiss(); viewModel.onVoiceStop() },
+                                        enabled = canStop,
                                     )
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_speak_report)) },

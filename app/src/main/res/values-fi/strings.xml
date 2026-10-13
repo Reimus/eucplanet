@@ -298,7 +298,7 @@
     <string name="action_chip_light">Valo</string>
     <string name="action_chip_voice">Ääni</string>
     <string name="action_chip_voice_listen">Kuuntele</string>
-    <string name="menu_voice_ask">Kuuntele äänikomentoa</string>
+    <string name="menu_voice_ask">Aloita kuuntelu</string>
     <string name="menu_voice_stop">Lopeta kuuntelu</string>
     <string name="menu_voice_speak_report">Toista ääni-ilmoitus</string>
     <string name="voice_split_term">Viimeisin väliaika</string>

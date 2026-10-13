@@ -335,7 +335,7 @@
     <string name="action_chip_light">燈光</string>
     <string name="action_chip_voice">語音</string>
     <string name="action_chip_voice_listen">聆聽</string>
-    <string name="menu_voice_ask">聆聽語音指令</string>
+    <string name="menu_voice_ask">開始聆聽</string>
     <string name="menu_voice_stop">停止聆聽</string>
     <string name="menu_voice_speak_report">播放語音播報</string>
     <string name="voice_split_term">上次加速</string>

@@ -335,7 +335,7 @@
     <string name="action_chip_light">ライト</string>
     <string name="action_chip_voice">音声</string>
     <string name="action_chip_voice_listen">聞く</string>
-    <string name="menu_voice_ask">音声コマンドを聞く</string>
+    <string name="menu_voice_ask">聞き取りを開始</string>
     <string name="menu_voice_stop">聞き取りを停止</string>
     <string name="menu_voice_speak_report">音声アナウンスを再生</string>
     <string name="voice_split_term">最後の加速測定</string>

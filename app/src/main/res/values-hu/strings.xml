@@ -298,7 +298,7 @@
     <string name="action_chip_light">Világítás</string>
     <string name="action_chip_voice">Hang</string>
     <string name="action_chip_voice_listen">Hallgatás</string>
-    <string name="menu_voice_ask">Hangparancs figyelése</string>
+    <string name="menu_voice_ask">Hallgatás indítása</string>
     <string name="menu_voice_stop">Hallgatás leállítása</string>
     <string name="menu_voice_speak_report">Hangbemondás lejátszása</string>
     <string name="voice_split_term">Utolsó részidő</string>

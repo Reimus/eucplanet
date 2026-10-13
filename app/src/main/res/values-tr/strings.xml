@@ -335,7 +335,7 @@
     <string name="action_chip_light">Işık</string>
     <string name="action_chip_voice">Ses</string>
     <string name="action_chip_voice_listen">Dinle</string>
-    <string name="menu_voice_ask">Sesli komut dinle</string>
+    <string name="menu_voice_ask">Dinlemeyi başlat</string>
     <string name="menu_voice_stop">Dinlemeyi durdur</string>
     <string name="menu_voice_speak_report">Sesli anons çal</string>
     <string name="voice_split_term">Son ölçüm</string>

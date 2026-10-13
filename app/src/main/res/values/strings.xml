@@ -340,7 +340,7 @@
     <string name="action_chip_light">Light</string>
     <string name="action_chip_voice">Voice</string>
     <string name="action_chip_voice_listen">Listen</string>
-    <string name="menu_voice_ask">Listen for voice command</string>
+    <string name="menu_voice_ask">Start listening</string>
     <string name="menu_voice_stop">Stop listening</string>
     <string name="menu_voice_speak_report">Play voice announcement</string>
     <string name="voice_split_term">Last split</string>
