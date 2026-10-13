@@ -2480,9 +2480,8 @@
     <string name="charging_notify_full" formatted="false">Szólj 100 %-nál</string>
     <string name="charging_notify_at">Értesítési szint</string>
     <string name="charging_notify_custom">Szólj %1$d %%-nál</string>
-    <string name="charging_notify_custom_hint" formatted="false">40–60 % való egy hetekig álló kerékhez.</string>
     <string name="charging_notify_at_ask">Értesíts ennél…</string>
-    <string name="charging_notify_custom_range" formatted="false">5–95 %, de nem 80: annak saját értesítése van.</string>
+    <string name="charging_notify_custom_range" formatted="false">5 és 95 % között legyen, ne 80 %</string>
     <string name="charge_alert_channel_name">Töltési értesítések</string>
     <string name="charge_alert_channel_description" formatted="false">Amikor az akku eléri a választott szintet, vagy befejezte a töltést.</string>
     <string name="charge_alert_80_title" formatted="false">Akku 80 %-on</string>

@@ -2697,9 +2697,8 @@
     <string name="charging_notify_full" formatted="false">Bei 100 % benachrichtigen</string>
     <string name="charging_notify_at">Benachrichtigen bei</string>
     <string name="charging_notify_custom">Bei %1$d %% benachrichtigen</string>
-    <string name="charging_notify_custom_hint" formatted="false">40 bis 60 % passen, wenn das Rad wochenlang steht.</string>
     <string name="charging_notify_at_ask">Benachrichtigen bei…</string>
-    <string name="charging_notify_custom_range" formatted="false">5 bis 95 %, nicht 80: dafür gibt es eine eigene Meldung.</string>
+    <string name="charging_notify_custom_range" formatted="false">Muss 5 bis 95 % sein, nicht 80 %</string>
     <string name="charge_alert_channel_name">Ladehinweise</string>
     <string name="charge_alert_channel_description" formatted="false">Wenn der Akku eine gewählte Stufe erreicht oder fertig geladen ist.</string>
     <string name="charge_alert_80_title" formatted="false">Akku bei 80 %</string>

@@ -28,7 +28,8 @@ import com.eried.eucplanet.ui.theme.appColors
  * turning it off is a second tap on the ticked menu row, not a button here.
  *
  * The field takes any number so a wrong one can be seen as wrong: Save stays
- * disabled until it is 5 to 95 and not 80, which has its own alert. Not
+ * disabled, with a small warning, until it is 5 to 95 and not 80, which has
+ * its own alert. Not
  * dismissed by a tap outside, so a stray touch does not drop a number half
  * typed.
  */
@@ -58,14 +59,15 @@ fun ChargeLevelDialog(
                     suffix = "%",
                     modifier = Modifier.fillMaxWidth(),
                 )
-                Text(
-                    stringResource(
-                        if (valid) R.string.charging_notify_custom_hint
-                        else R.string.charging_notify_custom_range
-                    ),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.appColors.textSecondary,
-                )
+                // Only a number it will not take says anything, small and red,
+                // like the lockdown code check.
+                if (!valid) {
+                    Text(
+                        stringResource(R.string.charging_notify_custom_range),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.appColors.statusDanger,
+                    )
+                }
             }
         },
         confirmButton = {

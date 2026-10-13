@@ -2679,9 +2679,8 @@
     <string name="charging_notify_full" formatted="false">Waarschuw me bij 100 %</string>
     <string name="charging_notify_at">Waarschuw me bij</string>
     <string name="charging_notify_custom">Waarschuw me bij %1$d %%</string>
-    <string name="charging_notify_custom_hint" formatted="false">40 tot 60 % past bij een wiel dat weken blijft staan.</string>
     <string name="charging_notify_at_ask">Waarschuw me bij…</string>
-    <string name="charging_notify_custom_range" formatted="false">5 tot 95 %, niet 80: daar is al een eigen melding voor.</string>
+    <string name="charging_notify_custom_range" formatted="false">Moet 5 tot 95 % zijn, niet 80 %</string>
     <string name="charge_alert_channel_name">Laadmeldingen</string>
     <string name="charge_alert_channel_description" formatted="false">Wanneer het pakket een gekozen niveau bereikt of klaar is met laden.</string>
     <string name="charge_alert_80_title" formatted="false">Accu op 80 %</string>

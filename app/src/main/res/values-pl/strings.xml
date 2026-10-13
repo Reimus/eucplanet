@@ -2677,9 +2677,8 @@
     <string name="charging_notify_full" formatted="false">Powiadom przy 100 %</string>
     <string name="charging_notify_at">Powiadom przy</string>
     <string name="charging_notify_custom">Powiadom przy %1$d %%</string>
-    <string name="charging_notify_custom_hint" formatted="false">40 do 60 % pasuje do koła, które postoi tygodniami.</string>
     <string name="charging_notify_at_ask">Powiadom przy…</string>
-    <string name="charging_notify_custom_range" formatted="false">Od 5 do 95 %, nie 80: ma własne powiadomienie.</string>
+    <string name="charging_notify_custom_range" formatted="false">Musi być od 5 do 95 %, nie 80 %</string>
     <string name="charge_alert_channel_name">Alerty ładowania</string>
     <string name="charge_alert_channel_description" formatted="false">Gdy akumulator osiągnie wybrany poziom albo skończy się ładować.</string>
     <string name="charge_alert_80_title" formatted="false">Akumulator na 80 %</string>

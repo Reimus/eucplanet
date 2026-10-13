@@ -2480,9 +2480,8 @@
     <string name="charging_notify_full" formatted="false">Anunță-mă la 100 %</string>
     <string name="charging_notify_at">Anunță-mă la</string>
     <string name="charging_notify_custom">Anunță-mă la %1$d %%</string>
-    <string name="charging_notify_custom_hint" formatted="false">40–60 % se potrivește pentru o roată care stă săptămâni.</string>
     <string name="charging_notify_at_ask">Anunță-mă la…</string>
-    <string name="charging_notify_custom_range" formatted="false">Între 5 și 95 %, nu 80: are propria alertă.</string>
+    <string name="charging_notify_custom_range" formatted="false">Trebuie să fie între 5 și 95 %, nu 80 %</string>
     <string name="charge_alert_channel_name">Alerte de încărcare</string>
     <string name="charge_alert_channel_description" formatted="false">Când bateria atinge un nivel ales sau termină de încărcat.</string>
     <string name="charge_alert_80_title" formatted="false">Baterie la 80 %</string>

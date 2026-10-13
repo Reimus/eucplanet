@@ -2678,9 +2678,8 @@
     <string name="charging_notify_full" formatted="false">100 % で通知</string>
     <string name="charging_notify_at">通知する残量</string>
     <string name="charging_notify_custom">%1$d %% で通知</string>
-    <string name="charging_notify_custom_hint" formatted="false">何週間も乗らないなら 40〜60 % が目安です。</string>
     <string name="charging_notify_at_ask">通知する残量…</string>
-    <string name="charging_notify_custom_range" formatted="false">5〜95 % で指定してください。80 % は専用の通知があります。</string>
+    <string name="charging_notify_custom_range" formatted="false">5〜95 % で指定 (80 % 以外)</string>
     <string name="charge_alert_channel_name">充電の通知</string>
     <string name="charge_alert_channel_description" formatted="false">バッテリーが選んだレベルに達したとき、または充電が終わったとき。</string>
     <string name="charge_alert_80_title" formatted="false">バッテリー 80 %</string>

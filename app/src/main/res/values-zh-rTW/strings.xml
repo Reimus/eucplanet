@@ -2676,9 +2676,8 @@
     <string name="charging_notify_full" formatted="false">到 100 % 時通知我</string>
     <string name="charging_notify_at">通知電量</string>
     <string name="charging_notify_custom">到 %1$d %% 時通知我</string>
-    <string name="charging_notify_custom_hint" formatted="false">輪子要放幾週時，40–60 % 比較合適。</string>
     <string name="charging_notify_at_ask">通知電量…</string>
-    <string name="charging_notify_custom_range" formatted="false">請選 5–95 %，80 % 除外：它有單獨的提醒。</string>
+    <string name="charging_notify_custom_range" formatted="false">須為 5–95 %，不能是 80 %</string>
     <string name="charge_alert_channel_name">充電提醒</string>
     <string name="charge_alert_channel_description" formatted="false">電量達到你選的水準或充電完成時。</string>
     <string name="charge_alert_80_title" formatted="false">電量 80 %</string>
