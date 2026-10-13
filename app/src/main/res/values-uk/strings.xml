@@ -336,6 +336,7 @@
     <string name="action_chip_voice">Голос</string>
     <string name="action_chip_voice_listen">Слухати</string>
     <string name="menu_voice_ask">Слухати голосову команду</string>
+    <string name="menu_voice_stop">Припинити слухати</string>
     <string name="menu_voice_speak_report">Відтворити голосове повідомлення</string>
     <string name="voice_split_term">Останній замір</string>
     <string name="menu_switch_to_voice_command">Перейти до голосової команди</string>

@@ -19,7 +19,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -49,7 +52,6 @@ class VoiceCommandController @Inject constructor(
     private val wheelRepository: WheelRepository,
     private val voiceService: VoiceService,
     private val tonePlayer: TonePlayer,
-    private val appNotifier: com.eried.eucplanet.util.AppNotifier,
     private val appHealth: com.eried.eucplanet.data.repository.AppHealthRepository,
     private val weatherRepository: com.eried.eucplanet.weather.WeatherRepository,
     private val navigationEngine: com.eried.eucplanet.nav.NavigationEngine,
@@ -136,6 +138,24 @@ class VoiceCommandController @Inject constructor(
     private val _state = MutableStateFlow<UiState>(UiState.Idle)
     val state: StateFlow<UiState> = _state.asStateFlow()
 
+    /** Whether this session's Listening state says so on screen; see [listen]. */
+    @Volatile private var announceListening = false
+
+    /**
+     * The one line a session shows: "Listening", then what was heard, then
+     * the answer, each replacing the last. Empty means show nothing. These
+     * used to go to two different snackbar hosts, so the transcript appeared
+     * behind a "Listening" that was still up.
+     */
+    val toast: Flow<String> = _state.map {
+        when (it) {
+            UiState.Idle -> ""
+            UiState.Listening -> if (announceListening) context.getString(R.string.voice_listening) else ""
+            is UiState.Heard -> it.text
+            is UiState.Spoke -> it.text
+        }
+    }.distinctUntilChanged()
+
     private val _showVocabulary = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
     /**
@@ -195,27 +215,49 @@ class VoiceCommandController @Inject constructor(
      *   [showingListeningCue]): two cues for one press is noise.
      */
     fun listen(listener: VoiceListener? = null, notify: Boolean = true) {
-        // Pressing again means "forget that, listen to this". It used to mean
-        // nothing at all: the second press was swallowed while the first
-        // session ran out its window, so a rider who fumbled the first
-        // question had to wait for the app to finish not understanding it.
         // A press while it is listening means stop. It used to mean start
         // again, which looked the same from the outside for the first moment
         // and then was not: the rider got a fresh window they had not asked
-        // for, and the only way out was to wait it out.
+        // for, and the only way out was to wait it out. A single button (the
+        // tile, a Flic, a headset) has no other way to say stop.
         if (session?.isActive == true) {
-            session?.cancel()
-            activeMic?.stop()
-            activeMic = null
-            _state.value = UiState.Idle
-            scope.launch { closingCue(settingsRepository.get()) }
-            Log.i(TAG, "stopped by a second press")
-            com.eried.eucplanet.diagnostics.DiagnosticsLogger.note("Voice: stopped by a second press")
+            stop()
             return
         }
-        // Nothing should be holding the microphone here, but a session that
-        // ended badly can leave one behind, and the recogniser does not hand
-        // it back the instant stop() returns.
+        open(listener, notify)
+    }
+
+    /**
+     * Listen now, whatever is happening. For a control that only ever means
+     * "ask", like the menu entry: pressing it while a session runs drops that
+     * session and opens a fresh window instead of closing the microphone,
+     * because stopping has its own entry next to it.
+     */
+    fun ask() {
+        if (session?.isActive == true) {
+            session?.cancel()
+            Log.i(TAG, "restarted by ask")
+            com.eried.eucplanet.diagnostics.DiagnosticsLogger.note("Voice: restarted by ask")
+        }
+        open(null, notify = true)
+    }
+
+    /** Close the microphone and end the session, with the closing cue. */
+    fun stop() {
+        if (session?.isActive != true) return
+        session?.cancel()
+        activeMic?.stop()
+        activeMic = null
+        _state.value = UiState.Idle
+        scope.launch { closingCue(settingsRepository.get()) }
+        Log.i(TAG, "stopped by the rider")
+        com.eried.eucplanet.diagnostics.DiagnosticsLogger.note("Voice: stopped by the rider")
+    }
+
+    private fun open(listener: VoiceListener?, notify: Boolean) {
+        // A session that ended badly, or one [ask] just dropped, can leave a
+        // microphone behind, and the recogniser does not hand it back the
+        // instant stop() returns.
         val handingOver = activeMic != null
         activeMic?.stop()
         activeMic = null
@@ -248,11 +290,11 @@ class VoiceCommandController @Inject constructor(
                 context = context,
                 languageTag = VoiceLocaleTag.tag(recognitionTag(settings)),
             )
+            announceListening = notify && ownCues.get() == 0
             _state.value = UiState.Listening
             // Whatever the app was saying, it stops now. Otherwise the
             // recogniser spends the window listening to our own voice.
             voiceService.stopSpeaking()
-            if (notify && ownCues.get() == 0) appNotifier.post(context.getString(R.string.voice_listening))
 
             // Open the microphone before cueing the rider. The cue used to
             // come first, so a rider who answered it promptly spoke into a

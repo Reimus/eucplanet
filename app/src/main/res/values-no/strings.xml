@@ -1372,6 +1372,7 @@
     <string name="action_chip_voice">Tale</string>
     <string name="action_chip_voice_listen">Lytt</string>
     <string name="menu_voice_ask">Lytt etter talekommando</string>
+    <string name="menu_voice_stop">Slutt å lytte</string>
     <string name="menu_voice_speak_report">Spill av talemelding</string>
     <string name="voice_split_term">Siste split</string>
     <string name="menu_switch_to_voice_command">Bytt til talekommando</string>

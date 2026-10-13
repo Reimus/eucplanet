@@ -336,6 +336,7 @@
     <string name="action_chip_voice">Głos</string>
     <string name="action_chip_voice_listen">Słuchaj</string>
     <string name="menu_voice_ask">Słuchaj polecenia głosowego</string>
+    <string name="menu_voice_stop">Przestań słuchać</string>
     <string name="menu_voice_speak_report">Odtwórz komunikat głosowy</string>
     <string name="voice_split_term">Ostatni pomiar</string>
     <string name="menu_switch_to_voice_command">Przełącz na polecenie głosowe</string>

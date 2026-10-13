@@ -445,19 +445,9 @@ fun DashboardScreen(
     // dashboard styles match Overlay Studio / Navigator / Settings (no system
     // icon, swipe-to-dismiss).
     val snackbar = remember { androidx.compose.material3.SnackbarHostState() }
-    // The live transcript, then the answer. A snackbar rather than a dialog:
-    // fired from a Flic at speed the rider cannot look at the screen anyway,
-    // and a modal is something they could be left holding. Rule 3 makes this
-    // the transient surface.
-    LaunchedEffect(voiceCommandState) {
-        when (val v = voiceCommandState) {
-            is com.eried.eucplanet.voice.VoiceCommandController.UiState.Heard ->
-                snackbar.showSnackbar(v.text)
-            is com.eried.eucplanet.voice.VoiceCommandController.UiState.Spoke ->
-                snackbar.showSnackbar(v.text)
-            else -> {}
-        }
-    }
+    // The live transcript and the answer are not shown here: the root host in
+    // MainActivity shows a voice session as one line that replaces itself
+    // (VoiceCommandController.toast), on every screen.
     val snackbarScope = rememberCoroutineScope()
     LaunchedEffect(Unit) {
         viewModel.cloudToasts.collect { resId ->
@@ -2455,9 +2445,17 @@ fun DashboardScreen(
                                     // offers. No icons: nothing else in these
                                     // menus has them, and two glyphs in a list
                                     // of plain rows reads as decoration.
+                                    // Ask always opens a fresh window; while a
+                                    // session runs, stopping it is its own row.
+                                    if (voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle) {
+                                        DropdownMenuItem(
+                                            text = { Text(stringResource(R.string.menu_voice_stop)) },
+                                            onClick = { dismiss(); viewModel.onVoiceStop() }
+                                        )
+                                    }
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_ask)) },
-                                        onClick = { dismiss(); viewModel.onVoiceListen() }
+                                        onClick = { dismiss(); viewModel.onVoiceAsk() }
                                     )
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_speak_report)) },
@@ -2514,9 +2512,17 @@ fun DashboardScreen(
                                     // offers. No icons: nothing else in these
                                     // menus has them, and two glyphs in a list
                                     // of plain rows reads as decoration.
+                                    // Ask always opens a fresh window; while a
+                                    // session runs, stopping it is its own row.
+                                    if (voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle) {
+                                        DropdownMenuItem(
+                                            text = { Text(stringResource(R.string.menu_voice_stop)) },
+                                            onClick = { dismiss(); viewModel.onVoiceStop() }
+                                        )
+                                    }
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_ask)) },
-                                        onClick = { dismiss(); viewModel.onVoiceListen() }
+                                        onClick = { dismiss(); viewModel.onVoiceAsk() }
                                     )
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_speak_report)) },

@@ -336,6 +336,7 @@
     <string name="action_chip_voice">Stem</string>
     <string name="action_chip_voice_listen">Luisteren</string>
     <string name="menu_voice_ask">Luisteren naar spraakopdracht</string>
+    <string name="menu_voice_stop">Stop met luisteren</string>
     <string name="menu_voice_speak_report">Spraakmelding afspelen</string>
     <string name="voice_split_term">Laatste split</string>
     <string name="menu_switch_to_voice_command">Naar spraakopdracht wisselen</string>

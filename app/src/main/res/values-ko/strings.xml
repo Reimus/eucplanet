@@ -336,6 +336,7 @@
     <string name="action_chip_voice">음성</string>
     <string name="action_chip_voice_listen">듣기</string>
     <string name="menu_voice_ask">음성 명령 듣기</string>
+    <string name="menu_voice_stop">듣기 중지</string>
     <string name="menu_voice_speak_report">음성 안내 재생</string>
     <string name="voice_split_term">마지막 구간</string>
     <string name="menu_switch_to_voice_command">음성 명령으로 전환</string>

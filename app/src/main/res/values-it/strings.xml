@@ -1391,6 +1391,7 @@
     <string name="action_chip_voice">Voce</string>
     <string name="action_chip_voice_listen">Ascolta</string>
     <string name="menu_voice_ask">Ascolta un comando vocale</string>
+    <string name="menu_voice_stop">Smetti di ascoltare</string>
     <string name="menu_voice_speak_report">Riproduci annuncio vocale</string>
     <string name="voice_split_term">Ultimo split</string>
     <string name="menu_switch_to_voice_command">Passa al comando vocale</string>

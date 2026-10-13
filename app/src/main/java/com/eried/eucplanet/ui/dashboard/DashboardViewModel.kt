@@ -1157,6 +1157,12 @@ class DashboardViewModel @Inject constructor(
         voiceCommands.listen()
     }
 
+    /** The menu's Ask: a fresh window even while a session runs. */
+    fun onVoiceAsk() = voiceCommands.ask()
+
+    /** The menu's Stop listening. */
+    fun onVoiceStop() = voiceCommands.stop()
+
     /** The voice command tile is on screen and lights up while listening. */
     fun showingListeningCue(): () -> Unit = voiceCommands.showingListeningCue()
 
