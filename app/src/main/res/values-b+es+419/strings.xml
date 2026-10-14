@@ -335,8 +335,7 @@
     <string name="action_chip_light">Luz</string>
     <string name="action_chip_voice">Voz</string>
     <string name="action_chip_voice_listen">Escuchar</string>
-    <string name="menu_voice_ask">Empezar a escuchar comandos</string>
-    <string name="menu_voice_stop">Dejar de escuchar comandos</string>
+    <string name="menu_voice_ask">Escuchar un comando de voz</string>
     <string name="menu_voice_speak_report">Reproducir anuncio de voz</string>
     <string name="voice_split_term">Último tramo</string>
     <string name="menu_switch_to_voice_command">Cambiar a comando de voz</string>

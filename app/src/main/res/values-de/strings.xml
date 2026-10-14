@@ -335,8 +335,7 @@
     <string name="action_chip_light">Licht</string>
     <string name="action_chip_voice">Stimme</string>
     <string name="action_chip_voice_listen">Zuhören</string>
-    <string name="menu_voice_ask">Auf Befehle hören starten</string>
-    <string name="menu_voice_stop">Nicht mehr auf Befehle hören</string>
+    <string name="menu_voice_ask">Auf einen Sprachbefehl hören</string>
     <string name="menu_voice_speak_report">Sprachansage abspielen</string>
     <string name="voice_split_term">Letzter Split</string>
     <string name="menu_switch_to_voice_command">Auf Sprachbefehl umschalten</string>

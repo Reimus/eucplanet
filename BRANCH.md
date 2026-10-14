@@ -44,7 +44,7 @@ only when you can cut the ride short.
 - Fresh rides no longer show "not backed up to Dropbox" when they are.
 - Settings search finds buttons and every row, like "Crew", "Scan" or "Pair", and lands on the match.
 - Voice: one message per question. Listening, what you said and the answer replace each other instead of stacking.
-- Voice menu: one row, Start or Stop listening for a command, set when the menu opens.
+- Voice menu: one row, Listen for a voice command, always starts a fresh listen. Tap the tile to stop.
 - Music: Start music and Pause music for Flic, volume keys, HUD, watch and tiles. Start music wakes your last music app, or opens your music app and starts it.
 - Voice: say play music, pause music, next song or previous song.
 - Voice: Reset metrics after triggered report (Voice, off by default) resets like the Reset button once the report is read out.
@@ -107,8 +107,8 @@ only when you can cut the ride short.
 
 **Any wheel**
 - Settings search: "scan" lands on a Start scan button, "crew" on Crew pass (or says why it is not there)?
-- Voice tile, hold, Start listening for a command, speak: one message that changes, nothing stacked behind it?
-- While it listens, hold again: the row says Stop listening for a command and ends it, even if listening ran out meanwhile?
+- Voice tile, hold, Listen for a voice command, speak: one message that changes, nothing stacked behind it?
+- While it listens or answers, hold, Listen for a voice command: it starts over and hears you?
 - Music closed, press a button set to Start music: your music app opens and plays, with one press or one "play music"?
 - With music on, say pause music, then play music, then next song: each one does it, after the answer is spoken?
 - Reset metrics after triggered report on: press the voice report button, the trip resets after it speaks?

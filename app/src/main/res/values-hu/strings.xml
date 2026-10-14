@@ -298,8 +298,7 @@
     <string name="action_chip_light">Világítás</string>
     <string name="action_chip_voice">Hang</string>
     <string name="action_chip_voice_listen">Hallgatás</string>
-    <string name="menu_voice_ask">Parancsfigyelés indítása</string>
-    <string name="menu_voice_stop">Parancsfigyelés leállítása</string>
+    <string name="menu_voice_ask">Hangparancs figyelése</string>
     <string name="menu_voice_speak_report">Hangbemondás lejátszása</string>
     <string name="voice_split_term">Utolsó részidő</string>
     <string name="menu_switch_to_voice_command">Váltás hangparancsra</string>

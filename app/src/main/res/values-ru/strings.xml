@@ -335,8 +335,7 @@
     <string name="action_chip_light">Свет</string>
     <string name="action_chip_voice">Голос</string>
     <string name="action_chip_voice_listen">Слушать</string>
-    <string name="menu_voice_ask">Начать слушать команду</string>
-    <string name="menu_voice_stop">Перестать слушать команду</string>
+    <string name="menu_voice_ask">Слушать голосовую команду</string>
     <string name="menu_voice_speak_report">Воспроизвести голосовое сообщение</string>
     <string name="voice_split_term">Последний замер</string>
     <string name="menu_switch_to_voice_command">Перейти к голосовой команде</string>

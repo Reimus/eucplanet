@@ -2445,11 +2445,12 @@ fun DashboardScreen(
                                     // offers. No icons: nothing else in these
                                     // menus has them, and two glyphs in a list
                                     // of plain rows reads as decoration.
-                                    VoiceListenMenuItem(
-                                        listeningNow = voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle,
-                                        dismiss = dismiss,
-                                        onStart = { viewModel.onVoiceAsk() },
-                                        onStop = { viewModel.onVoiceStop() },
+                                    // One row that always opens a fresh window,
+                                    // whatever voice is doing. Stopping is a
+                                    // tap on the tile, which toggles.
+                                    DropdownMenuItem(
+                                        text = { Text(stringResource(R.string.menu_voice_ask)) },
+                                        onClick = { dismiss(); viewModel.onVoiceAsk() }
                                     )
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_speak_report)) },
@@ -2506,11 +2507,12 @@ fun DashboardScreen(
                                     // offers. No icons: nothing else in these
                                     // menus has them, and two glyphs in a list
                                     // of plain rows reads as decoration.
-                                    VoiceListenMenuItem(
-                                        listeningNow = voiceCommandState !is com.eried.eucplanet.voice.VoiceCommandController.UiState.Idle,
-                                        dismiss = dismiss,
-                                        onStart = { viewModel.onVoiceAsk() },
-                                        onStop = { viewModel.onVoiceStop() },
+                                    // One row that always opens a fresh window,
+                                    // whatever voice is doing. Stopping is a
+                                    // tap on the tile, which toggles.
+                                    DropdownMenuItem(
+                                        text = { Text(stringResource(R.string.menu_voice_ask)) },
+                                        onClick = { dismiss(); viewModel.onVoiceAsk() }
                                     )
                                     DropdownMenuItem(
                                         text = { Text(stringResource(R.string.menu_voice_speak_report)) },
@@ -4547,25 +4549,3 @@ private fun openUrl(context: Context, url: String) {
     }
 }
 
-/**
- * Start or stop listening, one row. What it says is read once, as the menu
- * opens, and kept: a session ending while the menu is up would otherwise
- * flip "Stop" to "Start" under the rider's finger, and the row also must not
- * change while the menu fades out after the tap. A Stop that lands after the
- * session already ended does nothing, which is what the rider wanted anyway.
- */
-@Composable
-private fun VoiceListenMenuItem(
-    listeningNow: Boolean,
-    dismiss: () -> Unit,
-    onStart: () -> Unit,
-    onStop: () -> Unit,
-) {
-    val listening = remember { listeningNow }
-    DropdownMenuItem(
-        text = {
-            Text(stringResource(if (listening) R.string.menu_voice_stop else R.string.menu_voice_ask))
-        },
-        onClick = { dismiss(); if (listening) onStop() else onStart() },
-    )
-}
