@@ -2801,7 +2801,7 @@
         <item quantity="other">%d stops</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">Je kaart, statistieken en wielknoppen op een Android Auto-scherm. Verbindt vanzelf, zonder wifi-instelling.</string>
+    <string name="android_auto_hint">Je statistieken en wielknoppen op een Android Auto-scherm. Verbindt vanzelf, zonder wifi-instelling.</string>
     <string name="car_waiting">Wachten op het wiel</string>
     <string name="car_last_battery">Laatste accu %1$d%%</string>
     <string name="car_navigate">Navigeren</string>

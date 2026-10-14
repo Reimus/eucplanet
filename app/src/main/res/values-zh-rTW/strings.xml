@@ -2797,7 +2797,7 @@
         <item quantity="other">%d 個停靠點</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">在 Android Auto 螢幕上顯示地圖、數據和獨輪車按鈕。自動連線，無需設定 Wi-Fi。</string>
+    <string name="android_auto_hint">在 Android Auto 螢幕上顯示數據和獨輪車按鈕。自動連線，無需設定 Wi-Fi。</string>
     <string name="car_waiting">正在等待獨輪車</string>
     <string name="car_last_battery">上次電量 %1$d%%</string>
     <string name="car_navigate">導航</string>

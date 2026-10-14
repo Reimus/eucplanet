@@ -2818,7 +2818,7 @@
         <item quantity="other">%d paradas</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">Tu mapa, estadísticas y botones de la rueda en una pantalla Android Auto. Se conecta solo, sin configurar Wi-Fi.</string>
+    <string name="android_auto_hint">Tus estadísticas y botones de la rueda en una pantalla Android Auto. Se conecta solo, sin configurar Wi-Fi.</string>
     <string name="car_waiting">Esperando la rueda</string>
     <string name="car_last_battery">Última batería %1$d%%</string>
     <string name="car_navigate">Navegar</string>

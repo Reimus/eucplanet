@@ -2603,7 +2603,7 @@
         <item quantity="other">%d de opriri</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">Harta, statisticile și butoanele roții pe un ecran Android Auto. Se conectează singur, fără setare Wi-Fi.</string>
+    <string name="android_auto_hint">Statisticile și butoanele roții pe un ecran Android Auto. Se conectează singur, fără setare Wi-Fi.</string>
     <string name="car_waiting">Se așteaptă roata</string>
     <string name="car_last_battery">Ultima baterie %1$d%%</string>
     <string name="car_navigate">Navighează</string>

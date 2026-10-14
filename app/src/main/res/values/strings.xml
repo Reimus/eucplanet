@@ -2827,7 +2827,7 @@
         <item quantity="other">%d stops</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">Your map, stats and wheel buttons on an Android Auto screen. It connects by itself, no Wi-Fi setup.</string>
+    <string name="android_auto_hint">Your stats and wheel buttons on an Android Auto screen. It connects by itself, no Wi-Fi setup.</string>
     <string name="car_waiting">Waiting for the wheel</string>
     <string name="car_last_battery">Last battery %1$d%%</string>
     <string name="car_waiting_wheel">Waiting for the wheel</string>

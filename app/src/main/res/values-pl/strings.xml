@@ -2801,7 +2801,7 @@
         <item quantity="other">%d przystanku</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">Mapa, statystyki i przyciski koła na ekranie Android Auto. Łączy się samo, bez konfiguracji Wi-Fi.</string>
+    <string name="android_auto_hint">Statystyki i przyciski koła na ekranie Android Auto. Łączy się samo, bez konfiguracji Wi-Fi.</string>
     <string name="car_waiting">Czekam na koło</string>
     <string name="car_last_battery">Ostatnia bateria %1$d%%</string>
     <string name="car_navigate">Nawiguj</string>

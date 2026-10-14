@@ -2797,7 +2797,7 @@
         <item quantity="other">경유지 %d곳</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">지도, 통계, 휠 버튼을 Android Auto 화면에 표시합니다. 자동으로 연결되며 Wi-Fi 설정이 필요 없습니다.</string>
+    <string name="android_auto_hint">통계와 휠 버튼을 Android Auto 화면에 표시합니다. 자동으로 연결되며 Wi-Fi 설정이 필요 없습니다.</string>
     <string name="car_waiting">휠을 기다리는 중</string>
     <string name="car_last_battery">마지막 배터리 %1$d%%</string>
     <string name="car_navigate">내비게이션</string>

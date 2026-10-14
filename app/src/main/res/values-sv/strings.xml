@@ -2799,7 +2799,7 @@
         <item quantity="other">%d stopp</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">Din karta, statistik och hjulets knappar på en Android Auto-skärm. Ansluter själv, ingen wifi-inställning.</string>
+    <string name="android_auto_hint">Din statistik och hjulets knappar på en Android Auto-skärm. Ansluter själv, ingen wifi-inställning.</string>
     <string name="car_waiting">Väntar på hjulet</string>
     <string name="car_last_battery">Senaste batteri %1$d%%</string>
     <string name="car_navigate">Navigera</string>

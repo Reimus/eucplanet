@@ -2799,7 +2799,7 @@
         <item quantity="other">経由地 %d 件</item>
     </plurals>
     <string name="section_android_auto">Android Auto</string>
-    <string name="android_auto_hint">地図、データ、ホイールのボタンを Android Auto 画面に表示。自動で接続し、Wi-Fi 設定は不要です。</string>
+    <string name="android_auto_hint">データとホイールのボタンを Android Auto 画面に表示。自動で接続し、Wi-Fi 設定は不要です。</string>
     <string name="car_waiting">ホイールを待っています</string>
     <string name="car_last_battery">前回のバッテリー %1$d%%</string>
     <string name="car_navigate">ナビ</string>
