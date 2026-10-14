@@ -4,6 +4,7 @@ import android.util.Log
 import com.eried.eucplanet.data.model.WheelData
 import com.eried.eucplanet.data.model.WheelSettings
 import com.eried.eucplanet.util.ByteUtils
+import com.eried.eucplanet.util.MetricSanity
 
 /**
  * Frame reassembler + parser for Begode/Gotway wheels.
@@ -416,9 +417,13 @@ class BegodeParser {
         // Motor temperature, whole degrees C, from the motor NTC. Only the
         // newer wheels have one (Xmax, Falcon Pro / +); the rest send 0
         // here, so it counts as wired only once it has read non-zero, the
-        // same arming the PWM field above uses.
-        if (motorTempC != 0f) hasMotorTemp = true
-        if (hasMotorTemp) lastMotorTempC = motorTempC
+        // same arming the PWM field above uses. A reading outside the
+        // plausible window (e.g. 32767) is a bad read: it neither arms nor
+        // replaces the last one, so it cannot set off the temperature alarm.
+        if (motorTempC != 0f && MetricSanity.isPlausibleTempC(motorTempC)) {
+            hasMotorTemp = true
+            lastMotorTempC = motorTempC
+        }
 
         val powerW = (lastVoltage * battCurrent).toInt()
         return WheelData(

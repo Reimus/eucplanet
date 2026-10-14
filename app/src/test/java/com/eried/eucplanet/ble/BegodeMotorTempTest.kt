@@ -78,4 +78,16 @@ class BegodeMotorTempTest {
         p.reset()
         assertNull(MetricRegistry.read("MOTOR_TEMP", telemetry(p.feed(liveA(), BegodeModel.MASTER))))
     }
+
+    @Test fun `an impossible reading neither arms the sensor nor reaches the alarm`() {
+        val p = BegodeParser()
+        p.feed(liveA(), BegodeModel.MASTER)
+        val bad = telemetry(p.feed(extras(32767), BegodeModel.MASTER))
+        assertNull(MetricRegistry.read("MOTOR_TEMP", bad))
+        assertEquals(32.1f, bad.maxTemperature, 0.1f)
+        p.feed(extras(41), BegodeModel.MASTER)
+        val kept = telemetry(p.feed(extras(32767), BegodeModel.MASTER))
+        assertEquals(41f, MetricRegistry.read("MOTOR_TEMP", kept)!!, 0.01f)
+        assertEquals(41f, kept.maxTemperature, 0.01f)
+    }
 }
