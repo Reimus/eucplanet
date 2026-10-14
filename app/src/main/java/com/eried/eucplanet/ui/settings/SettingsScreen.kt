@@ -613,6 +613,14 @@ fun SettingsScreen(
          */
         fun landing(query: String): List<String> =
             hits(query).sortedByDescending { it.kind.weight }.mapNotNull { it.under }.distinct() + title
+
+        /** How many hits each card inside this section folds away, by card title. */
+        fun foldCounts(query: String): Map<String, Int> =
+            hits(query).flatMap { it.folds }.groupingBy { it }.eachCount()
+
+        /** The cards holding the best hit, outermost first: what the search opens. */
+        fun bestFolds(query: String): List<String> =
+            hits(query).maxByOrNull { it.kind.weight }?.folds.orEmpty()
     }
 
     val titleGeneral = stringResource(R.string.tab_general)
@@ -848,6 +856,14 @@ fun SettingsScreen(
                     ?.first?.key
             } else null
             searchScroller.landing = sections.firstOrNull { it.key == searchScrollKey }?.landing(query).orEmpty()
+            // The same answer one level down, for the cards inside a section:
+            // each shut card counts what it hides, and the card holding the
+            // best hit of the section that opened opens too.
+            val searchFolds = if (searching) SearchFolds(
+                counts = sections.map { it.foldCounts(query) }
+                    .fold(emptyMap()) { acc, m -> acc + m.mapValues { (k, v) -> v + (acc[k] ?: 0) } },
+                open = sections.firstOrNull { it.key == searchScrollKey }?.bestFolds(query).orEmpty().toSet(),
+            ) else SearchFolds.None
 
             // Scrolling belongs to the anchor scroller, which keeps every
             // anchor's CURRENT position in a map and picks the best by rank.
@@ -857,6 +873,7 @@ fun SettingsScreen(
             androidx.compose.runtime.CompositionLocalProvider(
                 LocalSettingsSearchQuery provides query,
                 com.eried.eucplanet.ui.common.LocalSettingsSearchScroller provides searchScroller,
+                LocalSearchFolds provides searchFolds,
             ) {
                 @Composable
                 fun SectionCard(sec: SectionDef, indent: Boolean = false) {
@@ -957,6 +974,42 @@ private fun initialTabSectionKey(initialTab: Int): String? = when (initialTab) {
     else -> null
 }
 
+/**
+ * How many search hits a shut section or card hides, before its chevron.
+ * Nothing at all for 0.
+ */
+@Composable
+private fun SearchCountPill(count: Int) {
+    if (count <= 0) return
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        // The accent fill with the theme's on-accent ink. The highlight's 55
+        // percent version works behind a word in a sentence; behind a badge it
+        // would leave the count sitting on whatever the card happens to be.
+        color = MaterialTheme.appColors.selection,
+        contentColor = MaterialTheme.appColors.onPrimary,
+    ) {
+        Text(
+            count.toString(),
+            style = MaterialTheme.typography.labelMedium,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+        )
+    }
+    Spacer(Modifier.width(10.dp))
+}
+
+/**
+ * A card's share of the search: whether the query opens it, and how many hits
+ * it hides while it stays shut. Read from [LocalSearchFolds] by the card's own
+ * title, so a card needs nothing passed in to take part.
+ */
+@Composable
+private fun cardSearch(title: String, expanded: Boolean): Pair<Boolean, Int> {
+    val folds = LocalSearchFolds.current
+    val open = expanded || title in folds.open
+    return open to if (open) 0 else folds.counts[title] ?: 0
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CollapsibleSection(
@@ -1025,24 +1078,7 @@ private fun CollapsibleSection(
                     color = MaterialTheme.appColors.textPrimary,
                     modifier = Modifier.weight(1f)
                 )
-                if (matchCount > 0) {
-                    Surface(
-                        shape = RoundedCornerShape(10.dp),
-                        // The accent fill with the theme's on-accent ink. The
-                        // highlight's 55 percent version works behind a word
-                        // in a sentence; behind a badge it would leave the
-                        // count sitting on whatever the card happens to be.
-                        color = MaterialTheme.appColors.selection,
-                        contentColor = MaterialTheme.appColors.onPrimary,
-                    ) {
-                        Text(
-                            matchCount.toString(),
-                            style = MaterialTheme.typography.labelMedium,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                        )
-                    }
-                    Spacer(Modifier.width(10.dp))
-                }
+                SearchCountPill(matchCount)
                 val chevron by animateFloatAsState(
                     targetValue = if (expanded) 180f else 0f,
                     animationSpec = tween(180),
@@ -11145,6 +11181,7 @@ private fun AdvancedCollapsable(
     content: @Composable () -> Unit
 ) {
     var expanded by rememberSaveable(stateKey) { mutableStateOf(false) }
+    val (shown, hidden) = cardSearch(title, expanded)
     val requester = remember { BringIntoViewRequester() }
     LaunchedEffect(expanded) {
         if (expanded) {
@@ -11174,13 +11211,14 @@ private fun AdvancedCollapsable(
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.weight(1f)
                 )
+                SearchCountPill(hidden)
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowDown,
                     contentDescription = null
                 )
             }
             AnimatedVisibility(
-                visible = expanded,
+                visible = shown,
                 enter = expandVertically(
                     animationSpec = tween(180),
                     expandFrom = Alignment.Top,
@@ -11211,6 +11249,7 @@ private fun WatchButtonsCollapsable(
     content: @Composable () -> Unit
 ) {
     var expanded by rememberSaveable(title) { mutableStateOf(false) }
+    val (shown, hidden) = cardSearch(title, expanded)
     // Same smart-scroll behaviour as BringIntoViewSection / the top-level
     // CollapsibleSection: when the rider opens the card, after a short
     // settle delay scroll the card into view so the freshly-revealed
@@ -11240,17 +11279,18 @@ private fun WatchButtonsCollapsable(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    title,
+                    highlightMatches(title, LocalSettingsSearchQuery.current),
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.weight(1f)
                 )
+                SearchCountPill(hidden)
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowDown,
                     contentDescription = null
                 )
             }
             AnimatedVisibility(
-                visible = expanded,
+                visible = shown,
                 enter = expandVertically(
                     animationSpec = tween(180),
                     expandFrom = Alignment.Top,

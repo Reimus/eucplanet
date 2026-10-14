@@ -58,6 +58,45 @@ class SettingsSearchIndexTest {
         assertTrue(entry("voice", R.string.report_speed) != null)
     }
 
+    private fun anywhere(res: Int) =
+        SettingsSearchIndex.sections.values.flatten().first { it.res == res }
+
+    @Test fun `a text in a card inside a card knows both, outermost first`() {
+        assertEquals(
+            listOf(R.string.widget_section, R.string.widget_customize),
+            anywhere(R.string.widget_pick_desc).folds.toList(),
+        )
+        // The card's own title shows while it is shut, so it is not in itself.
+        assertEquals(listOf(R.string.widget_section), anywhere(R.string.widget_customize).folds.toList())
+    }
+
+    @Test fun `a card's info line is folded with it`() {
+        assertEquals(
+            listOf(R.string.watch_buttons_touch_label),
+            anywhere(R.string.watch_buttons_touch_info).folds.toList(),
+        )
+    }
+
+    @Test fun `every card in the code is known to the search`() {
+        // A card is found by its name, so one added later is covered without
+        // anyone listing it. This fails if that stops being true.
+        val titles = File("src/main/java/com/eried/eucplanet/ui/settings").walk()
+            .filter { it.extension == "kt" }
+            .flatMap {
+                Regex("""\b(\w*Collaps\w*)\(\s*(?:title\s*=\s*)?stringResource\(\s*R\.string\.(\w+)""")
+                    .findAll(it.readText())
+            }
+            // The top-level sections count their own matches; this is about
+            // the cards inside them.
+            .filter { it.groupValues[1] != "CollapsibleSection" }
+            .map { it.groupValues[2] }
+            .toSet()
+        assertTrue("found no cards at all", titles.size > 10)
+        val folded = SettingsSearchIndex.sections.values.flatten().flatMap { it.folds.toList() }.toSet()
+        val missing = titles.filter { R.string::class.java.getField(it).getInt(null) !in folded }.sorted()
+        assertTrue("These cards hide texts the search cannot point to: $missing", missing.isEmpty())
+    }
+
     @Test fun `what only shows in a dialog is left out`() {
         assertEquals(null, entry("speed", R.string.lockdown_title))
     }

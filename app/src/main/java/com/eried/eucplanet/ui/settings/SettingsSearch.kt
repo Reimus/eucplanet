@@ -16,7 +16,22 @@ internal class SearchEntry(
     val kind: SettingsSearchIndex.Kind,
     /** The sub-heading it sits under, where the search lands when it is not on screen. */
     val under: String?,
+    /** Titles of the cards it is folded into, outermost first. */
+    val folds: List<String> = emptyList(),
 )
+
+/**
+ * What the query found inside the collapsible cards, keyed by card title:
+ * how many hits each one hides, and which ones the search opens. The cards
+ * read this themselves, so no call site passes anything.
+ */
+internal class SearchFolds(val counts: Map<String, Int>, val open: Set<String>) {
+    companion object {
+        val None = SearchFolds(emptyMap(), emptySet())
+    }
+}
+
+internal val LocalSearchFolds = androidx.compose.runtime.compositionLocalOf { SearchFolds.None }
 
 /**
  * How much one hit counts toward opening its section. A description mentions
@@ -35,11 +50,12 @@ internal val SettingsSearchIndex.Kind.weight: Int
  * holds no text for the index to find: the dashboard's metric and action
  * tiles, and every Advanced row.
  */
-private fun registryNames(): Map<String, List<Int>> = mapOf(
-    "dashboard" to MetricCatalog.all.map { it.labelRes } + ActionCatalog.all.map { it.labelRes },
-    "advanced" to AdvGroup.entries.map { it.titleRes } + ADVANCED_SPECS.map { it.label },
+private fun registryNames(): Map<String, List<Pair<Int, Int>>> = mapOf(
+    "dashboard" to (MetricCatalog.all.map { it.labelRes } + ActionCatalog.all.map { it.labelRes }).map { it to 0 },
+    // Each Advanced row sits in its group's card.
+    "advanced" to AdvGroup.entries.map { it.titleRes to 0 } + ADVANCED_SPECS.map { it.label to it.group.titleRes },
     // Words the HUD is known by that its rows never spell out.
-    "integration" to listOf(R.string.hud_search_corpus),
+    "integration" to listOf(R.string.hud_search_corpus to 0),
 )
 
 /**
@@ -58,10 +74,16 @@ internal fun rememberSearchCorpora(): Map<String, List<SearchEntry>> {
                     resources.getString(e.res),
                     e.kind,
                     e.under.takeIf { it != 0 }?.let { resources.getString(it) },
+                    e.folds.map { resources.getString(it) },
                 )
             }
-            found + extras[key].orEmpty().map {
-                SearchEntry(resources.getString(it), SettingsSearchIndex.Kind.LABEL, null)
+            found + extras[key].orEmpty().map { (res, fold) ->
+                SearchEntry(
+                    resources.getString(res),
+                    SettingsSearchIndex.Kind.LABEL,
+                    null,
+                    if (fold == 0) emptyList() else listOf(resources.getString(fold)),
+                )
             }
         }
     }

@@ -29,14 +29,29 @@ abstract class SettingsSearchIndexTask : DefaultTask() {
 }
 
 object SettingsSearchScan {
-    /** [placed]: seen where it shows (inside a button), not only named like one. */
-    data class Hit(val id: String, val kind: String, val under: String?, val placed: Boolean = false)
+    /**
+     * [placed]: seen where it shows (inside a button), not only named like one.
+     * [folds]: the titles of the collapsible cards it sits in, outermost first,
+     * so a card can say how many matches it hides while it is shut.
+     */
+    data class Hit(
+        val id: String,
+        val kind: String,
+        val under: String?,
+        val placed: Boolean = false,
+        val folds: List<String> = emptyList(),
+    )
 
     /** Calls whose content is not on the page until the rider opens it. */
     private val hiddenCall = Regex(
         """\b(AlertDialog|BasicAlertDialog|Dialog|DatePickerDialog|ModalBottomSheet|DropdownMenu|ExposedDropdownMenu|Popup)\s*\("""
     )
     private val buttonCall = Regex("""\b(\w*Button)\s*\(""")
+    // Any card that folds its content away, by name, so one added later is
+    // covered the day it is written. Its title is the first text in its
+    // arguments; what it hides is its trailing lambda.
+    private val foldCall = Regex("""\b(\w*Collaps\w*)\s*\(""")
+    private val anyText = Regex("""R\.string\.(\w+)""")
     private val header = Regex("""SectionHeader\(\s*stringResource\(\s*R\.string\.(\w+)""")
     // A label picked in a `when`, like a voice report's name, is shown too.
     private val text = Regex("""(?:stringResource\(|->)\s*R\.string\.(\w+)""")
@@ -134,13 +149,31 @@ object SettingsSearchScan {
         return result.mapValues { (_, list) -> list.filter { (seen[it.id] ?: 0) < 4 && !generic.matches(it.id) } }
     }
 
+    /**
+     * The cards in [body]: what each one hides, and its title. Everything
+     * after the title is hidden, the other arguments (an info line) included.
+     */
+    private fun folds(body: String): List<Pair<IntRange, String>> = foldCall.findAll(body).mapNotNull { m ->
+        val paren = m.range.last
+        val argsEnd = close(body, paren)
+        val title = anyText.find(body, paren)?.takeIf { it.range.first < argsEnd } ?: return@mapNotNull null
+        var j = argsEnd + 1
+        while (j < body.length && body[j].isWhitespace()) j++
+        if (j >= body.length || body[j] != '{') return@mapNotNull null
+        (title.range.last + 1..close(body, j)) to title.groupValues[1]
+    }.toList()
+
     private fun walk(
         body: String,
         startUnder: String?,
         fns: Map<String, List<String>>,
         visited: MutableSet<String>,
         hits: MutableMap<String, Hit>,
+        startFolds: List<String> = emptyList(),
     ) {
+        val cards = folds(body)
+        fun foldsAt(at: Int) =
+            startFolds + cards.filter { at in it.first }.sortedBy { it.first.first }.map { it.second }
         val hidden = hiddenCall.findAll(body).map { callSpan(body, it.range.last) }.toList()
         val buttons = buttonCall.findAll(body)
             .filter { b -> listOf("Radio", "Segmented", "Icon").none { it in b.groupValues[1] } }
@@ -159,21 +192,21 @@ object SettingsSearchScan {
         for (e in events) when (e.kind) {
             0 -> {
                 under = e.value
-                hits.putIfAbsent(e.value, Hit(e.value, "TITLE", null))
+                hits.putIfAbsent(e.value, Hit(e.value, "TITLE", null, folds = foldsAt(e.at)))
                 headerAt += body.indexOf("stringResource", e.at)
             }
             1 -> if (e.at !in headerAt) {
                 // A text read in more than one place counts where it shows the
                 // most: the button it labels, not a line that only reads it.
                 val inButton = inside(buttons, e.at)
-                val hit = Hit(e.value, kindOf(e.value, inButton), under, placed = inButton)
+                val hit = Hit(e.value, kindOf(e.value, inButton), under, placed = inButton, folds = foldsAt(e.at))
                 val had = hits[e.value]
                 val better = had == null || strength(hit.kind) > strength(had.kind) ||
                     (strength(hit.kind) == strength(had.kind) && hit.placed && !had.placed)
                 if (better) hits[e.value] = hit
             }
             else -> if (visited.add(e.value)) {
-                for (b in fns.getValue(e.value)) walk(b, under, fns, visited, hits)
+                for (b in fns.getValue(e.value)) walk(b, under, fns, visited, hits, foldsAt(e.at))
             }
         }
     }
@@ -187,8 +220,11 @@ object SettingsSearchScan {
         appendLine("internal object SettingsSearchIndex {")
         appendLine("    enum class Kind { TITLE, BUTTON, LABEL, DESCRIPTION }")
         appendLine()
-        appendLine("    /** A text one section shows: what it is, and the sub-heading (0 for none) it sits under. */")
-        appendLine("    class Entry(val res: Int, val kind: Kind, val under: Int)")
+        appendLine("    /**")
+        appendLine("     * A text one section shows: what it is, the sub-heading (0 for none) it")
+        appendLine("     * sits under, and the titles of the cards it is folded into, outermost first.")
+        appendLine("     */")
+        appendLine("    class Entry(val res: Int, val kind: Kind, val under: Int, val folds: IntArray = IntArray(0))")
         appendLine()
         appendLine("    /** Every section's texts, by section key, in the order they appear. */")
         appendLine("    val sections: Map<String, List<Entry>> by lazy {")
@@ -202,7 +238,9 @@ object SettingsSearchScan {
             appendLine("    private fun ${fnName(key)}() = listOf(")
             for (h in hits) {
                 val under = h.under?.let { "R.string.$it" } ?: "0"
-                appendLine("        Entry(R.string.${h.id}, Kind.${h.kind}, $under),")
+                val folds = if (h.folds.isEmpty()) "" else
+                    ", intArrayOf(" + h.folds.joinToString { "R.string.$it" } + ")"
+                appendLine("        Entry(R.string.${h.id}, Kind.${h.kind}, $under$folds),")
             }
             appendLine("    )")
         }
