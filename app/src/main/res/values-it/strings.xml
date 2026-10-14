@@ -1401,12 +1401,11 @@
     <string name="voice_commands_enable_desc">Usa la voce con l\'app. Tieni premuto il pulsante Voce sulla dashboard e scegli Ascolta un comando vocale.</string>
     <string name="voice_commands_bind_desc">Assegna l\'ascolto a un Flic, ai tasti volume, al tuo orologio o all\'HUD.</string>
     <string name="voice_prompt_cue">Segnale in ascolto</string>
-    <string name="voice_prompt_cue_desc">Disattivalo se le cuffie hanno già il loro.</string>
     <string name="voice_music_listening">Musica durante l\'ascolto</string>
     <string name="voice_music_pause">Pausa</string>
     <string name="voice_music_duck">Abbassa</string>
     <string name="voice_music_keep">Continua</string>
-    <string name="voice_music_listening_desc">La tua musica mentre il microfono è aperto e viene detta la risposta. La musica può coprire ciò che dici.</string>
+    <string name="voice_music_listening_desc">Il riconoscimento avviene sul telefono quando può, senza account. Le parole vengono confrontate con i comandi dell\'app.</string>
     <string name="voice_cue_beep">Bip</string>
     <string name="voice_cue_spoken">Voce</string>
     <string name="voice_cue_off">No</string>

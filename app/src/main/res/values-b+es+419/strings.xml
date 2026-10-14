@@ -344,12 +344,11 @@
     <string name="voice_commands_enable_desc">Usa tu voz con la app. Mantén pulsado el botón Voz en el panel y elige Escuchar un comando de voz.</string>
     <string name="voice_commands_bind_desc">Asigna Escuchar a un Flic, las teclas de volumen, tu reloj o el HUD.</string>
     <string name="voice_prompt_cue">Aviso al escuchar</string>
-    <string name="voice_prompt_cue_desc">Desactívalo si tus auriculares ya tienen su propio tono.</string>
     <string name="voice_music_listening">Música al escuchar</string>
     <string name="voice_music_pause">Pausar</string>
     <string name="voice_music_duck">Bajar</string>
     <string name="voice_music_keep">Seguir</string>
-    <string name="voice_music_listening_desc">Tu música mientras el micrófono está abierto y se dice la respuesta. La música puede tapar lo que dices.</string>
+    <string name="voice_music_listening_desc">El reconocimiento corre en el teléfono cuando puede, sin cuenta. Las palabras se comparan con los comandos de la app.</string>
     <string name="voice_cue_beep">Pitido</string>
     <string name="voice_cue_spoken">Voz</string>
     <string name="voice_cue_off">No</string>

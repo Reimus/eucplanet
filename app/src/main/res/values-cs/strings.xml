@@ -307,12 +307,11 @@
     <string name="voice_commands_enable_desc">Ovládej aplikaci hlasem. Podrž tlačítko Hlas na palubní desce a vyber Poslouchat hlasový povel.</string>
     <string name="voice_commands_bind_desc">Přiřaď poslech k Flicu, tlačítkům hlasitosti, hodinkám nebo HUD.</string>
     <string name="voice_prompt_cue">Signál při poslechu</string>
-    <string name="voice_prompt_cue_desc">Vypni to, pokud má sluchátko vlastní tón.</string>
     <string name="voice_music_listening">Hudba při poslechu</string>
     <string name="voice_music_pause">Pozastavit</string>
     <string name="voice_music_duck">Ztišit</string>
     <string name="voice_music_keep">Hrát dál</string>
-    <string name="voice_music_listening_desc">Vaše hudba, když je mikrofon otevřený a zazní odpověď. Hudba může přehlušit, co říkáte.</string>
+    <string name="voice_music_listening_desc">Rozpoznávání běží v telefonu, kdykoli to jde, bez účtu. Slova se porovnají s povely aplikace.</string>
     <string name="voice_cue_beep">Pípnutí</string>
     <string name="voice_cue_spoken">Hlas</string>
     <string name="voice_cue_off">Ne</string>

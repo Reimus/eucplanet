@@ -1382,12 +1382,11 @@
     <string name="voice_commands_enable_desc">Bruk stemmen din i appen. Hold inne stemmeknappen på dashbordet og velg Lytt etter en talekommando.</string>
     <string name="voice_commands_bind_desc">Knytt lytting til en Flic, volumtastene, klokken din eller HUD.</string>
     <string name="voice_prompt_cue">Signal ved lytting</string>
-    <string name="voice_prompt_cue_desc">Slå det av hvis headsettet har sin egen tone.</string>
     <string name="voice_music_listening">Musikk under lytting</string>
     <string name="voice_music_pause">Pause</string>
     <string name="voice_music_duck">Senk</string>
     <string name="voice_music_keep">Spill videre</string>
-    <string name="voice_music_listening_desc">Musikken din mens mikrofonen er åpen og svaret sies. Musikk kan overdøve det du sier.</string>
+    <string name="voice_music_listening_desc">Gjenkjenningen kjører på telefonen når den kan, uten konto. Ordene matches mot appens kommandoer.</string>
     <string name="voice_cue_beep">Pip</string>
     <string name="voice_cue_spoken">Stemme</string>
     <string name="voice_cue_off">Av</string>

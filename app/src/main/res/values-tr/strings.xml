@@ -344,12 +344,11 @@
     <string name="voice_commands_enable_desc">Uygulamayı sesinizle kullanın. Panodaki Ses düğmesini basılı tutun ve Sesli komut dinle seçeneğini seçin.</string>
     <string name="voice_commands_bind_desc">Dinlemeyi bir Flic\'e, ses tuşlarına, saatinize veya HUD\'a atayın.</string>
     <string name="voice_prompt_cue">Dinlerken uyarı</string>
-    <string name="voice_prompt_cue_desc">Kulaklığınızın kendi tonu varsa kapatın.</string>
     <string name="voice_music_listening">Dinlerken müzik</string>
     <string name="voice_music_pause">Duraklat</string>
     <string name="voice_music_duck">Kıs</string>
     <string name="voice_music_keep">Çalmaya devam</string>
-    <string name="voice_music_listening_desc">Mikrofon açıkken ve yanıt söylenirken müziğin. Müzik söylediğini bastırabilir.</string>
+    <string name="voice_music_listening_desc">Tanıma mümkün olduğunda telefonda çalışır, hesap gerekmez. Sözcükler uygulamanın komutlarıyla eşleştirilir.</string>
     <string name="voice_cue_beep">Bip</string>
     <string name="voice_cue_spoken">Ses</string>
     <string name="voice_cue_off">Yok</string>

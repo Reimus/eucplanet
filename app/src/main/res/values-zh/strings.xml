@@ -1365,12 +1365,11 @@
     <string name="voice_commands_enable_desc">用语音操作应用。长按仪表盘上的语音按钮，选择聆听语音指令。</string>
     <string name="voice_commands_bind_desc">可以把聆听指派给 Flic、音量键、手表或 HUD。</string>
     <string name="voice_prompt_cue">聆听时的提示</string>
-    <string name="voice_prompt_cue_desc">如果耳机自带提示音，可以关闭。</string>
     <string name="voice_music_listening">聆听时的音乐</string>
     <string name="voice_music_pause">暂停</string>
     <string name="voice_music_duck">调低</string>
     <string name="voice_music_keep">继续播放</string>
-    <string name="voice_music_listening_desc">麦克风打开和说出回答期间的音乐。音乐可能盖过你说的话。</string>
+    <string name="voice_music_listening_desc">识别尽可能在手机上进行，无需账号。说出的词会与应用的指令比对。</string>
     <string name="voice_cue_beep">提示音</string>
     <string name="voice_cue_spoken">语音</string>
     <string name="voice_cue_off">关闭</string>

@@ -349,12 +349,11 @@
     <string name="voice_commands_enable_desc">Use your voice with the app. Hold the Voice button on the dashboard and pick Listen for a voice command.</string>
     <string name="voice_commands_bind_desc">Bind listening to a Flic, the volume keys, your watch or the HUD.</string>
     <string name="voice_prompt_cue">Cue when listening</string>
-    <string name="voice_prompt_cue_desc">Turn it off if your headset has its own tone.</string>
     <string name="voice_music_listening">Music while listening</string>
     <string name="voice_music_pause">Pause</string>
     <string name="voice_music_duck">Lower</string>
     <string name="voice_music_keep">Keep playing</string>
-    <string name="voice_music_listening_desc">Your music while the microphone is open and the answer is said. Playing music can drown out what you say.</string>
+    <string name="voice_music_listening_desc">Recognition runs on the phone when it can, no account needed. The words are matched to the app\'s commands.</string>
     <string name="voice_cue_beep">Beep</string>
     <string name="voice_cue_spoken">Voice</string>
     <string name="voice_cue_off">Off</string>

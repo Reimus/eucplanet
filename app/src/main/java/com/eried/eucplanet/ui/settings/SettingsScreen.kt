@@ -7345,7 +7345,6 @@ private fun VoiceTab(
             // Tapping the one already selected plays it again.
             onChange = { viewModel.updateVoicePromptCue(it, listeningWord) },
         )
-        HintText(stringResource(R.string.voice_prompt_cue_desc))
 
         // Assistants and cars take the music down while they listen; through
         // the phone speaker the microphone otherwise hears the song.

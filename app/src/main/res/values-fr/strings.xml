@@ -344,12 +344,11 @@
     <string name="voice_commands_enable_desc">Utilisez votre voix avec l\'application. Maintenez le bouton Voix du tableau de bord et choisissez Écouter une commande vocale.</string>
     <string name="voice_commands_bind_desc">Liez l\'écoute à un Flic, aux touches de volume, à votre montre ou au HUD.</string>
     <string name="voice_prompt_cue">Signal en écoute</string>
-    <string name="voice_prompt_cue_desc">Désactivez-le si votre casque a déjà le sien.</string>
     <string name="voice_music_listening">Musique pendant l\'écoute</string>
     <string name="voice_music_pause">Pause</string>
     <string name="voice_music_duck">Baisser</string>
     <string name="voice_music_keep">Continuer</string>
-    <string name="voice_music_listening_desc">Votre musique pendant que le micro est ouvert et que la réponse est dite. La musique peut couvrir votre voix.</string>
+    <string name="voice_music_listening_desc">La reconnaissance se fait sur le téléphone quand c\'est possible, sans compte. Les mots sont comparés aux commandes de l\'application.</string>
     <string name="voice_cue_beep">Bip</string>
     <string name="voice_cue_spoken">Voix</string>
     <string name="voice_cue_off">Aucun</string>

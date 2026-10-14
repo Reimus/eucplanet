@@ -344,12 +344,11 @@
     <string name="voice_commands_enable_desc">Gebruik je stem in de app. Houd de spraakknop op het dashboard ingedrukt en kies Luisteren naar een spraakopdracht.</string>
     <string name="voice_commands_bind_desc">Koppel luisteren aan een Flic, de volumeknoppen, je horloge of de HUD.</string>
     <string name="voice_prompt_cue">Signaal bij luisteren</string>
-    <string name="voice_prompt_cue_desc">Zet het uit als je headset een eigen toon heeft.</string>
     <string name="voice_music_listening">Muziek tijdens luisteren</string>
     <string name="voice_music_pause">Pauzeren</string>
     <string name="voice_music_duck">Zachter</string>
     <string name="voice_music_keep">Doorspelen</string>
-    <string name="voice_music_listening_desc">Je muziek terwijl de microfoon open is en het antwoord klinkt. Muziek kan overstemmen wat je zegt.</string>
+    <string name="voice_music_listening_desc">Herkenning gebeurt op de telefoon als het kan, zonder account. De woorden worden vergeleken met de opdrachten van de app.</string>
     <string name="voice_cue_beep">Piep</string>
     <string name="voice_cue_spoken">Stem</string>
     <string name="voice_cue_off">Uit</string>
