@@ -2001,6 +2001,7 @@
     <string name="warnings_perm_location_title">Lokalizacja jest wyłączona</string>
     <string name="warnings_perm_location_body">Trasy nie zapisują przebiegu, a prędkość i kalibracja GPS nie działają. Dotknij, aby zezwolić.</string>
     <string name="weather_error_no_location">Brak lokalizacji do prognozy</string>
+    <string name="weather_waiting_location">Czekam na lokalizację…</string>
     <string name="warnings_location_services_body">EUC Planet ma zezwolenie, ale telefon ma wyłączoną lokalizację dla wszystkiego. Dotknij, aby ją włączyć.</string>
     <string name="warnings_location_services_title">Lokalizacja jest wyłączona w systemie</string>
     <string name="dash_external_gps_settings">Ustawienia zewnętrznego GPS</string>

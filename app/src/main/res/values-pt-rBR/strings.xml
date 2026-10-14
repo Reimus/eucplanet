@@ -2006,6 +2006,7 @@
     <string name="warnings_perm_location_title">A localização está desativada</string>
     <string name="warnings_perm_location_body">As viagens não gravam rota, e velocidade e calibração por GPS não funcionam. Toque para permitir.</string>
     <string name="weather_error_no_location">Sem localização para a previsão</string>
+    <string name="weather_waiting_location">Aguardando localização…</string>
     <string name="warnings_location_services_body">O EUC Planet tem permissão, mas o telefone está com a localização desligada para tudo. Toque para ligar.</string>
     <string name="warnings_location_services_title">A localização está desligada</string>
     <string name="warnings_battery_opt_title">A otimização de bateria está ativada</string>

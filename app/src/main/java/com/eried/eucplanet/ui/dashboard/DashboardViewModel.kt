@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
@@ -212,6 +213,9 @@ class DashboardViewModel @Inject constructor(
      *  where the providers publish them. */
     private fun fineDetail(windowHours: Int): Boolean = windowHours <= 12
 
+    /** The forecast waiting for a first location fix; see [refreshWeather]. */
+    private var locationWait: kotlinx.coroutines.Job? = null
+
     fun refreshWeather(force: Boolean = false) {
         // No location, nothing to ask about. Returning quietly left the panel
         // reading "Fetching..." forever with nothing in flight, which is the
@@ -220,9 +224,30 @@ class DashboardViewModel @Inject constructor(
         val loc = tripRepository.currentLocation.value
             ?: tripRepository.lastKnownLocation.value
             ?: run {
+                // With the permission and the location switch on, a fix is
+                // only a matter of time: say so, and fetch the moment one
+                // lands rather than leaving the panel to be reopened.
+                val canLocate = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.ACCESS_FINE_LOCATION,
+                ) == android.content.pm.PackageManager.PERMISSION_GRANTED &&
+                    (context.getSystemService(android.content.Context.LOCATION_SERVICE)
+                        as? android.location.LocationManager)
+                        ?.let { androidx.core.location.LocationManagerCompat.isLocationEnabled(it) } == true
                 weatherRepository.reportNoLocation(
-                    context.getString(R.string.weather_error_no_location)
+                    context.getString(
+                        if (canLocate) R.string.weather_waiting_location
+                        else R.string.weather_error_no_location
+                    )
                 )
+                if (canLocate && locationWait?.isActive != true) {
+                    locationWait = viewModelScope.launch {
+                        kotlinx.coroutines.flow.merge(
+                            tripRepository.currentLocation,
+                            tripRepository.lastKnownLocation,
+                        ).first { it != null }
+                        refreshWeather()
+                    }
+                }
                 return
             }
         val w = weatherSettings.value

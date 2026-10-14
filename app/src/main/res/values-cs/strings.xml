@@ -2337,6 +2337,7 @@
     <string name="warnings_perm_location_title">Poloha je vypnutá</string>
     <string name="warnings_perm_location_body">Jízdy nezaznamenají trasu a rychlost ani kalibrace podle GPS nefungují. Klepnutím povolte.</string>
     <string name="weather_error_no_location">Bez polohy nelze předpovídat</string>
+    <string name="weather_waiting_location">Čekám na polohu…</string>
     <string name="warnings_location_services_body">EUC Planet má povolení, ale telefon má polohu vypnutou pro všechno. Klepnutím ji zapněte.</string>
     <string name="warnings_location_services_title">Poloha je v systému vypnutá</string>
     <string name="warnings_battery_opt_title">Optimalizace baterie je zapnutá</string>

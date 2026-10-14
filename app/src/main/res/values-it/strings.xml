@@ -1795,6 +1795,7 @@
     <string name="warnings_perm_location_title">La posizione è disattivata</string>
     <string name="warnings_perm_location_body">I viaggi non registrano il percorso e velocità e calibrazione GPS non funzionano. Tocca per consentire.</string>
     <string name="weather_error_no_location">Nessuna posizione per il meteo</string>
+    <string name="weather_waiting_location">In attesa della posizione…</string>
     <string name="warnings_location_services_body">EUC Planet ha il permesso, ma il telefono ha la posizione spenta per tutto. Tocca per attivarla.</string>
     <string name="warnings_location_services_title">La posizione è spenta</string>
     <string name="hud_screen_name_map_nav">Mappa + Nav</string>

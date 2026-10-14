@@ -2597,6 +2597,7 @@
     <string name="warnings_perm_location_title">Location is off</string>
     <string name="warnings_perm_location_body">Trips record no route, and GPS speed and calibration will not work. Tap to allow.</string>
     <string name="weather_error_no_location">No location to forecast</string>
+    <string name="weather_waiting_location">Waiting for location…</string>
     <string name="warnings_location_services_body">EUC Planet is allowed to use it, but the phone has location turned off for everything. Tap to switch it on.</string>
     <string name="warnings_location_services_title">Location is switched off</string>
     <string name="warnings_battery_opt_title">Battery optimisation is on</string>

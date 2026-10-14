@@ -2003,6 +2003,7 @@
     <string name="warnings_perm_location_title">位置情報がオフです</string>
     <string name="warnings_perm_location_body">トリップにルートが記録されず、GPS 速度とキャリブレーションも使えません。タップして許可してください。</string>
     <string name="weather_error_no_location">予報する場所がありません</string>
+    <string name="weather_waiting_location">位置情報を待っています…</string>
     <string name="warnings_location_services_body">EUC Planet には許可がありますが、端末側で位置情報がすべてオフになっています。タップしてオンにしてください。</string>
     <string name="warnings_location_services_title">端末の位置情報がオフです</string>
     <string name="warnings_battery_opt_title">電池の最適化が有効です</string>
