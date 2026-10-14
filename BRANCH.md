@@ -1,4 +1,6 @@
-# next-experimental
+# inmotion-x1
+
+InMotion X1 support, on top of next-experimental. For the X1 tester.
 
 New features land here first. They work on the wheels they were written for
 and may not work on yours yet, and settings can move between builds. Ride it
@@ -14,6 +16,7 @@ only when you can cut the ride short.
 - Map: friends without the app open the link in a browser: the stops, the distances, Download GPX.
 - Map: the stop list shows each stop's distance from the one before and the running total.
 - Begode Master is rider-tested: no more preliminary banner (the Master Pro keeps it).
+- InMotion X1: shows its name, reads tiltback and alarms from its own settings page, all 56 cells per pack, 2 packs, no empty temperature sensors.
 - Begode: an Auto off tile counts down to the wheel's auto power-off (m:ss).
 - Fixed a crash on every launch for riders with a backup folder set (a start-up race).
 - Crews pairing: scan or type a code from eucstats and the browser flies your colours.
@@ -57,6 +60,11 @@ only when you can cut the ride short.
 - Share, Share route on a planned route: the stops and distances right? Scan it with a second phone: same route?
 - Send the link to someone without the app: does the page show the route and download a GPX?
 - Stop list: the last running total matches the total at the top? Numbers hide while you drag a stop?
+
+**InMotion X1**
+- Tiltback and alarm speeds match the InMotion app?
+- Change tiltback in EUC Planet, then check the InMotion app shows the new value.
+- Battery screen: 2 packs of 56 cells, matching the InMotion app?
 
 **Crews pairing**
 - Camera at the QR on the eucstats Crews panel: does the app open on the pass screen?
