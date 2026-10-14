@@ -335,7 +335,7 @@
     <string name="action_chip_light">Światło</string>
     <string name="action_chip_voice">Głos</string>
     <string name="action_chip_voice_listen">Słuchaj</string>
-    <string name="menu_voice_ask">Słuchaj polecenia</string>
+    <string name="menu_voice_ask">Zacznij słuchać polecenia</string>
     <string name="menu_voice_stop">Przestań słuchać polecenia</string>
     <string name="menu_voice_speak_report">Odtwórz komunikat głosowy</string>
     <string name="voice_split_term">Ostatni pomiar</string>

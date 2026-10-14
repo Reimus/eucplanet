@@ -335,7 +335,7 @@
     <string name="action_chip_light">Lys</string>
     <string name="action_chip_voice">Tale</string>
     <string name="action_chip_voice_listen">Lyt</string>
-    <string name="menu_voice_ask">Lyt efter en kommando</string>
+    <string name="menu_voice_ask">Begynd at lytte efter kommando</string>
     <string name="menu_voice_stop">Stop med at lytte efter kommando</string>
     <string name="menu_voice_speak_report">Afspil stemmebesked</string>
     <string name="voice_split_term">Sidste split</string>

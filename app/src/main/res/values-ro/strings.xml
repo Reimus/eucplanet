@@ -298,7 +298,7 @@
     <string name="action_chip_light">Lumină</string>
     <string name="action_chip_voice">Voce</string>
     <string name="action_chip_voice_listen">Ascultă</string>
-    <string name="menu_voice_ask">Ascultă o comandă</string>
+    <string name="menu_voice_ask">Începe să asculți comanda</string>
     <string name="menu_voice_stop">Nu mai asculta comanda</string>
     <string name="menu_voice_speak_report">Redă anunțul vocal</string>
     <string name="voice_split_term">Ultimul split</string>
