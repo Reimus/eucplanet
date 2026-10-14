@@ -2817,4 +2817,20 @@
         <item quantity="many">%d paradas</item>
         <item quantity="other">%d paradas</item>
     </plurals>
+    <string name="section_android_auto">Android Auto</string>
+    <string name="android_auto_hint">Tu mapa, estadísticas y botones de la rueda en una pantalla Android Auto. Se conecta solo, sin configurar Wi-Fi.</string>
+    <string name="car_waiting">Esperando la rueda</string>
+    <string name="car_last_battery">Última batería %1$d%%</string>
+    <string name="car_navigate">Navegar</string>
+    <string name="car_places_title">Navegar a</string>
+    <string name="car_place_home">Casa</string>
+    <string name="car_place_work">Trabajo</string>
+    <string name="car_no_places">Guarda Casa o Trabajo en el planificador de rutas primero.</string>
+    <string name="car_waiting_wheel">Esperando la rueda</string>
+    <string name="car_weather">Clima</string>
+    <string name="car_alarm_channel_name">Alarmas en la pantalla del auto</string>
+    <string name="car_alarm_channel_description">Muestra una alarma activa en la pantalla de Android Auto, sobre el mapa.</string>
+    <string name="car_alarm_notifications">Alarmas en la pantalla del auto</string>
+    <string name="car_alarm_notifications_hint">Una alarma activa aparece sobre el mapa, así te llega mientras navegas. El pitido y la vibración no cambian.</string>
+    <string name="car_no_metrics">Sin métricas seleccionadas</string>
 </resources>

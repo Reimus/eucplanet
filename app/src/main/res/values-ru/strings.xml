@@ -2800,4 +2800,20 @@
         <item quantity="many">%d точек</item>
         <item quantity="other">%d точки</item>
     </plurals>
+    <string name="section_android_auto">Android Auto</string>
+    <string name="android_auto_hint">Карта, показатели и кнопки колеса на экране Android Auto. Подключается само, без настройки Wi-Fi.</string>
+    <string name="car_waiting">Ожидание колеса</string>
+    <string name="car_last_battery">Последний заряд %1$d%%</string>
+    <string name="car_navigate">Навигация</string>
+    <string name="car_places_title">Маршрут до</string>
+    <string name="car_place_home">Дом</string>
+    <string name="car_place_work">Работа</string>
+    <string name="car_no_places">Сначала сохраните Дом или Работу в планировщике маршрутов.</string>
+    <string name="car_waiting_wheel">Ожидание колеса</string>
+    <string name="car_weather">Погода</string>
+    <string name="car_alarm_channel_name">Оповещения на экране авто</string>
+    <string name="car_alarm_channel_description">Показывает сработавшее оповещение на экране Android Auto, поверх карты.</string>
+    <string name="car_alarm_notifications">Оповещения на экране авто</string>
+    <string name="car_alarm_notifications_hint">Сработавшее оповещение появляется поверх карты, поэтому дойдёт до вас во время навигации. Звук и вибрация без изменений.</string>
+    <string name="car_no_metrics">Показатели не выбраны</string>
 </resources>

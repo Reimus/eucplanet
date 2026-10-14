@@ -2601,4 +2601,20 @@
         <item quantity="one">%d pysähdys</item>
         <item quantity="other">%d pysähdystä</item>
     </plurals>
+    <string name="section_android_auto">Android Auto</string>
+    <string name="android_auto_hint">Kartta, tiedot ja pyörän painikkeet Android Auto -näytöllä. Yhdistää itse, ei Wi-Fi-asetuksia.</string>
+    <string name="car_waiting">Odotetaan pyörää</string>
+    <string name="car_last_battery">Viimeisin akku %1$d%%</string>
+    <string name="car_navigate">Navigoi</string>
+    <string name="car_places_title">Navigoi kohteeseen</string>
+    <string name="car_place_home">Koti</string>
+    <string name="car_place_work">Työ</string>
+    <string name="car_no_places">Tallenna ensin Koti tai Työ reittisuunnittelijassa.</string>
+    <string name="car_waiting_wheel">Odotetaan pyörää</string>
+    <string name="car_weather">Sää</string>
+    <string name="car_alarm_channel_name">Hälytykset auton näytöllä</string>
+    <string name="car_alarm_channel_description">Näyttää lauenneen hälytyksen Android Auto -näytöllä kartan päällä.</string>
+    <string name="car_alarm_notifications">Hälytykset auton näytöllä</string>
+    <string name="car_alarm_notifications_hint">Lauennut hälytys näkyy kartan päällä, joten se tavoittaa sinut navigoidessa. Piippaus ja värinä eivät muutu.</string>
+    <string name="car_no_metrics">Ei valittuja mittareita</string>
 </resources>

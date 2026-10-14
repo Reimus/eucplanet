@@ -2603,4 +2603,20 @@
         <item quantity="many">%d zastávky</item>
         <item quantity="other">%d zastávek</item>
     </plurals>
+    <string name="section_android_auto">Android Auto</string>
+    <string name="android_auto_hint">Mapa, statistiky a tlačítka kola na obrazovce Android Auto. Připojí se samo, bez nastavení Wi-Fi.</string>
+    <string name="car_waiting">Čekám na kolo</string>
+    <string name="car_last_battery">Poslední baterie %1$d%%</string>
+    <string name="car_navigate">Navigovat</string>
+    <string name="car_places_title">Navigovat do</string>
+    <string name="car_place_home">Domov</string>
+    <string name="car_place_work">Práce</string>
+    <string name="car_no_places">Nejdřív ulož Domov nebo Práci v plánovači tras.</string>
+    <string name="car_waiting_wheel">Čekání na kolo</string>
+    <string name="car_weather">Počasí</string>
+    <string name="car_alarm_channel_name">Alarmy na displeji auta</string>
+    <string name="car_alarm_channel_description">Zobrazí spuštěný alarm na displeji Android Auto, přes mapu.</string>
+    <string name="car_alarm_notifications">Alarmy na displeji auta</string>
+    <string name="car_alarm_notifications_hint">Spuštěný alarm se zobrazí přes mapu, takže se k tobě dostane i při navigaci. Pípnutí a vibrace zůstávají.</string>
+    <string name="car_no_metrics">Nevybrány žádné metriky</string>
 </resources>

@@ -2796,4 +2796,20 @@
     <plurals name="route_stop_count">
         <item quantity="other">경유지 %d곳</item>
     </plurals>
+    <string name="section_android_auto">Android Auto</string>
+    <string name="android_auto_hint">지도, 통계, 휠 버튼을 Android Auto 화면에 표시합니다. 자동으로 연결되며 Wi-Fi 설정이 필요 없습니다.</string>
+    <string name="car_waiting">휠을 기다리는 중</string>
+    <string name="car_last_battery">마지막 배터리 %1$d%%</string>
+    <string name="car_navigate">내비게이션</string>
+    <string name="car_places_title">목적지</string>
+    <string name="car_place_home">집</string>
+    <string name="car_place_work">직장</string>
+    <string name="car_no_places">먼저 경로 빌더에서 집 또는 직장을 저장하세요.</string>
+    <string name="car_waiting_wheel">휠 연결 대기 중</string>
+    <string name="car_weather">날씨</string>
+    <string name="car_alarm_channel_name">차량 화면 알람</string>
+    <string name="car_alarm_channel_description">작동 중인 알람을 지도 위 Android Auto 화면에 표시합니다.</string>
+    <string name="car_alarm_notifications">차량 화면 알람</string>
+    <string name="car_alarm_notifications_hint">작동한 알람이 지도 위에 표시되어 내비게이션 중에도 확인할 수 있습니다. 경고음과 진동은 그대로입니다.</string>
+    <string name="car_no_metrics">선택된 항목 없음</string>
 </resources>

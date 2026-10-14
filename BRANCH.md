@@ -1,6 +1,4 @@
-# inmotion-x1
-
-InMotion X1 support, on top of next-experimental. For the X1 tester.
+# next-experimental
 
 New features land here first. They work on the wheels they were written for
 and may not work on yours yet, and settings can move between builds. Ride it
@@ -51,8 +49,16 @@ only when you can cut the ride short.
 - Charging: a third alert for storage. Notify me at... asks for a level (5 to 95, not 80), tap again to turn it off.
 - Settings search: a card inside a section shows how many matches it hides, and the best one opens by itself.
 - Settings search: a match on a button gets a band like everywhere else, not bold.
+- Android Auto: your stats and wheel buttons on the car screen, beside a music app in a split. Opening Google Maps closes it (one navigation app at a time).
+- Android Auto: a firing alarm shows on the car screen. Pick the stats and buttons in Settings, Integration, Android Auto.
 
 ## Please test
+
+**Android Auto** (install from the Play internal sharing link, a sideloaded APK never shows in the car)
+- The car screen opens, and speed and battery match the phone?
+- Horn, Light and Record work from the car screen?
+- Music app, then EUC Planet, then the layout button: EUC Planet beside the music?
+- An alarm while Maps navigates: does the card show over the map?
 
 **Map / navigation**
 - Ride to the last stop: one X closes the arrival banner and ends navigation?
@@ -113,5 +119,6 @@ only when you can cut the ride short.
 
 ## Reporting back
 
-Open an issue with your wheel model and firmware. A Service Mode log beats a
-description; if it crashed, Share crash log on the About screen.
+Open an issue with your wheel model and firmware (for Android Auto, the car
+screen model and a photo). A Service Mode log beats a description; if it
+crashed, Share crash log on the About screen.

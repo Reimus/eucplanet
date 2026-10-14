@@ -250,6 +250,9 @@ object SettingsJson {
         put("widgetMetrics", s.widget.metrics)
         put("widgetActions", s.widget.actions)
         put("widgetStandaloneActions", s.widget.standaloneActions)
+        put("androidAutoMetrics", s.androidAuto.metrics)
+        put("androidAutoActions", s.androidAuto.actions)
+        put("androidAutoAlarmNotifications", s.androidAuto.alarmNotifications)
         // Nested voice extras, written as flat keys so the file stays readable
         // and a future move back to top level would not break existing saves.
         put("weatherEnabled", s.weather.enabled)
@@ -739,6 +742,11 @@ object SettingsJson {
             metrics = j.optString("widgetMetrics", base.widget.metrics),
             actions = j.optString("widgetActions", base.widget.actions),
             standaloneActions = j.optString("widgetStandaloneActions", base.widget.standaloneActions),
+        ),
+        androidAuto = com.eried.eucplanet.data.model.AndroidAutoSettings(
+            metrics = j.optString("androidAutoMetrics", base.androidAuto.metrics),
+            actions = j.optString("androidAutoActions", base.androidAuto.actions),
+            alarmNotifications = j.optBoolean("androidAutoAlarmNotifications", base.androidAuto.alarmNotifications),
         ),
         compactModeWhen = j.optString("compactModeWhen", base.compactModeWhen),
         coverCameraCutout = j.optString("coverCameraCutout", base.coverCameraCutout),

@@ -2602,4 +2602,20 @@
         <item quantity="few">%d opriri</item>
         <item quantity="other">%d de opriri</item>
     </plurals>
+    <string name="section_android_auto">Android Auto</string>
+    <string name="android_auto_hint">Harta, statisticile și butoanele roții pe un ecran Android Auto. Se conectează singur, fără setare Wi-Fi.</string>
+    <string name="car_waiting">Se așteaptă roata</string>
+    <string name="car_last_battery">Ultima baterie %1$d%%</string>
+    <string name="car_navigate">Navighează</string>
+    <string name="car_places_title">Navighează spre</string>
+    <string name="car_place_home">Acasă</string>
+    <string name="car_place_work">Serviciu</string>
+    <string name="car_no_places">Salvează mai întâi Acasă sau Serviciu în planificatorul de rute.</string>
+    <string name="car_waiting_wheel">Se așteaptă roata</string>
+    <string name="car_weather">Vreme</string>
+    <string name="car_alarm_channel_name">Alarme pe ecranul mașinii</string>
+    <string name="car_alarm_channel_description">Afișează o alarmă declanșată pe ecranul Android Auto, peste hartă.</string>
+    <string name="car_alarm_notifications">Alarme pe ecranul mașinii</string>
+    <string name="car_alarm_notifications_hint">O alarmă declanșată apare peste hartă, așa că te găsește în timpul navigării. Bipul și vibrația rămân la fel.</string>
+    <string name="car_no_metrics">Nicio valoare selectată</string>
 </resources>
