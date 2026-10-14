@@ -461,7 +461,13 @@ class FlicManager @Inject constructor(
      * to take the key, and only gets one once it has started, which can take
      * seconds. Riders had to say "play music" twice before this. PLAY is safe
      * to repeat, it never pauses, and the presses end the moment music is
-     * heard, so what the rider does in the player after that is left alone. That launch is the weak half. Android 10 and later
+     * heard, so what the rider does in the player after that is left alone.
+     *
+     * Not MEDIA_PLAY_FROM_SEARCH with an empty query, although Android
+     * documents it as "play something": YouTube Music takes it, loads an
+     * item it calls not playable, and stops.
+     *
+     * The launch is the weak half. Android 10 and later
      * block activity starts from the background unless the app is on screen,
      * so from a Flic in a pocket it may be refused. It fails quietly into
      * the log, because a press that did nothing is no worse than before.
