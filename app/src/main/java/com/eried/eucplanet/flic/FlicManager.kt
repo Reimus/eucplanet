@@ -48,8 +48,8 @@ class FlicManager @Inject constructor(
         private const val MUSIC_START_CHECK_MS = 1500L
         /** How often play is pressed again while an opened music app starts up. */
         private const val MUSIC_RETRY_MS = 1000L
-        /** Presses after opening the app; a cold start took about 10 s on a Pixel. */
-        private const val MUSIC_RETRIES = 15
+        /** Presses after opening the app, enough for a cold start without outstaying it. */
+        private const val MUSIC_RETRIES = 8
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -460,7 +460,8 @@ class FlicManager @Inject constructor(
      * pressed again every second until it plays: a closed app has no session
      * to take the key, and only gets one once it has started, which can take
      * seconds. Riders had to say "play music" twice before this. PLAY is safe
-     * to repeat, it never pauses. That launch is the weak half. Android 10 and later
+     * to repeat, it never pauses, and the presses end the moment music is
+     * heard, so what the rider does in the player after that is left alone. That launch is the weak half. Android 10 and later
      * block activity starts from the background unless the app is on screen,
      * so from a Flic in a pocket it may be refused. It fails quietly into
      * the log, because a press that did nothing is no worse than before.
