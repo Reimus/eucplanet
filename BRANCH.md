@@ -15,6 +15,7 @@ only when you can cut the ride short.
 - Map: Scan QR (in Share) opens a route or joins a group ride. A route asks before replacing yours.
 - Map: friends without the app open the link in a browser: the stops, the distances, Download GPX.
 - Map: the stop list shows each stop's distance from the one before and the running total.
+- Begode: Motor temp shows the motor sensor, not the board. Board temperature is now Controller temp.
 - Begode Master is rider-tested: no more preliminary banner (the Master Pro keeps it).
 - InMotion X1: shows its name, reads tiltback and alarms from its own settings page, all 56 cells per pack, 2 packs, no empty temperature sensors.
 - Begode: an Auto off tile counts down to the wheel's auto power-off (m:ss).
@@ -78,6 +79,7 @@ only when you can cut the ride short.
 - Stays connected all ride? Lights and horn work?
 
 **Begode**
+- Wheel with a motor sensor (Xmax, Falcon Pro / +): Motor temp matches the Begode app? Without one, Motor temp shows --?
 - Auto off tile (Settings, Dashboard layout): matches the wheel, and jumps back up when the wheel moves?
 - Current (A) stays live all ride instead of dropping to 0 A? Master v3 especially.
 - Beep volume by speed on: quiet beeps when stopped, loud once riding?
