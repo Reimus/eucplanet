@@ -308,6 +308,11 @@
     <string name="voice_commands_bind_desc">Sido kuuntelu Flic-painikkeeseen, äänenvoimakkuusnäppäimiin, kelloosi tai HUD-näyttöön.</string>
     <string name="voice_prompt_cue">Merkkiääni kuunnellessa</string>
     <string name="voice_prompt_cue_desc">Poista käytöstä, jos kuulokkeissasi on oma äänimerkki.</string>
+    <string name="voice_music_listening">Musiikki kuunneltaessa</string>
+    <string name="voice_music_pause">Tauko</string>
+    <string name="voice_music_duck">Hiljennä</string>
+    <string name="voice_music_keep">Jatka</string>
+    <string name="voice_music_listening_desc">Musiikkisi, kun mikrofoni on auki ja vastaus sanotaan. Musiikki voi peittää puheesi.</string>
     <string name="voice_cue_beep">Piippaus</string>
     <string name="voice_cue_spoken">Ääni</string>
     <string name="voice_cue_off">Ei</string>

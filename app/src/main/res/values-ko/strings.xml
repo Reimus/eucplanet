@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">듣기를 Flic, 볼륨 키, 시계 또는 HUD에 지정할 수 있습니다.</string>
     <string name="voice_prompt_cue">듣기 시작 신호</string>
     <string name="voice_prompt_cue_desc">헤드셋에 자체 음이 있다면 끄세요.</string>
+    <string name="voice_music_listening">듣는 동안 음악</string>
+    <string name="voice_music_pause">일시정지</string>
+    <string name="voice_music_duck">줄이기</string>
+    <string name="voice_music_keep">계속 재생</string>
+    <string name="voice_music_listening_desc">마이크가 열려 있고 응답이 나오는 동안의 음악. 음악이 말소리를 가릴 수 있습니다.</string>
     <string name="voice_cue_beep">샐</string>
     <string name="voice_cue_spoken">음성</string>
     <string name="voice_cue_off">없음</string>

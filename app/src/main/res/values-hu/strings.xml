@@ -308,6 +308,11 @@
     <string name="voice_commands_bind_desc">Rendeld a figyelést egy Flichez, a hangerőgombokhoz, az órádhoz vagy a HUD-hoz.</string>
     <string name="voice_prompt_cue">Jelzés figyeléskor</string>
     <string name="voice_prompt_cue_desc">Kapcsold ki, ha a fejhallgatónak van saját hangja.</string>
+    <string name="voice_music_listening">Zene hallgatás közben</string>
+    <string name="voice_music_pause">Szünet</string>
+    <string name="voice_music_duck">Halkítás</string>
+    <string name="voice_music_keep">Szóljon</string>
+    <string name="voice_music_listening_desc">A zenéd, amíg a mikrofon nyitva van és elhangzik a válasz. A zene elnyomhatja, amit mondasz.</string>
     <string name="voice_cue_beep">Síp</string>
     <string name="voice_cue_spoken">Hang</string>
     <string name="voice_cue_off">Nincs</string>

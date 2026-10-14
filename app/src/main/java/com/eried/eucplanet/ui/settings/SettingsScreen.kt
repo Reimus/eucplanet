@@ -7347,6 +7347,20 @@ private fun VoiceTab(
         )
         HintText(stringResource(R.string.voice_prompt_cue_desc))
 
+        // Assistants and cars take the music down while they listen; through
+        // the phone speaker the microphone otherwise hears the song.
+        SegmentedChoice(
+            label = stringResource(R.string.voice_music_listening),
+            options = listOf(
+                com.eried.eucplanet.data.model.VoiceCommandSettings.MUSIC_PAUSE to stringResource(R.string.voice_music_pause),
+                com.eried.eucplanet.data.model.VoiceCommandSettings.MUSIC_DUCK to stringResource(R.string.voice_music_duck),
+                com.eried.eucplanet.data.model.VoiceCommandSettings.MUSIC_KEEP to stringResource(R.string.voice_music_keep),
+            ),
+            current = settings.voiceCommands.musicWhileListening,
+            onChange = { viewModel.updateVoiceMusicWhileListening(it) },
+        )
+        HintText(stringResource(R.string.voice_music_listening_desc))
+
         SegmentedChoice(
             label = stringResource(R.string.voice_unknown_cue),
             options = listOf(

@@ -872,6 +872,10 @@ class SettingsViewModel @Inject constructor(
     }
 
     /** The same, for what a rider hears when nothing matched. */
+    fun updateVoiceMusicWhileListening(v: String) {
+        update { copy(voiceCommands = voiceCommands.copy(musicWhileListening = v)) }
+    }
+
     fun updateVoiceUnknownCue(v: String, sentence: String) {
         update { copy(voiceCommands = voiceCommands.copy(unknownCue = v)) }
         viewModelScope.launch {

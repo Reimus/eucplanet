@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">Koppla lyssning till en Flic, volymknapparna, din klocka eller HUD.</string>
     <string name="voice_prompt_cue">Signal vid lyssning</string>
     <string name="voice_prompt_cue_desc">Stäng av det om ditt headset har en egen ton.</string>
+    <string name="voice_music_listening">Musik under lyssning</string>
+    <string name="voice_music_pause">Pausa</string>
+    <string name="voice_music_duck">Sänk</string>
+    <string name="voice_music_keep">Spela vidare</string>
+    <string name="voice_music_listening_desc">Din musik medan mikrofonen är öppen och svaret sägs. Musik kan dränka det du säger.</string>
     <string name="voice_cue_beep">Pip</string>
     <string name="voice_cue_spoken">Röst</string>
     <string name="voice_cue_off">Av</string>

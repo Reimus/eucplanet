@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">可以把聆聽指派給 Flic、音量鍵、手錶或 HUD。</string>
     <string name="voice_prompt_cue">聆聽時的提示</string>
     <string name="voice_prompt_cue_desc">如果耳機自帶提示音，可以關閉。</string>
+    <string name="voice_music_listening">聆聽時的音樂</string>
+    <string name="voice_music_pause">暫停</string>
+    <string name="voice_music_duck">調低</string>
+    <string name="voice_music_keep">繼續播放</string>
+    <string name="voice_music_listening_desc">麥克風開啟和說出回答期間的音樂。音樂可能蓋過你說的話。</string>
     <string name="voice_cue_beep">提示音</string>
     <string name="voice_cue_spoken">語音</string>
     <string name="voice_cue_off">關閉</string>

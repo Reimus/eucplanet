@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">待ち受けは Flic、音量キー、時計、HUD に割り当てられます。</string>
     <string name="voice_prompt_cue">聴取時の合図</string>
     <string name="voice_prompt_cue_desc">ヘッドセットに独自の音がある場合はオフにします。</string>
+    <string name="voice_music_listening">聞き取り中の音楽</string>
+    <string name="voice_music_pause">一時停止</string>
+    <string name="voice_music_duck">小さく</string>
+    <string name="voice_music_keep">そのまま</string>
+    <string name="voice_music_listening_desc">マイクが開いて応答が話される間の音楽。音楽が声をかき消すことがあります。</string>
     <string name="voice_cue_beep">ビープ</string>
     <string name="voice_cue_spoken">音声</string>
     <string name="voice_cue_off">なし</string>

@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">Bind lytning til en Flic, lydstyrketasterne, dit ur eller HUD.</string>
     <string name="voice_prompt_cue">Signal ved lytning</string>
     <string name="voice_prompt_cue_desc">Slå det fra, hvis dit headset har sin egen tone.</string>
+    <string name="voice_music_listening">Musik under lytning</string>
+    <string name="voice_music_pause">Pause</string>
+    <string name="voice_music_duck">Sænk</string>
+    <string name="voice_music_keep">Spil videre</string>
+    <string name="voice_music_listening_desc">Din musik mens mikrofonen er åben og svaret siges. Musik kan overdøve det, du siger.</string>
     <string name="voice_cue_beep">Bip</string>
     <string name="voice_cue_spoken">Stemme</string>
     <string name="voice_cue_off">Fra</string>

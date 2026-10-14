@@ -143,6 +143,10 @@ class VoiceCommandController @Inject constructor(
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+
+    private val listeningFocus by lazy {
+        ListeningFocus(context.getSystemService(Context.AUDIO_SERVICE) as android.media.AudioManager)
+    }
     private val _state = MutableStateFlow<UiState>(UiState.Idle)
     val state: StateFlow<UiState> = _state.asStateFlow()
 
@@ -262,6 +266,7 @@ class VoiceCommandController @Inject constructor(
         session?.cancel()
         activeMic?.stop()
         activeMic = null
+        listeningFocus.releaseAll()
         _state.value = UiState.Idle
         scope.launch { closingCue(settingsRepository.get()) }
         Log.i(TAG, "stopped by the rider")
@@ -300,6 +305,13 @@ class VoiceCommandController @Inject constructor(
                 delay(ANSWER_LINGER_MS)
                 _state.value = UiState.Idle
                 return@launch
+            }
+            // The rider's music goes down now and stays down through the
+            // answer; see ListeningFocus. Released before any held media key
+            // is sent, and whenever the session ends, however it ends.
+            val focusSession = listeningFocus.hold(settings.voiceCommands.musicWhileListening)
+            coroutineContext[kotlinx.coroutines.Job]?.invokeOnCompletion {
+                listeningFocus.release(focusSession)
             }
             val mic = listener ?: AndroidVoiceListener(
                 context = context,
@@ -404,6 +416,7 @@ class VoiceCommandController @Inject constructor(
 
             // The reply has been said and its audio focus handed back, so a
             // held media key can reach the player now. See MEDIA_AFTER_SPEECH.
+            listeningFocus.release(focusSession)
             deferredMedia?.let { key ->
                 deferredMedia = null
                 delay(MEDIA_SETTLE_MS)

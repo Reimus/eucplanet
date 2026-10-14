@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">Призначте прослуховування на Flic, клавіші гучності, годинник або HUD.</string>
     <string name="voice_prompt_cue">Сигнал під час слухання</string>
     <string name="voice_prompt_cue_desc">Вимкніть, якщо у гарнітури є власний сигнал.</string>
+    <string name="voice_music_listening">Музика під час слухання</string>
+    <string name="voice_music_pause">Пауза</string>
+    <string name="voice_music_duck">Тихіше</string>
+    <string name="voice_music_keep">Грати</string>
+    <string name="voice_music_listening_desc">Ваша музика, поки відкритий мікрофон і звучить відповідь. Музика може заглушити вашу мову.</string>
     <string name="voice_cue_beep">Гудок</string>
     <string name="voice_cue_spoken">Голос</string>
     <string name="voice_cue_off">Ні</string>

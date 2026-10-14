@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">Lege Zuhören auf einen Flic, die Lautstärketasten, deine Uhr oder das HUD.</string>
     <string name="voice_prompt_cue">Signal beim Zuhören</string>
     <string name="voice_prompt_cue_desc">Schalte es aus, wenn dein Headset einen eigenen Ton hat.</string>
+    <string name="voice_music_listening">Musik beim Zuhören</string>
+    <string name="voice_music_pause">Pausieren</string>
+    <string name="voice_music_duck">Leiser</string>
+    <string name="voice_music_keep">Weiter</string>
+    <string name="voice_music_listening_desc">Deine Musik, solange das Mikrofon offen ist und die Antwort gesprochen wird. Musik kann übertönen, was du sagst.</string>
     <string name="voice_cue_beep">Ton</string>
     <string name="voice_cue_spoken">Stimme</string>
     <string name="voice_cue_off">Aus</string>

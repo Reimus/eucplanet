@@ -275,6 +275,7 @@ object SettingsJson {
         put("voiceHeadsetButton", s.voiceCommands.headsetButton)
         put("voiceHeadsetAction", s.voiceCommands.headsetAction)
         put("voiceRecognitionLocale", s.voiceCommands.recognitionLocale)
+        put("voiceMusicWhileListening", s.voiceCommands.musicWhileListening)
         put("voiceReportBatteryEst", s.voiceReports.periodicBatteryEst)
         put("triggerReportBatteryEst", s.voiceReports.triggerBatteryEst)
         put("voiceReportRange", s.voiceReports.periodicRange)
@@ -516,6 +517,7 @@ object SettingsJson {
             headsetButton = j.optBoolean("voiceHeadsetButton", base.voiceCommands.headsetButton),
             headsetAction = j.optString("voiceHeadsetAction", base.voiceCommands.headsetAction),
             recognitionLocale = j.optString("voiceRecognitionLocale", base.voiceCommands.recognitionLocale),
+            musicWhileListening = j.optString("voiceMusicWhileListening", base.voiceCommands.musicWhileListening),
         ),
         voiceReports = com.eried.eucplanet.data.model.VoiceReportSettings(
             periodicSpeed = j.optBoolean("voiceReportSpeed", base.voiceReports.periodicSpeed),

@@ -46,6 +46,8 @@ only when you can cut the ride short.
 - Voice: one message per question. Listening, what you said and the answer replace each other instead of stacking.
 - Voice menu: one row, Listen for a voice command, always starts a fresh listen. Tap the tile to stop.
 - Music: Start music and Pause music for Flic, volume keys, HUD, watch and tiles. Start music wakes your last music app, or opens your music app and starts it.
+- Music: Play / pause starts music when nothing plays. Start music wakes a closed player in the background first, opening it only if that fails.
+- Voice: Music while listening (Pause, Lower, Keep playing) under Cue when listening. Pause by default.
 - Voice: say play music, pause music, next song or previous song.
 - Voice: Reset metrics after triggered report (Voice, off by default) resets like the Reset button once the report is read out.
 - Charging: a third alert for storage. Notify me at... asks for a level (5 to 95, not 80), tap again to turn it off.
@@ -110,6 +112,10 @@ only when you can cut the ride short.
 - Voice tile, hold, Listen for a voice command, speak: one message that changes, nothing stacked behind it?
 - While it listens or answers, hold, Listen for a voice command: it starts over and hears you?
 - Music closed, press a button set to Start music: your music app opens and plays, with one press or one "play music"?
+- Phone in pocket, music app closed, Start music from Flic or the HUD: it plays without opening? (Share the log if not.)
+- Nothing playing, press Play / pause: music starts? Press again: it pauses?
+- Music playing, ask a voice question: the music pauses while listening and answering, and comes back after? Try Lower and Keep playing too.
+- Say "pause music" and "play music" with Music while listening on Pause: paused stays paused, play starts it after the answer?
 - With music on, say pause music, then play music, then next song: each one does it, after the answer is spoken?
 - Reset metrics after triggered report on: press the voice report button, the trip resets after it speaks?
 - Charging monitor menu, Notify me at...: 80 or 99 refuses with a small red line? A level above your charge notifies once when reached?

@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">Przypisz słuchanie do Flica, klawiszy głośności, zegarka lub HUD.</string>
     <string name="voice_prompt_cue">Sygnał przy słuchaniu</string>
     <string name="voice_prompt_cue_desc">Wyłącz, jeśli słuchawki mają własny dźwięk.</string>
+    <string name="voice_music_listening">Muzyka podczas słuchania</string>
+    <string name="voice_music_pause">Wstrzymaj</string>
+    <string name="voice_music_duck">Ścisz</string>
+    <string name="voice_music_keep">Graj dalej</string>
+    <string name="voice_music_listening_desc">Twoja muzyka, gdy mikrofon jest otwarty i pada odpowiedź. Muzyka może zagłuszyć to, co mówisz.</string>
     <string name="voice_cue_beep">Sygnał</string>
     <string name="voice_cue_spoken">Głos</string>
     <string name="voice_cue_off">Nie</string>

@@ -345,6 +345,11 @@
     <string name="voice_commands_bind_desc">Atribua a escuta a um Flic, às teclas de volume, ao seu relógio ou ao HUD.</string>
     <string name="voice_prompt_cue">Aviso ao ouvir</string>
     <string name="voice_prompt_cue_desc">Desligue se o seu fone já tem o próprio tom.</string>
+    <string name="voice_music_listening">Música ao ouvir</string>
+    <string name="voice_music_pause">Pausar</string>
+    <string name="voice_music_duck">Abaixar</string>
+    <string name="voice_music_keep">Continuar</string>
+    <string name="voice_music_listening_desc">Sua música enquanto o microfone está aberto e a resposta é dita. A música pode abafar o que você diz.</string>
     <string name="voice_cue_beep">Bipe</string>
     <string name="voice_cue_spoken">Voz</string>
     <string name="voice_cue_off">Não</string>

@@ -1524,8 +1524,21 @@ data class VoiceCommandSettings(
      * command words came from whatever the interface happened to be set to.
      */
     val recognitionLocale: String = "",
+    /**
+     * What the rider's music does while the microphone is open and the answer
+     * is said: paused ([MUSIC_PAUSE]), turned down ([MUSIC_DUCK]) or left
+     * alone ([MUSIC_KEEP]). Pause by default, like assistants and cars do:
+     * through the phone speaker the microphone hears the song, and the song
+     * is what gets recognised.
+     */
+    val musicWhileListening: String = MUSIC_PAUSE,
 ) {
     companion object {
+        const val MUSIC_PAUSE = "PAUSE"
+        const val MUSIC_DUCK = "DUCK"
+        const val MUSIC_KEEP = "KEEP"
+        val MUSIC_MODES = setOf(MUSIC_PAUSE, MUSIC_DUCK, MUSIC_KEEP)
+
         const val CUE_BEEP = "BEEP"
         const val CUE_VOICE = "VOICE"
         const val CUE_NONE = "NONE"
