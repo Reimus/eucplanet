@@ -304,7 +304,7 @@
     <string name="menu_switch_to_voice_command">Přepnout na hlasový příkaz</string>
     <string name="menu_switch_to_voice_report">Přepnout na hlasové hlášení</string>
     <string name="voice_commands_title">Hlasové příkazy</string>
-    <string name="voice_commands_enable_desc">Ovládej aplikaci hlasem. Podrž tlačítko Hlas na palubní desce a vyber Poslouchat hlasový příkaz.</string>
+    <string name="voice_commands_enable_desc">Ovládej aplikaci hlasem. Podrž tlačítko Hlas na palubní desce a vyber Poslouchat hlasový povel.</string>
     <string name="voice_commands_bind_desc">Přiřaď poslech k Flicu, tlačítkům hlasitosti, hodinkám nebo HUD.</string>
     <string name="voice_prompt_cue">Signál při poslechu</string>
     <string name="voice_prompt_cue_desc">Vypni to, pokud má sluchátko vlastní tón.</string>

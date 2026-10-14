@@ -341,7 +341,7 @@
     <string name="menu_switch_to_voice_command">Auf Sprachbefehl umschalten</string>
     <string name="menu_switch_to_voice_report">Zu Sprachansage wechseln</string>
     <string name="voice_commands_title">Sprachbefehle</string>
-    <string name="voice_commands_enable_desc">Nutze deine Stimme in der App. Halte die Sprachtaste im Dashboard gedrückt und wähle Auf Sprachbefehl hören.</string>
+    <string name="voice_commands_enable_desc">Nutze deine Stimme in der App. Halte die Sprachtaste im Dashboard gedrückt und wähle Auf einen Sprachbefehl hören.</string>
     <string name="voice_commands_bind_desc">Lege Zuhören auf einen Flic, die Lautstärketasten, deine Uhr oder das HUD.</string>
     <string name="voice_prompt_cue">Signal beim Zuhören</string>
     <string name="voice_prompt_cue_desc">Schalte es aus, wenn dein Headset einen eigenen Ton hat.</string>

@@ -341,7 +341,7 @@
     <string name="menu_switch_to_voice_command">Naar spraakopdracht wisselen</string>
     <string name="menu_switch_to_voice_report">Wisselen naar spraakmelding</string>
     <string name="voice_commands_title">Spraakopdrachten</string>
-    <string name="voice_commands_enable_desc">Gebruik je stem in de app. Houd de spraakknop op het dashboard ingedrukt en kies Luisteren naar spraakopdracht.</string>
+    <string name="voice_commands_enable_desc">Gebruik je stem in de app. Houd de spraakknop op het dashboard ingedrukt en kies Luisteren naar een spraakopdracht.</string>
     <string name="voice_commands_bind_desc">Koppel luisteren aan een Flic, de volumeknoppen, je horloge of de HUD.</string>
     <string name="voice_prompt_cue">Signaal bij luisteren</string>
     <string name="voice_prompt_cue_desc">Zet het uit als je headset een eigen toon heeft.</string>
