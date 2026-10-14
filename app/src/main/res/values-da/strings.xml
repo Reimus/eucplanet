@@ -335,8 +335,8 @@
     <string name="action_chip_light">Lys</string>
     <string name="action_chip_voice">Tale</string>
     <string name="action_chip_voice_listen">Lyt</string>
-    <string name="menu_voice_ask">Start med at lytte</string>
-    <string name="menu_voice_stop">Stop med at lytte</string>
+    <string name="menu_voice_ask">Begynd at lytte efter kommando</string>
+    <string name="menu_voice_stop">Stop med at lytte efter kommando</string>
     <string name="menu_voice_speak_report">Afspil stemmebesked</string>
     <string name="voice_split_term">Sidste split</string>
     <string name="menu_switch_to_voice_command">Skift til stemmekommando</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">start optagelse,optag</string>
     <string name="voice_act_record_stop_terms">stop optagelse</string>
     <string name="voice_act_reset_trip_terms">nulstil tur</string>
+    <string name="voice_act_music_start_terms">spil musik,start musik,musik</string>
+    <string name="voice_act_media_pause_terms">pause musik,stop musik</string>
+    <string name="voice_act_media_next_terms">næste sang,næste nummer</string>
+    <string name="voice_act_media_prev_terms">forrige sang,forrige nummer</string>
     <string name="voice_answer_mic_busy">Noget andet bruger mikrofonen.</string>
     <string name="voice_answer_which">Mente du %1$s eller %2$s?</string>
     <string name="action_chip_safety">Legal-tilstand</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Afspil / pause</string>
     <string name="action_chip_media_next">Næste spor</string>
     <string name="action_chip_media_prev">Forrige spor</string>
+    <string name="action_chip_music_start">Start musik</string>
+    <string name="action_chip_media_pause">Sæt musik på pause</string>
     <string name="action_chip_open_navigation">Vis kort</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Om</string>

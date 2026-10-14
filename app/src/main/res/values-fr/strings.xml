@@ -335,8 +335,8 @@
     <string name="action_chip_light">Phare</string>
     <string name="action_chip_voice">Voix</string>
     <string name="action_chip_voice_listen">Écouter</string>
-    <string name="menu_voice_ask">Démarrer l\'écoute</string>
-    <string name="menu_voice_stop">Arrêter l\'écoute</string>
+    <string name="menu_voice_ask">Commencer à écouter la commande</string>
+    <string name="menu_voice_stop">Arrêter d\'écouter la commande</string>
     <string name="menu_voice_speak_report">Lire une annonce vocale</string>
     <string name="voice_split_term">Dernier relevé</string>
     <string name="menu_switch_to_voice_command">Passer à la commande vocale</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">démarrer enregistrement,enregistrer</string>
     <string name="voice_act_record_stop_terms">arrêter enregistrement</string>
     <string name="voice_act_reset_trip_terms">réinitialiser le trajet</string>
+    <string name="voice_act_music_start_terms">joue de la musique,lance la musique,musique</string>
+    <string name="voice_act_media_pause_terms">mets la musique en pause,pause musique,arrête la musique</string>
+    <string name="voice_act_media_next_terms">chanson suivante,piste suivante</string>
+    <string name="voice_act_media_prev_terms">chanson précédente,piste précédente</string>
     <string name="voice_answer_mic_busy">Le microphone est utilisé par autre chose.</string>
     <string name="voice_answer_which">Vouliez-vous dire %1$s ou %2$s ?</string>
     <string name="action_chip_safety">Mode légal</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Lecture / pause</string>
     <string name="action_chip_media_next">Piste suivante</string>
     <string name="action_chip_media_prev">Piste préc.</string>
+    <string name="action_chip_music_start">Lancer la musique</string>
+    <string name="action_chip_media_pause">Pause musique</string>
     <string name="action_chip_open_navigation">Voir carte</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">À propos</string>

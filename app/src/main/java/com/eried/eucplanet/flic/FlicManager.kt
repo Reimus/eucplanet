@@ -44,6 +44,8 @@ class FlicManager @Inject constructor(
 ) {
     companion object {
         private const val TAG = "FlicManager"
+        /** How long a woken player gets to start before the music app is opened. */
+        private const val MUSIC_START_CHECK_MS = 1500L
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -429,10 +431,47 @@ class FlicManager @Inject constructor(
             "RECORD_STOP" -> {
                 if (tripRepository.recording.value) tripRepository.stopRecording()
             }
+            "MUSIC_START" -> startMusic()
             "MEDIA_PLAY_PAUSE" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
+            "MEDIA_PAUSE" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE)
             "MEDIA_NEXT" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_NEXT)
             "MEDIA_PREVIOUS" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_PREVIOUS)
             else -> Log.w(TAG, "Unknown / unsupported action key for physical surface: $key")
+        }
+    }
+
+    /**
+     * Get music going, whichever app the rider uses.
+     *
+     * An explicit PLAY rather than the toggle: Android hands it to the last
+     * app that played audio, and that app resumes even after it was closed,
+     * which is what "start music" means to a rider. There is no "default
+     * music player" setting to ask instead.
+     *
+     * The key is not enough after a reboot, or when the last player has no
+     * media session to wake: nothing plays. So when music is still silent a
+     * moment later, the phone's music app is opened instead, and the rider
+     * presses play there. That launch is the weak half. Android 10 and later
+     * block activity starts from the background unless the app is on screen,
+     * so from a Flic in a pocket it may be refused. It fails quietly into
+     * the log, because a press that did nothing is no worse than before.
+     */
+    private fun startMusic() {
+        sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY)
+        scope.launch {
+            kotlinx.coroutines.delay(MUSIC_START_CHECK_MS)
+            val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            if (audioManager.isMusicActive) return@launch
+            try {
+                val intent = android.content.Intent.makeMainSelectorActivity(
+                    android.content.Intent.ACTION_MAIN,
+                    android.content.Intent.CATEGORY_APP_MUSIC,
+                ).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+                context.startActivity(intent)
+                Log.i(TAG, "music silent after play key, opened the music app")
+            } catch (e: Exception) {
+                Log.i(TAG, "music silent after play key, music app not opened: ${e.message}")
+            }
         }
     }
 

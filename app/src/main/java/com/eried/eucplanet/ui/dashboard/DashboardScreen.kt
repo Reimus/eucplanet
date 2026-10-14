@@ -2883,7 +2883,7 @@ fun DashboardScreen(
                                             key == "RESET_TRIP" ||
                                             // A settings write; arm it in the hall.
                                             isSplits ||
-                                            key.startsWith("MEDIA_")
+                                            key.startsWith("MEDIA_") || key == "MUSIC_START"
                                     if (isSplits) {
                                         // Long-press opens its settings, which sit
                                         // far down the Voice tab, like the lock and

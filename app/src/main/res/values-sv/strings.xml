@@ -335,8 +335,8 @@
     <string name="action_chip_light">Ljus</string>
     <string name="action_chip_voice">Röst</string>
     <string name="action_chip_voice_listen">Lyssna</string>
-    <string name="menu_voice_ask">Börja lyssna</string>
-    <string name="menu_voice_stop">Sluta lyssna</string>
+    <string name="menu_voice_ask">Börja lyssna efter kommando</string>
+    <string name="menu_voice_stop">Sluta lyssna efter kommando</string>
     <string name="menu_voice_speak_report">Spela upp röstmeddelande</string>
     <string name="voice_split_term">Senaste split</string>
     <string name="menu_switch_to_voice_command">Byt till röstkommando</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">starta inspelning,spela in</string>
     <string name="voice_act_record_stop_terms">stoppa inspelning</string>
     <string name="voice_act_reset_trip_terms">nollställ turen</string>
+    <string name="voice_act_music_start_terms">spela musik,starta musik,musik</string>
+    <string name="voice_act_media_pause_terms">pausa musik,stoppa musik</string>
+    <string name="voice_act_media_next_terms">nästa låt,nästa spår</string>
+    <string name="voice_act_media_prev_terms">föregående låt,förra låten</string>
     <string name="voice_answer_mic_busy">Något annat använder mikrofonen.</string>
     <string name="voice_answer_which">Menade du %1$s eller %2$s?</string>
     <string name="action_chip_safety">Legal-läge</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Spela / pausa</string>
     <string name="action_chip_media_next">Nästa spår</string>
     <string name="action_chip_media_prev">Föreg. spår</string>
+    <string name="action_chip_music_start">Starta musik</string>
+    <string name="action_chip_media_pause">Pausa musik</string>
     <string name="action_chip_open_navigation">Visa karta</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Om</string>

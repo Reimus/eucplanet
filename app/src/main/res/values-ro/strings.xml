@@ -298,8 +298,8 @@
     <string name="action_chip_light">Lumină</string>
     <string name="action_chip_voice">Voce</string>
     <string name="action_chip_voice_listen">Ascultă</string>
-    <string name="menu_voice_ask">Pornește ascultarea</string>
-    <string name="menu_voice_stop">Oprește ascultarea</string>
+    <string name="menu_voice_ask">Începe să asculți comanda</string>
+    <string name="menu_voice_stop">Nu mai asculta comanda</string>
     <string name="menu_voice_speak_report">Redă anunțul vocal</string>
     <string name="voice_split_term">Ultimul split</string>
     <string name="menu_switch_to_voice_command">Comută la comanda vocală</string>
@@ -403,6 +403,10 @@
     <string name="voice_act_record_start_terms">începe înregistrarea,înregistrează</string>
     <string name="voice_act_record_stop_terms">oprește înregistrarea</string>
     <string name="voice_act_reset_trip_terms">resetează cursa</string>
+    <string name="voice_act_music_start_terms">pornește muzica,pune muzică,muzică</string>
+    <string name="voice_act_media_pause_terms">pune muzica pe pauză,oprește muzica</string>
+    <string name="voice_act_media_next_terms">melodia următoare,piesa următoare</string>
+    <string name="voice_act_media_prev_terms">melodia anterioară,piesa anterioară</string>
     <string name="voice_answer_mic_busy">Altceva folosește microfonul.</string>
     <string name="voice_answer_which">Ai vrut să spui %1$s sau %2$s?</string>
     <string name="action_chip_safety">Mod legal</string>
@@ -415,6 +419,8 @@
     <string name="action_chip_media_play">Redare / pauză</string>
     <string name="action_chip_media_next">Piesa următoare</string>
     <string name="action_chip_media_prev">Piesa anterioară</string>
+    <string name="action_chip_music_start">Pornește muzica</string>
+    <string name="action_chip_media_pause">Pauză muzică</string>
     <string name="action_chip_open_navigation">Arată harta</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Despre</string>

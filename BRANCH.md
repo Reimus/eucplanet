@@ -44,7 +44,9 @@ only when you can cut the ride short.
 - Fresh rides no longer show "not backed up to Dropbox" when they are.
 - Settings search finds buttons and every row, like "Crew", "Scan" or "Pair", and lands on the match.
 - Voice: one message per question. Listening, what you said and the answer replace each other instead of stacking.
-- Voice menu: Start listening always listens again, Stop listening sits under it (greyed out when idle).
+- Voice menu: Start listening for a command always listens again, Stop listening for a command sits under it (greyed out when idle).
+- Music: Start music and Pause music for Flic, volume keys, HUD, watch and tiles. Start music wakes your last music app, or opens it.
+- Voice: say play music, pause music, next song or previous song.
 - Voice: Reset metrics after triggered report (Voice, off by default) resets like the Reset button once the report is read out.
 - Charging: a third alert for storage. Notify me at... asks for a level (5 to 95, not 80), tap again to turn it off.
 - Settings search: a card inside a section shows how many matches it hides, and the best one opens by itself.
@@ -105,8 +107,10 @@ only when you can cut the ride short.
 
 **Any wheel**
 - Settings search: "scan" lands on a Start scan button, "crew" on Crew pass (or says why it is not there)?
-- Voice tile, hold, Start listening, speak: one message that changes, nothing stacked behind it?
-- While it listens, hold again: Start listening restarts, Stop listening ends it?
+- Voice tile, hold, Start listening for a command, speak: one message that changes, nothing stacked behind it?
+- While it listens, hold again: Start listening for a command restarts, Stop listening for a command ends it?
+- Music closed, press a button set to Start music: your music app plays (or at least opens)?
+- With music on, say pause music, then play music, then next song: each one does it, after the answer is spoken?
 - Reset metrics after triggered report on: press the voice report button, the trip resets after it speaks?
 - Charging monitor menu, Notify me at...: 80 or 99 refuses with a small red line? A level above your charge notifies once when reached?
 - Settings search "rese": Integration shows 2, inside it HUD screens shows 2 and holds the match?

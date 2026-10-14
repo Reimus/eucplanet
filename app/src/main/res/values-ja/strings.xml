@@ -335,8 +335,8 @@
     <string name="action_chip_light">ライト</string>
     <string name="action_chip_voice">音声</string>
     <string name="action_chip_voice_listen">聞く</string>
-    <string name="menu_voice_ask">聞き取りを開始</string>
-    <string name="menu_voice_stop">聞き取りを停止</string>
+    <string name="menu_voice_ask">コマンドの聞き取りを開始</string>
+    <string name="menu_voice_stop">コマンドの聞き取りを停止</string>
     <string name="menu_voice_speak_report">音声アナウンスを再生</string>
     <string name="voice_split_term">最後の加速測定</string>
     <string name="menu_switch_to_voice_command">音声コマンドに切り替え</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">録画開始,記録開始</string>
     <string name="voice_act_record_stop_terms">録画停止</string>
     <string name="voice_act_reset_trip_terms">トリップをリセット</string>
+    <string name="voice_act_music_start_terms">音楽を再生,音楽をかけて,音楽</string>
+    <string name="voice_act_media_pause_terms">音楽を一時停止,音楽を止めて</string>
+    <string name="voice_act_media_next_terms">次の曲</string>
+    <string name="voice_act_media_prev_terms">前の曲</string>
     <string name="voice_answer_mic_busy">ほかのアプリがマイクを使用しています。</string>
     <string name="voice_answer_which">%1$sですか、%2$sですか？</string>
     <string name="action_chip_safety">リーガルモード</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">再生 / 一時停止</string>
     <string name="action_chip_media_next">次のトラック</string>
     <string name="action_chip_media_prev">前のトラック</string>
+    <string name="action_chip_music_start">音楽を再生</string>
+    <string name="action_chip_media_pause">音楽を一時停止</string>
     <string name="action_chip_open_navigation">マップを表示</string>
     <string name="action_chip_open_studio">オーバーレイスタジオ</string>
     <string name="action_chip_open_about">アプリについて</string>

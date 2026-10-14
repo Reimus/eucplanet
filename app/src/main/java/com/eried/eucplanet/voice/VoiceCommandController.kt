@@ -102,6 +102,14 @@ class VoiceCommandController @Inject constructor(
          */
         const val ANSWER_LINGER_MS = 600L
 
+        /**
+         * After the reply is said and the app has let go of the audio, how
+         * long a player gets to take it back before a media key reaches it.
+         * A player resumes on regaining focus, and a key that arrives during
+         * that hand-back can be swallowed by it.
+         */
+        const val MEDIA_SETTLE_MS = 600L
+
         /** How long to wait for the speech to begin before giving up on it. */
         const val SPEECH_START_WAIT_MS = 1500L
 
@@ -180,6 +188,12 @@ class VoiceCommandController @Inject constructor(
      * microphone.
      */
     private var activeMic: VoiceListener? = null
+
+    /**
+     * A media key held back until the session is done talking. See
+     * [MEDIA_AFTER_SPEECH] for which ones and why.
+     */
+    @Volatile private var deferredMedia: String? = null
 
     /** The last finished ride, read before a match so `read` need not suspend. */
     private var lastTripSnapshot: com.eried.eucplanet.data.model.TripRecord? = null
@@ -261,6 +275,7 @@ class VoiceCommandController @Inject constructor(
         val handingOver = activeMic != null
         activeMic?.stop()
         activeMic = null
+        deferredMedia = null
         _state.value = UiState.Idle
         session = scope.launch {
             val settings = settingsRepository.get()
@@ -385,6 +400,14 @@ class VoiceCommandController @Inject constructor(
                 withTimeoutOrNull(SPEECH_START_WAIT_MS) { voiceService.isSpeaking.first { it } }
                 withTimeoutOrNull(SPEECH_END_WAIT_MS) { voiceService.isSpeaking.first { !it } }
                 closingCue(settings)
+            }
+
+            // The reply has been said and its audio focus handed back, so a
+            // held media key can reach the player now. See MEDIA_AFTER_SPEECH.
+            deferredMedia?.let { key ->
+                deferredMedia = null
+                delay(MEDIA_SETTLE_MS)
+                runAction(key)
             }
 
             // A short tail, not four seconds. That number was chosen when the
@@ -1046,7 +1069,8 @@ class VoiceCommandController @Inject constructor(
         // sentence is chosen so the rider hears the acknowledgement and the
         // wheel acts at the same moment, rather than acting into silence.
         if (answer is Answer.Act && !answer.confirm) {
-            scope.launch { runAction(answer.key) }
+            if (answer.key in MEDIA_AFTER_SPEECH) deferredMedia = answer.key
+            else scope.launch { runAction(answer.key) }
         }
 
         // One sentence, one way out. The report route used to live here and
@@ -1219,6 +1243,21 @@ private object VoiceAction {
 }
 
 private val CONFIRMED_ACTIONS = setOf("RECORD_STOP", "RESET_TRIP")
+
+/**
+ * Media keys that wait for the session to finish speaking.
+ *
+ * While the app listens and answers it holds audio focus, so the rider's
+ * player is paused or ducked. A play, next or previous sent then would land
+ * under our own voice, or be swallowed while the player is waiting to get
+ * the audio back. So these go once the reply is over and focus is returned.
+ *
+ * Pause is the exception and goes at once, with the acknowledgement. Sent
+ * while the player is held paused, it marks the music as stopped by the
+ * rider, so handing the focus back does not start it again. Sent after, the
+ * song would resume for a moment and then stop.
+ */
+private val MEDIA_AFTER_SPEECH = setOf("MUSIC_START", "MEDIA_PLAY_PAUSE", "MEDIA_NEXT", "MEDIA_PREVIOUS")
 
 /** The specials that need a forecast before they can answer. */
 private val WEATHER_KEYS = setOf(

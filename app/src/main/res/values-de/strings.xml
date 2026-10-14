@@ -335,8 +335,8 @@
     <string name="action_chip_light">Licht</string>
     <string name="action_chip_voice">Stimme</string>
     <string name="action_chip_voice_listen">Zuhören</string>
-    <string name="menu_voice_ask">Zuhören starten</string>
-    <string name="menu_voice_stop">Zuhören beenden</string>
+    <string name="menu_voice_ask">Auf Befehle hören starten</string>
+    <string name="menu_voice_stop">Nicht mehr auf Befehle hören</string>
     <string name="menu_voice_speak_report">Sprachansage abspielen</string>
     <string name="voice_split_term">Letzter Split</string>
     <string name="menu_switch_to_voice_command">Auf Sprachbefehl umschalten</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">aufnahme starten,aufnehmen</string>
     <string name="voice_act_record_stop_terms">aufnahme stoppen</string>
     <string name="voice_act_reset_trip_terms">fahrt zurücksetzen</string>
+    <string name="voice_act_music_start_terms">musik abspielen,musik starten,musik an,musik</string>
+    <string name="voice_act_media_pause_terms">musik pausieren,musik stoppen,musik aus</string>
+    <string name="voice_act_media_next_terms">nächster titel,nächstes lied</string>
+    <string name="voice_act_media_prev_terms">vorheriger titel,voriges lied,letztes lied</string>
     <string name="voice_answer_mic_busy">Etwas anderes benutzt gerade das Mikrofon.</string>
     <string name="voice_answer_which">Meintest du %1$s oder %2$s?</string>
     <string name="action_chip_safety">Legal-Modus</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Wiedergabe / Pause</string>
     <string name="action_chip_media_next">Nächster Titel</string>
     <string name="action_chip_media_prev">Vorheriger Titel</string>
+    <string name="action_chip_music_start">Musik starten</string>
+    <string name="action_chip_media_pause">Musik pausieren</string>
     <string name="action_chip_open_navigation">Karte zeigen</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Über</string>

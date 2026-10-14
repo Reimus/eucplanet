@@ -1337,6 +1337,8 @@
     <string name="action_chip_media_next">下一曲</string>
     <string name="action_chip_media_play">播放 / 暂停</string>
     <string name="action_chip_media_prev">上一曲</string>
+    <string name="action_chip_music_start">开始音乐</string>
+    <string name="action_chip_media_pause">暂停音乐</string>
     <string name="action_chip_mute_alarms">静音警报</string>
     <string name="action_chip_open_about">关于</string>
     <string name="action_chip_open_navigation">显示地图</string>
@@ -1354,8 +1356,8 @@
     <string name="action_chip_toggle_units">切换单位</string>
     <string name="action_chip_voice">语音</string>
     <string name="action_chip_voice_listen">聆听</string>
-    <string name="menu_voice_ask">开始聆听</string>
-    <string name="menu_voice_stop">停止聆听</string>
+    <string name="menu_voice_ask">开始聆听指令</string>
+    <string name="menu_voice_stop">停止聆听指令</string>
     <string name="menu_voice_speak_report">播放语音播报</string>
     <string name="voice_split_term">上次加速</string>
     <string name="menu_switch_to_voice_command">切换到语音命令</string>
@@ -1459,6 +1461,10 @@
     <string name="voice_act_record_start_terms">开始记录,开始录制</string>
     <string name="voice_act_record_stop_terms">停止记录</string>
     <string name="voice_act_reset_trip_terms">重置行程</string>
+    <string name="voice_act_music_start_terms">播放音乐,开始音乐,音乐</string>
+    <string name="voice_act_media_pause_terms">暂停音乐,停止音乐</string>
+    <string name="voice_act_media_next_terms">下一首</string>
+    <string name="voice_act_media_prev_terms">上一首</string>
     <string name="voice_answer_mic_busy">其他应用正在使用麦克风。</string>
     <string name="voice_answer_which">你是指%1$s还是%2$s？</string>
     <string name="alarm_metric_pwm_voice"></string>

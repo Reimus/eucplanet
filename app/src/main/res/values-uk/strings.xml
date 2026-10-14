@@ -335,8 +335,8 @@
     <string name="action_chip_light">Світло</string>
     <string name="action_chip_voice">Голос</string>
     <string name="action_chip_voice_listen">Слухати</string>
-    <string name="menu_voice_ask">Почати слухати</string>
-    <string name="menu_voice_stop">Припинити слухати</string>
+    <string name="menu_voice_ask">Почати слухати команду</string>
+    <string name="menu_voice_stop">Перестати слухати команду</string>
     <string name="menu_voice_speak_report">Відтворити голосове повідомлення</string>
     <string name="voice_split_term">Останній замір</string>
     <string name="menu_switch_to_voice_command">Перейти до голосової команди</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">почати запис,записуй</string>
     <string name="voice_act_record_stop_terms">зупинити запис</string>
     <string name="voice_act_reset_trip_terms">скинути поїздку</string>
+    <string name="voice_act_music_start_terms">увімкни музику,грай музику,музика</string>
+    <string name="voice_act_media_pause_terms">пауза музики,зупини музику,вимкни музику</string>
+    <string name="voice_act_media_next_terms">наступна пісня,наступний трек</string>
+    <string name="voice_act_media_prev_terms">попередня пісня,попередній трек</string>
     <string name="voice_answer_mic_busy">Мікрофон зайнятий іншим застосунком.</string>
     <string name="voice_answer_which">Ви мали на увазі %1$s чи %2$s?</string>
     <string name="action_chip_safety">Легал-режим</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Відтворити / пауза</string>
     <string name="action_chip_media_next">Наступний трек</string>
     <string name="action_chip_media_prev">Попередній трек</string>
+    <string name="action_chip_music_start">Увімкнути музику</string>
+    <string name="action_chip_media_pause">Пауза музики</string>
     <string name="action_chip_open_navigation">Показати мапу</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Про застосунок</string>
