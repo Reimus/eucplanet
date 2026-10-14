@@ -46,6 +46,10 @@ class FlicManager @Inject constructor(
         private const val TAG = "FlicManager"
         /** How long a woken player gets to start before the music app is opened. */
         private const val MUSIC_START_CHECK_MS = 1500L
+        /** How often play is pressed again while an opened music app starts up. */
+        private const val MUSIC_RETRY_MS = 1000L
+        /** Presses after opening the app; a cold start took about 10 s on a Pixel. */
+        private const val MUSIC_RETRIES = 15
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -432,8 +436,10 @@ class FlicManager @Inject constructor(
                 if (tripRepository.recording.value) tripRepository.stopRecording()
             }
             "MUSIC_START" -> startMusic()
-            "MEDIA_PLAY_PAUSE" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
-            "MEDIA_PAUSE" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE)
+            // Any other media press is the rider taking over, so a Start
+            // music still pressing play must not undo it.
+            "MEDIA_PLAY_PAUSE" -> { musicStart?.cancel(); sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) }
+            "MEDIA_PAUSE" -> { musicStart?.cancel(); sendMediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE) }
             "MEDIA_NEXT" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_NEXT)
             "MEDIA_PREVIOUS" -> sendMediaKey(KeyEvent.KEYCODE_MEDIA_PREVIOUS)
             else -> Log.w(TAG, "Unknown / unsupported action key for physical surface: $key")
@@ -450,15 +456,21 @@ class FlicManager @Inject constructor(
      *
      * The key is not enough after a reboot, or when the last player has no
      * media session to wake: nothing plays. So when music is still silent a
-     * moment later, the phone's music app is opened instead, and the rider
-     * presses play there. That launch is the weak half. Android 10 and later
+     * moment later, the phone's music app is opened instead, and play is
+     * pressed again every second until it plays: a closed app has no session
+     * to take the key, and only gets one once it has started, which can take
+     * seconds. Riders had to say "play music" twice before this. PLAY is safe
+     * to repeat, it never pauses. That launch is the weak half. Android 10 and later
      * block activity starts from the background unless the app is on screen,
      * so from a Flic in a pocket it may be refused. It fails quietly into
      * the log, because a press that did nothing is no worse than before.
      */
+    private var musicStart: kotlinx.coroutines.Job? = null
+
     private fun startMusic() {
+        musicStart?.cancel()
         sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY)
-        scope.launch {
+        musicStart = scope.launch {
             kotlinx.coroutines.delay(MUSIC_START_CHECK_MS)
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
             if (audioManager.isMusicActive) return@launch
@@ -471,7 +483,14 @@ class FlicManager @Inject constructor(
                 Log.i(TAG, "music silent after play key, opened the music app")
             } catch (e: Exception) {
                 Log.i(TAG, "music silent after play key, music app not opened: ${e.message}")
+                return@launch
             }
+            repeat(MUSIC_RETRIES) {
+                kotlinx.coroutines.delay(MUSIC_RETRY_MS)
+                if (audioManager.isMusicActive) return@launch
+                sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY)
+            }
+            Log.i(TAG, "music app opened but never started playing")
         }
     }
 
