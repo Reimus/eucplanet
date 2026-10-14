@@ -97,6 +97,16 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https" />
         </intent>
+        <!-- Start music finds the phone's music app and asks it to play
+             (FlicManager.startMusic); both lookups are blind on API 30+
+             without these. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.APP_MUSIC" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
+        </intent>
     </queries>
 
     <application
