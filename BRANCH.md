@@ -41,8 +41,12 @@ only when you can cut the ride short.
 - Backup folder: no more endless "Checking backup folder", and the "trip (1).csv" copies it left are cleaned up.
 - Fresh rides no longer show "not backed up to Dropbox" when they are.
 - Settings search finds buttons and every row, like "Crew", "Scan" or "Pair", and lands on the match.
-- Voice: the "Listening" message shows only when nothing on screen lights up, not twice.
-- Charging: a third alert, Notify me at 60% (your level, 5 to 99), for a wheel going into storage.
+- Voice: one message per question. Listening, what you said and the answer replace each other instead of stacking.
+- Voice menu: Start listening always listens again, Stop listening sits under it (greyed out when idle).
+- Voice: Reset metrics after triggered report (Voice, off by default) resets like the Reset button once the report is read out.
+- Charging: a third alert for storage. Notify me at... asks for a level (5 to 95, not 80), tap again to turn it off.
+- Settings search: a card inside a section shows how many matches it hides, and the best one opens by itself.
+- Settings search: a match on a button gets a band like everywhere else, not bold.
 
 ## Please test
 
@@ -85,8 +89,11 @@ only when you can cut the ride short.
 
 **Any wheel**
 - Settings search: "scan" lands on a Start scan button, "crew" on Crew pass (or says why it is not there)?
-- Voice report tile, hold, Ask: says Listening? Voice command tile on screen: no message, only the tile lights?
-- Charging monitor menu, Notify me at: set a level above your charge, plug in. One notification when it gets there?
+- Voice tile, hold, Start listening, speak: one message that changes, nothing stacked behind it?
+- While it listens, hold again: Start listening restarts, Stop listening ends it?
+- Reset metrics after triggered report on: press the voice report button, the trip resets after it speaks?
+- Charging monitor menu, Notify me at...: 80 or 99 refuses with a small red line? A level above your charge notifies once when reached?
+- Settings search "rese": Integration shows 2, inside it HUD screens shows 2 and holds the match?
 - With a backup folder set, the app opens and stays open on every launch.
 - Stats length 30 sec or 1 min: tile stats and the detail screen cover only that much?
 - Headset button set to Announce: one press reads the voice report?
