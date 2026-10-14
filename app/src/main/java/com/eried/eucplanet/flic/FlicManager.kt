@@ -481,13 +481,16 @@ class FlicManager @Inject constructor(
             kotlinx.coroutines.delay(MUSIC_START_CHECK_MS)
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
             if (audioManager.isMusicActive) return@launch
+            val intent = android.content.Intent.makeMainSelectorActivity(
+                android.content.Intent.ACTION_MAIN,
+                android.content.Intent.CATEGORY_APP_MUSIC,
+            ).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
+            // "android" is the chooser, standing in when no music app is the default.
+            val musicApp = context.packageManager.resolveActivity(intent, 0)
+                ?.activityInfo?.packageName?.takeIf { it != "android" }
             try {
-                val intent = android.content.Intent.makeMainSelectorActivity(
-                    android.content.Intent.ACTION_MAIN,
-                    android.content.Intent.CATEGORY_APP_MUSIC,
-                ).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)
-                Log.i(TAG, "music silent after play key, opened the music app")
+                Log.i(TAG, "music silent after play key, opened $musicApp")
             } catch (e: Exception) {
                 Log.i(TAG, "music silent after play key, music app not opened: ${e.message}")
                 return@launch
@@ -495,10 +498,35 @@ class FlicManager @Inject constructor(
             repeat(MUSIC_RETRIES) {
                 kotlinx.coroutines.delay(MUSIC_RETRY_MS)
                 if (audioManager.isMusicActive) return@launch
-                sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY)
+                // To the app just opened, not to whoever played last: that
+                // is where the first key went, and it is why we are here.
+                if (musicApp == null || !sendMediaKeyTo(musicApp, KeyEvent.KEYCODE_MEDIA_PLAY)) {
+                    sendMediaKey(KeyEvent.KEYCODE_MEDIA_PLAY)
+                }
             }
             Log.i(TAG, "music app opened but never started playing")
         }
+    }
+
+    /**
+     * A media key delivered to one app's own media button receiver, the way
+     * a headset press reaches it, instead of to the session Android routes
+     * keys to. That session belongs to whichever app played last, often a
+     * video app in an error state, and the music app just opened would never
+     * hear the key. False when the app has no such receiver.
+     */
+    private fun sendMediaKeyTo(pkg: String, keyCode: Int): Boolean {
+        val probe = android.content.Intent(android.content.Intent.ACTION_MEDIA_BUTTON).setPackage(pkg)
+        val receiver = context.packageManager.queryBroadcastReceivers(probe, 0)
+            .firstOrNull()?.activityInfo ?: return false
+        for (action in intArrayOf(KeyEvent.ACTION_DOWN, KeyEvent.ACTION_UP)) {
+            context.sendBroadcast(
+                android.content.Intent(android.content.Intent.ACTION_MEDIA_BUTTON)
+                    .setClassName(receiver.packageName, receiver.name)
+                    .putExtra(android.content.Intent.EXTRA_KEY_EVENT, KeyEvent(action, keyCode))
+            )
+        }
+        return true
     }
 
     private fun sendMediaKey(keyCode: Int) {
