@@ -252,6 +252,8 @@ object ActionCatalog {
             icon = Icons.Filled.LibraryMusic,
             isEyesFreeSafe = true
         ),
+        // Smart toggle (FlicManager): pauses what plays, and when nothing
+        // plays starts music like MUSIC_START, opening the player if needed.
         ActionSpec(
             key = "MEDIA_PLAY_PAUSE",
             labelRes = R.string.action_chip_media_play,
