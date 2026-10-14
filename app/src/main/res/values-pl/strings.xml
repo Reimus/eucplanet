@@ -335,8 +335,8 @@
     <string name="action_chip_light">Światło</string>
     <string name="action_chip_voice">Głos</string>
     <string name="action_chip_voice_listen">Słuchaj</string>
-    <string name="menu_voice_ask">Zacznij słuchać</string>
-    <string name="menu_voice_stop">Przestań słuchać</string>
+    <string name="menu_voice_ask">Słuchaj polecenia</string>
+    <string name="menu_voice_stop">Przestań słuchać polecenia</string>
     <string name="menu_voice_speak_report">Odtwórz komunikat głosowy</string>
     <string name="voice_split_term">Ostatni pomiar</string>
     <string name="menu_switch_to_voice_command">Przełącz na polecenie głosowe</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">zacznij nagrywanie,nagrywaj</string>
     <string name="voice_act_record_stop_terms">zatrzymaj nagrywanie</string>
     <string name="voice_act_reset_trip_terms">zresetuj przejazd</string>
+    <string name="voice_act_music_start_terms">włącz muzykę,odtwórz muzykę,muzyka</string>
+    <string name="voice_act_media_pause_terms">wstrzymaj muzykę,zatrzymaj muzykę,pauza muzyki</string>
+    <string name="voice_act_media_next_terms">następna piosenka,następny utwór</string>
+    <string name="voice_act_media_prev_terms">poprzednia piosenka,poprzedni utwór</string>
     <string name="voice_answer_mic_busy">Mikrofon jest używany przez coś innego.</string>
     <string name="voice_answer_which">Czy chodziło o %1$s czy %2$s?</string>
     <string name="action_chip_safety">Tryb legalny</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Odtwórz / pauza</string>
     <string name="action_chip_media_next">Następny utwór</string>
     <string name="action_chip_media_prev">Poprzedni utwór</string>
+    <string name="action_chip_music_start">Włącz muzykę</string>
+    <string name="action_chip_media_pause">Wstrzymaj muzykę</string>
     <string name="action_chip_open_navigation">Pokaż mapę</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">O aplikacji</string>

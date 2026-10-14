@@ -298,8 +298,8 @@
     <string name="action_chip_light">Valo</string>
     <string name="action_chip_voice">Ääni</string>
     <string name="action_chip_voice_listen">Kuuntele</string>
-    <string name="menu_voice_ask">Aloita kuuntelu</string>
-    <string name="menu_voice_stop">Lopeta kuuntelu</string>
+    <string name="menu_voice_ask">Kuuntele komentoa</string>
+    <string name="menu_voice_stop">Lopeta komennon kuuntelu</string>
     <string name="menu_voice_speak_report">Toista ääni-ilmoitus</string>
     <string name="voice_split_term">Viimeisin väliaika</string>
     <string name="menu_switch_to_voice_command">Vaihda puhekomentoon</string>
@@ -403,6 +403,10 @@
     <string name="voice_act_record_start_terms">aloita tallennus,tallenna</string>
     <string name="voice_act_record_stop_terms">lopeta tallennus</string>
     <string name="voice_act_reset_trip_terms">nollaa matka</string>
+    <string name="voice_act_music_start_terms">soita musiikkia,aloita musiikki,musiikki</string>
+    <string name="voice_act_media_pause_terms">keskeytä musiikki,pysäytä musiikki</string>
+    <string name="voice_act_media_next_terms">seuraava kappale,seuraava biisi</string>
+    <string name="voice_act_media_prev_terms">edellinen kappale,edellinen biisi</string>
     <string name="voice_answer_mic_busy">Jokin muu käyttää mikrofonia.</string>
     <string name="voice_answer_which">Tarkoititko %1$s vai %2$s?</string>
     <string name="action_chip_safety">Laillinen tila</string>
@@ -415,6 +419,8 @@
     <string name="action_chip_media_play">Toista / tauko</string>
     <string name="action_chip_media_next">Seuraava kappale</string>
     <string name="action_chip_media_prev">Edellinen kappale</string>
+    <string name="action_chip_music_start">Aloita musiikki</string>
+    <string name="action_chip_media_pause">Keskeytä musiikki</string>
     <string name="action_chip_open_navigation">Näytä kartta</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Tietoja</string>

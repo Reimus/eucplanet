@@ -1373,6 +1373,8 @@
     <string name="action_chip_media_next">Brano successivo</string>
     <string name="action_chip_media_play">Riproduci / pausa</string>
     <string name="action_chip_media_prev">Brano prec.</string>
+    <string name="action_chip_music_start">Avvia musica</string>
+    <string name="action_chip_media_pause">Pausa musica</string>
     <string name="action_chip_mute_alarms">Silenzia allarmi</string>
     <string name="action_chip_open_about">Informazioni</string>
     <string name="action_chip_open_navigation">Mostra mappa</string>
@@ -1390,8 +1392,8 @@
     <string name="action_chip_toggle_units">Cambia unità</string>
     <string name="action_chip_voice">Voce</string>
     <string name="action_chip_voice_listen">Ascolta</string>
-    <string name="menu_voice_ask">Inizia ad ascoltare</string>
-    <string name="menu_voice_stop">Smetti di ascoltare</string>
+    <string name="menu_voice_ask">Ascolta un comando</string>
+    <string name="menu_voice_stop">Smetti di ascoltare il comando</string>
     <string name="menu_voice_speak_report">Riproduci annuncio vocale</string>
     <string name="voice_split_term">Ultimo split</string>
     <string name="menu_switch_to_voice_command">Passa al comando vocale</string>
@@ -1495,6 +1497,10 @@
     <string name="voice_act_record_start_terms">avvia registrazione,registra</string>
     <string name="voice_act_record_stop_terms">ferma registrazione</string>
     <string name="voice_act_reset_trip_terms">azzera viaggio</string>
+    <string name="voice_act_music_start_terms">riproduci musica,avvia musica,musica</string>
+    <string name="voice_act_media_pause_terms">metti in pausa la musica,pausa musica,ferma la musica</string>
+    <string name="voice_act_media_next_terms">brano successivo,canzone successiva</string>
+    <string name="voice_act_media_prev_terms">brano precedente,canzone precedente</string>
     <string name="voice_answer_mic_busy">Il microfono è già in uso.</string>
     <string name="voice_answer_which">Intendevi %1$s o %2$s?</string>
     <string name="alarm_metric_pwm_voice"></string>

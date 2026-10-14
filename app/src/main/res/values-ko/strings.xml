@@ -335,8 +335,8 @@
     <string name="action_chip_light">라이트</string>
     <string name="action_chip_voice">음성</string>
     <string name="action_chip_voice_listen">듣기</string>
-    <string name="menu_voice_ask">듣기 시작</string>
-    <string name="menu_voice_stop">듣기 중지</string>
+    <string name="menu_voice_ask">명령 듣기</string>
+    <string name="menu_voice_stop">명령 듣기 중지</string>
     <string name="menu_voice_speak_report">음성 안내 재생</string>
     <string name="voice_split_term">마지막 구간</string>
     <string name="menu_switch_to_voice_command">음성 명령으로 전환</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">기록 시작,녹화 시작</string>
     <string name="voice_act_record_stop_terms">기록 중지</string>
     <string name="voice_act_reset_trip_terms">트립 초기화</string>
+    <string name="voice_act_music_start_terms">음악 재생,음악 틀어,음악</string>
+    <string name="voice_act_media_pause_terms">음악 일시정지,음악 정지,음악 꺼</string>
+    <string name="voice_act_media_next_terms">다음 곡,다음 노래</string>
+    <string name="voice_act_media_prev_terms">이전 곡,이전 노래</string>
     <string name="voice_answer_mic_busy">다른 앱이 마이크를 사용 중입니다.</string>
     <string name="voice_answer_which">%1$s인가요, %2$s인가요?</string>
     <string name="action_chip_safety">리걸 모드</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">재생 / 일시정지</string>
     <string name="action_chip_media_next">다음 트랙</string>
     <string name="action_chip_media_prev">이전 트랙</string>
+    <string name="action_chip_music_start">음악 시작</string>
+    <string name="action_chip_media_pause">음악 일시정지</string>
     <string name="action_chip_open_navigation">지도 보기</string>
     <string name="action_chip_open_studio">오버레이 스튜디오</string>
     <string name="action_chip_open_about">정보</string>

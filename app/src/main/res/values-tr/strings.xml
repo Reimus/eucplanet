@@ -335,8 +335,8 @@
     <string name="action_chip_light">Işık</string>
     <string name="action_chip_voice">Ses</string>
     <string name="action_chip_voice_listen">Dinle</string>
-    <string name="menu_voice_ask">Dinlemeyi başlat</string>
-    <string name="menu_voice_stop">Dinlemeyi durdur</string>
+    <string name="menu_voice_ask">Komut dinle</string>
+    <string name="menu_voice_stop">Komut dinlemeyi durdur</string>
     <string name="menu_voice_speak_report">Sesli anons çal</string>
     <string name="voice_split_term">Son ölçüm</string>
     <string name="menu_switch_to_voice_command">Sesli komuta geç</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">kaydı başlat,kaydet</string>
     <string name="voice_act_record_stop_terms">kaydı durdur</string>
     <string name="voice_act_reset_trip_terms">sürüşü sıfırla</string>
+    <string name="voice_act_music_start_terms">müzik çal,müziği başlat,müzik</string>
+    <string name="voice_act_media_pause_terms">müziği duraklat,müziği durdur</string>
+    <string name="voice_act_media_next_terms">sonraki şarkı,sonraki parça</string>
+    <string name="voice_act_media_prev_terms">önceki şarkı,önceki parça</string>
     <string name="voice_answer_mic_busy">Mikrofonu başka bir şey kullanıyor.</string>
     <string name="voice_answer_which">%1$s mi yoksa %2$s mi?</string>
     <string name="action_chip_safety">Yasal mod</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Oynat / duraklat</string>
     <string name="action_chip_media_next">Sonraki parça</string>
     <string name="action_chip_media_prev">Önceki parça</string>
+    <string name="action_chip_music_start">Müziği başlat</string>
+    <string name="action_chip_media_pause">Müziği duraklat</string>
     <string name="action_chip_open_navigation">Haritayı göster</string>
     <string name="action_chip_open_studio">Kaplama stüdyosu</string>
     <string name="action_chip_open_about">Hakkında</string>

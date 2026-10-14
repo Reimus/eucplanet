@@ -340,8 +340,8 @@
     <string name="action_chip_light">Light</string>
     <string name="action_chip_voice">Voice</string>
     <string name="action_chip_voice_listen">Listen</string>
-    <string name="menu_voice_ask">Start listening</string>
-    <string name="menu_voice_stop">Stop listening</string>
+    <string name="menu_voice_ask">Listen for a command</string>
+    <string name="menu_voice_stop">Stop listening for a command</string>
     <string name="menu_voice_speak_report">Play voice announcement</string>
     <string name="voice_split_term">Last split</string>
     <string name="menu_switch_to_voice_command">Switch to voice command</string>
@@ -445,6 +445,10 @@
     <string name="voice_act_record_start_terms">start recording,record</string>
     <string name="voice_act_record_stop_terms">stop recording</string>
     <string name="voice_act_reset_trip_terms">reset trip,reset the trip</string>
+    <string name="voice_act_music_start_terms">play music,start music,resume music,music</string>
+    <string name="voice_act_media_pause_terms">pause music,stop music</string>
+    <string name="voice_act_media_next_terms">next song,next track,skip song</string>
+    <string name="voice_act_media_prev_terms">previous song,previous track,last song</string>
     <string name="voice_answer_mic_busy">Something else is using the microphone.</string>
     <string name="voice_answer_which">Did you mean %1$s or %2$s?</string>
     <string name="action_chip_safety">Legal mode</string>
@@ -457,6 +461,8 @@
     <string name="action_chip_media_play">Play / pause</string>
     <string name="action_chip_media_next">Next track</string>
     <string name="action_chip_media_prev">Prev track</string>
+    <string name="action_chip_music_start">Start music</string>
+    <string name="action_chip_media_pause">Pause music</string>
     <string name="action_chip_open_navigation">Show map</string>
     <string name="action_chip_open_studio">Overlay studio</string>
     <string name="action_chip_open_about">About</string>

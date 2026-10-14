@@ -335,8 +335,8 @@
     <string name="action_chip_light">Свет</string>
     <string name="action_chip_voice">Голос</string>
     <string name="action_chip_voice_listen">Слушать</string>
-    <string name="menu_voice_ask">Начать слушать</string>
-    <string name="menu_voice_stop">Перестать слушать</string>
+    <string name="menu_voice_ask">Слушать команду</string>
+    <string name="menu_voice_stop">Перестать слушать команду</string>
     <string name="menu_voice_speak_report">Воспроизвести голосовое сообщение</string>
     <string name="voice_split_term">Последний замер</string>
     <string name="menu_switch_to_voice_command">Перейти к голосовой команде</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">начать запись,записывай</string>
     <string name="voice_act_record_stop_terms">остановить запись</string>
     <string name="voice_act_reset_trip_terms">сбросить поездку</string>
+    <string name="voice_act_music_start_terms">включи музыку,играть музыку,музыка</string>
+    <string name="voice_act_media_pause_terms">пауза музыки,поставь музыку на паузу,выключи музыку,останови музыку</string>
+    <string name="voice_act_media_next_terms">следующая песня,следующий трек</string>
+    <string name="voice_act_media_prev_terms">предыдущая песня,предыдущий трек</string>
     <string name="voice_answer_mic_busy">Микрофон занят другим приложением.</string>
     <string name="voice_answer_which">Вы имели в виду %1$s или %2$s?</string>
     <string name="action_chip_safety">Легал-режим</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Играть / пауза</string>
     <string name="action_chip_media_next">Следующая</string>
     <string name="action_chip_media_prev">Предыдущая</string>
+    <string name="action_chip_music_start">Включить музыку</string>
+    <string name="action_chip_media_pause">Пауза музыки</string>
     <string name="action_chip_open_navigation">Показать карту</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">О приложении</string>

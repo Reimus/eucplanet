@@ -1354,6 +1354,8 @@
     <string name="action_chip_media_next">Neste spor</string>
     <string name="action_chip_media_play">Spill av / pause</string>
     <string name="action_chip_media_prev">Forrige spor</string>
+    <string name="action_chip_music_start">Start musikk</string>
+    <string name="action_chip_media_pause">Pause musikk</string>
     <string name="action_chip_mute_alarms">Demp alarmer</string>
     <string name="action_chip_open_about">Om</string>
     <string name="action_chip_open_navigation">Vis kart</string>
@@ -1371,8 +1373,8 @@
     <string name="action_chip_toggle_units">Bytt enheter</string>
     <string name="action_chip_voice">Tale</string>
     <string name="action_chip_voice_listen">Lytt</string>
-    <string name="menu_voice_ask">Start å lytte</string>
-    <string name="menu_voice_stop">Slutt å lytte</string>
+    <string name="menu_voice_ask">Lytt etter en kommando</string>
+    <string name="menu_voice_stop">Slutt å lytte etter kommando</string>
     <string name="menu_voice_speak_report">Spill av talemelding</string>
     <string name="voice_split_term">Siste split</string>
     <string name="menu_switch_to_voice_command">Bytt til talekommando</string>
@@ -1476,6 +1478,10 @@
     <string name="voice_act_record_start_terms">start opptak,ta opp</string>
     <string name="voice_act_record_stop_terms">stopp opptak</string>
     <string name="voice_act_reset_trip_terms">nullstill tur</string>
+    <string name="voice_act_music_start_terms">spill musikk,start musikk,musikk</string>
+    <string name="voice_act_media_pause_terms">pause musikk,stopp musikk</string>
+    <string name="voice_act_media_next_terms">neste sang,neste spor</string>
+    <string name="voice_act_media_prev_terms">forrige sang,forrige spor</string>
     <string name="voice_answer_mic_busy">Noe annet bruker mikrofonen.</string>
     <string name="voice_answer_which">Mente du %1$s eller %2$s?</string>
     <string name="alarm_metric_pwm_voice"></string>

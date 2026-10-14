@@ -298,8 +298,8 @@
     <string name="action_chip_light">Světlo</string>
     <string name="action_chip_voice">Hlas</string>
     <string name="action_chip_voice_listen">Poslouchat</string>
-    <string name="menu_voice_ask">Začít poslouchat</string>
-    <string name="menu_voice_stop">Přestat poslouchat</string>
+    <string name="menu_voice_ask">Poslouchat povel</string>
+    <string name="menu_voice_stop">Přestat poslouchat povel</string>
     <string name="menu_voice_speak_report">Přehrát hlasové hlášení</string>
     <string name="voice_split_term">Poslední split</string>
     <string name="menu_switch_to_voice_command">Přepnout na hlasový příkaz</string>
@@ -403,6 +403,10 @@
     <string name="voice_act_record_start_terms">spusť nahrávání,nahrávej</string>
     <string name="voice_act_record_stop_terms">zastav nahrávání</string>
     <string name="voice_act_reset_trip_terms">resetuj jízdu</string>
+    <string name="voice_act_music_start_terms">pusť hudbu,spusť hudbu,hudba</string>
+    <string name="voice_act_media_pause_terms">pozastav hudbu,zastav hudbu</string>
+    <string name="voice_act_media_next_terms">další písnička,další skladba</string>
+    <string name="voice_act_media_prev_terms">předchozí písnička,předchozí skladba</string>
     <string name="voice_answer_mic_busy">Mikrofon právě používá něco jiného.</string>
     <string name="voice_answer_which">Myslel jsi %1$s nebo %2$s?</string>
     <string name="action_chip_safety">Legální režim</string>
@@ -415,6 +419,8 @@
     <string name="action_chip_media_play">Přehrát / pauza</string>
     <string name="action_chip_media_next">Další skladba</string>
     <string name="action_chip_media_prev">Předchozí skladba</string>
+    <string name="action_chip_music_start">Spustit hudbu</string>
+    <string name="action_chip_media_pause">Pozastavit hudbu</string>
     <string name="action_chip_open_navigation">Zobrazit mapu</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">O aplikaci</string>

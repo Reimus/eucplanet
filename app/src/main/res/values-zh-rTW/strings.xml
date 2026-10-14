@@ -335,8 +335,8 @@
     <string name="action_chip_light">燈光</string>
     <string name="action_chip_voice">語音</string>
     <string name="action_chip_voice_listen">聆聽</string>
-    <string name="menu_voice_ask">開始聆聽</string>
-    <string name="menu_voice_stop">停止聆聽</string>
+    <string name="menu_voice_ask">聆聽指令</string>
+    <string name="menu_voice_stop">停止聆聽指令</string>
     <string name="menu_voice_speak_report">播放語音播報</string>
     <string name="voice_split_term">上次加速</string>
     <string name="menu_switch_to_voice_command">切換到語音指令</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">開始記錄,開始錄製</string>
     <string name="voice_act_record_stop_terms">停止記錄</string>
     <string name="voice_act_reset_trip_terms">重置行程</string>
+    <string name="voice_act_music_start_terms">播放音樂,開始音樂,音樂</string>
+    <string name="voice_act_media_pause_terms">暫停音樂,停止音樂</string>
+    <string name="voice_act_media_next_terms">下一首</string>
+    <string name="voice_act_media_prev_terms">上一首</string>
     <string name="voice_answer_mic_busy">其他應用程式正在使用麥克風。</string>
     <string name="voice_answer_which">你是指%1$s還是%2$s？</string>
     <string name="action_chip_safety">限速模式</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">播放／暫停</string>
     <string name="action_chip_media_next">下一首</string>
     <string name="action_chip_media_prev">上一首</string>
+    <string name="action_chip_music_start">開始音樂</string>
+    <string name="action_chip_media_pause">暫停音樂</string>
     <string name="action_chip_open_navigation">顯示地圖</string>
     <string name="action_chip_open_studio">疊加工作室</string>
     <string name="action_chip_open_about">關於</string>

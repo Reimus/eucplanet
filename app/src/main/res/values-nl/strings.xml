@@ -335,8 +335,8 @@
     <string name="action_chip_light">Licht</string>
     <string name="action_chip_voice">Stem</string>
     <string name="action_chip_voice_listen">Luisteren</string>
-    <string name="menu_voice_ask">Start met luisteren</string>
-    <string name="menu_voice_stop">Stop met luisteren</string>
+    <string name="menu_voice_ask">Luisteren naar een opdracht</string>
+    <string name="menu_voice_stop">Stoppen met luisteren naar opdracht</string>
     <string name="menu_voice_speak_report">Spraakmelding afspelen</string>
     <string name="voice_split_term">Laatste split</string>
     <string name="menu_switch_to_voice_command">Naar spraakopdracht wisselen</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">start opname,opnemen</string>
     <string name="voice_act_record_stop_terms">stop opname</string>
     <string name="voice_act_reset_trip_terms">reset rit</string>
+    <string name="voice_act_music_start_terms">speel muziek,muziek afspelen,muziek starten,muziek</string>
+    <string name="voice_act_media_pause_terms">muziek pauzeren,pauzeer muziek,muziek stoppen</string>
+    <string name="voice_act_media_next_terms">volgend nummer,volgende track</string>
+    <string name="voice_act_media_prev_terms">vorig nummer,vorige track</string>
     <string name="voice_answer_mic_busy">Iets anders gebruikt de microfoon.</string>
     <string name="voice_answer_which">Bedoelde je %1$s of %2$s?</string>
     <string name="action_chip_safety">Legale modus</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Afspelen / pauze</string>
     <string name="action_chip_media_next">Volgend nummer</string>
     <string name="action_chip_media_prev">Vorig nummer</string>
+    <string name="action_chip_music_start">Muziek starten</string>
+    <string name="action_chip_media_pause">Muziek pauzeren</string>
     <string name="action_chip_open_navigation">Kaart tonen</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Info</string>

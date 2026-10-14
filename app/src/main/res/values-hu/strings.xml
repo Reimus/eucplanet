@@ -298,8 +298,8 @@
     <string name="action_chip_light">Világítás</string>
     <string name="action_chip_voice">Hang</string>
     <string name="action_chip_voice_listen">Hallgatás</string>
-    <string name="menu_voice_ask">Hallgatás indítása</string>
-    <string name="menu_voice_stop">Hallgatás leállítása</string>
+    <string name="menu_voice_ask">Parancs figyelése</string>
+    <string name="menu_voice_stop">Parancsfigyelés leállítása</string>
     <string name="menu_voice_speak_report">Hangbemondás lejátszása</string>
     <string name="voice_split_term">Utolsó részidő</string>
     <string name="menu_switch_to_voice_command">Váltás hangparancsra</string>
@@ -403,6 +403,10 @@
     <string name="voice_act_record_start_terms">felvétel indítása,rögzíts</string>
     <string name="voice_act_record_stop_terms">felvétel leállítása</string>
     <string name="voice_act_reset_trip_terms">út nullázása</string>
+    <string name="voice_act_music_start_terms">zene lejátszása,zene indítása,zene</string>
+    <string name="voice_act_media_pause_terms">zene szünet,zene leállítása</string>
+    <string name="voice_act_media_next_terms">következő dal,következő szám</string>
+    <string name="voice_act_media_prev_terms">előző dal,előző szám</string>
     <string name="voice_answer_mic_busy">Valami más használja a mikrofont.</string>
     <string name="voice_answer_which">%1$s vagy %2$s?</string>
     <string name="action_chip_safety">Legális mód</string>
@@ -415,6 +419,8 @@
     <string name="action_chip_media_play">Lejátszás / szünet</string>
     <string name="action_chip_media_next">Következő szám</string>
     <string name="action_chip_media_prev">Előző szám</string>
+    <string name="action_chip_music_start">Zene indítása</string>
+    <string name="action_chip_media_pause">Zene szüneteltetése</string>
     <string name="action_chip_open_navigation">Térkép mutatása</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Névjegy</string>

@@ -335,8 +335,8 @@
     <string name="action_chip_light">Luz</string>
     <string name="action_chip_voice">Voz</string>
     <string name="action_chip_voice_listen">Ouvir</string>
-    <string name="menu_voice_ask">Começar a ouvir</string>
-    <string name="menu_voice_stop">Parar de ouvir</string>
+    <string name="menu_voice_ask">Ouvir um comando</string>
+    <string name="menu_voice_stop">Parar de ouvir o comando</string>
     <string name="menu_voice_speak_report">Reproduzir aviso de voz</string>
     <string name="voice_split_term">Última parcial</string>
     <string name="menu_switch_to_voice_command">Mudar para comando de voz</string>
@@ -440,6 +440,10 @@
     <string name="voice_act_record_start_terms">começar gravação,gravar</string>
     <string name="voice_act_record_stop_terms">parar gravação</string>
     <string name="voice_act_reset_trip_terms">zerar viagem</string>
+    <string name="voice_act_music_start_terms">tocar música,toca música,iniciar música,música</string>
+    <string name="voice_act_media_pause_terms">pausar música,pausa a música,parar música</string>
+    <string name="voice_act_media_next_terms">próxima música,próxima faixa</string>
+    <string name="voice_act_media_prev_terms">música anterior,faixa anterior</string>
     <string name="voice_answer_mic_busy">Outra coisa está usando o microfone.</string>
     <string name="voice_answer_which">Você quis dizer %1$s ou %2$s?</string>
     <string name="action_chip_safety">Modo legal</string>
@@ -452,6 +456,8 @@
     <string name="action_chip_media_play">Tocar / pausar</string>
     <string name="action_chip_media_next">Próxima</string>
     <string name="action_chip_media_prev">Anterior</string>
+    <string name="action_chip_music_start">Iniciar música</string>
+    <string name="action_chip_media_pause">Pausar música</string>
     <string name="action_chip_open_navigation">Mostrar mapa</string>
     <string name="action_chip_open_studio">Overlay Studio</string>
     <string name="action_chip_open_about">Sobre</string>
