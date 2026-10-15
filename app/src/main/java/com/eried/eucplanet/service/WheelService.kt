@@ -76,6 +76,8 @@ class WheelService : LifecycleService() {
         const val EXTRA_OPEN_CHARGING = "open_charging"
         private const val CHANNEL_ID_LEGACY = "wheel_connection"
         const val NOTIFICATION_ID = 1
+        /** Longest an unchanged ongoing notification goes without a re-post. */
+        private const val NOTIFICATION_REFRESH_MS = 30_000L
         const val ACTION_CONNECT = "com.eried.eucplanet.CONNECT"
         const val ACTION_DISCONNECT = "com.eried.eucplanet.DISCONNECT"
         const val ACTION_START_RECORDING = "com.eried.eucplanet.START_RECORDING"
@@ -270,6 +272,7 @@ class WheelService : LifecycleService() {
         }
         return try {
             startForeground(NOTIFICATION_ID, buildNotification(null), foregroundTypes)
+            lastNotificationShown = ""
             locationForegroundReady =
                 canUseLocation &&
                     (foregroundTypes and ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION) != 0
@@ -490,8 +493,7 @@ class WheelService : LifecycleService() {
                             // "1.4 mph | 84%" line up for hours. Post the state
                             // once, unthrottled, so it reads "Disconnected".
                             if (!shuttingDown) {
-                                getSystemService(NotificationManager::class.java)
-                                    .notify(NOTIFICATION_ID, buildNotification(null))
+                                postNotificationIfChanged(buildNotification(null))
                             }
                             // Only announce if we were actually connected (not just reconnect cycling)
                             if (lastConnectionState == ConnectionState.CONNECTED && settings.announceConnection) {
@@ -555,10 +557,7 @@ class WheelService : LifecycleService() {
                     (nav.active != lastNavActive || now - lastNavNotifyMs >= 1000L)) {
                     lastNavActive = nav.active
                     lastNavNotifyMs = now
-                    val manager = getSystemService(NotificationManager::class.java)
-                    manager.notify(
-                        NOTIFICATION_ID, buildNotification(wheelRepository.wheelData.value)
-                    )
+                    postNotificationIfChanged(buildNotification(wheelRepository.wheelData.value), now)
                 }
             }
         }
@@ -1447,8 +1446,29 @@ class WheelService : LifecycleService() {
         val now = System.currentTimeMillis()
         if (now - lastNotificationUpdate < 1000) return
         lastNotificationUpdate = now
+        postNotificationIfChanged(buildNotification(data), now)
+    }
 
-        val manager = getSystemService(NotificationManager::class.java)
-        manager.notify(NOTIFICATION_ID, buildNotification(data))
+    // What the ongoing notification last showed, and when it was last posted.
+    private var lastNotificationShown = ""
+    private var lastNotificationPostMs = 0L
+
+    /**
+     * Posts [n] only when it reads differently from the last one, or when the
+     * last post is [NOTIFICATION_REFRESH_MS] old. Re-posting an identical
+     * notification every second made the system UI redraw it all ride long,
+     * mostly for a wheel standing still; the refresh is the safety net that
+     * keeps a notification the system lost or garbled from staying that way.
+     */
+    private fun postNotificationIfChanged(n: Notification, now: Long = System.currentTimeMillis()) {
+        val shown = buildString {
+            append(n.extras.getCharSequence(Notification.EXTRA_TITLE)).append('|')
+            append(n.extras.getCharSequence(Notification.EXTRA_TEXT))
+            n.actions?.forEach { append('|').append(it.title) }
+        }
+        if (shown == lastNotificationShown && now - lastNotificationPostMs < NOTIFICATION_REFRESH_MS) return
+        lastNotificationShown = shown
+        lastNotificationPostMs = now
+        getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, n)
     }
 }
