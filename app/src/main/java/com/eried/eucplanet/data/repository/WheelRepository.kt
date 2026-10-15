@@ -33,6 +33,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -842,6 +843,15 @@ class WheelRepository @Inject constructor(
             val buf = ArrayDeque<MetricSample>()
             val windowMs = 600L
             while (true) {
+                // Only a connected wheel has a speed to differentiate; without
+                // one this woke the phone ten times a second for nothing.
+                if (connectionState.value != ConnectionState.CONNECTED) {
+                    buf.clear()
+                    if (_wheelData.value.forwardGFromSpeed != 0f) {
+                        _wheelData.value = _wheelData.value.copy(forwardGFromSpeed = 0f)
+                    }
+                    connectionState.first { it == ConnectionState.CONNECTED }
+                }
                 kotlinx.coroutines.delay(100L)
                 val now = System.currentTimeMillis()
                 buf.addLast(MetricSample(now, _wheelData.value.speed / 3.6f)) // km/h -> m/s
