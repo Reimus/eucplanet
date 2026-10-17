@@ -2103,6 +2103,10 @@
     <string name="adv_hud_manual_grace_desc">影响使用手动 IP 前留给自动发现的时长。危险:过低会在发现成功前就使用手动 IP。</string>
     <string name="adv_hud_mdns_resolve">mDNS 解析时长</string>
     <string name="adv_hud_mdns_resolve_desc">影响解析已发现 HUD 地址详情的时长。危险:过低会丢弃解析较慢的 HUD。</string>
+    <string name="adv_hud_idle_search">空闲搜索间隔</string>
+    <string name="adv_hud_idle_search_desc">未连接独轮车且应用关闭时搜索 HUD 的频率。危险：过低会耗电。</string>
+    <string name="adv_hud_sweep_interval">网络扫描间隔</string>
+    <string name="adv_hud_sweep_interval_desc">为寻找 HUD 尝试网络中每个地址的频率。危险：过低会占用手机并耗电。</string>
     <string name="adv_hud_mdns_timeout">发现超时</string>
     <string name="adv_hud_mdns_timeout_desc">影响等待 HUD 响应自动发现的时长。危险:过低会在它回应前放弃。</string>
     <string name="adv_hud_report_interval">HUD 上报频率</string>

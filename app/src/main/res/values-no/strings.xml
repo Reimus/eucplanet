@@ -2122,6 +2122,10 @@
     <string name="adv_hud_manual_grace_desc">Påvirker hvor lang tid autooppdagelse får før den manuelle IP-en brukes. Fare: for lavt bruker den manuelle IP-en før oppdagelsen kan vinne.</string>
     <string name="adv_hud_mdns_resolve">mDNS-oppslagstid</string>
     <string name="adv_hud_mdns_resolve_desc">Påvirker hvor lenge adressedetaljene til et funnet HUD slås opp. Fare: for lavt dropper et HUD som er tregt å slå opp.</string>
+    <string name="adv_hud_idle_search">Søk i hvile</string>
+    <string name="adv_hud_idle_search_desc">Påvirker hvor ofte HUD-en letes etter uten tilkoblet hjul og med appen lukket. Fare: for lavt tapper batteriet.</string>
+    <string name="adv_hud_sweep_interval">Nettverksskanning</string>
+    <string name="adv_hud_sweep_interval_desc">Påvirker hvor ofte hver adresse på nettverket prøves for å finne HUD-en. Fare: for lavt holder telefonen opptatt og tapper batteriet.</string>
     <string name="adv_hud_mdns_timeout">Tidsavbrudd for oppdagelse</string>
     <string name="adv_hud_mdns_timeout_desc">Påvirker hvor lenge man venter på at HUD-en svarer på autooppdagelse. Fare: for lavt gir opp før den svarer.</string>
     <string name="adv_hud_report_interval">HUD-rapportrate</string>

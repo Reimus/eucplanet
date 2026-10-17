@@ -593,6 +593,10 @@
     <string name="adv_hud_manual_grace_desc">Influențează cât timp primește descoperirea automată înainte de folosirea IP-ului manual. Pericol: o valoare prea mică folosește IP-ul manual înainte ca descoperirea să poată reuși.</string>
     <string name="adv_hud_mdns_resolve">Durata rezolvării mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Influențează cât timp se rezolvă detaliile de adresă ale unui HUD descoperit. Pericol: o valoare prea mică pierde un HUD care se rezolvă lent.</string>
+    <string name="adv_hud_idle_search">Căutare în repaus</string>
+    <string name="adv_hud_idle_search_desc">Afectează cât de des este căutat HUD-ul fără roată conectată și cu aplicația închisă. Pericol: prea mic descarcă bateria.</string>
+    <string name="adv_hud_sweep_interval">Scanare rețea</string>
+    <string name="adv_hud_sweep_interval_desc">Afectează cât de des este încercată fiecare adresă din rețea pentru a găsi HUD-ul. Pericol: prea mic încarcă telefonul și descarcă bateria.</string>
     <string name="adv_group_autolights">Lumini automate</string>
     <string name="adv_autolight_no_gps_retry">Reîncercare fără GPS</string>
     <string name="adv_autolight_no_gps_retry_desc">Influențează cât de des reîncearcă luminile automate cât timp așteaptă o poziție GPS.</string>

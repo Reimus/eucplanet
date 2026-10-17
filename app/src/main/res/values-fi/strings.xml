@@ -593,6 +593,10 @@
     <string name="adv_hud_manual_grace_desc">Vaikuttaa siihen, kuinka paljon aikaa automaattietsintä saa ennen kuin manuaalista IP:tä käytetään. Vaara: liian pieni käyttää manuaalista IP:tä ennen kuin etsintä ehtii onnistua.</string>
     <string name="adv_hud_mdns_resolve">mDNS-selvityksen aika</string>
     <string name="adv_hud_mdns_resolve_desc">Vaikuttaa siihen, kuinka kauan löydetyn HUDin osoitetietoja selvitetään. Vaara: liian pieni pudottaa HUDin, joka selviää hitaasti.</string>
+    <string name="adv_hud_idle_search">Haku levossa</string>
+    <string name="adv_hud_idle_search_desc">Vaikuttaa siihen, kuinka usein HUDia etsitään, kun pyörää ei ole yhdistetty ja sovellus on suljettu. Vaara: liian pieni kuluttaa akkua.</string>
+    <string name="adv_hud_sweep_interval">Verkon läpikäynti</string>
+    <string name="adv_hud_sweep_interval_desc">Vaikuttaa siihen, kuinka usein jokainen verkon osoite kokeillaan HUDin löytämiseksi. Vaara: liian pieni kuormittaa puhelinta ja kuluttaa akkua.</string>
     <string name="adv_group_autolights">Automaattivalot</string>
     <string name="adv_autolight_no_gps_retry">Uusinta ilman GPS:ää</string>
     <string name="adv_autolight_no_gps_retry_desc">Vaikuttaa siihen, kuinka usein automaattivalot yrittävät uudelleen odottaessaan GPS-paikannusta.</string>

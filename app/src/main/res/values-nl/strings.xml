@@ -2236,6 +2236,10 @@
     <string name="adv_hud_manual_grace_desc">Bepaalt hoeveel tijd autodetectie krijgt voordat de handmatige IP wordt gebruikt. Let op: te laag gebruikt de handmatige IP voordat detectie kan winnen.</string>
     <string name="adv_hud_mdns_resolve">mDNS-resolutietijd</string>
     <string name="adv_hud_mdns_resolve_desc">Bepaalt hoe lang de adresgegevens van een gevonden HUD worden omgezet. Let op: te laag laat een HUD vallen die traag omzet.</string>
+    <string name="adv_hud_idle_search">Zoeken in rust</string>
+    <string name="adv_hud_idle_search_desc">Bepaalt hoe vaak naar de HUD wordt gezocht zonder verbonden wiel en met de app gesloten. Gevaar: te laag put de accu uit.</string>
+    <string name="adv_hud_sweep_interval">Netwerkscan</string>
+    <string name="adv_hud_sweep_interval_desc">Bepaalt hoe vaak elk adres op het netwerk wordt geprobeerd om de HUD te vinden. Gevaar: te laag houdt de telefoon bezig en put de accu uit.</string>
     <string name="adv_hud_mdns_timeout">Detectietime-out</string>
     <string name="adv_hud_mdns_timeout_desc">Bepaalt hoe lang gewacht wordt tot de HUD op autodetectie reageert. Let op: te laag geeft op voordat hij antwoordt.</string>
     <string name="adv_hud_report_interval">HUD-rapportagesnelheid</string>

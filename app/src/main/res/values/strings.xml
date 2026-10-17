@@ -664,6 +664,10 @@
     <string name="adv_hud_manual_grace_desc">Affects how long auto-discovery gets before the manual IP is used. Danger: too low uses the manual IP before discovery can win.</string>
     <string name="adv_hud_mdns_resolve">mDNS resolve time</string>
     <string name="adv_hud_mdns_resolve_desc">Affects how long to resolve a discovered HUD\'s address details. Danger: too low drops a HUD that resolves slowly.</string>
+    <string name="adv_hud_idle_search">Idle search interval</string>
+    <string name="adv_hud_idle_search_desc">Affects how often the HUD is searched for with no wheel connected and the app closed. Danger: too low drains the battery.</string>
+    <string name="adv_hud_sweep_interval">Network sweep interval</string>
+    <string name="adv_hud_sweep_interval_desc">Affects how often every address on the network is tried for the HUD. Danger: too low keeps the phone busy and drains the battery.</string>
     <string name="adv_group_autolights">Auto-lights</string>
     <string name="adv_autolight_no_gps_retry">No-GPS retry</string>
     <string name="adv_autolight_no_gps_retry_desc">Affects how often auto-lights retry while waiting for a GPS fix.</string>

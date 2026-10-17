@@ -2233,6 +2233,10 @@
     <string name="adv_hud_manual_grace_desc">Впливає на те, скільки часу має автопошук до використання ручного IP. Небезпека: замале значення використовує ручний IP, перш ніж пошук устигне спрацювати.</string>
     <string name="adv_hud_mdns_resolve">Час визначення mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Впливає на те, як довго визначаються дані адреси знайденого HUD. Небезпека: замале значення відкидає HUD, який повільно визначається.</string>
+    <string name="adv_hud_idle_search">Пошук у спокої</string>
+    <string name="adv_hud_idle_search_desc">Як часто шукати HUD, коли колесо не підключене і застосунок закритий. Небезпечно: замале значення розряджає батарею.</string>
+    <string name="adv_hud_sweep_interval">Обхід мережі</string>
+    <string name="adv_hud_sweep_interval_desc">Як часто перебирати всі адреси в мережі в пошуках HUD. Небезпечно: замале значення навантажує телефон і розряджає батарею.</string>
     <string name="adv_hud_mdns_timeout">Час очікування пошуку</string>
     <string name="adv_hud_mdns_timeout_desc">Впливає на те, як довго чекати на відповідь HUD під час автопошуку. Небезпека: замало - здається до відповіді.</string>
     <string name="adv_hud_report_interval">Частота звітів HUD</string>

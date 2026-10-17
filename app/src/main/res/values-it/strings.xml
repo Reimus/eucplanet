@@ -2141,6 +2141,10 @@
     <string name="adv_hud_manual_grace_desc">Influisce su quanto tempo ha la ricerca automatica prima di usare l\'IP manuale. Pericolo: troppo basso usa l\'IP manuale prima che la ricerca possa riuscire.</string>
     <string name="adv_hud_mdns_resolve">Tempo di risoluzione mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Influisce su quanto tempo per risolvere i dettagli dell\'indirizzo di un HUD trovato. Pericolo: troppo basso scarta un HUD lento a risolversi.</string>
+    <string name="adv_hud_idle_search">Ricerca a riposo</string>
+    <string name="adv_hud_idle_search_desc">Indica ogni quanto si cerca l\'HUD senza ruota collegata e con l\'app chiusa. Pericolo: troppo basso scarica la batteria.</string>
+    <string name="adv_hud_sweep_interval">Scansione rete</string>
+    <string name="adv_hud_sweep_interval_desc">Indica ogni quanto si prova ogni indirizzo della rete per trovare l\'HUD. Pericolo: troppo basso impegna il telefono e scarica la batteria.</string>
     <string name="adv_hud_mdns_timeout">Timeout ricerca</string>
     <string name="adv_hud_mdns_timeout_desc">Influisce su quanto attendere che il HUD risponda alla ricerca automatica. Pericolo: troppo basso rinuncia prima che risponda.</string>
     <string name="adv_hud_report_interval">Frequenza dati HUD</string>

@@ -2235,6 +2235,10 @@
     <string name="adv_hud_manual_grace_desc">手動 IP を使う前に自動検出に与える時間に影響します。危険: 低すぎると検出が成立する前に手動 IP を使います。</string>
     <string name="adv_hud_mdns_resolve">mDNS 解決時間</string>
     <string name="adv_hud_mdns_resolve_desc">検出した HUD のアドレス詳細を解決する時間に影響します。危険: 低すぎると解決が遅い HUD を切り捨てます。</string>
+    <string name="adv_hud_idle_search">待機中の検索間隔</string>
+    <string name="adv_hud_idle_search_desc">ホイール未接続かつアプリを閉じているときに HUD を探す間隔。危険: 短すぎるとバッテリーを消耗します。</string>
+    <string name="adv_hud_sweep_interval">ネットワーク走査間隔</string>
+    <string name="adv_hud_sweep_interval_desc">HUD を探すためにネットワークの全アドレスを試す間隔。危険: 短すぎると端末に負荷がかかりバッテリーを消耗します。</string>
     <string name="adv_hud_mdns_timeout">検出タイムアウト</string>
     <string name="adv_hud_mdns_timeout_desc">HUD が自動検出に応答するまで待つ時間に影響します。危険: 低すぎると応答前に諦めます。</string>
     <string name="adv_hud_report_interval">HUD 報告レート</string>

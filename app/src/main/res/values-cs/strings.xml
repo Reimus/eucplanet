@@ -593,6 +593,10 @@
     <string name="adv_hud_manual_grace_desc">Ovlivňuje, kolik času dostane automatické zjišťování, než se použije ruční IP. Nebezpečí: příliš nízká hodnota použije ruční IP dřív, než zjišťování stihne uspět.</string>
     <string name="adv_hud_mdns_resolve">Doba překladu mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Ovlivňuje, jak dlouho se překládají adresní údaje nalezeného HUD. Nebezpečí: příliš nízká hodnota vynechá HUD, který se překládá pomalu.</string>
+    <string name="adv_hud_idle_search">Hledání v klidu</string>
+    <string name="adv_hud_idle_search_desc">Ovlivňuje, jak často se hledá HUD bez připojeného kola a se zavřenou aplikací. Nebezpečí: příliš nízká hodnota vybíjí baterii.</string>
+    <string name="adv_hud_sweep_interval">Prohledání sítě</string>
+    <string name="adv_hud_sweep_interval_desc">Ovlivňuje, jak často se zkouší každá adresa v síti při hledání HUD. Nebezpečí: příliš nízká hodnota zatěžuje telefon a vybíjí baterii.</string>
     <string name="adv_group_autolights">Automatická světla</string>
     <string name="adv_autolight_no_gps_retry">Opakování bez GPS</string>
     <string name="adv_autolight_no_gps_retry_desc">Ovlivňuje, jak často automatická světla opakují pokus, dokud čekají na polohu GPS.</string>

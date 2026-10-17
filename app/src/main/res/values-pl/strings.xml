@@ -2234,6 +2234,10 @@
     <string name="adv_hud_manual_grace_desc">Wpływa na to, ile czasu ma autowykrywanie, zanim użyty zostanie ręczny IP. Uwaga: zbyt mała wartość używa ręcznego IP, zanim wykrywanie zdąży wygrać.</string>
     <string name="adv_hud_mdns_resolve">Czas rozwiązywania mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Wpływa na to, jak długo rozwiązywane są szczegóły adresu wykrytego HUD. Uwaga: zbyt mała wartość odrzuca HUD, który wolno się rozwiązuje.</string>
+    <string name="adv_hud_idle_search">Szukanie w spoczynku</string>
+    <string name="adv_hud_idle_search_desc">Określa, jak często szukany jest HUD bez połączonego koła i przy zamkniętej aplikacji. Niebezpieczeństwo: zbyt niska wartość rozładowuje baterię.</string>
+    <string name="adv_hud_sweep_interval">Przeszukiwanie sieci</string>
+    <string name="adv_hud_sweep_interval_desc">Określa, jak często sprawdzany jest każdy adres w sieci w poszukiwaniu HUD. Niebezpieczeństwo: zbyt niska wartość obciąża telefon i rozładowuje baterię.</string>
     <string name="adv_hud_mdns_timeout">Limit czasu wykrywania</string>
     <string name="adv_hud_mdns_timeout_desc">Wpływa na to, jak długo czekać na odpowiedź HUD na autowykrywanie. Uwaga: zbyt mała wartość poddaje się, zanim HUD odpowie.</string>
     <string name="adv_hud_report_interval">Częstotliwość raportów HUD</string>

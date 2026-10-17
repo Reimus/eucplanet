@@ -1013,6 +1013,8 @@ data class AppSettings(
     val hudManualHintDelayMs: Int get() = advanced.hudManualHintDelayMs
     val hudDiscoveryTotalTimeoutMs: Int get() = advanced.hudDiscoveryTotalTimeoutMs
     val hudMdnsServiceInfoTimeoutMs: Int get() = advanced.hudMdnsServiceInfoTimeoutMs
+    val hudIdleSearchMs: Int get() = advanced.hudIdleSearchMs
+    val hudSweepIntervalMs: Int get() = advanced.hudSweepIntervalMs
     val autoLightNoGpsRetryMs: Int get() = advanced.autoLightNoGpsRetryMs
     val autoToggleGraceMs: Int get() = advanced.autoToggleGraceMs
     val navMovingKmh: Int get() = advanced.navMovingKmh
@@ -1631,6 +1633,8 @@ data class AdvancedSettings(
     val hudManualHintDelayMs: Int = 1500,
     val hudDiscoveryTotalTimeoutMs: Int = 15000,
     val hudMdnsServiceInfoTimeoutMs: Int = 1000,
+    val hudIdleSearchMs: Int = 120000,
+    val hudSweepIntervalMs: Int = 60000,
     val autoLightNoGpsRetryMs: Int = 2000,
     val autoToggleGraceMs: Int = 4000,
     val navMovingKmh: Int = 4,

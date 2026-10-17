@@ -26,8 +26,12 @@ import com.eried.eucplanet.hud.protocol.WifiInterferenceDetector
 import com.eried.eucplanet.nav.NavigationEngine
 import com.eried.eucplanet.ui.theme.AccentOptions
 import com.eried.eucplanet.ui.theme.AccentTeal
+import com.eried.eucplanet.util.AppForeground
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -187,6 +191,10 @@ class HudServer @Inject constructor(
 
     @Volatile private var loopJob: Job? = null
     @Volatile private var beaconKickJob: Job? = null
+    @Volatile private var attentionJob: Job? = null
+    /** When the last subnet sweep started; 0 makes the next search sweep.
+     *  Reset on link start, network change and the rider starting to look. */
+    @Volatile private var lastSweepMs = 0L
     @Volatile private var publishJob: Job? = null
     @Volatile private var ws: WebSocket? = null
     /** "ip:port" of the HUD the live WebSocket is talking to; null when down.
@@ -248,6 +256,8 @@ class HudServer @Inject constructor(
                 manualHintDelayMs = s.hudManualHintDelayMs.toLong()
                 discoveryTotalTimeoutMs = s.hudDiscoveryTotalTimeoutMs.toLong()
                 mdnsServiceInfoTimeoutMs = s.hudMdnsServiceInfoTimeoutMs.toLong()
+                idleSearchMs = s.hudIdleSearchMs.toLong()
+                sweepIntervalMs = s.hudSweepIntervalMs.toLong()
                 val want = s.hudServerEnabled ||
                     com.eried.eucplanet.hud.protocol.HudDebug.read("debug.eucplanet.hud.force") == "true"
                 if (want != on) {
@@ -268,6 +278,8 @@ class HudServer @Inject constructor(
     @Volatile private var manualHintDelayMs: Long = 1_500L
     @Volatile private var discoveryTotalTimeoutMs: Long = 15_000L
     @Volatile private var mdnsServiceInfoTimeoutMs: Long = 1_000L
+    @Volatile private var idleSearchMs: Long = 120_000L
+    @Volatile private var sweepIntervalMs: Long = 60_000L
     @Volatile private var multicastLock: WifiManager.MulticastLock? = null
     /** High-performance WiFi lock acquired while the HUD link is enabled.
      *  Without this, the radio enters DTIM power-save once the screen is off
@@ -388,6 +400,19 @@ class HudServer @Inject constructor(
             log("Fixed mode, manual only -> $target")
         }
         registerNetworkCallback()
+        lastSweepMs = 0L
+        // A wheel connecting or the app coming on screen means the rider is now
+        // waiting for the HUD: end the idle wait and sweep straight away.
+        attentionJob = scope.launch {
+            combine(wheelRepository.connectionState, AppForeground.isForeground) { c, fg ->
+                c == ConnectionState.CONNECTED || fg
+            }.distinctUntilChanged().drop(1).collect { attending ->
+                if (attending) {
+                    lastSweepMs = 0L
+                    reconnectKick.trySend(Unit)
+                }
+            }
+        }
         loopJob = scope.launch { dialLoop() }
     }
 
@@ -401,6 +426,7 @@ class HudServer @Inject constructor(
         publishJob?.cancel(); publishJob = null
         loopJob?.cancel(); loopJob = null
         beaconKickJob?.cancel(); beaconKickJob = null
+        attentionJob?.cancel(); attentionJob = null
         udpListener.stop()
         _connectionSource.value = ConnectionSource.NONE
         try { multicastLock?.release() } catch (_: Throwable) {}
@@ -451,6 +477,7 @@ class HudServer @Inject constructor(
             override fun onAvailable(network: Network) {
                 Log.i(TAG, "network onAvailable: kicking dial loop")
                 log("Network came up, retrying immediately")
+                lastSweepMs = 0L
                 reconnectKick.trySend(Unit)
             }
             override fun onCapabilitiesChanged(network: Network, caps: NetworkCapabilities) {
@@ -692,8 +719,21 @@ class HudServer @Inject constructor(
                 // kick (phone hopped to a different WiFi, came back from
                 // airplane mode) cancels whichever delay is pending so we
                 // retry immediately instead of waiting out the tick.
-                val sinceStart = System.currentTimeMillis() - sprintStartedAtMs
-                delayOrKick(if (sinceStart < discoverySprintMs) 2_000L else 5_000L)
+                //
+                // With nobody waiting (no wheel, app off screen) the wait is
+                // idleSearchMs instead (HudSearchPacing). The beacon listener,
+                // a network change, a wheel connecting or the app opening all
+                // still end it at once.
+                val attending = AppForeground.isForeground.value ||
+                    wheelRepository.connectionState.value == ConnectionState.CONNECTED
+                delayOrKick(
+                    HudSearchPacing.waitMs(
+                        attending,
+                        sinceStartMs = System.currentTimeMillis() - sprintStartedAtMs,
+                        sprintMs = discoverySprintMs,
+                        idleMs = idleSearchMs,
+                    )
+                )
                 continue
             }
             _connectionSource.value = source
@@ -864,7 +904,16 @@ class HudServer @Inject constructor(
             }
         }
 
-        val probeJob = scope.launch {
+        // The sweep tries every address on the network, by far the costliest
+        // channel, so it runs at most once per sweepIntervalMs. A new network
+        // or the rider starting to look resets the clock (lastSweepMs = 0).
+        // Beacon and mDNS still run on every search.
+        val now = System.currentTimeMillis()
+        val probeJob = if (!HudSearchPacing.sweepDue(now, lastSweepMs, sweepIntervalMs)) {
+            log("Subnet probe: skipped, last sweep ${(now - lastSweepMs) / 1000}s ago")
+            null
+        } else scope.launch {
+            lastSweepMs = System.currentTimeMillis()
             // Last resort, and gated: this only runs if the faster mDNS / UDP
             // paths did not already find the HUD (a win cancels this job). It
             // starts immediately - no stagger - because the scan is bounded

@@ -2240,6 +2240,10 @@
     <string name="adv_hud_manual_grace_desc">Détermine le temps laissé à l\'auto-découverte avant d\'utiliser l\'IP manuelle. Danger : trop bas utilise l\'IP manuelle avant que la découverte puisse aboutir.</string>
     <string name="adv_hud_mdns_resolve">Temps de résolution mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Détermine combien de temps pour résoudre les détails d\'adresse d\'un HUD découvert. Danger : trop bas abandonne un HUD lent à résoudre.</string>
+    <string name="adv_hud_idle_search">Recherche au repos</string>
+    <string name="adv_hud_idle_search_desc">Définit la fréquence de recherche du HUD sans roue connectée et appli fermée. Danger : trop bas vide la batterie.</string>
+    <string name="adv_hud_sweep_interval">Balayage réseau</string>
+    <string name="adv_hud_sweep_interval_desc">Définit la fréquence à laquelle chaque adresse du réseau est testée pour trouver le HUD. Danger : trop bas occupe le téléphone et vide la batterie.</string>
     <string name="adv_hud_mdns_timeout">Délai de découverte</string>
     <string name="adv_hud_mdns_timeout_desc">Détermine combien de temps attendre que le HUD réponde à l\'auto-découverte. Danger : trop bas abandonne avant qu\'il réponde.</string>
     <string name="adv_hud_report_interval">Cadence de rapport HUD</string>

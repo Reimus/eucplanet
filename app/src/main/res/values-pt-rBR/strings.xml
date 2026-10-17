@@ -2236,6 +2236,10 @@
     <string name="adv_hud_manual_grace_desc">Afeta quanto tempo a descoberta automática tem antes de usar o IP manual. Perigo: baixo demais usa o IP manual antes que a descoberta consiga vencer.</string>
     <string name="adv_hud_mdns_resolve">Tempo de resolução mDNS</string>
     <string name="adv_hud_mdns_resolve_desc">Afeta quanto tempo para resolver os detalhes de endereço de um HUD descoberto. Perigo: baixo demais descarta um HUD que resolve devagar.</string>
+    <string name="adv_hud_idle_search">Busca em repouso</string>
+    <string name="adv_hud_idle_search_desc">Define a frequência de busca do HUD sem roda conectada e com o app fechado. Perigo: muito baixo gasta a bateria.</string>
+    <string name="adv_hud_sweep_interval">Varredura da rede</string>
+    <string name="adv_hud_sweep_interval_desc">Define a frequência com que cada endereço da rede é testado para achar o HUD. Perigo: muito baixo ocupa o celular e gasta a bateria.</string>
     <string name="adv_hud_mdns_timeout">Tempo limite de descoberta</string>
     <string name="adv_hud_mdns_timeout_desc">Afeta quanto tempo esperar o HUD responder à descoberta automática. Perigo: baixo demais desiste antes da resposta.</string>
     <string name="adv_hud_report_interval">Taxa de envio do HUD</string>

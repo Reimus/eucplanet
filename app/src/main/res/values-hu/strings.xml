@@ -593,6 +593,10 @@
     <string name="adv_hud_manual_grace_desc">Befolyásolja, mennyi időt kap az automatikus felderítés a kézi IP használata előtt. Veszély: a túl alacsony érték a kézi IP-t használja, mielőtt a felderítés sikerülhetne.</string>
     <string name="adv_hud_mdns_resolve">mDNS feloldási idő</string>
     <string name="adv_hud_mdns_resolve_desc">Befolyásolja, mennyi ideig oldja fel a megtalált HUD címadatait. Veszély: a túl alacsony érték elejt egy lassan feloldódó HUD-ot.</string>
+    <string name="adv_hud_idle_search">Keresés nyugalomban</string>
+    <string name="adv_hud_idle_search_desc">Megadja, milyen gyakran keresi a HUD-ot csatlakoztatott kerék és nyitott alkalmazás nélkül. Veszély: túl alacsony érték meríti az akkut.</string>
+    <string name="adv_hud_sweep_interval">Hálózat átfésülése</string>
+    <string name="adv_hud_sweep_interval_desc">Megadja, milyen gyakran próbálja a hálózat minden címét a HUD kereséséhez. Veszély: túl alacsony érték leterheli a telefont és meríti az akkut.</string>
     <string name="adv_group_autolights">Automatikus világítás</string>
     <string name="adv_autolight_no_gps_retry">Újrapróbálkozás GPS nélkül</string>
     <string name="adv_autolight_no_gps_retry_desc">Befolyásolja, milyen gyakran próbálkozik újra az automatikus világítás, amíg GPS-pozícióra vár.</string>
