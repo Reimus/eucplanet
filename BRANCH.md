@@ -57,12 +57,14 @@ only when you can cut the ride short.
 - Android Auto: your stats and wheel buttons on the car screen, beside a music app in a split. Opening Google Maps closes it (one navigation app at a time).
 - Android Auto: a firing alarm shows on the car screen. Pick the stats and buttons in Settings, Integration, Android Auto.
 - Battery: with no wheel, the phone stops waking for the watch, scans for the lost wheel slowly after 10 min, and refreshes the notification less.
+- Battery: an idle phone no longer ticks for G-force, settings or absent watches; the HUD holds Wi-Fi awake only while connected; tire pressure listens for the paired sensor only.
 
 ## Please test
 
 **Battery**
 - Wheel off, watch paired, phone left overnight: cooler and less drain than before?
 - Next morning, open the app and turn the wheel on: it connects within seconds?
+- While riding: G-force, signal strength and range still update, auto-record still stops after the ride, the HUD connects?
 
 **Android Auto** (install from the Play internal sharing link, a sideloaded APK never shows in the car)
 - The car screen opens, and speed and battery match the phone?
