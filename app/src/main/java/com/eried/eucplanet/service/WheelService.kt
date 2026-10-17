@@ -1185,10 +1185,12 @@ class WheelService : LifecycleService() {
      */
     private fun pushWidget(data: WheelData) {
         if (legalLockdown.isEngaged()) return  // lockdown stops the widgets
-        if (!com.eried.eucplanet.widget.EucWidget.isPlaced(this)) return
+        // Throttle first: isPlaced() asks the system once per widget kind, and
+        // asked on every frame it was the service's biggest cost while riding.
         val now = System.currentTimeMillis()
         if (now - lastWidgetUpdate < 1_000L) return
         lastWidgetUpdate = now
+        if (!com.eried.eucplanet.widget.EucWidget.isPlaced(this)) return
         renderWidget(data)
     }
 
