@@ -60,6 +60,7 @@ only when you can cut the ride short.
 - Battery: an idle phone no longer ticks for G-force, settings or absent watches; the HUD holds Wi-Fi awake only while connected; tire pressure listens for the paired sensor only.
 - Battery: riding with the app in the background, the hidden dashboard stops redrawing and the widget is checked once a second, not every frame.
 - Navigation: route avoidances (tolls, ferries...) now hold on routes with 10 or more stops; before, they were silently dropped.
+- Share route: the card's stop distances and total match the stop list. In Next segment it could show about 0 m.
 
 ## Please test
 

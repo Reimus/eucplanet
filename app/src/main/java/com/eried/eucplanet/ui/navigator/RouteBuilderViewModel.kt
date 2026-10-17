@@ -438,6 +438,25 @@ class RouteBuilderViewModel @Inject constructor(
             }
             out
         }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
+    /**
+     * The legs between every listed stop, for Share route. Along the drawn
+     * path only when it runs through all of them (Full path, nothing reached
+     * yet), scaled like [stopLegs] so the card agrees with the header;
+     * straight lines otherwise. In Next segment the path ends at the first
+     * stop, and measuring the rest along it put them all at its end: 0 m.
+     */
+    fun shareLegsM(): List<Double> {
+        val wps = _waypoints.value
+        if (wps.size < 2) return emptyList()
+        val route = _route.value
+        val path = if (_solveFullPath.value && route != null && !route.isFixedTrack(wps) && wps.none { it.passed })
+            route.geometry else emptyList()
+        val drawn = GeoMath.polylineLengthM(path)
+        val scale = if (path.size >= 2 && drawn > 0 && route != null && route.totalDistanceM > 0)
+            route.totalDistanceM / drawn else 1.0
+        return RouteLegs.metres(wps.map { it.point() }, path).map { it * scale }
+    }
+
     private var recomputeQueuedDuringDrag = false
 
     init {

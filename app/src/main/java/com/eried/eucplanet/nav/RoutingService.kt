@@ -8,6 +8,9 @@ import com.eried.eucplanet.data.model.TravelMode
 import com.eried.eucplanet.data.model.TurnType
 import com.eried.eucplanet.data.model.Waypoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
@@ -338,9 +341,9 @@ class RoutingService @Inject constructor() {
      * [avoid] preferences applied as costing options. Returns the same
      * [NavRoute] shape as the OSRM path, or null on any failure (caller then
      * falls back to OSRM). Uses a GET with the request as a url-encoded `json`
-     * param so it reuses [httpGet] -- the payload is tiny for <=25 stops.
+     * param so it reuses [httpGet] -- the payload is tiny for the 10 locations it takes.
      */
-    private fun routeViaValhalla(
+    private suspend fun routeViaValhalla(
         name: String,
         waypoints: List<Waypoint>,
         mode: TravelMode,
@@ -349,9 +352,14 @@ class RoutingService @Inject constructor() {
         if (waypoints.size <= VALHALLA_MAX_LOCATIONS) return routeViaValhallaOnce(name, waypoints, mode, avoid)
         // The FOSSGIS server refuses more than 10 locations, so a longer
         // route lost its avoidances to the OSRM fallback. Route it in
-        // stretches that share their end points and join them.
-        val parts = chunkForValhalla(waypoints).map { routeViaValhallaOnce(name, it, mode, avoid) ?: return null }
-        return joinRoutes(name, waypoints, mode, parts)
+        // stretches that share their end points and join them. The
+        // stretches go out together, so a reroute mid-ride waits for the
+        // slowest one, not for all of them in a row.
+        val parts = coroutineScope {
+            chunkForValhalla(waypoints).map { async { routeViaValhallaOnce(name, it, mode, avoid) } }.awaitAll()
+        }
+        if (parts.any { it == null }) return null
+        return joinRoutes(name, waypoints, mode, parts.filterNotNull())
     }
 
     private fun routeViaValhallaOnce(
