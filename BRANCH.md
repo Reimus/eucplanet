@@ -59,6 +59,7 @@ only when you can cut the ride short.
 - Battery: with no wheel, the phone stops waking for the watch, scans for the lost wheel slowly after 10 min, and refreshes the notification less.
 - Battery: an idle phone no longer ticks for G-force, settings or absent watches; the HUD holds Wi-Fi awake only while connected; tire pressure listens for the paired sensor only.
 - Battery: riding with the app in the background, the hidden dashboard stops redrawing and the widget is checked once a second, not every frame.
+- Navigation: route avoidances (tolls, ferries...) now hold on routes with 10 or more stops; before, they were silently dropped.
 
 ## Please test
 
@@ -80,6 +81,7 @@ only when you can cut the ride short.
 - Share, Share route on a planned route: the stops and distances right? Scan it with a second phone: same route?
 - Send the link to someone without the app: does the page show the route and download a GPX?
 - Stop list: the last running total matches the total at the top? Numbers hide while you drag a stop?
+- An avoidance on (Navigation & weather) and 10+ stops: does the route still avoid it?
 
 **InMotion X1**
 - Tiltback and alarm speeds match the InMotion app?
