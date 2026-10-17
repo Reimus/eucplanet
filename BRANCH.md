@@ -58,6 +58,7 @@ only when you can cut the ride short.
 - Android Auto: a firing alarm shows on the car screen. Pick the stats and buttons in Settings, Integration, Android Auto.
 - Battery: with no wheel, the phone stops waking for the watch, scans for the lost wheel slowly after 10 min, and refreshes the notification less.
 - Battery: an idle phone no longer ticks for G-force, settings or absent watches; the HUD holds Wi-Fi awake only while connected; tire pressure listens for the paired sensor only.
+- Battery: riding with the app in the background, the hidden dashboard stops redrawing and the widget is checked once a second, not every frame.
 
 ## Please test
 
