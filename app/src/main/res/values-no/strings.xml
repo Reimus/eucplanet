@@ -2047,6 +2047,8 @@
     <string name="adv_alarm_min_samples_desc">Påvirker hvor mange avlesninger som trengs før en trend er pålitelig. Fare: for få forutser på støy.</string>
     <string name="adv_alarm_min_span">Minimum tidsspenn</string>
     <string name="adv_alarm_min_span_desc">Påvirker den minste tiden målingene må dekke før en trend brukes.</string>
+    <string name="adv_alarm_warm_route">Høyttaler klar-tid</string>
+    <string name="adv_alarm_warm_route_desc">Påvirker hvor lenge høyttaleren forblir klar etter et pip eller en talemelding. Fare: for kort, og det første pipet etter en stille periode kan smelle eller bli kuttet; for lang holder lyden våken og tapper batteriet.</string>
     <string name="adv_alarm_slope_window">Trendvindu</string>
     <string name="adv_alarm_slope_window_desc">Påvirker hvor mange nylige målinger som setter den forutsagte trenden. Fare: for kort reagerer på støy, for langt reagerer tregt.</string>
     <string name="adv_alarm_warning">Disse endrer hvordan farts- og effektalarmer forutser en terskel før du når den. Feil verdier kan få alarmer til å utløses sent eller ikke i det hele tatt. Endre med forsiktighet.</string>

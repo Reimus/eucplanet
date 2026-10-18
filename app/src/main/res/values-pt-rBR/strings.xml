@@ -2161,6 +2161,8 @@
     <string name="adv_alarm_min_samples_desc">Afeta quantas leituras são necessárias antes de confiar numa tendência. Perigo: poucas preveem com base em ruído.</string>
     <string name="adv_alarm_min_span">Intervalo mínimo</string>
     <string name="adv_alarm_min_span_desc">Afeta o tempo mínimo que as amostras devem cobrir antes de usar uma tendência.</string>
+    <string name="adv_alarm_warm_route">Tempo de alto-falante pronto</string>
+    <string name="adv_alarm_warm_route_desc">Define por quanto tempo o alto-falante fica pronto após um bipe ou aviso de voz. Perigo: curto demais e o primeiro bipe após um tempo em silêncio pode estalar ou ser cortado; longo demais mantém o áudio ativo e gasta bateria.</string>
     <string name="adv_alarm_slope_window">Janela de tendência</string>
     <string name="adv_alarm_slope_window_desc">Afeta quantas amostras recentes definem a tendência prevista. Perigo: curta demais reage a ruído, longa demais reage devagar.</string>
     <string name="adv_alarm_warning">Estes mudam como os alarmes de velocidade e potência preveem um limite antes de você alcançá-lo. Valores errados podem fazer os alarmes dispararem tarde ou nunca. Altere com cuidado.</string>

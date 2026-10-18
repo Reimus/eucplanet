@@ -2066,6 +2066,8 @@
     <string name="adv_alarm_min_samples_desc">Influisce su quante letture servono prima di fidarsi di una tendenza. Pericolo: troppo poche prevedono sul rumore.</string>
     <string name="adv_alarm_min_span">Intervallo minimo</string>
     <string name="adv_alarm_min_span_desc">Influisce sul tempo minimo che i campioni devono coprire prima di usare una tendenza.</string>
+    <string name="adv_alarm_warm_route">Tempo altoparlante pronto</string>
+    <string name="adv_alarm_warm_route_desc">Determina per quanto tempo l\'altoparlante resta pronto dopo un bip o un annuncio. Pericolo: troppo breve e il primo bip dopo un momento di silenzio può schioccare o essere tagliato; troppo lungo tiene l\'audio attivo e scarica la batteria.</string>
     <string name="adv_alarm_slope_window">Finestra di tendenza</string>
     <string name="adv_alarm_slope_window_desc">Influisce su quanti campioni recenti definiscono la tendenza prevista. Pericolo: troppo breve reagisce al rumore, troppo lunga reagisce lentamente.</string>
     <string name="adv_alarm_warning">Questi cambiano come gli allarmi di velocità e potenza prevedono una soglia prima che tu la raggiunga. Valori errati possono far scattare gli allarmi in ritardo o per niente. Modifica con cautela.</string>

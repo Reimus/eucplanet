@@ -58,6 +58,7 @@ class VoiceService @Inject constructor(
     private val wheelRepositoryLazy: dagger.Lazy<com.eried.eucplanet.data.repository.WheelRepository>,
     // Lazy for the same reason: it reaches WheelRepository.
     private val metricsResetLazy: dagger.Lazy<com.eried.eucplanet.data.repository.MetricsReset>,
+    private val tonePlayer: TonePlayer,
 ) {
     companion object {
         private const val TAG = "VoiceService"
@@ -967,6 +968,7 @@ class VoiceService @Inject constructor(
         val prefix = if (isTrigger) "trig_" else "alert_"
         val utteranceId = "$prefix${System.currentTimeMillis()}"
         synchronized(this) { pendingUtterances++ }
+        tonePlayer.noteSound()  // speech wants the warm route as much as a beep
         requestAudioFocus()
         val params = android.os.Bundle().apply {
             putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, currentVolume)

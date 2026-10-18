@@ -997,11 +997,14 @@ class WheelRepository @Inject constructor(
                 when (state) {
                     ConnectionState.CONNECTED -> {
                         reconcileNextSettings = true
-                        // Hold the audio route warm for the whole ride so the first
-                        // beep or voice line after a quiet stretch doesn't carry the
-                        // speaker/amp power-up pop. Released a few seconds after
-                        // disconnect (below) so the "wheel disconnected" voice is clean too.
-                        tonePlayer.startRouteKeepAlive()
+                        // Hold the audio route warm while sounds are coming, so a beep
+                        // or voice line doesn't carry the speaker/amp power-up pop. It
+                        // rests after the rider's quiet window and re-warms on the next
+                        // sound. Released a few seconds after disconnect (below) so the
+                        // "wheel disconnected" voice is clean too.
+                        tonePlayer.startRouteKeepAlive(
+                            settingsRepository.currentOrLoad().alarmWarmRouteMs.toLong()
+                        )
                         startInitSequence()
                         // Restore the per-wheel saved parameters (tiltback,
                         // alarm, safety, calibration). Profile is keyed by
@@ -2404,7 +2407,10 @@ class WheelRepository @Inject constructor(
                 _wheelSettings.value = ws
                 Log.i(TAG, "Wheel settings: tiltback=${ws.maxSpeedKmh} beep=${ws.alarmSpeedKmh} lockState=${ws.lockState}")
 
-                val appSettings = settingsRepository.get()
+                // Settings frames arrive on every poll cycle: read the warm copy, and
+                // the store itself only for the reconcile, which may write back.
+                val appSettings = if (reconcileNextSettings) settingsRepository.get()
+                    else settingsRepository.currentOrLoad()
                 val wasLocked = _locked.value
                 val isLocked = ws.lockState != 0
                 // Skip the lock-state overwrite while the user's tap cooldown

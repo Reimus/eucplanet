@@ -567,6 +567,8 @@
     <string name="adv_alarm_min_samples_desc">Ovlivňuje, kolik měření je potřeba, než se trendu důvěřuje. Nebezpečí: příliš málo předpovídá ze šumu.</string>
     <string name="adv_alarm_min_span">Minimální rozsah</string>
     <string name="adv_alarm_min_span_desc">Ovlivňuje nejkratší dobu, kterou musí vzorky pokrýt, než se trend použije.</string>
+    <string name="adv_alarm_warm_route">Doba připravenosti reproduktoru</string>
+    <string name="adv_alarm_warm_route_desc">Ovlivňuje, jak dlouho zůstane reproduktor připraven po pípnutí nebo hlášení. Nebezpečí: příliš krátká a první pípnutí po tiché chvíli může lupnout nebo se useknout; příliš dlouhá drží zvuk aktivní a vybíjí baterii.</string>
     <string name="adv_group_radar_auto">Radar a automatizace</string>
     <string name="adv_radar_clear_decay">Doznívání pruhu radaru</string>
     <string name="adv_radar_clear_decay_desc">Ovlivňuje, jak dlouho zůstane pruh po uvolnění vozovky. Nebezpečí: příliš nízká hodnota způsobí blikání, jak auta přijíždějí a odjíždějí.</string>

@@ -2158,6 +2158,8 @@
     <string name="adv_alarm_min_samples_desc">Afecta cuántas lecturas se necesitan antes de confiar en una tendencia. Peligro: muy pocas predicen sobre ruido.</string>
     <string name="adv_alarm_min_span">Intervalo mínimo</string>
     <string name="adv_alarm_min_span_desc">Afecta el tiempo mínimo que deben abarcar las muestras antes de usar una tendencia.</string>
+    <string name="adv_alarm_warm_route">Tiempo de altavoz listo</string>
+    <string name="adv_alarm_warm_route_desc">Afecta cuánto tiempo el altavoz sigue listo tras un pitido o una voz. Peligro: muy corto y el primer pitido tras un rato en silencio puede chasquear o cortarse; muy largo mantiene el audio activo y gasta batería.</string>
     <string name="adv_alarm_slope_window">Ventana de tendencia</string>
     <string name="adv_alarm_slope_window_desc">Afecta cuántas muestras recientes definen la tendencia prevista. Peligro: demasiado corta reacciona al ruido, demasiado larga reacciona despacio.</string>
     <string name="adv_alarm_warning">Estos cambian cómo las alarmas de velocidad y potencia predicen un umbral antes de alcanzarlo. Valores erróneos pueden hacer que las alarmas suenen tarde o nunca. Cámbialos con cuidado.</string>

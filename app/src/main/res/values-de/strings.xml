@@ -2181,6 +2181,8 @@
     <string name="adv_alarm_min_samples_desc">Beeinflusst, wie viele Messungen nötig sind, bevor einem Trend vertraut wird. Achtung: zu wenige sagen aus Rauschen vorher.</string>
     <string name="adv_alarm_min_span">Mindestzeitraum</string>
     <string name="adv_alarm_min_span_desc">Beeinflusst, welchen Mindestzeitraum die Messwerte abdecken müssen, bevor ein Trend genutzt wird.</string>
+    <string name="adv_alarm_warm_route">Lautsprecher-Bereitschaft</string>
+    <string name="adv_alarm_warm_route_desc">Beeinflusst, wie lange der Lautsprecher nach einem Piepton oder einer Ansage bereit bleibt. Gefahr: zu kurz, und der erste Piepton nach einer stillen Phase kann knacken oder abgeschnitten werden; zu lang hält das Audio wach und leert den Akku.</string>
     <string name="adv_alarm_slope_window">Trendfenster</string>
     <string name="adv_alarm_slope_window_desc">Beeinflusst, wie viele aktuelle Messwerte den vorhergesagten Trend bestimmen. Achtung: zu kurz reagiert auf Rauschen, zu lang reagiert langsam.</string>
     <string name="adv_alarm_warning">Diese ändern, wie Geschwindigkeits- und Leistungsalarme einen Schwellwert vorhersagen, bevor du ihn erreichst. Falsche Werte können Alarme zu spät oder gar nicht auslösen. Mit Vorsicht ändern.</string>

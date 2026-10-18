@@ -2158,6 +2158,8 @@
     <string name="adv_alarm_min_samples_desc">Bir trende güvenilmeden önce kaç okuma gerektiğini etkiler. Dikkat: çok az olursa gürültüye göre tahmin yapar.</string>
     <string name="adv_alarm_min_span">Minimum aralık</string>
     <string name="adv_alarm_min_span_desc">Bir trend kullanılmadan önce örneklerin kapsaması gereken en az süreyi etkiler.</string>
+    <string name="adv_alarm_warm_route">Hoparlör hazır süresi</string>
+    <string name="adv_alarm_warm_route_desc">Bir bip veya sesli bildirimden sonra hoparlörün ne kadar süre hazır kalacağını belirler. Tehlike: çok kısa olursa sessiz bir aradan sonraki ilk bip patlayabilir veya kesilebilir; çok uzun olursa ses açık kalır ve pili tüketir.</string>
     <string name="adv_alarm_slope_window">Trend penceresi</string>
     <string name="adv_alarm_slope_window_desc">Tahmini trendi kaç güncel örneğin belirlediğini etkiler. Dikkat: çok kısa olursa gürültüye, çok uzun olursa yavaş tepki verir.</string>
     <string name="adv_alarm_warning">Bunlar hız ve güç alarmlarının siz eşiğe ulaşmadan önce eşiği nasıl tahmin ettiğini değiştirir. Yanlış değerler alarmların geç veya hiç çalmamasına yol açabilir. Dikkatli değiştirin.</string>

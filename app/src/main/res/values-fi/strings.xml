@@ -567,6 +567,8 @@
     <string name="adv_alarm_min_samples_desc">Vaikuttaa siihen, kuinka monta lukemaa tarvitaan ennen kuin trendiin luotetaan. Vaara: liian harva ennustaa kohinasta.</string>
     <string name="adv_alarm_min_span">Vähimmäisjakso</string>
     <string name="adv_alarm_min_span_desc">Vaikuttaa lyhimpään aikaan, jonka näytteiden on katettava ennen trendin käyttöä.</string>
+    <string name="adv_alarm_warm_route">Kaiuttimen valmiusaika</string>
+    <string name="adv_alarm_warm_route_desc">Vaikuttaa siihen, kuinka kauan kaiutin pysyy valmiina piippauksen tai puheen jälkeen. Vaara: liian lyhyt, ja ensimmäinen piippaus hiljaisen jakson jälkeen voi naksahtaa tai katketa; liian pitkä pitää äänen hereillä ja kuluttaa akkua.</string>
     <string name="adv_group_radar_auto">Tutka ja automaatio</string>
     <string name="adv_radar_clear_decay">Tutkakaistan häipymä</string>
     <string name="adv_radar_clear_decay_desc">Vaikuttaa siihen, kuinka kauan kaistapalkki pysyy tien vapauduttua. Vaara: liian pieni saa sen vilkkumaan autojen tullessa ja mennessä.</string>

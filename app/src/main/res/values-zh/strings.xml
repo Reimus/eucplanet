@@ -2028,6 +2028,8 @@
     <string name="adv_alarm_min_samples_desc">影响信任趋势前需要多少读数。危险:过少会基于噪声预测。</string>
     <string name="adv_alarm_min_span">最短跨度</string>
     <string name="adv_alarm_min_span_desc">影响使用趋势前样本至少须覆盖的时间。</string>
+    <string name="adv_alarm_warm_route">扬声器就绪时间</string>
+    <string name="adv_alarm_warm_route_desc">决定提示音或语音播报后扬声器保持就绪的时长。危险: 太短时，安静一段时间后的第一声提示音可能有爆音或被截断；太长则让音频一直工作，耗电。</string>
     <string name="adv_alarm_slope_window">趋势窗口</string>
     <string name="adv_alarm_slope_window_desc">影响多少近期样本决定预测趋势。危险:过短会对噪声反应,过长则反应迟缓。</string>
     <string name="adv_alarm_warning">这些会改变速度和功率报警在你到达阈值前的预测方式。数值错误可能让报警过晚触发甚至完全不触发。请谨慎更改。</string>

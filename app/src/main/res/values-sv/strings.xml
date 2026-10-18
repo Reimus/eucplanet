@@ -2161,6 +2161,8 @@
     <string name="adv_alarm_min_samples_desc">Påverkar hur många avläsningar som krävs innan en trend litas på. Fara: för få förutsäger på brus.</string>
     <string name="adv_alarm_min_span">Minsta tidsspann</string>
     <string name="adv_alarm_min_span_desc">Påverkar minsta tid som mätvärdena måste täcka innan en trend används.</string>
+    <string name="adv_alarm_warm_route">Högtalarens redo-tid</string>
+    <string name="adv_alarm_warm_route_desc">Påverkar hur länge högtalaren förblir redo efter ett pip eller ett röstmeddelande. Fara: för kort, och det första pipet efter en tyst stund kan smälla eller klippas; för lång håller ljudet vaket och drar batteri.</string>
     <string name="adv_alarm_slope_window">Trendfönster</string>
     <string name="adv_alarm_slope_window_desc">Påverkar hur många senaste mätvärden som sätter den förutsagda trenden. Fara: för kort reagerar på brus, för långt reagerar långsamt.</string>
     <string name="adv_alarm_warning">Dessa ändrar hur fart- och effektlarm förutsäger en tröskel innan du når den. Fel värden kan göra att larm löser ut sent eller inte alls. Ändra med försiktighet.</string>

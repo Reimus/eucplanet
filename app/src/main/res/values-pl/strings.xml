@@ -2159,6 +2159,8 @@
     <string name="adv_alarm_min_samples_desc">Wpływa na to, ile odczytów potrzeba, zanim trend będzie wiarygodny. Uwaga: zbyt mało przewiduje na podstawie szumu.</string>
     <string name="adv_alarm_min_span">Minimalny zakres</string>
     <string name="adv_alarm_min_span_desc">Wpływa na minimalny czas, jaki muszą obejmować próbki, zanim trend zostanie użyty.</string>
+    <string name="adv_alarm_warm_route">Czas gotowości głośnika</string>
+    <string name="adv_alarm_warm_route_desc">Określa, jak długo głośnik pozostaje gotowy po sygnale lub komunikacie głosowym. Niebezpieczeństwo: zbyt krótki, a pierwszy sygnał po cichej chwili może trzasnąć lub zostać ucięty; zbyt długi utrzymuje dźwięk aktywny i drenuje baterię.</string>
     <string name="adv_alarm_slope_window">Okno trendu</string>
     <string name="adv_alarm_slope_window_desc">Wpływa na to, ile ostatnich próbek wyznacza przewidywany trend. Uwaga: zbyt krótkie reaguje na szum, zbyt długie reaguje wolno.</string>
     <string name="adv_alarm_warning">Te ustawienia zmieniają sposób, w jaki alarmy prędkości i mocy przewidują przekroczenie progu, zanim go osiągniesz. Błędne wartości mogą sprawić, że alarmy zadziałają z opóźnieniem lub wcale. Zmieniaj ostrożnie.</string>

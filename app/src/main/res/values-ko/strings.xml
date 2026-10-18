@@ -2158,6 +2158,8 @@
     <string name="adv_alarm_min_samples_desc">추세를 신뢰하기 전에 필요한 측정값 수를 결정합니다. 주의: 너무 적으면 노이즈로 예측합니다.</string>
     <string name="adv_alarm_min_span">최소 구간</string>
     <string name="adv_alarm_min_span_desc">추세를 사용하기 전에 샘플이 최소한 다뤄야 하는 시간을 결정합니다.</string>
+    <string name="adv_alarm_warm_route">스피커 대기 시간</string>
+    <string name="adv_alarm_warm_route_desc">비프음이나 음성 안내 후 스피커가 준비 상태로 유지되는 시간입니다. 위험: 너무 짧으면 조용한 구간 뒤 첫 비프음에서 팝 소리가 나거나 잘릴 수 있고, 너무 길면 오디오가 계속 켜져 배터리가 소모됩니다.</string>
     <string name="adv_alarm_slope_window">추세 구간</string>
     <string name="adv_alarm_slope_window_desc">최근 샘플 중 몇 개가 예측 추세를 결정할지 정합니다. 주의: 너무 짧으면 노이즈에 반응하고, 너무 길면 느리게 반응합니다.</string>
     <string name="adv_alarm_warning">속도 및 파워 알람이 임계값에 도달하기 전에 예측하는 방식을 바꿉니다. 잘못된 값은 알람이 늦게 울리거나 전혀 울리지 않게 할 수 있습니다. 주의해서 변경하세요.</string>
