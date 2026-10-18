@@ -42,7 +42,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
     @Volatile private var detectedModel: VeteranModel? = null
     @Volatile private var controlProfile = VeteranControlProfile.forModel(null)
     private var pendingLightProfile: VeteranControlProfile? = null
-    @Volatile private var alarmCommandModel: VeteranModel? = null
+    @Volatile private var commandModel: VeteranModel? = null
 
     override val nominalPackVoltage: Int? get() = detectedModel?.nominalVoltage
 
@@ -53,7 +53,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
     override fun notifyConnectingTo(deviceName: String?): DecodeResult.ModelName? {
         detectedModel = deviceName?.let { VeteranModel.fromReportedName(it) }
         controlProfile = VeteranControlProfile.forModel(detectedModel)
-        alarmCommandModel = detectedModel
+        commandModel = detectedModel
         return null
     }
 
@@ -65,17 +65,17 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
     override fun pollRealtime(): ByteArray = ByteArray(0)
     override fun pollSettings(): ByteArray = ByteArray(0)
 
-    override fun horn(): ByteArray = VeteranCommands.horn()
+    override fun horn(): ByteArray =
+        if (commandModel == VeteranModel.SHERMAN || commandModel == VeteranModel.SHERMAN_MAX)
+            VeteranCommands.hornLegacy() else VeteranCommands.horn()
 
     /**
-     * Current Lynx-class firmware only sounds the horn when the `LkAp` frame
-     * from [horn] is followed by this `LdAp` companion. Sending the `LkAp`
-     * half alone leaves the wheel silent (the frame is accepted but
-     * produces no beep). Decoded from a LeaperKim-app btsnoop on a Lynx S
-     * (mVer 9). [com.eried.eucplanet.data.repository.WheelRepository.sendHorn]
-     * writes both, in order.
+     * Lynx-class firmware needs the LdAp companion after the LkAp horn.
+     * Legacy Sherman firmware uses only the single-byte `b` command.
      */
-    override fun hornFollowup(): ByteArray = VeteranCommands.hornCompanion()
+    override fun hornFollowup(): ByteArray? =
+        if (commandModel == VeteranModel.SHERMAN || commandModel == VeteranModel.SHERMAN_MAX)
+            null else VeteranCommands.hornCompanion()
 
     /**
      * Light state is never echoed in Veteran realtime frames (per
@@ -132,7 +132,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
         VeteranCommands.setTiltbackSpeed(tiltbackKmh.toInt())
 
     override fun setAlarmSpeedCommit(alarmKmh: Float): ByteArray =
-        VeteranCommands.setAlarmSpeed(alarmKmh.toInt(), alarmCommandModel)
+        VeteranCommands.setAlarmSpeed(alarmKmh.toInt(), commandModel)
 
     // No volume, no DRL on this family.
     override fun setVolume(percent: Int): ByteArray? = null
@@ -197,9 +197,8 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
      * the official app and decoding them. Adding speculative bytes here
      * would risk faulting the wheel.
      *
-     * Both horn variants are exposed so a user with a pre-2020 Sherman can
-     * verify which one their firmware obeys; the runtime [horn] default is
-     * the v3 blob.
+     * Both horn variants remain available for protocol research; the runtime
+     * [horn] chooses the legacy `b` for Sherman-family mVer 0/1.
      */
     override fun getDiagnosticCommands(): List<DiagnosticCommand> {
         val LIGHT = DiagnosticCommand.Category.LIGHT
@@ -214,7 +213,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
             DiagnosticCommand("LightOFF", "Turn the headlight off",
                 VeteranCommands.setLight(false), LIGHT),
 
-            // --- Horn: model-conditional. v3 is the default; legacy is a probe. ---
+            // --- Horn: the debug commands deliberately expose both variants. ---
             DiagnosticCommand("HornV3", "Sound the horn on Sherman S and newer",
                 VeteranCommands.horn(), HORN),
             DiagnosticCommand("HornLegacy_b", "Sound the horn on pre-2020 Sherman",
@@ -263,13 +262,12 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
             // the `f.isLong` branch below.
             val isStandardTelemetry =
                 f.bytes.size > 3 && f.bytes[3] != 0x5f.toByte()
-            // Generic BLE names (e.g. NF7445) do not identify the wheel. Select
-            // commands from the model in a reassembled telemetry frame as well:
-            // the light profile (PR #20) and the alarm-speed packet (PR #22).
+            // Generic BLE names (e.g. LK13709) do not identify the wheel.
+            // Select the light and horn commands from the reassembled mVer.
             if (isStandardTelemetry) {
                 VeteranModel.fromMVer(VeteranParser.mVerOf(f.bytes))?.let {
                     controlProfile = VeteranControlProfile.forModel(it)
-                    alarmCommandModel = it
+                    commandModel = it
                 }
             }
             val telem = if (isStandardTelemetry)
@@ -345,7 +343,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
         detectedModel = null
         controlProfile = VeteranControlProfile.forModel(null)
         pendingLightProfile = null
-        alarmCommandModel = null
+        commandModel = null
         lastOryxBatterySoc = -1
         emittedModel = false
         // A wheel reboot loses light state on the wheel side, so the rider's

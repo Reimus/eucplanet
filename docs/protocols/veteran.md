@@ -79,18 +79,21 @@ Reassembly logic the parser must implement:
 4. Push subsequent bytes until the buffer holds `LEN + 4` bytes total.
 5. If `LEN > 38`, the last four bytes of the buffer are a big-endian u32 CRC.
    Verify against `CRC32(buff[0..LEN-1])`. Drop the frame on mismatch.
-6. If a packet stalls (no bytes for ~100 ms), drop the partial buffer and re-sync.
-
-Optional belt-and-suspenders: sanity-check specific bytes during accumulation
-(for example `buff[22] == 0x00`, `buff[30] in {0x00, 0x07}`,
-`buff[23] & 0xFE == 0x00`). Treat these as soft re-sync triggers, not
-mandatory checks; they reject frames where the magic was matched inside
-random payload.
+6. Keep incomplete frames until the next notification or disconnect; do not
+   impose a short timeout (long-frame fragments can arrive >100 ms apart).
+7. For short frames, require enough bytes for the base telemetry (at least
+   20 bytes total) and, when present, check reserved byte 22 is zero, charge
+   flag byte 23 has no bits other than bit 0, and mode byte 30 is 0 or 7.
+   These checks avoid accepting a false magic sequence inside damaged data
+   without treating the final four short-frame payload bytes as a CRC.
+   On a failed check or CRC, discard only the leading magic byte and rescan.
 
 ## 4. Realtime telemetry
 
-Standard live-data frame (no BMS extension), `LEN = 38`. All offsets are absolute
-into the reassembled buffer.
+Legacy no-BMS live frames include `LEN = 32` (36 bytes total, captured from
+an LK13709 wheel) and `LEN = 34` (Sherman S). The mandatory telemetry fields
+end at byte 19; later offsets are present only in frames long enough to
+contain them. All offsets below are absolute into the reassembled buffer.
 
 | Offset | Type   | Field             | Scale / units                          |
 |-------:|--------|-------------------|----------------------------------------|
@@ -197,6 +200,12 @@ Notes:
 - Light state has no readback. Track it locally after each write.
 - `b` (single ASCII byte) is also used by Begode. It is safe to send to a Veteran
   with `model < 3` but ignored on Sherman S and newer; use the binary blob below.
+
+For the captured `LK13709` Sherman Max (mVer 1), Service Mode's `b` horn
+and ASCII `SetLightON`/`SetLightOFF` commands work. The dashboard uses
+these same single writes for Sherman-family mVer 0/1, rather than the
+newer Lynx-class binary horn pair and high-beam pair. Light state still
+has no readback.
 
 ### 6.2 LeaperKim binary command frame
 

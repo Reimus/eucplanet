@@ -9,20 +9,10 @@ import kotlin.math.roundToInt
 /**
  * Reassembler + parser for the Veteran (LeaperKim) BLE wire format.
  *
- * Frames are sent in pieces over notifications and must be reassembled before
- * we can parse them. Each frame starts with the magic `DC 5A 5C`, a one-byte
- * LEN at offset 3, then payload bytes, then a 4-byte big-endian CRC32 trailer
- * over bytes 0..LEN-1 (zlib polynomial 0xEDB88320). Total buffer is always
- * LEN + 4 bytes. Wire layout, offsets, scale factors and per-model voltage
- * curves come from docs/protocols/veteran.md.
- *
- * The parser is a small state machine driven by [feed]. A 100 ms gap without
- * continuation drops the partial buffer and re-syncs on the next magic; the
- * connection manager calls [feed] from the same coroutine that schedules
- * notifications, so wall-clock time on each call is the right re-sync clock.
- *
- * Protocol reference (upstream, GPLv3):
- * https://github.com/Wheellog/wheellog.android/blob/master/app/src/main/java/com/cooper/wheellog/utils/VeteranAdapter.java
+ * Frames arrive in fragments over notifications. Both formats start with
+ * `DC 5A 5C` and a one-byte LEN; total size is LEN + 4. Short frames
+ * (LEN <= 38) have no CRC, while long frames (LEN > 38) carry CRC32 at
+ * offset LEN over bytes 0 until LEN. See docs/protocols/veteran.md.
  */
 class VeteranParser {
 
@@ -38,21 +28,11 @@ class VeteranParser {
     private val buffer = ArrayList<Byte>(64)
 
     /**
-     * Push raw notification bytes into the reassembler. Returns zero or more
-     * complete frames in arrival order. Each returned frame is the full
-     * reassembled buffer including magic, LEN, payload, and (if present)
-     * CRC32 trailer; CRC has already been verified against the payload, so
-     * downstream code can ignore the trailing 4 bytes.
-     *
-     * No wall-clock timeout: bytes accumulate until either LEN + 4 form a
-     * complete frame (validated by CRC32 for long frames) or the buffer
-     * re-aligns to the next magic. An earlier 100 ms resync timeout killed
-     * every long frame on the Oryx, which delivers each frame as two BLE
-     * notifications ~190 ms apart -- the head of the frame was cleared
-     * before the tail arrived. CRC mismatches and bad LEN bytes already
-     * self-heal: tryExtractFrame drops the failed buffer slice and the next
-     * magic-trim sync re-aligns. Session-level cleanup happens via
-     * [reset], called from the adapter on disconnect.
+     * Accumulate notification bytes in arrival order and return complete frames.
+     * Long frames are CRC-checked; short frames use structural checks to avoid
+     * decoding false magic sequences found within damaged frames. Partial frames
+     * persist until the next notification or [reset] on disconnect: a timeout
+     * would discard long frames whose notifications arrive far apart.
      */
     fun feed(rawBytes: ByteArray): List<Frame> {
         val out = mutableListOf<Frame>()
@@ -95,47 +75,43 @@ class VeteranParser {
     }
 
     /**
-     * Pull one complete frame off the front of the buffer, or return null if
-     * we don't have enough bytes yet. Every accepted frame is CRC32-verified.
-     *
-     * **CRC is mandatory.** Every BMS-equipped Veteran in the supported set
-     * (Sherman, Lynx S, Patton, Oryx) streams long, CRC-trailed frames
-     * (77/87/99-byte cycle, per page). An earlier version of this parser
-     * accepted any frame with LEN <= 38 without verifying a CRC (legacy
-     * "short telemetry" path). The wheels we support never emit such a
-     * frame, but the magic-trim loop can re-sync to a false `DC 5A 5C`
-     * triple sitting inside another frame's payload; if the byte after the
-     * false magic happened to fall in [0, 38] (~15% of the time) the
-     * resulting garbage was accepted with no validation and decoded as
-     * telemetry. That is how a stationary Oryx once shipped `654.3 V /
-     * 137 A` peaks to eucstats. Mandating CRC closes the gap:
-     * `P(false-positive CRC32) ≈ 1 / 2^32`, ten orders of magnitude
-     * tighter. Validated by tools/veteran_decode.py against real captures
-     * (29 false alignments across two sessions, every one now caught).
-     *
-     * On CRC failure we drop **only the first magic byte** and let the
-     * magic-trim loop resume on the next `DC 5A 5C`. Eating the full
-     * `totalSize` slice on failure would discard any real frame that
-     * happened to start inside it.
+     * Extract a complete frame or wait for more bytes. Legacy short frames
+     * cannot be CRC-checked because the last four bytes are payload; require
+     * their documented reserved/charge/mode fields when present instead.
+     * On invalid input drop only the first magic byte, so an embedded real
+     * frame start can still be found by the byte-stream scanner.
      */
     private fun tryExtractFrame(): Frame? {
         if (buffer.size < 4) return null
         val len = buffer[3].toInt() and 0xFF
+        if (len < 16) {
+            buffer.removeAt(0)
+            return null
+        }
         val totalSize = len + 4
         if (buffer.size < totalSize) return null
 
-        val frame = ByteArray(totalSize)
-        for (i in 0 until totalSize) frame[i] = buffer[i]
-
-        val crc = CRC32().apply { update(frame, 0, len) }.value
-        val expected = ByteUtils.getUint32BE(frame, len)
-        if (crc != expected) {
+        val isLong = len > 38
+        if (!isLong && ((buffer.size > 22 && buffer[22] != 0.toByte()) ||
+                (buffer.size > 23 && (buffer[23].toInt() and 0xFE) != 0) ||
+                (buffer.size > 30 && buffer[30] != 0.toByte() && buffer[30] != 7.toByte()))) {
             buffer.removeAt(0)
             return null
         }
 
+        val frame = ByteArray(totalSize)
+        for (i in 0 until totalSize) frame[i] = buffer[i]
+        if (isLong) {
+            val crc = CRC32().apply { update(frame, 0, len) }.value
+            val expected = ByteUtils.getUint32BE(frame, len)
+            if (crc != expected) {
+                buffer.removeAt(0)
+                return null
+            }
+        }
+
         buffer.subList(0, totalSize).clear()
-        return Frame(frame, isLong = true)
+        return Frame(frame, isLong = isLong)
     }
 
     companion object {
@@ -146,9 +122,8 @@ class VeteranParser {
         // ---- Telemetry parsing ---------------------------------------------------
 
         /**
-         * Parse a short realtime frame (LEN == 38). The buffer is the full
-         * reassembled wire bytes including magic and LEN; offsets in the
-         * spec are absolute into this buffer.
+         * Parse realtime telemetry from a complete Veteran frame. Offsets in
+         * the spec are absolute into the frame; later fields are optional.
          *
          * [model] is the wheel model resolved from the BLE name when known;
          * it picks the per-pack voltage curve and decides whether to trust
@@ -164,8 +139,8 @@ class VeteranParser {
             model: VeteranModel?,
             signedSpeedMode: Int = 1
         ): WheelData? {
-            // Need at least magic + LEN + the full 38-byte short frame.
-            if (frame.size < 36) return null
+            // The last mandatory field (temperature) ends at byte 19.
+            if (frame.size < 20) return null
 
             val voltageCv = ByteUtils.getUint16BE(frame, 4)
             val rawSpeed = ByteUtils.getInt16BE(frame, 6)
@@ -186,8 +161,7 @@ class VeteranParser {
             // gate, beep variant, and cell count; overrides the BLE-name
             // match because many wheels advertise as a generic
             // "Veteran-xxxx" with no model token.
-            val rawVersion = if (frame.size >= 30) ByteUtils.getUint16BE(frame, 28) else 0
-            val mVer = rawVersion / 1000
+            val mVer = if (frame.size >= 30) ByteUtils.getUint16BE(frame, 28) / 1000 else -1
             val resolvedModel = VeteranModel.fromMVer(mVer) ?: model
 
             val voltage = voltageCv / 100f
