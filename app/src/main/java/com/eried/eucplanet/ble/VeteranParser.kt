@@ -75,29 +75,21 @@ class VeteranParser {
     }
 
     /**
-     * Extract a complete frame or wait for more bytes. Legacy short frames
-     * cannot be CRC-checked because the last four bytes are payload; require
-     * their documented reserved/charge/mode fields when present instead.
-     * On invalid input drop only the first magic byte, so an embedded real
-     * frame start can still be found by the byte-stream scanner.
+     * Extract a complete frame or wait for more bytes. Only captured legacy
+     * short layouts are accepted: without a CRC, an arbitrary length can
+     * turn an embedded magic into unverified telemetry. On invalid input drop
+     * just the first magic byte to find a real frame inside damaged data.
      */
     private fun tryExtractFrame(): Frame? {
         if (buffer.size < 4) return null
         val len = buffer[3].toInt() and 0xFF
-        if (len < 16) {
+        val isLong = len > 38
+        if (!isLong && len != 32 && len != 34) {
             buffer.removeAt(0)
             return null
         }
         val totalSize = len + 4
         if (buffer.size < totalSize) return null
-
-        val isLong = len > 38
-        if (!isLong && ((buffer.size > 22 && buffer[22] != 0.toByte()) ||
-                (buffer.size > 23 && (buffer[23].toInt() and 0xFE) != 0) ||
-                (buffer.size > 30 && buffer[30] != 0.toByte() && buffer[30] != 7.toByte()))) {
-            buffer.removeAt(0)
-            return null
-        }
 
         val frame = ByteArray(totalSize)
         for (i in 0 until totalSize) frame[i] = buffer[i]
@@ -105,6 +97,22 @@ class VeteranParser {
             val crc = CRC32().apply { update(frame, 0, len) }.value
             val expected = ByteUtils.getUint32BE(frame, len)
             if (crc != expected) {
+                buffer.removeAt(0)
+                return null
+            }
+        } else {
+            val voltageCv = ByteUtils.getUint16BE(frame, 4)
+            val speedTenths = ByteUtils.getInt16BE(frame, 6)
+            val currentTenths = ByteUtils.getInt16BE(frame, 16)
+            val temperatureHundredths = ByteUtils.getInt16BE(frame, 18)
+            if (frame[22] != 0.toByte() ||
+                (frame[23].toInt() and 0xFE) != 0 ||
+                (frame[30] != 0.toByte() && frame[30] != 7.toByte()) ||
+                voltageCv !in 5000..25000 ||
+                abs(speedTenths) > 2000 ||
+                abs(currentTenths) > 4000 ||
+                temperatureHundredths !in -4000..15000
+            ) {
                 buffer.removeAt(0)
                 return null
             }

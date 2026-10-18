@@ -70,30 +70,34 @@ Field rules:
 | Payload   | varies | Short frames: `LEN` payload bytes at offsets 4..LEN+3. Long frames: `LEN - 4` payload bytes at offsets 4..LEN-1, with the CRC at LEN..LEN+3. All multi-byte fields big-endian unless noted. |
 | CRC32     | u32 BE | Present when `LEN > 38` (newer firmwares with smart-BMS). Computed with the standard zlib CRC32 polynomial over `buff[0..LEN-1]` (the bytes preceding the CRC trailer). |
 
-Reassembly logic the parser must implement:
+Reassembly rules:
 
-1. Maintain a sliding state machine over the notification byte stream.
-2. Watch for the magic `DC 5A 5C` triple. When seen, reset a new buffer with those
-   three bytes already pushed.
-3. The next byte is `LEN`. Push it.
-4. Push subsequent bytes until the buffer holds `LEN + 4` bytes total.
-5. If `LEN > 38`, the last four bytes of the buffer are a big-endian u32 CRC.
-   Verify against `CRC32(buff[0..LEN-1])`. Drop the frame on mismatch.
-6. Keep incomplete frames until the next notification or disconnect; do not
-   impose a short timeout (long-frame fragments can arrive >100 ms apart).
-7. For short frames, require enough bytes for the base telemetry (at least
-   20 bytes total) and, when present, check reserved byte 22 is zero, charge
-   flag byte 23 has no bits other than bit 0, and mode byte 30 is 0 or 7.
-   These checks avoid accepting a false magic sequence inside damaged data
-   without treating the final four short-frame payload bytes as a CRC.
-   On a failed check or CRC, discard only the leading magic byte and rescan.
+1. Keep bytes across notifications until the `DC 5A 5C` magic and `LEN` are present.
+2. For `LEN > 38`, wait for `LEN + 4` bytes and verify CRC32 over bytes
+   `0..LEN-1`. Reject a mismatch.
+3. For CRC-free frames, accept only captured layouts `LEN = 32` and `LEN = 34`
+   (36 and 38 total bytes). Reject other short lengths, including a 20-byte
+   candidate, rather than decoding an unverified fragment as telemetry.
+4. On short frames, require reserved byte 22 to be zero, charge byte 23 to
+   contain only bit 0, and mode byte 30 to be 0 or 7. Before publishing
+   measurements, also require voltage 50..250 V, absolute speed <=200 km/h,
+   absolute phase current <=400 A, and temperature -40..150 °C. These broad
+   sanity limits reject impossible peaks; they do not authenticate plausible
+   values within a CRC-free frame.
+5. On failed validation, discard only the leading magic byte and rescan,
+   preserving any real frame embedded in the damaged data. Retain incomplete
+   frames until further notifications or disconnect; do not impose a timeout.
+
+Smart-BMS wheels can interleave long CRC frames with short telemetry frames,
+so seeing one valid long frame does not imply all later short frames are false.
+Unobserved short lengths are intentionally unsupported until a capture
+establishes their layout and validation rules.
 
 ## 4. Realtime telemetry
 
 Legacy no-BMS live frames include `LEN = 32` (36 bytes total, captured from
-an LK13709 wheel) and `LEN = 34` (Sherman S). The mandatory telemetry fields
-end at byte 19; later offsets are present only in frames long enough to
-contain them. All offsets below are absolute into the reassembled buffer.
+an LK13709 wheel) and `LEN = 34` (Sherman S). All offsets below are absolute
+into the reassembled buffer.
 
 | Offset | Type   | Field             | Scale / units                          |
 |-------:|--------|-------------------|----------------------------------------|

@@ -42,7 +42,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
     @Volatile private var detectedModel: VeteranModel? = null
     @Volatile private var controlProfile = VeteranControlProfile.forModel(null)
     private var pendingLightProfile: VeteranControlProfile? = null
-    @Volatile private var commandModel: VeteranModel? = null
+    @Volatile private var alarmCommandModel: VeteranModel? = null
 
     override val nominalPackVoltage: Int? get() = detectedModel?.nominalVoltage
 
@@ -53,7 +53,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
     override fun notifyConnectingTo(deviceName: String?): DecodeResult.ModelName? {
         detectedModel = deviceName?.let { VeteranModel.fromReportedName(it) }
         controlProfile = VeteranControlProfile.forModel(detectedModel)
-        commandModel = detectedModel
+        alarmCommandModel = detectedModel
         return null
     }
 
@@ -66,7 +66,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
     override fun pollSettings(): ByteArray = ByteArray(0)
 
     override fun horn(): ByteArray =
-        if (commandModel == VeteranModel.SHERMAN || commandModel == VeteranModel.SHERMAN_MAX)
+        if (alarmCommandModel == VeteranModel.SHERMAN || alarmCommandModel == VeteranModel.SHERMAN_MAX)
             VeteranCommands.hornLegacy() else VeteranCommands.horn()
 
     /**
@@ -74,7 +74,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
      * Legacy Sherman firmware uses only the single-byte `b` command.
      */
     override fun hornFollowup(): ByteArray? =
-        if (commandModel == VeteranModel.SHERMAN || commandModel == VeteranModel.SHERMAN_MAX)
+        if (alarmCommandModel == VeteranModel.SHERMAN || alarmCommandModel == VeteranModel.SHERMAN_MAX)
             null else VeteranCommands.hornCompanion()
 
     /**
@@ -132,7 +132,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
         VeteranCommands.setTiltbackSpeed(tiltbackKmh.toInt())
 
     override fun setAlarmSpeedCommit(alarmKmh: Float): ByteArray =
-        VeteranCommands.setAlarmSpeed(alarmKmh.toInt(), commandModel)
+        VeteranCommands.setAlarmSpeed(alarmKmh.toInt(), alarmCommandModel)
 
     // No volume, no DRL on this family.
     override fun setVolume(percent: Int): ByteArray? = null
@@ -267,7 +267,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
             if (isStandardTelemetry) {
                 VeteranModel.fromMVer(VeteranParser.mVerOf(f.bytes))?.let {
                     controlProfile = VeteranControlProfile.forModel(it)
-                    commandModel = it
+                    alarmCommandModel = it
                 }
             }
             val telem = if (isStandardTelemetry)
@@ -343,7 +343,7 @@ class VeteranAdapter @Inject constructor() : WheelAdapter {
         detectedModel = null
         controlProfile = VeteranControlProfile.forModel(null)
         pendingLightProfile = null
-        commandModel = null
+        alarmCommandModel = null
         lastOryxBatterySoc = -1
         emittedModel = false
         // A wheel reboot loses light state on the wheel side, so the rider's

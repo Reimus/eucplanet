@@ -108,14 +108,25 @@ class VeteranLegacyFrameTest {
         }
     }
 
-    @Test fun `minimum payload uses model hint when version is absent`() {
-        val adapter = VeteranAdapter()
-        adapter.notifyConnectingTo("Sherman-Max")
-        val short = firstFrame.copyOfRange(0, 20).also { it[3] = 0x10 }
-        val data = telemetry(adapter, short).single()
-        assertEquals(95.61f, data.voltage, 0.01f)
-        assertEquals(37.29f, data.maxTemperature, 0.01f)
-        assertTrue(data.batteryPercent > 0)
-        assertEquals(-1f, data.wheelAlarmSpeedKmh, 0f)
+    @Test fun `unobserved short lengths and impossible telemetry cannot become peaks`() {
+        val invalidLength = firstFrame.copyOfRange(0, 20).also { it[3] = 0x10 }
+        val impossibleVoltage = firstFrame.copyOf().also {
+            it[4] = 0xFF.toByte()
+            it[5] = 0xFF.toByte()
+        }
+        val falseMagicInsidePayload = firstFrame.copyOf().also {
+            it[8] = 0xDC.toByte()
+            it[9] = 0x5A
+            it[10] = 0x5C
+            it[11] = 0x10
+            it[22] = 1 // Force the outer damaged frame to resynchronize.
+        }
+        for (invalid in listOf(invalidLength, impossibleVoltage, falseMagicInsidePayload)) {
+            val adapter = VeteranAdapter()
+            adapter.notifyConnectingTo("Sherman-Max")
+            val accepted = telemetry(adapter, invalid + firstFrame)
+            assertEquals(1, accepted.size)
+            assertEquals(95.61f, accepted.single().voltage, 0.01f)
+        }
     }
 }
