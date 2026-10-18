@@ -63,6 +63,7 @@ only when you can cut the ride short.
 - Navigation: route avoidances (tolls, ferries...) now hold on routes with 10 or more stops; before, they were silently dropped.
 - Share route: the card's stop distances and total match the stop list. In Next segment it could show about 0 m.
 - Map and navigation follow Distance unit (Settings, Units). With miles picked there, the map used to stay in km.
+- Sherman Max: legacy frames supply live speed and distance; dashboard Light and Horn work on LK13709.
 
 ## Please test
 
