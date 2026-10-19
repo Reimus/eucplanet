@@ -140,7 +140,6 @@ class VoiceMusicLocalePhrasesTest {
 
     // fi "viime matka" loses to the longer "Matkamittari" (matka is a prefix),
     // no "siste tur" ties with "Turteller". Not a music issue.
-    @Ignore("possible bug: fi/no last-trip phrasing loses to the trip meter label")
     @Test fun `last trip reaches its own key in every locale`() {
         assertEquals(emptyList<String>(), ownKeyFailures(VoiceVocabulary.Special.LAST_TRIP))
     }
