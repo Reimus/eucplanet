@@ -51,4 +51,23 @@ class SharedSettingsTest {
         assertEquals("mi", withTimeout(2000) { shared.first() }.unitDistance)
         scope.cancel()
     }
+
+    @Test fun `a read error keeps the last settings and recovers`() = runBlocking {
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+        val reads = AtomicInteger()
+        // The first read gives km and then fails; the retry reads mi.
+        val source = kotlinx.coroutines.flow.flow {
+            if (reads.incrementAndGet() == 1) {
+                emit(AppSettings(unitDistance = "km"))
+                throw java.io.IOException("disk")
+            }
+            emit(AppSettings(unitDistance = "mi"))
+        }
+        val shared = shareSettings(source, scope, retryDelayMs = 10)
+
+        assertEquals("mi", withTimeout(2000) { shared.first { it.unitDistance == "mi" } }.unitDistance)
+        // A watcher that arrives after the error still gets settings at once.
+        assertEquals("mi", withTimeout(500) { shared.first() }.unitDistance)
+        scope.cancel()
+    }
 }

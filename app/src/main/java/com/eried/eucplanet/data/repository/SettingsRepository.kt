@@ -9,14 +9,17 @@ import com.eried.eucplanet.data.model.VoiceCommandSettings
 import com.eried.eucplanet.data.model.HudDiscoveryMode
 import com.eried.eucplanet.data.model.ShareSettings
 import com.eried.eucplanet.data.store.SettingsStore
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
@@ -35,8 +38,21 @@ import javax.inject.Singleton
  * equal no longer reaches the watchers. Nothing is emitted before the first
  * real load, as before.
  */
-internal fun shareSettings(source: Flow<AppSettings>, scope: CoroutineScope): Flow<AppSettings> =
-    source.stateIn<AppSettings?>(scope, SharingStarted.Eagerly, null).filterNotNull()
+internal fun shareSettings(
+    source: Flow<AppSettings>,
+    scope: CoroutineScope,
+    retryDelayMs: Long = 2_000,
+): Flow<AppSettings> =
+    source
+        // One shared collector means one read error would stop every watcher
+        // at once, silently. Keep the last good settings and read again.
+        .retryWhen { cause, attempt ->
+            if (cause is CancellationException) return@retryWhen false
+            android.util.Log.w("SettingsRepository", "Settings read failed (attempt ${attempt + 1}), retrying", cause)
+            delay(retryDelayMs)
+            true
+        }
+        .stateIn<AppSettings?>(scope, SharingStarted.Eagerly, null).filterNotNull()
 
 @Singleton
 class SettingsRepository @Inject constructor(
