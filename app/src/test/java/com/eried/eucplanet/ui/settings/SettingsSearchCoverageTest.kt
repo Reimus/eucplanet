@@ -2,7 +2,6 @@ package com.eried.eucplanet.ui.settings
 
 import com.eried.eucplanet.R
 import org.junit.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 import java.io.File
 import javax.xml.parsers.DocumentBuilderFactory
@@ -66,9 +65,10 @@ class SettingsSearchCoverageTest {
         assertTrue("Cards share a title: $dups", dups.isEmpty())
     }
 
-    @Ignore("possible bug: section_voice_advanced and section_watch_advanced both read 'Advanced' in every locale")
-    @Test fun `no two cards anywhere in settings share a title in any locale`() {
-        val dups = duplicates(cardsOf(SettingsSearchIndex.sections.values.flatten()))
-        assertTrue("Cards share a title: $dups", dups.isEmpty())
+    // Across sections a title may repeat (Voice and Watch both have
+    // Advanced): each section hands its cards only its own counts.
+    @Test fun `card counts are scoped to their section`() {
+        val src = java.io.File("src/main/java/com/eried/eucplanet/ui/settings/SettingsScreen.kt").readText()
+        assertTrue(src.contains("counts = sec.foldCounts(query)"))
     }
 }

@@ -912,7 +912,16 @@ fun SettingsScreen(
                             else expandedSections.add(sec.key)
                         }
                     ) {
-                        sec.content()
+                        // The cards read their counts by title, and titles repeat
+                        // across sections (Voice and Watch both have an
+                        // Advanced card), so each section sees only its own hits.
+                        val ownFolds = if (searching) SearchFolds(
+                            counts = sec.foldCounts(query),
+                            open = if (sec.key == searchScrollKey) searchFolds.open else emptySet(),
+                        ) else SearchFolds.None
+                        androidx.compose.runtime.CompositionLocalProvider(LocalSearchFolds provides ownFolds) {
+                            sec.content()
+                        }
                     }
                 }
 
