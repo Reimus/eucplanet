@@ -602,8 +602,7 @@ fun SettingsScreen(
          */
         fun searchScore(query: String): Int {
             if (query.isEmpty()) return 0
-            val titleHit = if (title.contains(query, ignoreCase = true)) TITLE_WEIGHT else 0
-            return titleHit + hits(query).sumOf { it.kind.weight }
+            return sectionScore(title, hits(query), query, TITLE_WEIGHT)
         }
 
         /**
