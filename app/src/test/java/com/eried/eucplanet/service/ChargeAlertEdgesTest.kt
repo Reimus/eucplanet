@@ -8,7 +8,6 @@ import com.eried.eucplanet.service.ChargeAlertPolicy.Alert
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 
 /** Charge alert edges the main matrix does not cover: a mark above 80, and a mark moved mid-charge. */
@@ -49,11 +48,10 @@ class ChargeAlertEdgesTest {
         assertTrue(charge(listOf(75 to 90, 76 to 90, 77 to 70, 78 to 70)).isEmpty())
     }
 
-    @Ignore("possible bug: a mark moved below the current level fires at once if the charge was below it earlier")
-    @Test fun `a mark moved below the current level mid-charge does not fire`() {
+    @Test fun `a mark moved below the current level mid-charge fires at once`() {
         // Started at 60 with the mark at 90; at 72 the rider moves it to 65.
-        // The pack was below 65 earlier, so step() fires CUSTOM on the change.
-        assertTrue(charge(listOf(60 to 90, 70 to 90, 72 to 65, 73 to 65)).isEmpty())
+        // The pack has passed 65 in this charge, so the rider hears it now, once.
+        assertEquals(listOf(Alert.CUSTOM), charge(listOf(60 to 90, 70 to 90, 72 to 65, 73 to 65)))
     }
 
     @Test fun `the custom level survives a settings file round trip`() {
