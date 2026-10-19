@@ -66,6 +66,7 @@ only when you can cut the ride short.
 - Share route: the card's stop distances and total match the stop list. In Next segment it could show about 0 m.
 - Map and navigation follow Distance unit (Settings, Units). With miles picked there, the map used to stay in km.
 - Start-up: the app no longer freezes ("not responding") a few seconds after launch on slower phones.
+- Start-up: smoother first seconds, settings and voice set-up no longer hold up the screen.
 
 ## Please test
 
@@ -78,6 +79,7 @@ only when you can cut the ride short.
 - A long quiet stretch, then an alarm or voice line: does the first beep pop or lose its start? With Bluetooth headphones too?
 - Screen off mid-ride, then on: the notification shows current numbers right away?
 - Slower phone: open the app cold a few times. Any "not responding" right after launch? Trips still upload?
+- Voice with a picked voice (Voice settings): still speaks in that voice, also right after opening the app?
 
 **Android Auto** (install from the Play internal sharing link, a sideloaded APK never shows in the car)
 - The car screen opens, and speed and battery match the phone?
