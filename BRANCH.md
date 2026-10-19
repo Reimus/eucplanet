@@ -65,6 +65,7 @@ only when you can cut the ride short.
 - Navigation: route avoidances (tolls, ferries...) now hold on routes with 10 or more stops; before, they were silently dropped.
 - Share route: the card's stop distances and total match the stop list. In Next segment it could show about 0 m.
 - Map and navigation follow Distance unit (Settings, Units). With miles picked there, the map used to stay in km.
+- Start-up: the app no longer freezes ("not responding") a few seconds after launch on slower phones.
 
 ## Please test
 
@@ -76,6 +77,7 @@ only when you can cut the ride short.
 - HUD link on, HUD off, app closed for an hour: cool phone? Then turn the HUD on: found within seconds, or as soon as you open the app?
 - A long quiet stretch, then an alarm or voice line: does the first beep pop or lose its start? With Bluetooth headphones too?
 - Screen off mid-ride, then on: the notification shows current numbers right away?
+- Slower phone: open the app cold a few times. Any "not responding" right after launch? Trips still upload?
 
 **Android Auto** (install from the Play internal sharing link, a sideloaded APK never shows in the car)
 - The car screen opens, and speed and battery match the phone?
