@@ -567,6 +567,8 @@
     <string name="adv_alarm_min_samples_desc">Influențează câte citiri sunt necesare până când tendința devine de încredere. Pericol: prea puține prezic din zgomot.</string>
     <string name="adv_alarm_min_span">Interval minim</string>
     <string name="adv_alarm_min_span_desc">Influențează timpul minim pe care trebuie să îl acopere eșantioanele înainte de folosirea tendinței.</string>
+    <string name="adv_alarm_warm_route">Timp difuzor pregătit</string>
+    <string name="adv_alarm_warm_route_desc">Determină cât timp rămâne difuzorul pregătit după un bip sau un mesaj vocal. Pericol: prea scurt și primul bip după o pauză liniștită poate pocni sau fi tăiat; prea lung ține sunetul activ și consumă bateria.</string>
     <string name="adv_group_radar_auto">Radar și automatizare</string>
     <string name="adv_radar_clear_decay">Estomparea benzii radar</string>
     <string name="adv_radar_clear_decay_desc">Influențează cât timp rămâne bara benzii după ce drumul se eliberează. Pericol: o valoare prea mică o face să clipească pe măsură ce mașinile vin și pleacă.</string>
@@ -2246,6 +2248,7 @@
     <string name="nav_setting_avoid_tolls">Evită drumurile cu taxă</string>
     <string name="nav_setting_avoid_ferries">Evită feriboturile</string>
     <string name="nav_setting_avoid_unpaved">Evită drumurile nepavate</string>
+    <string name="nav_avoid_router_failed">Traseul ignoră evitările: serviciul lor de rutare nu a răspuns.</string>
     <string name="nav_show_chargers">Arată stațiile de încărcare</string>
     <string name="nav_show_places">Arată locuri (magazine, mâncare, obiective)</string>
     <string name="nav_pois_failed">Locurile nu au putut fi încărcate. Verifică-ți conexiunea</string>

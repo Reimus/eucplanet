@@ -2143,6 +2143,7 @@
     <string name="nav_setting_avoid_hint">회피 옵션은 다른 경로 탐색 서비스를 사용하며, 이동 수단이 지원하는 경우에만 적용됩니다.</string>
     <string name="nav_setting_avoid_tolls">유료 도로 회피</string>
     <string name="nav_setting_avoid_unpaved">비포장 도로 회피</string>
+    <string name="nav_avoid_router_failed">회피 설정 없이 경로를 만들었습니다: 회피용 경로 서비스가 응답하지 않았습니다.</string>
     <string name="nav_setting_ocm_key">Open Charge Map API 키</string>
     <string name="nav_setting_ocm_key_hint">충전소 플라이아웃에 리뷰, 사진, 커넥터 정보를 추가합니다. 무료 키는 다음에서 발급받으세요:</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2158,6 +2159,8 @@
     <string name="adv_alarm_min_samples_desc">추세를 신뢰하기 전에 필요한 측정값 수를 결정합니다. 주의: 너무 적으면 노이즈로 예측합니다.</string>
     <string name="adv_alarm_min_span">최소 구간</string>
     <string name="adv_alarm_min_span_desc">추세를 사용하기 전에 샘플이 최소한 다뤄야 하는 시간을 결정합니다.</string>
+    <string name="adv_alarm_warm_route">스피커 대기 시간</string>
+    <string name="adv_alarm_warm_route_desc">비프음이나 음성 안내 후 스피커가 준비 상태로 유지되는 시간입니다. 위험: 너무 짧으면 조용한 구간 뒤 첫 비프음에서 팝 소리가 나거나 잘릴 수 있고, 너무 길면 오디오가 계속 켜져 배터리가 소모됩니다.</string>
     <string name="adv_alarm_slope_window">추세 구간</string>
     <string name="adv_alarm_slope_window_desc">최근 샘플 중 몇 개가 예측 추세를 결정할지 정합니다. 주의: 너무 짧으면 노이즈에 반응하고, 너무 길면 느리게 반응합니다.</string>
     <string name="adv_alarm_warning">속도 및 파워 알람이 임계값에 도달하기 전에 예측하는 방식을 바꿉니다. 잘못된 값은 알람이 늦게 울리거나 전혀 울리지 않게 할 수 있습니다. 주의해서 변경하세요.</string>

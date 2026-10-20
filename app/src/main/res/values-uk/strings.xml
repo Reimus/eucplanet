@@ -2143,6 +2143,7 @@
     <string name="nav_setting_avoid_hint">Уникання використовують інший сервіс маршрутизації та діють там, де режим пересування їх підтримує.</string>
     <string name="nav_setting_avoid_tolls">Уникати платних доріг</string>
     <string name="nav_setting_avoid_unpaved">Уникати ґрунтових доріг</string>
+    <string name="nav_avoid_router_failed">Маршрут без урахування винятків: сервіс маршрутів для них не відповів.</string>
     <string name="nav_setting_ocm_key">Ключ API Open Charge Map</string>
     <string name="nav_setting_ocm_key_hint">Додає відгуки, фото та деталі конекторів у картку зарядки. Зареєструй безкоштовний ключ на</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2158,6 +2159,8 @@
     <string name="adv_alarm_min_samples_desc">Впливає на те, скільки показань потрібно, перш ніж тренду можна довіряти. Небезпека: замало - прогноз на шумі.</string>
     <string name="adv_alarm_min_span">Мінімальний проміжок</string>
     <string name="adv_alarm_min_span_desc">Впливає на найменший час, який мають охоплювати вибірки, перш ніж буде використано тренд.</string>
+    <string name="adv_alarm_warm_route">Час готовності динаміка</string>
+    <string name="adv_alarm_warm_route_desc">Визначає, як довго динамік лишається готовим після сигналу чи голосового повідомлення. Небезпека: надто мало, і перший сигнал після тиші може клацнути або обрізатися; надто багато тримає звук активним і розряджає батарею.</string>
     <string name="adv_alarm_slope_window">Вікно тренду</string>
     <string name="adv_alarm_slope_window_desc">Впливає на те, скільки останніх вибірок задають прогнозований тренд. Небезпека: замало - реагує на шум, забагато - реагує повільно.</string>
     <string name="adv_alarm_warning">Це змінює, як сигнали швидкості та потужності прогнозують поріг, перш ніж ти його досягнеш. Неправильні значення можуть змусити сигнали спрацьовувати запізно або взагалі не спрацьовувати. Змінюй обережно.</string>

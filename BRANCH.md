@@ -60,10 +60,18 @@ only when you can cut the ride short.
 - Battery: an idle phone no longer ticks for G-force, settings or absent watches; with no ride and no HUD, Wi-Fi may doze; tire pressure listens for the paired caps only.
 - Battery: riding with the app in the background, the hidden dashboard stops redrawing and the widget is checked once a second, not every frame.
 - Battery: with the HUD link on and no HUD around, the search no longer keeps half a core busy; with no wheel and the app closed it looks every 2 min.
+- Battery: riding with the screen off uses less CPU, and the notification updates every 10 s until you look.
+- Battery: the speaker rests after 2 quiet minutes instead of staying on all ride (Advanced, Speaker ready time).
 - Navigation: route avoidances (tolls, ferries...) now hold on routes with 10 or more stops; before, they were silently dropped.
 - Share route: the card's stop distances and total match the stop list. In Next segment it could show about 0 m.
 - Map and navigation follow Distance unit (Settings, Units). With miles picked there, the map used to stay in km.
 - Sherman Max: legacy frames supply live speed and distance; dashboard Light and Horn work on LK13709.
+- Start-up: the app no longer freezes ("not responding") a few seconds after launch on slower phones.
+- Start-up: smoother first seconds, settings and voice set-up no longer hold up the screen.
+- Switching to another wheel no longer shows the last wheel's odometer; its consumption and range fill in.
+- Navigation: a route that had to skip your avoidances (tolls, ferries...) now says so.
+- Voice: Finnish "viime matka" and Norwegian "siste tur" (last trip) are understood.
+- Settings search: "units" and "distance" open the right section; Voice and Watch Advanced cards no longer share counts.
 
 ## Please test
 
@@ -73,6 +81,12 @@ only when you can cut the ride short.
 - While riding: G-force, signal strength and range still update, auto-record still stops after the ride, the HUD connects?
 - HUD switched off and on mid-ride: it reconnects within seconds? Two wheels with a tire cap each: both pressures show?
 - HUD link on, HUD off, app closed for an hour: cool phone? Then turn the HUD on: found within seconds, or as soon as you open the app?
+- A long quiet stretch, then an alarm or voice line: does the first beep pop or lose its start? With Bluetooth headphones too?
+- Screen off mid-ride, then on: the notification shows current numbers right away?
+- Slower phone: open the app cold a few times. Any "not responding" right after launch? Trips still upload?
+- Voice with a picked voice (Voice settings): still speaks in that voice, also right after opening the app?
+- Two wheels: connect one, then the other without disconnecting. Odometer, consumption and range are the new wheel's?
+- Avoidances on and no internet when the route is made: one short notice that avoidances were skipped?
 
 **Android Auto** (install from the Play internal sharing link, a sideloaded APK never shows in the car)
 - The car screen opens, and speed and battery match the phone?

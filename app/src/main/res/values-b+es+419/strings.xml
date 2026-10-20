@@ -2164,6 +2164,7 @@
     <string name="nav_setting_avoid_hint">Las exclusiones usan un servicio de rutas distinto y se aplican donde el modo de viaje las admite.</string>
     <string name="nav_setting_avoid_tolls">Evitar peajes</string>
     <string name="nav_setting_avoid_unpaved">Evitar caminos sin pavimentar</string>
+    <string name="nav_avoid_router_failed">La ruta ignora lo que evitas: su servicio de rutas no respondió.</string>
     <string name="nav_setting_ocm_key">Clave de API de Open Charge Map</string>
     <string name="nav_setting_ocm_key_hint">Agrega reseñas, fotos y detalles de conectores a la ficha del cargador. Regístrate para obtener una clave gratuita en</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2179,6 +2180,8 @@
     <string name="adv_alarm_min_samples_desc">Afecta cuántas lecturas se necesitan antes de confiar en una tendencia. Peligro: muy pocas predicen sobre el ruido.</string>
     <string name="adv_alarm_min_span">Lapso mínimo</string>
     <string name="adv_alarm_min_span_desc">Afecta el tiempo mínimo que deben abarcar las muestras antes de usar una tendencia.</string>
+    <string name="adv_alarm_warm_route">Tiempo de altavoz listo</string>
+    <string name="adv_alarm_warm_route_desc">Afecta cuánto tiempo el altavoz sigue listo tras un pitido o una voz. Peligro: muy corto y el primer pitido tras un rato en silencio puede chasquear o cortarse; muy largo mantiene el audio activo y gasta batería.</string>
     <string name="adv_alarm_slope_window">Ventana de tendencia</string>
     <string name="adv_alarm_slope_window_desc">Afecta cuántas muestras recientes definen la tendencia prevista. Peligro: muy corta reacciona al ruido, muy larga reacciona lento.</string>
     <string name="adv_alarm_warning">Estos cambian cómo las alarmas de velocidad y potencia predicen un umbral antes de alcanzarlo. Valores incorrectos pueden hacer que las alarmas suenen tarde o nunca. Cambia con cuidado.</string>

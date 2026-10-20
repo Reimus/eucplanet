@@ -567,6 +567,8 @@
     <string name="adv_alarm_min_samples_desc">Befolyásolja, hány leolvasás kell, mielőtt a trend megbízhatónak számít. Veszély: a túl kevés a zajból jelez előre.</string>
     <string name="adv_alarm_min_span">Minimális időtartam</string>
     <string name="adv_alarm_min_span_desc">Befolyásolja a legrövidebb időt, amelyet a mintáknak le kell fedniük a trend használata előtt.</string>
+    <string name="adv_alarm_warm_route">Hangszóró készenléti ideje</string>
+    <string name="adv_alarm_warm_route_desc">Meghatározza, mennyi ideig marad készen a hangszóró egy sípolás vagy hangüzenet után. Veszély: túl rövid, és a csend utáni első sípolás pattoghat vagy levágódhat; túl hosszú ébren tartja a hangot és meríti az akkumulátort.</string>
     <string name="adv_group_radar_auto">Radar és automatizálás</string>
     <string name="adv_radar_clear_decay">Radarsáv lecsengése</string>
     <string name="adv_radar_clear_decay_desc">Befolyásolja, mennyi ideig marad a sávjelző az út felszabadulása után. Veszély: a túl alacsony érték villogóvá teszi, ahogy autók jönnek és mennek.</string>
@@ -2246,6 +2248,7 @@
     <string name="nav_setting_avoid_tolls">Fizetős utak elkerülése</string>
     <string name="nav_setting_avoid_ferries">Kompok elkerülése</string>
     <string name="nav_setting_avoid_unpaved">Burkolatlan utak elkerülése</string>
+    <string name="nav_avoid_router_failed">Az útvonal figyelmen kívül hagyja az elkerüléseket: a tervezőszolgáltatás nem válaszolt.</string>
     <string name="nav_show_chargers">Töltők mutatása</string>
     <string name="nav_show_places">Helyek mutatása (boltok, étel, látnivalók)</string>
     <string name="nav_pois_failed">A helyeket nem sikerült betölteni. Ellenőrizd a kapcsolatot</string>

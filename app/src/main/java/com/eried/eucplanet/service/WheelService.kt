@@ -79,6 +79,22 @@ class WheelService : LifecycleService() {
         const val NOTIFICATION_ID = 1
         /** Longest an unchanged ongoing notification goes without a re-post. */
         private const val NOTIFICATION_REFRESH_MS = 30_000L
+
+        /** What a notification reads as: title, text and button labels. */
+        internal fun notificationKey(
+            title: CharSequence?, text: CharSequence?, actionTitles: List<CharSequence?>?,
+        ): String = buildString {
+            append(title).append('|')
+            append(text)
+            actionTitles?.forEach { append('|').append(it) }
+        }
+
+        /** Post when it reads differently, or when the last post is [NOTIFICATION_REFRESH_MS] old. */
+        internal fun shouldPostNotification(
+            key: String, lastKey: String, nowMs: Long, lastPostMs: Long,
+        ): Boolean = !(key == lastKey && nowMs - lastPostMs < NOTIFICATION_REFRESH_MS)
+        private const val WIDGET_PLACED_RECHECK_MS = 30_000L
+        private const val NOTIFICATION_SCREEN_OFF_MS = 10_000L
         const val ACTION_CONNECT = "com.eried.eucplanet.CONNECT"
         const val ACTION_DISCONNECT = "com.eried.eucplanet.DISCONNECT"
         const val ACTION_START_RECORDING = "com.eried.eucplanet.START_RECORDING"
@@ -289,6 +305,14 @@ class WheelService : LifecycleService() {
         super.onCreate()
         isRunning = true
         createNotificationChannel()
+        screenOn = getSystemService(android.os.PowerManager::class.java)?.isInteractive ?: true
+        ContextCompat.registerReceiver(
+            this, screenReceiver,
+            android.content.IntentFilter().apply {
+                addAction(Intent.ACTION_SCREEN_ON); addAction(Intent.ACTION_SCREEN_OFF)
+            },
+            ContextCompat.RECEIVER_NOT_EXPORTED,
+        )
 
         // Start listening for a paired tyre cap. Touching the injected scanner
         // is what creates it; it then follows the pairing on its own.
@@ -738,6 +762,7 @@ class WheelService : LifecycleService() {
 
     override fun onDestroy() {
         isRunning = false
+        runCatching { unregisterReceiver(screenReceiver) }
         locationForegroundReady = false
         // Any destroy path (not just Stop All) tears the notification down and
         // stops further re-posts, so an ordinary stopSelf() can't leave it behind
@@ -1157,15 +1182,28 @@ class WheelService : LifecycleService() {
         if (action == ACTION_STOP_ALL_AND_KILL) {
             actionIntent.putExtra(EXTRA_CLOSE_WATCH, true)
         }
-        val pi = PendingIntent.getService(
-            this, 200 + type.ordinal,
-            actionIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
+        // The intent for an action never changes, and every getService is a
+        // Binder call: built once each, not on every 1 Hz notification build.
+        val pi = notifIntents.getOrPut(action) {
+            PendingIntent.getService(
+                this, 200 + type.ordinal,
+                actionIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+        }
         return NotificationCompat.Action.Builder(icon, label, pi).build()
     }
 
-    private var lastNotificationUpdate = 0L
+    private val notifIntents = java.util.concurrent.ConcurrentHashMap<String, PendingIntent>()
+
+    @Volatile private var lastNotificationUpdate = 0L
+    @Volatile private var screenOn = true
+    private val screenReceiver = object : android.content.BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            screenOn = intent.action == Intent.ACTION_SCREEN_ON
+            if (screenOn) lastNotificationUpdate = 0L  // fresh numbers on the next frame
+        }
+    }
 
     // --- Home screen widget ---------------------------------------------------
 
@@ -1190,9 +1228,19 @@ class WheelService : LifecycleService() {
         val now = System.currentTimeMillis()
         if (now - lastWidgetUpdate < 1_000L) return
         lastWidgetUpdate = now
-        if (!com.eried.eucplanet.widget.EucWidget.isPlaced(this)) return
-        renderWidget(data)
+        // Even at 1 Hz that was seven Binder calls a second with no widget on
+        // the home screen. Placement is re-checked every 30 s; a widget placed
+        // in between paints itself from the stored snapshot in onUpdate.
+        if (now - widgetPlacedCheckedMs >= WIDGET_PLACED_RECHECK_MS) {
+            widgetPlacedCheckedMs = now
+            widgetPlaced = com.eried.eucplanet.widget.EucWidget.isPlaced(this)
+        }
+        if (!widgetPlaced) return
+        renderWidget(data, placedKnown = true)
     }
+
+    private var widgetPlaced = false
+    private var widgetPlacedCheckedMs = 0L
 
     /** Paints the widget in the rider's own units, one entry per configured
      *  slot. [data] null paints the disconnected state. */
@@ -1370,9 +1418,9 @@ class WheelService : LifecycleService() {
         )
     }
 
-    private fun renderWidget(data: WheelData?) {
+    private fun renderWidget(data: WheelData?, placedKnown: Boolean = false) {
         if (legalLockdown.isEngaged()) return  // lockdown stops the widgets
-        if (!com.eried.eucplanet.widget.EucWidget.isPlaced(this)) return
+        if (!placedKnown && !com.eried.eucplanet.widget.EucWidget.isPlaced(this)) return
         val connected =
             wheelRepository.connectionState.value == ConnectionState.CONNECTED && data != null
         val u = com.eried.eucplanet.util.Units
@@ -1449,9 +1497,11 @@ class WheelService : LifecycleService() {
         // stopForeground(REMOVE) creates a standalone notification that survives
         // the process kill, leaving the notification stuck after Stop All.
         if (shuttingDown) return
-        // Throttle to 1 Hz
+        // 1 Hz while the screen is on. Off, nobody can read it, and each post
+        // wakes the system UI: every 10 s, and at once when the screen comes on.
         val now = System.currentTimeMillis()
-        if (now - lastNotificationUpdate < 1000) return
+        val interval = if (screenOn) 1_000L else NOTIFICATION_SCREEN_OFF_MS
+        if (now - lastNotificationUpdate < interval) return
         lastNotificationUpdate = now
         postNotificationIfChanged(buildNotification(data), now)
     }
@@ -1468,12 +1518,12 @@ class WheelService : LifecycleService() {
      * keeps a notification the system lost or garbled from staying that way.
      */
     private fun postNotificationIfChanged(n: Notification, now: Long = System.currentTimeMillis()) {
-        val shown = buildString {
-            append(n.extras.getCharSequence(Notification.EXTRA_TITLE)).append('|')
-            append(n.extras.getCharSequence(Notification.EXTRA_TEXT))
-            n.actions?.forEach { append('|').append(it.title) }
-        }
-        if (shown == lastNotificationShown && now - lastNotificationPostMs < NOTIFICATION_REFRESH_MS) return
+        val shown = notificationKey(
+            n.extras.getCharSequence(Notification.EXTRA_TITLE),
+            n.extras.getCharSequence(Notification.EXTRA_TEXT),
+            n.actions?.map { it.title },
+        )
+        if (!shouldPostNotification(shown, lastNotificationShown, now, lastNotificationPostMs)) return
         lastNotificationShown = shown
         lastNotificationPostMs = now
         getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, n)

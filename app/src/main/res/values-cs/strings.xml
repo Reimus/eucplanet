@@ -567,6 +567,8 @@
     <string name="adv_alarm_min_samples_desc">Ovlivňuje, kolik měření je potřeba, než se trendu důvěřuje. Nebezpečí: příliš málo předpovídá ze šumu.</string>
     <string name="adv_alarm_min_span">Minimální rozsah</string>
     <string name="adv_alarm_min_span_desc">Ovlivňuje nejkratší dobu, kterou musí vzorky pokrýt, než se trend použije.</string>
+    <string name="adv_alarm_warm_route">Doba připravenosti reproduktoru</string>
+    <string name="adv_alarm_warm_route_desc">Ovlivňuje, jak dlouho zůstane reproduktor připraven po pípnutí nebo hlášení. Nebezpečí: příliš krátká a první pípnutí po tiché chvíli může lupnout nebo se useknout; příliš dlouhá drží zvuk aktivní a vybíjí baterii.</string>
     <string name="adv_group_radar_auto">Radar a automatizace</string>
     <string name="adv_radar_clear_decay">Doznívání pruhu radaru</string>
     <string name="adv_radar_clear_decay_desc">Ovlivňuje, jak dlouho zůstane pruh po uvolnění vozovky. Nebezpečí: příliš nízká hodnota způsobí blikání, jak auta přijíždějí a odjíždějí.</string>
@@ -2246,6 +2248,7 @@
     <string name="nav_setting_avoid_tolls">Vyhnout se placeným úsekům</string>
     <string name="nav_setting_avoid_ferries">Vyhnout se trajektům</string>
     <string name="nav_setting_avoid_unpaved">Vyhnout se nezpevněným cestám</string>
+    <string name="nav_avoid_router_failed">Trasa ignoruje vaše vyhýbání: jeho služba tras neodpověděla.</string>
     <string name="nav_show_chargers">Zobrazit nabíječky</string>
     <string name="nav_show_places">Zobrazit místa (obchody, jídlo, památky)</string>
     <string name="nav_pois_failed">Místa se nepodařilo načíst. Zkontrolujte připojení</string>

@@ -1001,6 +1001,7 @@ data class AppSettings(
     val alarmBufferMaxMs: Int get() = advanced.alarmBufferMaxMs
     val alarmSlopeMinSamples: Int get() = advanced.alarmSlopeMinSamples
     val alarmSlopeMinSpanMs: Int get() = advanced.alarmSlopeMinSpanMs
+    val alarmWarmRouteMs: Int get() = advanced.alarmWarmRouteMs
     val radarClearDecayMs: Int get() = advanced.radarClearDecayMs
     val automationLightCheckIntervalMs: Int get() = advanced.automationLightCheckIntervalMs
     val hudBackoffMinMs: Int get() = advanced.hudBackoffMinMs
@@ -1621,6 +1622,7 @@ data class AdvancedSettings(
     val alarmBufferMaxMs: Int = 2500,
     val alarmSlopeMinSamples: Int = 3,
     val alarmSlopeMinSpanMs: Int = 300,
+    val alarmWarmRouteMs: Int = 120000,
     val radarClearDecayMs: Int = 3000,
     val automationLightCheckIntervalMs: Int = 60000,
     val hudBackoffMinMs: Int = 1000,

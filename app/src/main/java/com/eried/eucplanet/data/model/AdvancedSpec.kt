@@ -135,6 +135,8 @@ val ADVANCED_SPECS: List<AdvancedSpec> = listOf(
         2..20, 1, unit = "", get = { it.alarmSlopeMinSamples }, set = { s, v -> s.copy(alarmSlopeMinSamples = v) }),
     AdvancedSpec("alarmSlopeMinSpanMs", AdvGroup.ALARM, R.string.adv_alarm_min_span, R.string.adv_alarm_min_span_desc,
         50..5000, 50, get = { it.alarmSlopeMinSpanMs }, set = { s, v -> s.copy(alarmSlopeMinSpanMs = v) }),
+    AdvancedSpec("alarmWarmRouteMs", AdvGroup.ALARM, R.string.adv_alarm_warm_route, R.string.adv_alarm_warm_route_desc,
+        10000..3600000, 10000, get = { it.alarmWarmRouteMs }, set = { s, v -> s.copy(alarmWarmRouteMs = v) }),
 
     // --- Radar and automation ---
     AdvancedSpec("radarClearDecayMs", AdvGroup.RADAR_AUTO, R.string.adv_radar_clear_decay, R.string.adv_radar_clear_decay_desc,

@@ -643,7 +643,7 @@ class TripRepository @Inject constructor(
             brand = wheelRepository.connectedBrand.value,
             model = wheelRepository.modelName.value,
             serial = wheelRepository.wheelSerial.value,
-            bleMac = settingsRepository.get().lastDeviceAddress,
+            bleMac = settingsRepository.currentOrLoad().lastDeviceAddress,
             bleName = wheelRepository.connectedDeviceName.value,
             firmware = wheelRepository.firmwareVersion.value,
         )
@@ -819,7 +819,7 @@ class TripRepository @Inject constructor(
                 val extSample = externalGpsRepository.currentSample.value
                 val extSpeed = extSample
                     ?.takeIf {
-                        settingsRepository.get().gpsPrioritizeExternal &&
+                        settingsRepository.currentOrLoad().gpsPrioritizeExternal &&
                             System.currentTimeMillis() - it.timestamp < recordIntervalMs * 3
                     }
                     ?.speedKmh

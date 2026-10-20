@@ -2143,6 +2143,7 @@
     <string name="nav_setting_avoid_hint">回避設定は別のルーティングサービスを使用し、移動手段が対応している場合に適用されます。</string>
     <string name="nav_setting_avoid_tolls">有料道路を回避</string>
     <string name="nav_setting_avoid_unpaved">未舗装路を回避</string>
+    <string name="nav_avoid_router_failed">回避設定なしのルートです：回避用のルート検索サービスが応答しませんでした。</string>
     <string name="nav_setting_ocm_key">Open Charge Map API キー</string>
     <string name="nav_setting_ocm_key_hint">充電器のフライアウトにレビュー、写真、コネクター詳細を追加します。無料キーの登録はこちら</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2160,6 +2161,8 @@
     <string name="adv_alarm_min_samples_desc">トレンドを信頼するまでに必要な測定数に影響します。危険: 少なすぎるとノイズで予測します。</string>
     <string name="adv_alarm_min_span">最小スパン</string>
     <string name="adv_alarm_min_span_desc">トレンドを使用する前にサンプルがカバーすべき最短時間に影響します。</string>
+    <string name="adv_alarm_warm_route">スピーカー待機時間</string>
+    <string name="adv_alarm_warm_route_desc">ビープ音や音声のあと、スピーカーを準備状態に保つ時間です。危険: 短すぎると、静かな時間のあとの最初のビープ音がポップ音を出したり途切れたりします。長すぎるとオーディオが動作し続け、バッテリーを消耗します。</string>
     <string name="adv_alarm_slope_window">トレンドウィンドウ</string>
     <string name="adv_alarm_slope_window_desc">予測トレンドを決める直近サンプル数に影響します。危険: 短すぎるとノイズに反応し、長すぎると反応が遅くなります。</string>
     <string name="adv_alarm_warning">これらは速度・電力アラームがしきい値に達する前に予測する方法を変更します。値が誤っているとアラームが遅れたり鳴らなくなったりします。慎重に変更してください。</string>

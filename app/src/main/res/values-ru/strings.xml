@@ -2146,6 +2146,7 @@
     <string name="nav_setting_avoid_hint">Исключения используют другой сервис маршрутизации и применяются там, где их поддерживает режим передвижения.</string>
     <string name="nav_setting_avoid_tolls">Избегать платных дорог</string>
     <string name="nav_setting_avoid_unpaved">Избегать грунтовых дорог</string>
+    <string name="nav_avoid_router_failed">Маршрут без учёта исключений: сервис маршрутов для них не ответил.</string>
     <string name="nav_setting_ocm_key">API-ключ Open Charge Map</string>
     <string name="nav_setting_ocm_key_hint">Добавляет отзывы, фото и сведения о коннекторах во всплывающую карточку зарядки. Зарегистрируйтесь для бесплатного ключа на</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2161,6 +2162,8 @@
     <string name="adv_alarm_min_samples_desc">Влияет на то, сколько показаний нужно, прежде чем тренду можно доверять. Опасно: слишком мало предсказывают по шуму.</string>
     <string name="adv_alarm_min_span">Минимальный интервал</string>
     <string name="adv_alarm_min_span_desc">Влияет на минимальное время, которое должны охватывать выборки, прежде чем тренд будет использован.</string>
+    <string name="adv_alarm_warm_route">Время готовности динамика</string>
+    <string name="adv_alarm_warm_route_desc">Определяет, как долго динамик остаётся готовым после сигнала или голосового сообщения. Опасно: слишком мало, и первый сигнал после тишины может щёлкнуть или обрезаться; слишком много держит звук активным и разряжает батарею.</string>
     <string name="adv_alarm_slope_window">Окно тренда</string>
     <string name="adv_alarm_slope_window_desc">Влияет на то, сколько последних выборок задают прогнозируемый тренд. Опасно: слишком короткое реагирует на шум, слишком длинное реагирует медленно.</string>
     <string name="adv_alarm_warning">Эти параметры меняют то, как сигналы скорости и мощности прогнозируют порог до его достижения. Неверные значения могут заставить сигналы срабатывать поздно или вовсе не срабатывать. Меняйте с осторожностью.</string>

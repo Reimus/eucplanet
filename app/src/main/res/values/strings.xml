@@ -638,6 +638,8 @@
     <string name="adv_alarm_min_samples_desc">Affects how many readings are needed before a trend is trusted. Danger: too few predict on noise.</string>
     <string name="adv_alarm_min_span">Minimum span</string>
     <string name="adv_alarm_min_span_desc">Affects the least time the samples must cover before a trend is used.</string>
+    <string name="adv_alarm_warm_route">Speaker ready time</string>
+    <string name="adv_alarm_warm_route_desc">Affects how long the speaker stays ready after a beep or voice line. Danger: too short and the first beep after a quiet stretch may pop or clip; too long keeps audio awake and drains the battery.</string>
     <string name="adv_group_radar_auto">Radar and automation</string>
     <string name="adv_radar_clear_decay">Radar lane decay</string>
     <string name="adv_radar_clear_decay_desc">Affects how long the lane bar stays after the road clears. Danger: too low makes it blink as cars come and go.</string>
@@ -2455,6 +2457,7 @@
     <string name="nav_setting_avoid_tolls">Avoid toll roads</string>
     <string name="nav_setting_avoid_ferries">Avoid ferries</string>
     <string name="nav_setting_avoid_unpaved">Avoid unpaved roads</string>
+    <string name="nav_avoid_router_failed">Route ignores your avoidances: their routing service did not answer.</string>
     <string name="nav_show_chargers">Show chargers</string>
     <string name="nav_show_places">Show places (stores, food, sights)</string>
     <string name="nav_pois_failed">Couldn\'t load places. Check your connection</string>

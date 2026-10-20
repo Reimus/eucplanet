@@ -2143,6 +2143,7 @@
     <string name="nav_setting_avoid_hint">避開項目使用不同的路線服務，並在行進模式支援時套用。</string>
     <string name="nav_setting_avoid_tolls">避開收費道路</string>
     <string name="nav_setting_avoid_unpaved">避開未鋪設道路</string>
+    <string name="nav_avoid_router_failed">路線未套用避開設定：避開用的路線服務沒有回應。</string>
     <string name="nav_setting_ocm_key">Open Charge Map API 金鑰</string>
     <string name="nav_setting_ocm_key_hint">為充電站彈出視窗加入評論、照片及連接頭詳情。可至此處免費註冊金鑰：</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2160,6 +2161,8 @@
     <string name="adv_alarm_min_samples_desc">影響採信趨勢前所需的讀數數量。危險：太少會依雜訊預測。</string>
     <string name="adv_alarm_min_span">最短時距</string>
     <string name="adv_alarm_min_span_desc">影響使用趨勢前取樣必須涵蓋的最短時間。</string>
+    <string name="adv_alarm_warm_route">揚聲器就緒時間</string>
+    <string name="adv_alarm_warm_route_desc">決定提示音或語音播報後揚聲器保持就緒的時長。危險: 太短時，安靜一段時間後的第一聲提示音可能有爆音或被截斷；太長則讓音訊一直運作，耗電。</string>
     <string name="adv_alarm_slope_window">趨勢視窗</string>
     <string name="adv_alarm_slope_window_desc">影響用於設定預測趨勢的最近取樣數。危險：太短會對雜訊反應，太長則反應遲緩。</string>
     <string name="adv_alarm_warning">這些會改變速度與功率警報在你達到閾值前的預測方式。數值錯誤可能使警報太晚觸發或完全不觸發。請謹慎變更。</string>

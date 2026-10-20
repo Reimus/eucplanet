@@ -2144,6 +2144,7 @@
     <string name="nav_setting_avoid_hint">Vermijdingen gebruiken een andere routeringsservice en gelden waar de reismodus ze ondersteunt.</string>
     <string name="nav_setting_avoid_tolls">Tolwegen vermijden</string>
     <string name="nav_setting_avoid_unpaved">Onverharde wegen vermijden</string>
+    <string name="nav_avoid_router_failed">Route negeert je vermijdingen: de routedienst daarvoor antwoordde niet.</string>
     <string name="nav_setting_ocm_key">Open Charge Map API-sleutel</string>
     <string name="nav_setting_ocm_key_hint">Voegt beoordelingen, foto\'s en connectordetails toe aan de laadpunt-flyout. Vraag een gratis sleutel aan op</string>
     <string name="nav_setting_ocm_key_link">openchargemap.org</string>
@@ -2161,6 +2162,8 @@
     <string name="adv_alarm_min_samples_desc">Bepaalt hoeveel metingen nodig zijn voordat een trend wordt vertrouwd. Let op: te weinig voorspelt op ruis.</string>
     <string name="adv_alarm_min_span">Minimale tijdspanne</string>
     <string name="adv_alarm_min_span_desc">Bepaalt de minimale tijd die de samples moeten beslaan voordat een trend wordt gebruikt.</string>
+    <string name="adv_alarm_warm_route">Luidspreker-gereedtijd</string>
+    <string name="adv_alarm_warm_route_desc">Bepaalt hoe lang de luidspreker gereed blijft na een piep of gesproken melding. Gevaar: te kort en de eerste piep na een stille periode kan ploppen of wegvallen; te lang houdt het geluid wakker en verbruikt de accu.</string>
     <string name="adv_alarm_slope_window">Trendvenster</string>
     <string name="adv_alarm_slope_window_desc">Bepaalt hoeveel recente samples de voorspelde trend bepalen. Let op: te kort reageert op ruis, te lang reageert traag.</string>
     <string name="adv_alarm_warning">Deze bepalen hoe snelheids- en vermogensalarmen een drempel voorspellen voordat je die bereikt. Verkeerde waarden kunnen alarmen te laat of helemaal niet laten afgaan. Wijzig met voorzichtigheid.</string>

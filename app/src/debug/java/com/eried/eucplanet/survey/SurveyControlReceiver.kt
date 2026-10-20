@@ -27,6 +27,10 @@ import javax.inject.Inject
  *     so the next screenshot shows a freshly randomised configuration.
  *   - SURVEY_CONNECT_VIRTUAL: start WheelService with VIRTUAL:<id> so there
  *     is live telemetry on the dashboard when the screenshots are captured.
+ *   - SURVEY_SOUND: play one beep (kind=beep) or speak one line (kind=voice),
+ *     so the warm-route timing can be checked on a machine with no alarm firing.
+ *   - SURVEY_SET: notif_actions (CSV) and warm_route_ms, the two settings the
+ *     battery checks need to change without walking the settings screens.
  *   - SURVEY_START_NAV: put NavigationEngine into an active route without a
  *     geocoder, a network round trip or a single tap. It exists because the
  *     car screen used to die the moment a route went active, and proving that
@@ -41,6 +45,8 @@ class SurveyControlReceiver : BroadcastReceiver() {
 
     @Inject lateinit var settingsRepository: SettingsRepository
     @Inject lateinit var navigationEngine: NavigationEngine
+    @Inject lateinit var tonePlayer: com.eried.eucplanet.service.TonePlayer
+    @Inject lateinit var voiceService: com.eried.eucplanet.service.VoiceService
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
@@ -50,6 +56,31 @@ class SurveyControlReceiver : BroadcastReceiver() {
             ACTION_SURVEY_CONNECT_VIRTUAL -> connectVirtual(context, intent)
             ACTION_SURVEY_START_NAV -> startNav()
             ACTION_SURVEY_CAR_ALARM -> carAlarm(context)
+            ACTION_SURVEY_SOUND -> sound(intent.getStringExtra(EXTRA_KIND) ?: "beep")
+            ACTION_SURVEY_SET -> set(intent)
+        }
+    }
+
+    private fun sound(kind: String) {
+        Log.i(TAG, "SURVEY_SOUND $kind")
+        scope.launch {
+            if (kind == "voice") voiceService.speak("Test")
+            else tonePlayer.playBeep(1000, 200, 1, 0, 80, -1, 0, 0)
+            Log.i(TAG, "SURVEY_SOUND $kind done")
+        }
+    }
+
+    private fun set(intent: Intent) {
+        val actions = intent.getStringExtra(EXTRA_NOTIF_ACTIONS)
+        val warm = intent.getIntExtra(EXTRA_WARM_ROUTE_MS, -1)
+        Log.i(TAG, "SURVEY_SET notifActions=$actions warmRouteMs=$warm")
+        scope.launch {
+            settingsRepository.update { s ->
+                var n = s
+                if (actions != null) n = n.copy(notificationActions = actions)
+                if (warm > 0) n = n.copy(advanced = n.advanced.copy(alarmWarmRouteMs = warm))
+                n
+            }
         }
     }
 
@@ -132,6 +163,11 @@ class SurveyControlReceiver : BroadcastReceiver() {
         const val ACTION_SURVEY_CONNECT_VIRTUAL = "com.eried.eucplanet.SURVEY_CONNECT_VIRTUAL"
         const val ACTION_SURVEY_START_NAV = "com.eried.eucplanet.SURVEY_START_NAV"
         const val ACTION_SURVEY_CAR_ALARM = "com.eried.eucplanet.SURVEY_CAR_ALARM"
+        const val ACTION_SURVEY_SOUND = "com.eried.eucplanet.SURVEY_SOUND"
+        const val ACTION_SURVEY_SET = "com.eried.eucplanet.SURVEY_SET"
+        const val EXTRA_KIND = "kind"
+        const val EXTRA_NOTIF_ACTIONS = "notif_actions"
+        const val EXTRA_WARM_ROUTE_MS = "warm_route_ms"
 
         const val EXTRA_METRIC_ORDER = "metric_order"
         const val EXTRA_METRIC_STATS = "metric_stats"
