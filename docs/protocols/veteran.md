@@ -88,10 +88,10 @@ Reassembly rules:
    preserving any real frame embedded in the damaged data. Retain incomplete
    frames until further notifications or disconnect; do not impose a timeout.
 
-Smart-BMS wheels can interleave long CRC frames with short telemetry frames,
-so seeing one valid long frame does not imply all later short frames are false.
-Unobserved short lengths are intentionally unsupported until a capture
-establishes their layout and validation rules.
+Parser integrity policy: after this app accepts one CRC-valid long frame, it
+latches CRC mode for the current Veteran connection. Every later candidate,
+including `LEN = 32` or `34`, must then pass CRC32 at offset `LEN`; disconnect
+clears the latch so a new wheel is framed from its own observed data.
 
 ## 4. Realtime telemetry
 

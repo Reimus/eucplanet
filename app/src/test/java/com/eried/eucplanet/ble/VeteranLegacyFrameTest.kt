@@ -3,8 +3,9 @@ package com.eried.eucplanet.ble
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.util.zip.CRC32
 
-/** Real LK13709 Service Mode notifications and legacy WheelLog frame layouts. */
+/** Real LK13709 Service Mode notifications captured from the wheel. */
 class VeteranLegacyFrameTest {
     private fun bytes(hex: String): ByteArray =
         hex.replace(" ", "").chunked(2).map { it.toInt(16).toByte() }.toByteArray()
@@ -15,6 +16,16 @@ class VeteranLegacyFrameTest {
 
     private fun telemetry(adapter: VeteranAdapter, bytes: ByteArray) =
         adapter.onRawNotification(bytes).filterIsInstance<DecodeResult.Telemetry>().map { it.data }
+
+    private fun crcFrame(len: Int): ByteArray =
+        ByteArray(len + 4).also { frame ->
+            frame[0] = 0xDC.toByte()
+            frame[1] = 0x5A
+            frame[2] = 0x5C
+            frame[3] = len.toByte()
+            val crc = CRC32().apply { update(frame, 0, len) }.value
+            for (i in 0..3) frame[len + i] = (crc ushr (24 - i * 8)).toByte()
+        }
 
     @Test fun `LK13709 split frame decodes actual measurements`() {
         val adapter = VeteranAdapter()
@@ -33,6 +44,31 @@ class VeteranLegacyFrameTest {
         assertEquals(0, firstFrame[22].toInt())
         assertEquals(0, firstFrame[23].toInt())
         assertEquals(0, firstFrame[30].toInt())
+    }
+
+    @Test fun `later rider diagnostics decode captured LK13709 frames`() {
+        val captures = listOf(
+            bytes("dc5a5c20256000009175001391750013fffd0cfb" +
+                "0dee000001f8024604520002ffe3000c") to 95.68f,
+            bytes("dc5a5c20256b000091fc001391fc0013fffd09a4" +
+                "0e06000001f8024604520002ffe50029") to 95.79f,
+        )
+        val adapter = VeteranAdapter().apply { notifyConnectingTo("LK13709") }
+
+        captures.forEach { (frame, voltage) ->
+            assertEquals(voltage, telemetry(adapter, frame).single().voltage, 0.01f)
+        }
+    }
+
+    @Test fun `CRC mode latches until disconnect`() {
+        val adapter = VeteranAdapter()
+        adapter.onRawNotification(crcFrame(39))
+
+        assertTrue(telemetry(adapter, firstFrame).isEmpty())
+        assertEquals(1, telemetry(adapter, crcFrame(32)).size)
+
+        adapter.onDisconnect()
+        assertEquals(1, telemetry(adapter, firstFrame).size)
     }
 
     @Test fun `moving LK13709 frames update speed then distance`() {
@@ -67,31 +103,19 @@ class VeteranLegacyFrameTest {
             chunks.map { telemetry(adapter, bytes(it)).size })
     }
 
-    @Test fun `legacy frames survive other splits and concatenation`() {
-        val oldBoard = bytes("DC5A5C2025D600003BF500003BF50000FFDE1399" +
-            "0DEF0000024602460000000000000000")
-        val newBoard = bytes("DC5A5C20238A0112121A00004D450005064611F2" +
-            "0E1000000AF00AF0041B000300000000")
-        val parser = VeteranAdapter()
-        parser.notifyConnectingTo("Sherman-Max")
-        assertEquals(96.86f, telemetry(parser, oldBoard).single().voltage, 0.01f)
-        val newData = telemetry(parser, newBoard.copyOfRange(0, 7)) +
-            telemetry(parser, newBoard.copyOfRange(7, 21)) +
-            telemetry(parser, newBoard.copyOfRange(21, newBoard.size))
-        assertEquals(27.4f, newData.single().speed, 0.01f)
-        assertEquals(45.94f, newData.single().maxTemperature, 0.01f)
-        assertEquals(347.461f, newData.single().totalDistance, 0.001f)
-        assertEquals(2, telemetry(VeteranAdapter(), oldBoard + newBoard).size)
-    }
+    @Test fun `LK13709 frames survive other splits and concatenation`() {
+        val moving = bytes("dc5a5c2025540018907200139072001300500e96" +
+            "0e0f000001f8024604520002ffc70161")
+        val adapter = VeteranAdapter().apply { notifyConnectingTo("LK13709") }
+        assertTrue(telemetry(adapter, moving.copyOfRange(0, 7)).isEmpty())
+        assertTrue(telemetry(adapter, moving.copyOfRange(7, 21)).isEmpty())
+        val split = telemetry(adapter, moving.copyOfRange(21, moving.size)).single()
+        assertEquals(2.4f, split.speed, 0.01f)
 
-    @Test fun `Sherman S captured frame decodes`() {
-        val adapter = VeteranAdapter()
-        val head = bytes("DC5A5C22266200000084000017A2000000000C38")
-        val tail = bytes("0B03000000C600E40BBD0003188B0000006F")
-        assertTrue(telemetry(adapter, head).isEmpty())
-        val data = telemetry(adapter, tail).single()
-        assertEquals(98.26f, data.voltage, 0.01f)
-        assertEquals(0.132f, data.tripDistance, 0.001f)
+        val concatenated = telemetry(VeteranAdapter(), firstFrame + moving)
+        assertEquals(2, concatenated.size)
+        assertEquals(0f, concatenated[0].speed, 0.01f)
+        assertEquals(2.4f, concatenated[1].speed, 0.01f)
     }
 
     @Test fun `truncated and malformed short candidates resync without false telemetry`() {

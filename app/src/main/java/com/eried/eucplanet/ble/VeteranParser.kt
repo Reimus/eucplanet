@@ -12,7 +12,8 @@ import kotlin.math.roundToInt
  * Frames arrive in fragments over notifications. Both formats start with
  * `DC 5A 5C` and a one-byte LEN; total size is LEN + 4. Short frames
  * (LEN <= 38) have no CRC, while long frames (LEN > 38) carry CRC32 at
- * offset LEN over bytes 0 until LEN. See docs/protocols/veteran.md.
+ * offset LEN over bytes 0 until LEN. After a valid CRC frame, CRC remains
+ * required until disconnect. See docs/protocols/veteran.md.
  */
 class VeteranParser {
 
@@ -27,12 +28,16 @@ class VeteranParser {
     // Empty when we're scanning for the next magic.
     private val buffer = ArrayList<Byte>(64)
 
+    // A CRC-verified stream must not later fall back to unverified parsing.
+    // Reset this connection-specific mode on disconnect.
+    private var usingCrc = false
+
     /**
      * Accumulate notification bytes in arrival order and return complete frames.
-     * Long frames are CRC-checked; short frames use structural checks to avoid
-     * decoding false magic sequences found within damaged frames. Partial frames
-     * persist until the next notification or [reset] on disconnect: a timeout
-     * would discard long frames whose notifications arrive far apart.
+     * Long frames are CRC-checked; short frames use structural checks until a
+     * valid CRC frame latches CRC mode. Partial frames persist until the next
+     * notification or [reset] on disconnect: a timeout would discard long frames
+     * whose notifications arrive far apart.
      */
     fun feed(rawBytes: ByteArray): List<Frame> {
         val out = mutableListOf<Frame>()
@@ -57,9 +62,10 @@ class VeteranParser {
         return out
     }
 
-    /** Drop any partial frame. Called by the adapter on disconnect. */
+    /** Drop partial data and reset the connection-specific CRC mode. */
     fun reset() {
         buffer.clear()
+        usingCrc = false
     }
 
     /**
@@ -75,16 +81,18 @@ class VeteranParser {
     }
 
     /**
-     * Extract a complete frame or wait for more bytes. Only captured legacy
-     * short layouts are accepted: without a CRC, an arbitrary length can
-     * turn an embedded magic into unverified telemetry. On invalid input drop
-     * just the first magic byte to find a real frame inside damaged data.
+     * Extract a complete frame or wait for more bytes. Without a CRC, accept
+     * only captured legacy layouts; arbitrary lengths can turn embedded magic
+     * into unverified telemetry. In latched CRC mode, CRC validation provides
+     * that protection for every length. On invalid input drop just the first
+     * magic byte to find a real frame inside damaged data.
      */
     private fun tryExtractFrame(): Frame? {
         if (buffer.size < 4) return null
         val len = buffer[3].toInt() and 0xFF
         val isLong = len > 38
-        if (!isLong && len != 32 && len != 34) {
+        val requiresCrc = isLong || usingCrc
+        if (!requiresCrc && len != 32 && len != 34) {
             buffer.removeAt(0)
             return null
         }
@@ -93,13 +101,14 @@ class VeteranParser {
 
         val frame = ByteArray(totalSize)
         for (i in 0 until totalSize) frame[i] = buffer[i]
-        if (isLong) {
+        if (requiresCrc) {
             val crc = CRC32().apply { update(frame, 0, len) }.value
             val expected = ByteUtils.getUint32BE(frame, len)
             if (crc != expected) {
                 buffer.removeAt(0)
                 return null
             }
+            usingCrc = true
         } else {
             val voltageCv = ByteUtils.getUint16BE(frame, 4)
             val speedTenths = ByteUtils.getInt16BE(frame, 6)
